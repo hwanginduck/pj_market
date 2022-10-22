@@ -4,17 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mainpage.jsp</title>
+<title>Q&A BoardPage</title>
 </head>
 <body>
-	
-	mainpage.jsp <br>
-	메인페이지 입니다. <br>
-	<br>
-	<a href="qna_boardpage"><h2>상품문의 게시판</h2></a>
-	
-	
 
+상품문의 게시판 입니다. <br>
+
+<a href="qna_writeform">글쓰기</a>
 
 </body>
 </html>
