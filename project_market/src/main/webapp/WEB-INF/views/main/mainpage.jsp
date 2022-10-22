@@ -10,6 +10,8 @@
 	
 	mainpage.jsp <br>
 	메인페이지 입니다.
+	
+	<input tpye="hidden" value>
 
 </body>
 </html>
