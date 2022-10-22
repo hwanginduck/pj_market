@@ -197,7 +197,7 @@ CREATE TABLE cart (
 	member_id VARCHAR2(30), /* 아이디 */
 	cart_count NUMBER(20) /* 상품수량 */
 );
-
+ 
 
 /* 찜 */
 CREATE TABLE likes (
