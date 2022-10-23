@@ -5,9 +5,12 @@
 <section class="main">
 	<div class="main-img">
 		<div class=welcome>
-		<div class="bubbles">
-			<h1 id="welcome_wording">WELCOME<br>GAGUMARKET</h1>
-		</div>
+			<div>
+				<form action="loginpro.do">
+					ID : <input type="text" name="member_id"><br>
+					<button type="submit">LOGIN</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </section>
