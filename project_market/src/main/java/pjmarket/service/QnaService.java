@@ -16,6 +16,5 @@ public class QnaService {
 	//게시판 저장
 	public void QnaInsert(QnaBoard qnaboard) {
 		qnadao.QnaInsert(qnaboard);
-		
 	}
 }

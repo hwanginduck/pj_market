@@ -5,8 +5,12 @@
 <mapper namespace="qnans">
 
 <insert id="qna_insert" parameterType="qna">
-
-insert into QNA values(qna_seq_nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content},SYSDATE)
+<!-- insert into QNA values(qna_seq_nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content},SYSDATE) -->
+insert into qna
+(qna_no, member_id, product_num, qna_re, qna_content, qna_date)
+values
+(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate)
+<!-- insert into qna values(QNA_SEQ.nextval, 'testids',     200,            0,         'contentss',    sysdate); -->
 
 </insert>
 

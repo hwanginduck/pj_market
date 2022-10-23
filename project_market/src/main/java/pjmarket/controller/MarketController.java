@@ -14,6 +14,8 @@ public class MarketController {
 
 	@Autowired
 	private MarketService ms;
+	
+	@Autowired
 	private QnaService qs;
 
 	// 메인페이지
@@ -37,7 +39,8 @@ public class MarketController {
 	@RequestMapping("qna_boardinsert")
 	public String QnaInsert(QnaBoard qnaboard) throws Exception {
 		qs.QnaInsert(qnaboard);
-		return "redirect: qna/qna_boardpage";
+		System.out.println("controller:" + qnaboard);
+		return "qna/qna_boardpage";
 	}
 	
 	
