@@ -1,9 +1,11 @@
 package pjmarket.dao;
 
+import java.util.List;
+
 import pjmarket.model.QnaBoard;
 
 public interface QnaDao {
 	
-	public void QnaInsert(QnaBoard qnaboard) throws Exception;
+	public int QnaInsert(QnaBoard qnaboard) throws Exception;
 
 }

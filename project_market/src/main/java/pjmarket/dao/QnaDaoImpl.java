@@ -1,5 +1,7 @@
 package pjmarket.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,14 +15,8 @@ public class QnaDaoImpl implements QnaDao {
 	private SqlSessionTemplate session;
 
 	//게시판에저장
-	public void QnaInsert(QnaBoard qnaboard) {
-		System.out.println("QnaDao:" + qnaboard);
-		System.out.println("--------------------@Repository--------------------");
-		System.out.println(qnaboard.getMember_id());
-		System.out.println(qnaboard.getProduct_num());
-		System.out.println(qnaboard.getQna_re());
-		System.out.println(qnaboard.getQna_content());
-		System.out.println("--------------------------------------------------");
-		session.insert("qnans.qna_insert", qnaboard); 
+	public int QnaInsert(QnaBoard qnaboard) {
+		return session.insert("qnans.qna_insert", qnaboard); 
 	}
+
 }

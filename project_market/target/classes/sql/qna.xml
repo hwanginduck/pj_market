@@ -14,6 +14,9 @@ values
 
 </insert>
 
-	
+<select id="qna_list" resultMap="qnaResult">
+select * from QNA order by qna_no
+</select>
+
 	
 </mapper>
