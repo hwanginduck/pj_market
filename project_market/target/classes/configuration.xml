@@ -8,6 +8,7 @@
 		<typeAlias alias="market" type="pjmarket.model.Member" />
 	</typeAliases>	
 	
+	
 	<!-- 
 	<mappers>
 		<mapper resource="sql/Dept.xml" />
