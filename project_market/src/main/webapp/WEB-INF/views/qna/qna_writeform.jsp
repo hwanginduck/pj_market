@@ -16,23 +16,23 @@
    <table border=1>
    
     <tr>
-     <th>아이디(member_id) "MEMBER테이블" 조회해서 그 값을 전달해서 입력해야함</th>
+     <th>아이디member_id</th>
      <td>
-     <input name="member_id" id="member_id" size="14"/>
+     <input name="member_id" id="member_id" size="14" value="kiki"/>
      </td>
     </tr>
     
     <tr>
      <th>상품코드(product_num) "PRODUCT테이블" 조회해서 그 값을 전달해서 입력해야함</th>
      <td>
-      <input name="product_num" id="product_num" size="14" />
+      <input name="product_num" id="product_num" size="14" value="48" />
      </td>
     </tr>
     
     <tr>
-     <th>댓글여부(qna_re) "QNA테이블" 히든값 전송셋팅 또는 테이블을 미입력시 디폴트 0 입력되도록 테이블설정 </th>
+     <th>댓글여부(qna_re) "QNA테이블" </th>
      <td>
-      <input name="qna_re" id="qna_re" size="14" />
+      <input name="qna_re" id="qna_re" size="14" value="0" />
      </td>
     </tr>
     
@@ -40,7 +40,7 @@
      <th>내용(qna_content)</th>
      <td>
      <textarea name="qna_content"  id="qna_content" rows="8" cols="50"
-      class="input_box"></textarea>
+      class="input_box">ㅎㅇ</textarea>
      </td>
     </tr>
     

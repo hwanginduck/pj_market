@@ -20,4 +20,12 @@ public class QnaService {
 		return qnadao.QnaInsert(qnaboard);
 	}
 
+	public int getListCount() {
+		return qnadao.getListCount();
+	}
+
+	public List<QnaBoard> getBoardList(int page) {
+		return qnadao.getBoardList(page);
+	}
+
 }

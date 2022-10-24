@@ -4,17 +4,33 @@
 
 <mapper namespace="qnans">
 
-<insert id="qna_insert" parameterType="qna">
-<!-- insert into QNA values(qna_seq_nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content},SYSDATE) -->
-insert into qna
-(qna_no, member_id, product_num, qna_re, qna_content, qna_date)
-values
-(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate)
-<!-- insert into qna values(QNA_SEQ.nextval, 'testids',     200,            0,         'contentss',    sysdate); -->
+	<resultMap id="qnaResult" type="qna">
+		<result property="qna_no" column="qna_no" />
+		<result property="member_id" column="member_id" />
+		<result property="product_num" column="product_num" />
+		<result property="qna_re" column="qna_re" />
+		<result property="qna_content" column="qna_content" />
+		<result property="qna_date" column="qna_date" />
+	</resultMap>
 
-</insert>
+	<insert id="qna_insert" parameterType="qna">
+		insert into qna
+		(qna_no, member_id, product_num, qna_re, qna_content, qna_date)
+		values
+		(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate)
+	</insert>
+
+	<select id="qna_count" resultType="int">
+		select count(qna_no) from qna
+	</select>
+
+	<select id="qna_list" parameterType="qna"
+		resultMap="qnaResult">
+		select * from QNA order by QNA_NO
+	</select>
 
 
 
-	
+
+
 </mapper>

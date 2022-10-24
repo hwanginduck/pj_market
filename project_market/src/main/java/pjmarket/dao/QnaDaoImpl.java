@@ -15,8 +15,17 @@ public class QnaDaoImpl implements QnaDao {
 	private SqlSessionTemplate session;
 
 	//게시판에저장
+	@Override
 	public int QnaInsert(QnaBoard qnaboard) {
 		return session.insert("qnans.qna_insert", qnaboard); 
+	}
+	@Override
+	public int getListCount() {
+		return session.selectOne("qnans.qna_count");
+	}
+	public List<QnaBoard> getBoardList(int page) {
+		List<QnaBoard> list = session.selectList("qnans.qna_list", page);
+		return list ;
 	}
 
 }
