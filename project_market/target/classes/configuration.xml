@@ -6,6 +6,7 @@
 
 	<typeAliases>
 		<typeAlias alias="market" type="pjmarket.model.Member" />
+		<typeAlias alias="review" type="pjmarket.model.Review" />
 	</typeAliases>	
 	
 	

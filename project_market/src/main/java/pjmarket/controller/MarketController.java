@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MarketController {
 
 
-	 @Autowired 
-	 private MarketService ms;
+	// @Autowired 
+	// private MarketService ms;
 
-	@Autowired
-	private ReviewService rs;
+	//@Autowired
+//	private ReviewService rs;
 
 	// 메인페이지
 	@RequestMapping("mainpage")
