@@ -6,6 +6,8 @@
 
 	<typeAliases>
 		<typeAlias alias="market" type="pjmarket.model.Member" />
+		<typeAlias alias="likelist" type="pjmarket.model.LikeList" />
+		<typeAlias alias="likes" type="pjmarket.model.Likes" />
 	</typeAliases>	
 	
 	<!-- 

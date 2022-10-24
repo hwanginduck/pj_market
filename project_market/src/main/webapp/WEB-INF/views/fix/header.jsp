@@ -301,6 +301,101 @@ footer {
 	background-color: #fff;
 	z-index: 1;
 }
+
+.like-content{
+	padding-top: 300px;
+}
+
+.like-table {
+	margin: 0 auto;
+	border: 1px #a39485 solid;
+	font-size: 25px;
+	box-shadow: 0 2px 5px rgba(0,0,0,.25);
+	width: 800px;
+	border-collapse: collapse;
+	border-radius: 5px;
+	overflow: hidden
+	
+	position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);;
+    
+
+}
+
+.like-table > table {
+	text-align: center;
+	margin: auto;
+}
+
+#like-table-th{
+	font-weight: bold;
+	height:50px;
+	color: #fff;
+	background: #5FB404;
+}
+#like-table-tr{
+	border-bottom: 1px solid #a39485;
+}
+
+.like-table-btn{
+	margin:auto;
+	padding: 5px 5px 5px 5px;
+	width: 50px;
+	height: 50px;
+	/* 기본테두리 없애기 */
+	border: none;
+	/* 클릭시 나오는 테두리 없애기 */
+	outline: none;
+	background-color: transparent;
+}
+
+.like-btn{
+	width:50px;
+	height: 50px;
+	
+	
+}
+
+.cart-content{
+	padding-top: 300px;
+}
+
+.cart-table {
+	margin: 0 auto;
+	border: 1px #a39485 solid;
+	font-size: 25px;
+	box-shadow: 0 2px 5px rgba(0,0,0,.25);
+	width: 800px;
+	border-collapse: collapse;
+	border-radius: 5px;
+	overflow: hidden
+	
+	position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);;
+
+}
+
+
+.cart-table > table {
+	text-align: center;
+	margin: auto;
+}
+
+#cart-table-th{
+	font-weight: bold;
+	height:50px;
+	color: #fff;
+	background: #5FB404;
+}
+#cart-table-tr{
+	border-bottom: 1px solid #a39485;
+}
+
+
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -376,7 +471,7 @@ jQuery(document).ready(function($){
 			<ul class="menu-bar">
 				<li>
 					<div class="menu-box">
-						<a href="">Home</a>
+						<a href="mainpage.do">Home</a>
 					</div>
 				</li>
 				<li>
@@ -401,8 +496,13 @@ jQuery(document).ready(function($){
 				<li><div class="menu-box active">
 						<a href="">Rangking</a>
 					</div></li>
-				<li><div class="menu-box">
-						<a href="">My Page</a>
+				<li><div class="dropdown menu-box">
+					<button class="dropbtn">My Page</button>
+						<div class="dropdown-content">
+							<a href="like_list.do">찜목록</a>
+							<a href="cart_list.do">장바구니</a>
+							<a href="#">내정보수정</a>
+						</div>	
 					</div></li>
 				<li><div class="menu-box">
 						<a href="">Manager</a>
