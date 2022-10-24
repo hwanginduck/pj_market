@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -32,15 +33,32 @@
 				</tr>
 			</c:if>
 			
+					<c:if test="${b.board_re_lev != 0}"> 
+						<c:forEach var="k" begin="1" end="${b.board_re_lev}">
+							&nbsp;&nbsp;			
+						</c:forEach>
+						<img src="./images/AnswerLine.gif">	
+					</c:if>
+			
 			<c:if test="${not empty boardlist}">
 				<c:forEach var="boardlist" items="${boardlist}">
 					<tr>
-						<th> ${boardlist.qna_no } </th>
-						<th> ${boardlist.member_id } </th>
-						<th> ${boardlist.product_num } </th>
-						<th> ${boardlist.qna_re } </th>
+						<th> ${boardlist.qna_no } 		</th>
+						
+						
+							<th> 
+							<c:set var="name" 			value="${boardlist.member_id}" />
+							<c:set var="totalLength" 	value="${fn:length(boardlist.member_id) }" />
+							<c:set var="first"     		value="${fn:substring(boardlist.member_id, 0, 1) }" />
+							<c:set var="last"    		value="${fn:substring(boardlist.member_id, 3, totalLength) }" />
+							<c:if test="${!empty  boardlist.member_id}"><c:out value="${first}**${last}"/></c:if>
+						  	</th> 
+						  	
+						  	
+						<th> ${boardlist.product_num } 	</th>
+						<th> ${boardlist.qna_re } 		</th>
 						<th><pre> ${boardlist.qna_content } </pre></th>
-						<th> ${boardlist.qna_date } </th>
+						<th> ${boardlist.qna_date } 	</th>
 					</tr>
 				</c:forEach>
 			</c:if>
