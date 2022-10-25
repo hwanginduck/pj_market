@@ -11,7 +11,7 @@
 <script>
 
 	/* 메인페이지로 이동 */
-	location.href="mainpage";
+	location.href="mainpage.do";
 	// 2022-10-21 18:40 
 	
 	// 준호테스트

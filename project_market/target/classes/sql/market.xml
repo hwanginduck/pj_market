@@ -4,6 +4,13 @@
 
 <mapper namespace="marketns">
 
+	<!-- 회원저장 -->
+	<insert id="member_join" parameterType="member">
+		insert into member (member_id, member_pw, member_pw2, member_name, member_zip1, 
+		 member_addr1, member_addr2, )
+	
+	</insert>
+
 	
 	
 </mapper>

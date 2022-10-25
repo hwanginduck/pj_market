@@ -3,11 +3,12 @@ package pjmarket.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pjmarket.dao.MarketDao;
+import pjmarket.dao.MemberDaoImpl;
 
 @Service
-public class MarketService {
+public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
-	private MarketDao dao;
+	private MemberDaoImpl dao;
+
 }
