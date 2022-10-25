@@ -1,8 +1,10 @@
 drop table review purge;
+drop SEQUENCE review_seq;
 select * from REVIEW;
 /* 리뷰게시판 */
 CREATE TABLE review (
 	review_no NUMBER NOT NULL, /* 글번호 */
+	review_sb VARCHAR2(30), /* 글제목 */
 	member_id VARCHAR2(30), /* 아이디 */
 	product_num NUMBER, /* 상품코드 */
 	options_num NUMBER, /* 옵션코드 */

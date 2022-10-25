@@ -31,7 +31,7 @@ public class MarketController {
 	}
 
 	// 상품문의를 하기위한 폼으로이동
-	@RequestMapping("review_form.jsp")
+	@RequestMapping("review_form")
 	public String ReviewWriteForm() {
 		return "review/review_form";
 	}

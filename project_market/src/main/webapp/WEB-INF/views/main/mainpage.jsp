@@ -8,11 +8,11 @@
 </head>
 <body>
 
-	mainpage.jsp
+	
 	<br> 메인페이지 입니다.
 	<br>
 	<br>
-	<input type="button" value="리뷰 작성" class="input_button"
-		onclick="location='review_form.do'" />
+	<input type="button" value="리뷰 작성하기" class="input_button"
+		onclick="location='review_form'" />
 </body>
 </html>
