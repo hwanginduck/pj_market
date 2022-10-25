@@ -8,6 +8,9 @@ public class LikeList {
 	private String product_img;
 	private String product_name;
 	private int product_price;
+	private String options_name;
+	private int options_price;
+	private int options_num;
 	
 	public int getLikes_num() {
 		return likes_num;
@@ -45,7 +48,24 @@ public class LikeList {
 	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
 	}
-	
+	public String getOptions_name() {
+		return options_name;
+	}
+	public void setOptions_name(String options_name) {
+		this.options_name = options_name;
+	}
+	public int getOptions_price() {
+		return options_price;
+	}
+	public void setOptions_price(int options_price) {
+		this.options_price = options_price;
+	}
+	public int getOptions_num() {
+		return options_num;
+	}
+	public void setOptions_num(int options_num) {
+		this.options_num = options_num;
+	}
 	
 	
 }

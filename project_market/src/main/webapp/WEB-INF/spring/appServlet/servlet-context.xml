@@ -23,13 +23,22 @@
 	<resources mapping="/Source/**" location="/Source/" /> -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
 	<context:component-scan base-package="pjmarket" />
+
+	<beans:bean id="loginIntercepter" class="pjmarket.intercepter.LoginIntercepter"></beans:bean>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/cart_list.do"/>
+			<mapping path="/like_list.do"/>
+			<beans:ref bean="loginIntercepter" />
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>

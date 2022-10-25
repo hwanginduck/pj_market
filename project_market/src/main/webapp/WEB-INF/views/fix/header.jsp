@@ -11,6 +11,7 @@
 	rel="stylesheet">
 <script src="https://kit.fontawesome.com/ab0cffe9ae.js"
 	crossorigin="anonymous"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 /* 전체적인 폰트등 스타일 먹일때 */
 #root, html, body {
@@ -419,7 +420,6 @@ footer {
 
 
 </style>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function($){
 	 
@@ -475,15 +475,66 @@ function count(type)  {
 	  if(type === 'plus') {
 	    number = parseInt(number) + 1;
 	  }else if(type === 'minus')  {
-	    number = parseInt(number) - 1;
+	    number = parseInt(number) - 1
+	    if(number == 0){
+	    	alert("1 이하로는 내릴수 없습니다.");
+	    	number = 1;
+	    }
 	  }
 	  
 	  // 결과 출력
 	  resultElement.innerText = number;
 	}
-
-
 </script>
+<!-- <script>	
+/* 찜 > 장바구니로 이동 */
+
+$(document).on('click', '#addcart', function(e){
+	
+	alert("스크립트 실행");
+	
+
+	var options_num = request.getParameter("options_num");
+	var product_num = ${product_num}
+	var member_id = $("#member_id").val();
+	var cart_count = 1;
+	
+	alert("member_id");
+
+	console.log(options_num);
+	console.log(product_num);
+	console.log(member_id);
+	console.log(cart_count);
+	
+	
+	var formData = new FormData();
+	formData.append("options_num", options_num);
+	formData.append("product_num", product_num);
+	formData.append("member_id", member_id);
+	formData.append("1", 1);
+	
+	$.ajax({
+		enctype : 'multipart/form-data',
+		processData : false,
+		contentType : false,
+		cache : false,
+		url : "insertCart.do",
+		data : formData,
+		type : "POST",
+		success : function(res){
+			if(confirm("장바구니로 이동하시겠습니까?")==true){
+				location.href="cart_list.do";
+			}else{
+				return false;
+			}
+		}
+		
+	})
+	
+});
+ 
+</script> -->
+
 </head>
 <body>
 	<header>

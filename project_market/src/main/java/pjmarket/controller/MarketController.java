@@ -11,13 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import pjmarket.model.Cart;
 import pjmarket.model.CartList;
 import pjmarket.model.LikeList;
-import pjmarket.model.Likes;
 import pjmarket.service.CartServiceImpl;
-import pjmarket.service.LikeService;
 import pjmarket.service.LikeServiceImpl;
 import pjmarket.service.MarketService;
 
@@ -41,9 +39,11 @@ public class MarketController {
 	
 	// 로그인폼이동
 	@RequestMapping("loginform.do")
-	public String LoginForm() {
+	public String loginform() {
 		return "main/loginform";
+		// member 폴더의 member_login.jsp 뷰 페이지 실행
 	}
+	
 	
 	// 로그인 세션 발행
 	@RequestMapping("loginpro.do")
@@ -95,18 +95,23 @@ public class MarketController {
 	//장바구니로 이동
 	@RequestMapping("cart_list.do")
 	public String Cart_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
-		System.out.println("cart_list controller");
+		System.out.println("cart_list controller start");
 		
-		// 메인 > 장바구니 (로그인 안되어 있을때)
-		if(session.getAttribute("member_id")==null) {
-		// 로그인이 안되어 있으면 로그인폼으로 이동
-			return "main/loginform";
-		}else if(request.getParameter("product_num") == null) {
-			
+//		int product_num = Integer.parseInt(request.getParameter("product_num"));
+//		// product_num 확인용 console 출력
+//		System.out.println("product_num 확인용 : product_num");
+		
+		//product_num 이 null이 아니다 == 찜리스트 || 제품상세 페이지에서 장바구니로 product_num을 가지고 넘어올때
+		if(request.getParameter("product_num") == null) {
+			System.out.println("product_num 없이 장바구니 리스트 실행");
+//			insertCart(request, session, model);
 			getCart_List(request, session, model);
 			
 			return "main/cart_list";			
 		}else if(request.getParameter("product_num") != null) {
+			System.out.println("product_num 받아서 insert 실행 후 장바구니 실행");
+			int product_num = Integer.parseInt(request.getParameter("product_num"));
+			int result = insertCart(product_num, session, model);
 			
 			getCart_List(request, session, model);
 			
@@ -131,6 +136,31 @@ public class MarketController {
 			
 		return cartlist;
 	}
+	
+	// 찜 목록 > 장바구니 할때, 찜목록에서 상품정보 받아서 장바구니에 추가하기
+	public int cartinsert(int product_num, HttpSession session, Model model) throws Exception {
+		int result = 0;
+		
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

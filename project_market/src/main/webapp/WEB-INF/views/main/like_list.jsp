@@ -7,19 +7,27 @@
 <section class="main">
 	<div class="main-img">
 		<div class="like-content">
-			<form>
+			<form enctype="multipart/form-data" >
 				<div class="like-table">
 				<table width="800px">
 					<tr>
-						<th colspan="3" id="like-table-th">like it!</th>
+						<th colspan="4" id="like-table-th">like it!</th>
 					</tr>
-					
+					<%
+						String member_id = (String)session.getAttribute("member_id");
+					%>
 					<!-- 반복문 시작 -->
 					<c:forEach var="like" items="${likelist}">
-					
 					<tr>
-						<td rowspan="2" height="150px" width="150px">${like.product_img }</td>
-						<td align="left">${like.product_name }</td>
+						<td rowspan="2" height="150px" width="150px">
+							${like.product_img }
+						</td>
+						<td align="left">
+							${like.product_name }
+						</td>
+						<td align="left">
+							${like.options_name }
+						</td>
 						<td>
 							<button class="like-table-btn" 
 							onclick="location.href='likedelete.do?likes_num=${like.likes_num}'">
@@ -29,16 +37,20 @@
 					</tr>
 					<tr >
 						<td align="left">
-						<fmt:formatNumber value="${like.product_price }" pattern="#,###" />
+							<fmt:formatNumber value='${like.product_price }' pattern='#,###' />
+						</td>
+						<td align="left">
+							<fmt:formatNumber value='${like.options_price }' pattern='#,###' />
 						</td>
 						<td>
-							<button class="like-table-btn" onClick="location.href='insertcart.do'">
+							<button type="button" class="like-table-btn"
+							onClick="location.href='cartinsert.do?likes_num=${like.likes_num}'">
 								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/cart.png" />
 							</button>
 						</td>
 					</tr>
 					<tr>
-						<td id="like-table-tr" colspan="3">
+						<td id="like-table-tr" colspan="4">
 					</tr>
 					
 					</c:forEach>

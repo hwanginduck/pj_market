@@ -10,7 +10,7 @@ insert into product values(product_seq.nextval,'대분류','중분류','소분�
 select*from product;
 --options 테이블
 insert into options values(options_seq.nextval,1,'옵션이름',5000,10);
-insert into options values(options_seq.nextval,41,'가죽변경',5000,10);
+insert into options values(options_seq.nextval,1,'가죽변경',5000,10);
 select*from options;
 --addr 테이블
 insert into addr values(addr_seq.nextval,'아이디컬럼','여기주소','415-709','100동100호','Y');
@@ -25,16 +25,16 @@ select*from qna;
 
 
 insert into likes values(1,'아이디컬럼');
-insert into likes values(likes_seq.nextval,41,'test');
-insert into likes values(likes_seq.nextval,57,'test');
-insert into likes values(likes_seq.nextval,58,'test');
+insert into likes values(likes_seq.nextval,1,'test', 1);
+insert into likes values(likes_seq.nextval,1,'test', 1);
+insert into likes values(likes_seq.nextval,1,'test', 1);
 select*from likes;
 --review_re 테이블
 insert into review_re values('아이디컬럼',1,'리댓글내용',sysdate,0,0,0);
 select*from review_re;
 --cart 테이블
 
-insert into cart values(cart_seq.nextval,44,41,'test',5);
+insert into cart values(cart_seq.nextval,1,1,'test',5);
 select*from cart;
 --orders 테이블
 insert into orders values(1,1,1,'아이디컬럼');
@@ -230,7 +230,8 @@ CREATE TABLE cart (
 CREATE TABLE likes (
 	likes_num number not null,
 	product_num NUMBER NOT NULL, /* 상품코드 */
-	member_id VARCHAR2(30) /* 아이디 */
+	member_id VARCHAR2(30), /* 아이디 */
+	options_num number
 );
 ----------------------------------------??
 /* 리뷰게시판 */
@@ -478,7 +479,23 @@ select p.product_img, p.product_name, p.product_price
 select p.product_img, p.product_name, c.cart_count, p.product_price, o.options_name, o.options_price
 from product p join cart c on p.product_num = c.product_num join options o on c.options_num = o.options_num where c.member_id = 'test'
 
-
+select p.product_img, p.product_name, p.product_price, l.likes_num, o.options_name, o.options_price, l.options_num
+from product p join likes l on p.product_num = l.product_num join options o on l.options_num = o.options_num where l.member_id = 'test'
 
 
 select p.product_img, p.product_name, c.cart_count, p.product_price from product p inner join cart c on p.product_num = c.product_num where member_id = 'test'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
