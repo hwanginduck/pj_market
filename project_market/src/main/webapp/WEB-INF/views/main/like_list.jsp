@@ -11,7 +11,7 @@
 				<div class="like-table">
 				<table width="800px">
 					<tr>
-						<th colspan="3" id="like-table-th">Like it!</th>
+						<th colspan="3" id="like-table-th">like it!</th>
 					</tr>
 					
 					<!-- 반복문 시작 -->

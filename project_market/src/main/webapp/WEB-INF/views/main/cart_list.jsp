@@ -11,34 +11,39 @@
 				<div class="cart-table">
 				<table width="1000px">
 					<tr>
-						<th colspan="3" id="cart-table-th">Like it!</th>
+						<th colspan="4" id="cart-table-th">Cart!</th>
 					</tr>
 					
 					<!-- 반복문 시작 -->
-					<c:forEach var="like" items="${likelist}">
+					<c:forEach var="cart" items="${cartlist}">
 					
 					<tr>
-						<td rowspan="2" height="150px" width="150px">${like.product_img }</td>
-						<td align="left">${like.product_name }</td>
+						<td rowspan="2" height="150px" width="150px">${cart.product_img }</td>
+						<td align="left">${cart.product_name }</td>
+						<td align="left">${cart.options_name }</td>
 						<td>
-							<button class="cart-table-btn" 
-							onclick="location.href='likedelete.do?likes_num=${like.likes_num}'">
-								<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/like.png" />
-							</button>
+							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/plus.png" onclick='count("plus")' />
+							<!-- <input type='button' onclick='count("plus")' value='+'/> -->
+							<span class="cart-count"id='result'>${cart.cart_count }</span>
+							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus.png" onclick='count("minus")' />
+							<!-- <input type='button' onclick='count("minus")' value='-'/> -->
 						</td>
 					</tr>
 					<tr >
 						<td align="left">
-						<fmt:formatNumber value="${like.product_price }" pattern="#,###" />
+						<fmt:formatNumber value="${cart.product_price }" pattern="#,###" />
+						</td>
+						<td align="left">
+						<fmt:formatNumber value="${cart.options_price }" pattern="#,###" />
 						</td>
 						<td>
 							<button class="cart-table-btn" onClick="location.href='cartinsert'">
-								<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/cart.png" />
+								<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus_cart.png" />
 							</button>
 						</td>
 					</tr>
 					<tr>
-						<td id="cart-table-tr" colspan="3">
+						<td id="cart-table-tr" colspan="4">
 					</tr>
 					
 					</c:forEach>

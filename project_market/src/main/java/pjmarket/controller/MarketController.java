@@ -12,8 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pjmarket.model.Cart;
+import pjmarket.model.CartList;
 import pjmarket.model.LikeList;
 import pjmarket.model.Likes;
+import pjmarket.service.CartServiceImpl;
 import pjmarket.service.LikeService;
 import pjmarket.service.LikeServiceImpl;
 import pjmarket.service.MarketService;
@@ -26,6 +29,9 @@ public class MarketController {
 	
 	@Autowired
 	private LikeServiceImpl likeservice;
+	
+	@Autowired
+	private CartServiceImpl cartservice;
 
 	// 메인페이지
 	@RequestMapping("mainpage.do")
@@ -95,11 +101,44 @@ public class MarketController {
 		if(session.getAttribute("member_id")==null) {
 		// 로그인이 안되어 있으면 로그인폼으로 이동
 			return "main/loginform";
-		}else {
+		}else if(request.getParameter("product_num") == null) {
 			
+			getCart_List(request, session, model);
+			
+			return "main/cart_list";			
+		}else if(request.getParameter("product_num") != null) {
+			
+			getCart_List(request, session, model);
+			
+			return "main/cart_list";			
 		}
-		return null;
 		
+		return null;
+	}
+	
+	//장바구니 리스트 불러오기
+	public List<CartList> getCart_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
+		
+		List<CartList> cartlist = new ArrayList<CartList>();
+		
+		String member_id = (String)session.getAttribute("member_id");
+		
+		cartlist = cartservice.getCartList(member_id);// 리스트를 받아옴.
+		//list 제대로 받아왓는지 확인
+		System.out.println("likelist : " +cartlist);
+		
+		model.addAttribute("cartlist", cartlist);
+			
+		return cartlist;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 //		int product_num = Integer.parseInt(request.getParameter("product_num"));
 //		String member_id = (String)session.getAttribute("member_id");
 //		//세션으로 받아온 아이디 값 확인
@@ -122,7 +161,6 @@ public class MarketController {
 //		model.addAttribute("likelist", likelist);
 //				
 //		return "main/like_list";
-	}
 	
 	
 	

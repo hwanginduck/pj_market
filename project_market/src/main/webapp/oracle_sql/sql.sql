@@ -33,7 +33,8 @@ select*from likes;
 insert into review_re values('아이디컬럼',1,'리댓글내용',sysdate,0,0,0);
 select*from review_re;
 --cart 테이블
-insert into cart values(1,1,'아이디컬럼',5);
+
+insert into cart values(cart_seq.nextval,44,41,'test',5);
 select*from cart;
 --orders 테이블
 insert into orders values(1,1,1,'아이디컬럼');
@@ -103,6 +104,12 @@ CREATE SEQUENCE likes_seq
 	INCREMENT BY 1
 	START WITH 1;
 
+/* 장바구니 */
+CREATE SEQUENCE cart_seq 
+	MINVALUE 1
+	MAXVALUE 99999
+	INCREMENT BY 1
+	START WITH 1;
 
 
 
@@ -211,6 +218,7 @@ ALTER TABLE addr
 
 /* 장바구니 */
 CREATE TABLE cart (
+	cart_num number not null,
 	options_num NUMBER NOT NULL, /* 옵션코드 */
 	product_num NUMBER, /* 상품코드 */
 	member_id VARCHAR2(30), /* 아이디 */
@@ -466,3 +474,11 @@ ALTER TABLE qna
 --테스트
 select p.product_img, p.product_name, p.product_price 
 			from product p inner join likes l on p.product_num = l.product_num where l.member_id = 'test'
+
+select p.product_img, p.product_name, c.cart_count, p.product_price, o.options_name, o.options_price
+from product p join cart c on p.product_num = c.product_num join options o on c.options_num = o.options_num where c.member_id = 'test'
+
+
+
+
+select p.product_img, p.product_name, c.cart_count, p.product_price from product p inner join cart c on p.product_num = c.product_num where member_id = 'test'

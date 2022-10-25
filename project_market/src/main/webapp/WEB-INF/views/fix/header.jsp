@@ -354,8 +354,6 @@ footer {
 .like-btn{
 	width:50px;
 	height: 50px;
-	
-	
 }
 
 .cart-content{
@@ -367,7 +365,7 @@ footer {
 	border: 1px #a39485 solid;
 	font-size: 25px;
 	box-shadow: 0 2px 5px rgba(0,0,0,.25);
-	width: 800px;
+	width: 1000px;
 	border-collapse: collapse;
 	border-radius: 5px;
 	overflow: hidden
@@ -393,6 +391,30 @@ footer {
 }
 #cart-table-tr{
 	border-bottom: 1px solid #a39485;
+}
+
+.cart-btn{
+	width:50px;
+	height: 50px;
+}
+
+.cart-count{
+	font-size: 35px;
+	padding-left: 10px;
+	padding-right: 10px;
+	vertical-align: super;
+}
+
+.cart-table-btn{
+	margin:auto;
+	padding: 5px 5px 5px 5px;
+	width: 50px;
+	height: 50px;
+	/* 기본테두리 없애기 */
+	border: none;
+	/* 클릭시 나오는 테두리 없애기 */
+	outline: none;
+	background-color: transparent;
 }
 
 
@@ -440,6 +462,27 @@ jQuery(document).ready(function($){
     }, 350);
  
 });
+
+/* 장바구니 숫자 증가 감소 */
+function count(type)  {
+	  // 결과를 표시할 element
+	  const resultElement = document.getElementById('result');
+	  
+	  // 현재 화면에 표시된 값
+	  let number = resultElement.innerText;
+	  
+	  // 더하기/빼기
+	  if(type === 'plus') {
+	    number = parseInt(number) + 1;
+	  }else if(type === 'minus')  {
+	    number = parseInt(number) - 1;
+	  }
+	  
+	  // 결과 출력
+	  resultElement.innerText = number;
+	}
+
+
 </script>
 </head>
 <body>
