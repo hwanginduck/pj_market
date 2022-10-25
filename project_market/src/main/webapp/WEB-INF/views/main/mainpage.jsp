@@ -13,6 +13,6 @@
 	<br>
 	<br>
 	<input type="button" value="리뷰 작성하기" class="input_button"
-		onclick="location='review_form'" />
+		onclick="location='review_writeform'" />
 </body>
 </html>

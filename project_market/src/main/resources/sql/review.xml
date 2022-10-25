@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reviewns">
+
 <insert id="review_insert" parameterType="review">
 insert into review
 (review_no, member_id, product_num, options_num, review_star, review_content,review_img,review_date)
@@ -10,6 +11,32 @@ values
 (review_seq.nextval, #{member_id}, #{product_num}, #{options_num}, #{review_star},#{review_content},#{review_img}, sysdate)
 
 </insert>
+
+	<!-- 게시판 총게시물 수 -->
+	<!-- <select id="board_count" resultType="int">
+		select count(board_num) from board53
+	</select> -->
+
+	<!-- 게시판 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
+	<!-- <select id="board_list" parameterType="int" resultType="board">
+	    <![CDATA[
+		select * from (select rownum rnum, board.* from  
+	  	(select * from board53 order by BOARD_RE_REF desc,BOARD_RE_SEQ asc) board) 
+	    where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
+		]]>
+	</select> -->
+
+	<!-- 게시판 내용보기 -->
+	<!-- <select id="board_cont" parameterType="int" resultType="board">
+		select * from board53 where board_num=#{board_num}
+	</select> -->
+
+	<!-- 게시판 조회수 증가 -->
+	<!-- <update id="board_hit" parameterType="int">
+		update review set
+		board_readcount=board_readcount+1
+		where member_id=#{member_id}
+	</update> -->
 	
 	
 </mapper>

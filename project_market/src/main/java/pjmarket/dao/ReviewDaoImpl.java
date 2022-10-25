@@ -14,7 +14,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	private SqlSessionTemplate session;
 
 	// 게시판에저장 //
-	public int ReviewInsert(Review review) {
+	@Override
+	public int ReviewInsert(Review review) throws Exception {
 		return session.insert("reviewns.review_insert", review);
 	}
 
