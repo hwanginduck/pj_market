@@ -1,7 +1,9 @@
 package pjmarket.service;
 
-import java.awt.List;
 
+
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,13 @@ public class ReviewServiceImpl implements ReviewService {
 	public int ReviewInsert(Review review) throws Exception {
 		return reviewdao.ReviewInsert(review);
 
+	}
+	public int getListCount() {
+		return reviewdao.getListCount();
+	}
+
+	public List<Review> getBoardList(int page) {
+		return reviewdao.getBoardList(page);
 	}
 	
 }

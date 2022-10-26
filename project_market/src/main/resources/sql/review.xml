@@ -12,10 +12,20 @@ values
 
 </insert>
 
-	<!-- 게시판 총게시물 수 -->
-	<!-- <select id="board_count" resultType="int">
-		select count(board_num) from board53
-	</select> -->
+	<select id="review_count" resultType="int">
+		select count(review_no) from review
+	</select>
+
+
+<!-- 	<select id="review_boardlist" parameterType="int" resultType="review">
+		select * from REVIEW order by REVIEW_NO DESC
+		select * from (select rownum rnum, review.* from review order by REVIEW_NO DESC)
+		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
+		 ]]> 
+	</select> 
+	-->
+
+
 
 	<!-- 게시판 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
 	<!-- <select id="board_list" parameterType="int" resultType="board">

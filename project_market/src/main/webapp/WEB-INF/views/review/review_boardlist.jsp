@@ -1,137 +1,103 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%@ page import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="header.jsp"%>
 
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>리뷰 게시판 목록</title>
-    <link rel="stylesheet" href="./css/bbs.css" type="text/css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-
-	 리뷰 게시판 입니다.<br>
-	 글작성 성공 : ${result } <br>
-	 글목록 수 : ${listcount } <br>
-	 
-	 
-	<!-- 게시판 리스트 -->
-	<div id="bbslist_wrap">
-		<h2 class="bbslist_title">게시판 목록</h2>
-		<div id="bbslist_c">글 개수 : ${listcount}</div>
-
-		<table id="bbslist_t">
-			<tr align="center" valign="middle" bordercolor="#333333">
-				<td style="font-family: Tahoma; font-size: 11pt;" width="8%"
-					height="26">
-					<div align="center">아이디</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="47%">
-					<div align="center">글 제목</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="14%">
-					<div align="center">상품코드</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="17%">
-					<div align="center">상품옵션</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="14%">
-					<div align="center">글 내용</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 11pt;" width="14%">
-					<div align="center">작성일</div>
-				</td>
+	<div class="container" align="center">
+		<h2 class="text-primary">게시판 목록</h2>
+		<table class="table table-striped">
+			<tr>
+				<td>글번호</td>
+				<td>글제목</td>
+				<td>아이디</td>
+				<td>작성일</td>
+				<td>조회수</td>
+				<td>상품코드</td>
+				<td>옵션코드</td>
+				<td>글내용</td>
 			</tr>
-
-			<!-- 화면 출력 번호  변수 정의 -->		
-			<c:set var="num" value="${listcount-(page-1)*10}"/> 	
-	
-			<!-- 반복문 시작 -->
-			<c:forEach var="b" items="${boardlist}">
-			
-			<tr align="center" valign="middle" bordercolor="#333333"
-				onmouseover="this.style.backgroundColor='F8F8F8'"
-				onmouseout="this.style.backgroundColor=''">
-				<td height="23" style="font-family: Tahoma; font-size: 10pt;">					
- 					<!-- 번호 출력 부분 -->	
- 					<c:out value="${num}"/>			
-					<c:set var="num" value="${num-1}"/>	 
-				</td>
-				
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="left">						
-						
-					<c:if test="${b.board_re_lev != 0}"> 
-						<c:forEach var="k" begin="1" end="${b.board_re_lev}">
-							&nbsp;&nbsp;			
-						</c:forEach>
-						<img src="./images/AnswerLine.gif">	
-					</c:if>					
-						
-					<%-- <!-- 제목 출력 부분 -->	
-					<a href="board_cont.do?board_num=${b.board_num}&page=${page}&state=cont">
-							${r.review_sb}
-					</a> --%>
-					</div>
-				</td>
-
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${b.member_id}</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${b.review_sb}</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${b.product_num}</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${b.options_num}</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${b.review_content}</div>
-				</td>
-				<td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${b.review_date}</div>
-				</td>
-			</tr>
-			
-			</c:forEach>
-			<!-- 반복문 끝 -->			
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="5">데이터가 없습니다</td>
+				</tr>
+			</c:if>
+			<c:if test="${not empty list}">
+				<c:set var="no1" value="${no }"></c:set>
+				<c:forEach var="board" items="${list }">
+					<tr>
+						<td>${no1}</td>
+						<c:if test="${board.del =='y' }">
+							<td colspan="4">삭제된 데이터 입니다</td>
+						</c:if>
+						<c:if test="${board.del !='y' }">
+							<td><a href="${path }/view/num/${board.num}/pageNum/${pp.currentPage}"
+									class="btn btn-default"> 
+									<c:if test="${board.re_level >0 }">
+										<img alt="" src="${path }/images/level.gif" height="2" width="${board.re_level *5 }">
+										<img alt="" src="${path }/images/re.gif">
+									</c:if> 
+									${board.subject} 
+									<c:if test="${board.readcount > 30 }">
+										<img alt="" src="${path }/images/hot.gif">
+									</c:if></a></td>
+							<td>${board.writer}</td>
+							<td>${board.reg_date}</td>
+							<td>${board.readcount}</td>
+						</c:if>
+					</tr>
+					<c:set var="no1" value="${no1 - 1}"></c:set>
+				</c:forEach>
+			</c:if>
 		</table>
-		
-
-		<div id="bbslist_paging">			
-			<c:if test="${page <=1 }">
-				[이전]&nbsp;
-			</c:if>
-			
-			<c:if test="${page > 1 }">
-				<a href="review_boardlist.do?page=${page-1}">[이전]</a>&nbsp;
-			</c:if>			
-
-			<c:forEach var="a" begin="${startpage}" end="${endpage}">
-				<c:if test="${a == page }">
-					[${a}]
+		<form action="${path}/list/pageNum/1">
+			<select name="search">
+				<option value="subject"
+					<c:if test="${search=='subject'}">selected="selected" </c:if>>제목</option>
+				<option value="content"
+					<c:if test="${search=='content'}">selected="selected" </c:if>>내용</option>
+				<option value="writer"
+					<c:if test="${search=='writer'}">selected="selected" </c:if>>작성자</option>
+				<option value="subcon"
+					<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
+			</select> 
+			<input type="text" name="keyword"> 
+			<input type="submit" value="확인">
+		</form>
+		<ul class="pagination">
+			<c:if test="${not empty keyword}">
+				<c:if test="${pp.startPage > pp.pagePerBlk }">
+					<li><a href="${path }/list/pageNum/${pp.startPage - 1}?search=${search}&keyword=${keyword}">이전</a></li>
 				</c:if>
-				<c:if test="${a != page }">
-					<a href="review_boardlist.do?page=${a}">[${a}]</a>&nbsp;
+				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+					<li <c:if test="${pp.currentPage==i}">class="active"</c:if>><a
+						href="${path }/list/pageNum/${i}?search=${search}&keyword=${keyword}">${i}</a></li>
+				</c:forEach>
+				<c:if test="${pp.endPage < pp.totalPage}">
+					<li><a href="${path }/list/pageNum/${pp.endPage + 1}?search=${search}&keyword=${keyword}">다음</a></li>
 				</c:if>
-			</c:forEach>			
-			
-			<c:if test="${page >= maxpage }">
-				[다음] 
 			</c:if>
-			<c:if test="${page < maxpage }">
-				<a href="review_boardlist.do?page=${page+1}">[다음]</a>
-			</c:if>			
-			
+			<c:if test="${empty keyword}">
+				<c:if test="${pp.startPage > pp.pagePerBlk }">
+					<li><a href="${path }/list/pageNum/${pp.startPage - 1}">이전</a></li>
+				</c:if>
+				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+					<li <c:if test="${pp.currentPage==i}">class="active"</c:if>><a
+						href="${path }/list/pageNum/${i}">${i}</a></li>
+				</c:forEach>
+				<c:if test="${pp.endPage < pp.totalPage}">
+					<li><a href="${path }/list/pageNum/${pp.endPage + 1}">다음</a></li>
+				</c:if>
+		  </c:if>
+		</ul>
+		<div align="center">
+			<a href="${path}/insertForm" class="btn btn-info">글 입력</a>
 		</div>
-		<div id="bbslist_w">
-			<input type="button" value="글쓰기" class="input_button"
-				onclick="location='review_writeform.do?page=${page}'">
-		</div>
-		
 	</div>
 </body>
 </html>
