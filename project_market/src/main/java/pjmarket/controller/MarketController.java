@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pjmarket.dao.QnaDao;
 import pjmarket.model.QnaBoard;
 import pjmarket.service.MarketService;
 import pjmarket.service.QnaService;
@@ -36,7 +37,7 @@ public class MarketController {
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
 
 		int page = 1;
-		int limit = 10; // 한 화면에 출력할 레코드수
+		int limit = 5; // 한 화면에 출력할 레코드수
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -47,7 +48,7 @@ public class MarketController {
 
 		// 페이지 번호(page)를 DAO클래스에게 전달한다.
 		boardlist = qs.getBoardList(page); // 리스트를 받아옴.
-
+		
 		// 총 페이지 수.
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
 																	// 처리.
@@ -66,6 +67,12 @@ public class MarketController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
+		System.out.println(listcount);
+		
+//		for(int i=0; i<= boardlist.size(); i++) {
+//			System.out.println(boardlist);
+//		}
+		
 		
 		return "qna/qna_boardlist";
 	}
