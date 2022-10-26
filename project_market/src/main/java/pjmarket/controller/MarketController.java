@@ -25,13 +25,13 @@ public class MarketController {
 	private QnaService qs;
 
 	// 메인페이지
-	@RequestMapping("mainpage")
+	@RequestMapping("mainpage.do")
 	public String MainPage() {
 		return "main/mainpage";
 	}
 
 	// 상품문의게시판
-	@RequestMapping("qna_boardlist")
+	@RequestMapping("qna_boardlist.do")
 	public String QnaBoardList(HttpServletRequest request, Model model) {
 		
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
@@ -69,30 +69,27 @@ public class MarketController {
 		model.addAttribute("boardlist", boardlist);
 		System.out.println(listcount);
 		
-//		for(int i=0; i<= boardlist.size(); i++) {
-//			System.out.println(boardlist);
-//		}
-		
 		
 		return "qna/qna_boardlist";
 	}
 
 	// 상품문의를 하기위한 폼으로이동
-	@RequestMapping("qna_writeform")
+	@RequestMapping("qna_writeform.do")
 	public String QnaBoardWriteForm() {
 		return "qna/qna_writeform";
 	}
 
 	// QNA테이블 게시판글작성 메소드
-	@RequestMapping("qna_boardinsert")
-	public String QnaInsert(QnaBoard qnaboard, Model model) throws Exception {
+	@RequestMapping("qna_boardinsert.do")
+	public String QnaInsert(HttpServletRequest request, QnaBoard qnaboard, Model model) throws Exception {
 		int result = qs.QnaInsert(qnaboard);
 		if (result == 1)
-			System.out.println("----------글작성 성공----------");
+		System.out.println("----------글작성 성공----------");
 		model.addAttribute("result", result);
 		
+		QnaBoardList(request, model);
 		
-		return "qna/qna_boardlist";
+		return "redirect:/";
 	}
 
 	// QNA테이블 게시판리스트

@@ -25,12 +25,12 @@
 	</select>
 
 	<select id="qna_list" parameterType="int" resultType="qna">
-		select * from QNA order by QNA_NO desc
-		 <!-- 작동 잘되는 셀렉트리스트 
+		 <!-- select * from QNA order by QNA_NO desc  -->
+		 
 		  <![CDATA[
 		select * from (select rownum rnum, qna.* from qna order by qna_no desc)
 		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
-		 ]]> -->
+		 ]]> 
 	</select>
 
 
