@@ -26,7 +26,7 @@ public class LikeDaoImpl implements LikeDao{
 	
 	@Override
 	public int deleteLikes(int likes_num) {
-		System.out.println("LikeDao");
+		System.out.println("deleteLike dao 진입");
 		
 		int result = 0;
 		

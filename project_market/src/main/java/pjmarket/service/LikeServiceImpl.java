@@ -23,8 +23,7 @@ public class LikeServiceImpl implements LikeService  {
 	
 	@Override
 	public int deleteLikes(int likes_num) throws Exception{
-		
-		System.out.println("LikeService");
+		System.out.println("deleteLikes service 진입");
 		
 		return likedao.deleteLikes(likes_num);
 	}

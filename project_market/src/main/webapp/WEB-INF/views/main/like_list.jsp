@@ -44,7 +44,7 @@
 						</td>
 						<td>
 							<button type="button" class="like-table-btn"
-							onClick="location.href='cartinsert.do?likes_num=${like.likes_num}'">
+							onClick="location.href='cart_list.do?likes_num=${like.likes_num}'">
 								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/cart.png" />
 							</button>
 						</td>

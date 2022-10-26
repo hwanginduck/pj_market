@@ -23,4 +23,26 @@ public class CartDaoImpl implements CartDao{
 		
 		return list;
 	}
+	
+	@Override
+	public int insertCart(int likes_num){
+		System.out.println("insertCart dao 진입");
+		
+		int result = sqlSession.insert("cartns.cart_insert", likes_num);
+		
+		System.out.println("result 값 출력 : " +result);		
+				
+		return result;
+	}
+	
+	@Override
+	public int deleteCart(int cart_num) {
+		System.out.println("deleteCart dao 진입");
+		
+		int result = sqlSession.delete("cartns.cart_delete", cart_num);
+		
+		System.out.println("result 값 출력 : " +result);
+		
+		return result;
+	}
 }

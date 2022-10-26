@@ -2,6 +2,7 @@ package pjmarket.model;
 
 public class CartList {
 	
+	private int cart_num;
 	private String product_img;
 	private String product_name;
 	private int cart_count;
@@ -10,6 +11,12 @@ public class CartList {
 	private int options_price;
 	private int product_num;
 	
+	public int getCart_num() {
+		return cart_num;
+	}
+	public void setCart_num(int cart_num) {
+		this.cart_num = cart_num;
+	}
 	public String getProduct_img() {
 		return product_img;
 	}
@@ -52,7 +59,6 @@ public class CartList {
 	public void setProduct_num(int product_num) {
 		this.product_num = product_num;
 	}
-
 	
 	
 

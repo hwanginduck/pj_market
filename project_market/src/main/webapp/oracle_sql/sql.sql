@@ -485,7 +485,7 @@ from product p join likes l on p.product_num = l.product_num join options o on l
 
 select p.product_img, p.product_name, c.cart_count, p.product_price from product p inner join cart c on p.product_num = c.product_num where member_id = 'test'
 
-
+insert into cart(cart_num, options_num, product_num, member_id, cart_count) select cart_seq.nextval, options_num, product_num, member_id, 1 from likes where likes_num = 1
 
 
 

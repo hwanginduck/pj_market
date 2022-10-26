@@ -37,7 +37,7 @@
 						<fmt:formatNumber value="${cart.options_price }" pattern="#,###" />
 						</td>
 						<td>
-							<button class="cart-table-btn" onClick="location.href='cartinsert'">
+							<button class="cart-table-btn" onClick="location.href='cart_list.do?cart_num=${cart.cart_num}'">
 								<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus_cart.png" />
 							</button>
 						</td>

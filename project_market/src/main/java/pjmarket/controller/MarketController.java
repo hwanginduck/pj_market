@@ -77,8 +77,9 @@ public class MarketController {
 	@RequestMapping("likedelete.do")
 	public String Like_Delete(HttpServletRequest request, HttpSession session, Model model) throws Exception{
 		
+		System.out.println("Like_Delete controller진입");
+		
 		int likes_num = Integer.parseInt(request.getParameter("likes_num"));
-		System.out.println("delete controller");
 		
 		int result = likeservice.deleteLikes(likes_num);
 		
@@ -97,25 +98,36 @@ public class MarketController {
 	public String Cart_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
 		System.out.println("cart_list controller start");
 		
-//		int product_num = Integer.parseInt(request.getParameter("product_num"));
-//		// product_num 확인용 console 출력
-//		System.out.println("product_num 확인용 : product_num");
-		
 		//product_num 이 null이 아니다 == 찜리스트 || 제품상세 페이지에서 장바구니로 product_num을 가지고 넘어올때
-		if(request.getParameter("product_num") == null) {
-			System.out.println("product_num 없이 장바구니 리스트 실행");
-//			insertCart(request, session, model);
+		if(request.getParameter("likes_num") == null && request.getParameter("cart_num") == null) {
+			System.out.println("likes_num 없이 장바구니 리스트 실행");
+
 			getCart_List(request, session, model);
 			
 			return "main/cart_list";			
-		}else if(request.getParameter("product_num") != null) {
-			System.out.println("product_num 받아서 insert 실행 후 장바구니 실행");
-			int product_num = Integer.parseInt(request.getParameter("product_num"));
-			int result = insertCart(product_num, session, model);
+		}else if(request.getParameter("likes_num") != null) {
+			System.out.println("likes_num 받아서 insertCart > Like_delete > get cart_List");
+
+			int likes_num = Integer.parseInt(request.getParameter("likes_num"));
+			System.out.println("likes_num 확인 : " +likes_num);
+			
+			int result = insertCart(likes_num, session, model);
+			
+			Like_Delete(request, session, model);
 			
 			getCart_List(request, session, model);
 			
 			return "main/cart_list";			
+		}else if(request.getParameter("likes_num") == null && request.getParameter("cart_num") != null) {
+			
+			System.out.println("cartlist 삭제 controller 진입");
+			int cart_num = Integer.parseInt(request.getParameter("cart_num"));
+			System.out.println("cart_num 확인 : " +cart_num);
+			
+			int reseult = deleteCart(cart_num, model);
+			
+			return "main/cart_list";
+			
 		}
 		
 		return null;
@@ -130,7 +142,7 @@ public class MarketController {
 		
 		cartlist = cartservice.getCartList(member_id);// 리스트를 받아옴.
 		//list 제대로 받아왓는지 확인
-		System.out.println("likelist : " +cartlist);
+		System.out.println("cartlist : " +cartlist);
 		
 		model.addAttribute("cartlist", cartlist);
 			
@@ -138,9 +150,25 @@ public class MarketController {
 	}
 	
 	// 찜 목록 > 장바구니 할때, 찜목록에서 상품정보 받아서 장바구니에 추가하기
-	public int cartinsert(int product_num, HttpSession session, Model model) throws Exception {
+	public int insertCart(int likes_num, HttpSession session, Model model) throws Exception {
+		System.out.println("insertCart controller 진입");
 		int result = 0;
 		
+		result = cartservice.insertCart(likes_num);
+		
+		model.addAttribute("result", result);
+		
+		return result;
+	}
+	
+	// 찜목록 삭제
+	public int deleteCart(int cart_num, Model model) throws Exception{
+		System.out.println("deleteCart controller 진입");
+		int result = 0;
+		
+		result = cartservice.deleteCart(cart_num);
+		
+		model.addAttribute("result", result);
 		
 		return result;
 	}
@@ -164,33 +192,6 @@ public class MarketController {
 	
 	
 	
-	
-	
-	
-	
-	
-//		int product_num = Integer.parseInt(request.getParameter("product_num"));
-//		String member_id = (String)session.getAttribute("member_id");
-//		//세션으로 받아온 아이디 값 확인
-//		System.out.println("session id : " + member_id);
-//		
-//		
-//		//찜, 상세페이지에서 물건 선택 후 > 장바구니
-//		
-//		
-//		List<LikeList> likelist = new ArrayList<LikeList>();
-//			
-//		String member_id = (String)session.getAttribute("member_id");
-//		//세션으로 받아온 아이디 값 확인
-//		System.out.println("session id : " + member_id);
-//			
-//		likelist = likeservice.getLikeList(member_id);// 리스트를 받아옴.
-//		//list 제대로 받아왓는지 확인
-//		System.out.println("likelist : " +likelist);
-//			
-//		model.addAttribute("likelist", likelist);
-//				
-//		return "main/like_list";
 	
 	
 	

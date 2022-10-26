@@ -21,4 +21,18 @@ public class CartServiceImpl implements CartService {
 		return cartdao.getCartList(member_id);
 	}
 	
+	@Override
+	public int insertCart(int likes_num) throws Exception{
+		System.out.println("insertCart service 진입");
+		
+		return cartdao.insertCart(likes_num);
+	}
+	
+	@Override
+	public int deleteCart(int cart_num) throws Exception{
+		System.out.println("deleteCart service 진입");
+		
+		return cartdao.deleteCart(cart_num);
+	}
+	
 }
