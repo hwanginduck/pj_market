@@ -5,7 +5,8 @@ import java.util.Date;
 public class Review {
 
 	/* 리뷰게시판 */
-	private String review_no; /* 글번호 */
+	private int review_no; /* 글번호 */
+	private String review_sb;/* 글제목 */
 	private String member_id; /* 아이디 */
 	private String product_num; /* 상품코드 */
 	private String options_num; /* 옵션코드 */
@@ -13,13 +14,22 @@ public class Review {
 	private String review_content; /* 내용 */
 	private String review_img; /* 리뷰사진 */
 	private Date review_date; /* 작성일 */
+	
 
-	public String getReview_no() {
+	public int getReview_no() {
 		return review_no;
 	}
 
-	public void setReview_no(String review_no) {
+	public void setReview_no(int review_no) {
 		this.review_no = review_no;
+	}
+
+	public String getReview_sb() {
+		return review_sb;
+	}
+
+	public void setReview_sb(String review_sb) {
+		this.review_sb = review_sb;
 	}
 
 	public String getMember_id() {

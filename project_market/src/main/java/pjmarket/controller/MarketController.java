@@ -1,16 +1,9 @@
 package pjmarket.controller;
 
-import java.util.ArrayList;
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 import pjmarket.model.Review;
 import pjmarket.service.MarketService;
@@ -37,7 +30,21 @@ public class MarketController {
 	public String ReviewWriteForm() {
 		return "review/review_writeform";
 	}
-	
 
+	// 리뷰 게시판 작성 성공
+	@RequestMapping("review_insertresult")
+	public String ReviewInsert(Review review, Model model) throws Exception {
 
+		int result = rs.ReviewInsert(review);
+		if (result == 1)
+			System.out.println("----------글작성 성공----------");
+		model.addAttribute("result", result);
+
+		return "review/review_insertresult";
+	}
+
+	@RequestMapping("review_boardlist")
+	public String ReviewBoardList() {
+		return "review/review_boardlist";
+	}
 }

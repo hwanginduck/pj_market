@@ -44,37 +44,39 @@
 <title>리뷰 작성 게시판</title>
 </head>
 <body>
+
+
 <div class="container" align="center">
 <h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰</h3>
 
-<form action="review_insert" method="post" onsubmit="return board_check()">
+<form action="review_insertresult" method="post" onsubmit="return board_check()">
     
 
 	<table class="table">
 		<tr>
 		 <th>아이디</th>
 	       <td>
-		<input name="member_id" id="member_id" size="14" class="input_box" />
+		<input name="member_id" id="member_id" size="14" class="input_box" value="테스트값" />
 			</td>
 		</tr>
 		<tr>
 		 <th>글제목</th>
 	       <td>
-		<input name="review_sb" id="review_sb" size="14" class="input_box"  />
+		<input name="review_sb" id="review_sb" size="14" class="input_box" value="테스트값"  />
 			</td>
 		</tr>
 		
 		<tr>
 		 <th>상품코드</th>
 		 <td>
-			<input name="product_num" id="product_num" size="14" class="input_box" />
+			<input name="product_num" id="product_num" size="14" class="input_box" value="테스트값" />
 		</td>
 		</tr>
 		
 		<tr>
 		 <th>옵션코드</th>
 		 <td>
-			<input name="options_num" id="options_num" size="14" class="input_box" />
+			<input name="options_num" id="options_num" size="14" class="input_box" value="테스트값" />
 		</td>
 		</tr>
 		
@@ -97,7 +99,7 @@
 		<tr>
 			<td colspan="2">
 				<textarea id="review_content" name="review_content" rows="10" cols="50" 
-				class="input_box" >※리뷰 내용은 필수 작성 항목입니다※</textarea>
+				class="input_box" value="테스트값" >※리뷰 내용은 필수 작성 항목입니다※</textarea>
 			</td>
 		</tr> 
 		<tr>

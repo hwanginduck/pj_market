@@ -1,5 +1,8 @@
 package pjmarket.service;
 
+import java.awt.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +10,7 @@ import pjmarket.dao.ReviewDaoImpl;
 import pjmarket.model.Review;
 
 @Service
-public class ReviewServiceImpl  implements ReviewService {
+public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private ReviewDaoImpl reviewdao;
@@ -18,4 +21,5 @@ public class ReviewServiceImpl  implements ReviewService {
 		return reviewdao.ReviewInsert(review);
 
 	}
+	
 }

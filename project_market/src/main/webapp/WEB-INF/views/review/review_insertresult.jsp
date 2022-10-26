@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +13,7 @@
 <c:if test="${result == 1 }">
 	<script>
 		alert("리뷰 작성이 완료 되었습니다!");
-		location.href = "<%= request.getContextPath()%>/orderList.do";
+		location.href = "review_boardlist";
 	</script>
 </c:if>
 
@@ -22,12 +24,12 @@
 	</script>
 </c:if>
 
-<c:if test="${result == 2 }">
+<%-- <c:if test="${result == 2 }">
 	<script>
 		alert("첨부파일이 10MB를 초과하여 리뷰 등록이 실패하였습니다.");
 		history.go(-1);
 	</script>
-</c:if>
+</c:if> --%>
 
 </body>
 </html>
