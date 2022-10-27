@@ -4,19 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<script>
-
-	/* 메인페이지로 이동 */
-	location.href="mainpage.do";
-	// 2022-10-21 18:40 
-	
-	// 준호테스트
-
-</script>
+	<script>
+		alert("회원가입이 되었습니다.")
+		location.href = "member_join_result.do";
+	</script>
 
 </body>
 </html>

@@ -5,16 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pjmarket.service.MarketService;
+import pjmarket.service.MemberServiceImpl;
 
 @Controller
 public class MarketController {
 
-	@Autowired
-	private MarketService ms;
+//	@Autowired
+//	private MemberServiceImpl ms;
 
 	// 메인페이지
-	@RequestMapping("mainpage")
+	@RequestMapping("mainpage.do")
 	public String MainPage() {
 		return "main/mainpage";
 	}
