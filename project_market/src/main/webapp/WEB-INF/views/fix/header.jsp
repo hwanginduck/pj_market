@@ -488,7 +488,20 @@ footer {
 	/* 영역확인용 */
 	/* background: red; */
 }
-
+#product-insert-textarea {
+	width: 350px;
+	height: 200px;
+	font-size: 20px;
+	border-radius: 10px;
+	margin-right: 4px;
+	border-color: #5FB404;
+	/* 기본테두리 없애기 */
+	/* border: none; */
+	/* 클릭시 나오는 테두리 없애기 */
+	outline: none;
+	/* 영역확인용 */
+	/* background: red; */
+}
 .pl {
 	width: 350px;
 	height: 50px;
@@ -566,6 +579,18 @@ input[type=file]::file-selector-button {
 	/* background: red; */
 }
 
+.insert-product-btn{
+	display: flex; 
+	justify-content: center;
+	margin:auto;
+	margin-bottom:10px;
+	margin-top: 10px;
+	padding: 10px 30px; 
+	font-size: 30px; 
+	border-radius: 10px; 
+	background-color: #5FB404; 
+	color: white;"
+}
 </style>
 <script type="text/javascript">
 	jQuery(document).ready(
@@ -781,6 +806,14 @@ $(document).ready(function() {
 });
 </script>
 
+<!-- 옵션등록버튼 -->
+<script> 
+  function submit2(frm) { 
+    frm.action='두번째로 보낼 경로'; 
+    frm.submit(); 
+    return true; 
+  } 
+</script> 
 </head>
 <body>
 	<header>
