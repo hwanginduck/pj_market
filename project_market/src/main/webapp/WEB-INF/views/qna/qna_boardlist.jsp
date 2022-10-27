@@ -91,7 +91,7 @@
 			</c:forEach>
 
 			<c:if test="${page >= maxpage }">
-				<li>다음</li>
+				<li><a>다음</a></li>
 			</c:if>
 			<c:if test="${page < maxpage }">
 				<li><a href="qna_boardlist.do?page=${page+1}">다음</a></li>

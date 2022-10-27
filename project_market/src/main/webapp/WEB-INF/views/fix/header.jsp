@@ -836,7 +836,7 @@ $(document).ready(function() {
 
 			<div class="login-box">
 				<div class="login">
-					<a href="loginform.do">login</a> <a>join</a>
+					<a href="loginform.do">login</a> <a href="member_join.do">join</a>
 				</div>
 			</div>
 		</div>
@@ -861,6 +861,9 @@ $(document).ready(function() {
 				</li>
 				<li><div class="menu-box active">
 						<a href="">Rangking</a>
+					</div></li>
+				<li><div class="menu-box active">
+						<a href="qna_boardlist.do">Q&A</a>
 					</div></li>
 				<li><div class="dropdown menu-box">
 						<button class="dropbtn">My Page</button>

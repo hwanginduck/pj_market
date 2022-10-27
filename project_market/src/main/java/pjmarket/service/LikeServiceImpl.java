@@ -17,7 +17,7 @@ public class LikeServiceImpl implements LikeService  {
 	@Override
 	public List<LikeList> getLikeList(String member_id) throws Exception{
 		// TODO Auto-generated method stub
-		System.out.println("like_list Service");
+		System.out.println("like_list Service 진입");
 		return likedao.getLikeList(member_id);
 	}
 	

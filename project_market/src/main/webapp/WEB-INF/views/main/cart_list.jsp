@@ -16,6 +16,11 @@
 						</td>
 						<th colspan="4" id="cart-table-th">${member_id }'s Shopping Cart</th>
 					</tr>
+					<c:if test="${empty cartlist}">
+							<tr>
+								<td colspan="5">데이터가 없습니다</td>
+							</tr>
+						</c:if>
 					
 					<!-- 반복문 시작 -->
 					<c:forEach var="cart" items="${cartlist}" varStatus="status">

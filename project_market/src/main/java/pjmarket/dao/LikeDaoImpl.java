@@ -17,7 +17,7 @@ public class LikeDaoImpl implements LikeDao{
 	@Override
 	public List<LikeList> getLikeList(String member_id) {
 		// TODO Auto-generated method stub
-		System.out.println("like_list Dao");
+		System.out.println("like_list Dao 진입");
 		
 		List<LikeList> list = sqlSession.selectList("likens.like_list", member_id);
 		
