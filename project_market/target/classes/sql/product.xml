@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="productns">
+
+	<!-- 게시판 목록 (member_id를 전달 받아 join하여 조회) -->
+	<!-- 	id= dao 에서 호출할 이름 parameterType = dao로 돌려줄 타입 resultType = 어떻게 받을지 하는 타입 configurateion에서 참조-->
+    <insert id="product_insert" parameterType="product">
+     insert into product values(product_seq.nextval, #{product_l},#{product_m},#{product_s},
+     #{product_name},#{product_price},#{product_color},#{product_content},
+     #{product_sub},#{product_img},#{product_stock})
+    </insert>
+</mapper>

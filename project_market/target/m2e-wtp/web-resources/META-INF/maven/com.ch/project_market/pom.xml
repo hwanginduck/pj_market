@@ -20,6 +20,12 @@
 		</repository>
 	</repositories>
 	<dependencies>
+	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+	
 							<!-- javax 오류 관련 -->
 	<dependency>
 			<groupId>javax.xml.bind</groupId>
