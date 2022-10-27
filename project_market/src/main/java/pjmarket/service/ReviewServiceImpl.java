@@ -1,8 +1,5 @@
 package pjmarket.service;
 
-
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +20,15 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewdao.ReviewInsert(review);
 
 	}
+
+	@Override
 	public int getListCount() {
 		return reviewdao.getListCount();
 	}
 
+	@Override
 	public List<Review> getBoardList(int page) {
 		return reviewdao.getBoardList(page);
 	}
-	
+
 }

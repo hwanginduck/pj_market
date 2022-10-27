@@ -99,7 +99,7 @@
 		<tr>
 			<td colspan="2">
 				<textarea id="review_content" name="review_content" rows="10" cols="50" 
-				class="input_box" value="테스트값" >※리뷰 내용은 필수 작성 항목입니다※</textarea>
+				class="input_box" >※리뷰 내용은 필수 작성 항목입니다※</textarea>
 			</td>
 		</tr> 
 		<tr>

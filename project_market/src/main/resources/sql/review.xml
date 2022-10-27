@@ -3,6 +3,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reviewns">
+<resultMap id="reviewresult"      type="review">
+		<result property="review_no"	     column="review_no" />
+		<result property="review_sb"         column="review_sb" />
+		<result property="member_id"         column="member_id" />
+		<result property="product_num"       column="product_num" />
+		<result property="options_num"       column="options_num" />
+		<result property="review_star"       column="review_star" />
+		<result property="review_content"    column="review_content" />
+		<result property="review_img"     	 column="review_img" />
+		<result property="review_date"	     column="review_date" />
+	</resultMap>
+	
 
 <insert id="review_insertresult" parameterType="review">
 insert into review
@@ -16,14 +28,14 @@ values
 		select count(review_no) from review
 	</select>
 
-
-<!-- 	<select id="review_boardlist" parameterType="int" resultType="review">
-		select * from REVIEW order by REVIEW_NO DESC
-		select * from (select rownum rnum, review.* from review order by REVIEW_NO DESC)
+		<!-- select * from REVIEW order by REVIEW_NO DESC -->
+		
+<select id="review_boardlist" parameterType="int" resultType="review">
+  			<![CDATA[
+		select * from (select rownum rnum, review.* from review order by review_no desc)
 		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
-		 ]]> 
+			 ]]> 
 	</select> 
-	-->
 
 
 

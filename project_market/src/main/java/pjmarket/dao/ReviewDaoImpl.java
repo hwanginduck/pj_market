@@ -29,7 +29,8 @@ public class ReviewDaoImpl implements ReviewDao {
 		return session.selectOne("reviewns.review_count");
 	}
 
-	public List getBoardList(int page) {
+	@Override
+	public List<Review> getBoardList(int page) {
 		List<Review> list = session.selectList("reviewns.review_boardlist", page);
 		return list;
 	}

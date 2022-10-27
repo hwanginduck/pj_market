@@ -30,7 +30,7 @@ public class MarketController {
 		return "main/mainpage";
 	}
 
-	// 리뷰 쓰기위한 폼으로 이동
+	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")
 	public String ReviewWriteForm() {
 		return "review/review_writeform";
@@ -42,16 +42,15 @@ public class MarketController {
 
 		int result = rs.ReviewInsert(review);
 		if (result == 1)
-			System.out.println("----------글작성 성공----------");
+		System.out.println("----------글작성 성공----------");
 		model.addAttribute("result", result);
 
 		return "review/review_insertresult";
 	}
 
-	/* 리뷰 게시판 목록 */
+	// 리뷰 게시판 목록 
 	@RequestMapping("review_boardlist")
-	public String ReviewBoardList(Model model, 
-			           HttpServletRequest request) throws Exception {
+	public String ReviewBoardList(Model model, HttpServletRequest request) throws Exception {
 
 		List<Review> boardlist = new ArrayList<Review>();
 
@@ -64,9 +63,9 @@ public class MarketController {
 
 		int listcount = rs.getListCount();
 
-		boardlist = rs.getBoardList(page); 
+		boardlist = rs.getBoardList(page);
 
-		int maxpage = (int) ((double) listcount / limit + 0.95); 
+		int maxpage = (int) ((double) listcount / limit + 0.95);
 		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		int endpage = maxpage;
 
@@ -79,7 +78,7 @@ public class MarketController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
-		
+
 		return "review/review_boardlist";
 	}
 
