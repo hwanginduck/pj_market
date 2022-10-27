@@ -11,8 +11,9 @@
 <script>
 
 	/* 메인페이지로 이동 */
-	location.href="mainpage";
-	// 2022-10-21 18:40 
+
+/* 	location.href="qna_boardlist.do"; */
+ 	location.href="mainpage.do"; 
 
 </script>
 
