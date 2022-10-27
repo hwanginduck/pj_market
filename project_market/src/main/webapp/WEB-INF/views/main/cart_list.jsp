@@ -18,7 +18,7 @@
 					</tr>
 					
 					<!-- 반복문 시작 -->
-					<c:forEach var="cart" items="${cartlist}">
+					<c:forEach var="cart" items="${cartlist}" varStatus="status">
 					<tr>
 						<td rowspan="3">
 							<input class="cart-checkbox" type="checkbox">
@@ -29,11 +29,11 @@
 						<td align="left">${cart.product_name }</td>
 						<td align="left">${cart.options_name }</td>
 						<td>
-							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/plus.png" onclick='count("plus")' />
-							<!-- <input type='button' onclick='count("plus")' value='+'/> -->
-							<span class="cart-count"id='result'>${cart.cart_count }</span>
-							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus.png" onclick='count("minus")' />
-							<!-- <input type='button' onclick='count("minus")' value='-'/> -->
+							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/plus.png" 
+								name = plus${status.index} onclick='count("plus${status.index}","${status.index}")' />
+							<span class="cart-count"id='result${status.index}'>${cart.cart_count }</span>
+							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus.png"
+								name= minus${status.index} onclick='count("minus${status.index}","${status.index}")' />
 						</td>
 					</tr>
 					<tr >

@@ -13,11 +13,13 @@ public class ProductDaoImpl implements ProductDao{
 	private SqlSession sqlSession;
 	
 	@Override
-	public void insertProduct(Product product) throws Exception {
+	public int insertProduct(Product product) throws Exception {
 		System.out.println("insertProduct dao 진입");
 		int result = sqlSession.insert("productns.product_insert", product);
 		
 		System.out.println("insertProduct sql 실행 result 값 확인 : "  + result);
+		
+		return result;
 	}
 	
 }

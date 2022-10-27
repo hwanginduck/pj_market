@@ -226,7 +226,7 @@ public class MarketController {
 			file[1] = st.nextToken();		// 확장자	    jpg
 
 			if(size > 200000){				// 100KB
-				result=1;
+				result=2;
 				model.addAttribute("result", result);
 
 				return "main/uploadResult";
@@ -235,7 +235,7 @@ public class MarketController {
 					!file[1].equals("gif") &&
 					!file[1].equals("png") ){
 
-				result=2;
+				result=3;
 				model.addAttribute("result", result);
 
 				return "main/uploadResult";
@@ -252,9 +252,11 @@ public class MarketController {
 		
 		product.setProduct_img(newfilename);
 
-		productservice.insertProduct(product);
-
-		return "redirect:main/product_insert";
+		result = productservice.insertProduct(product);
+		
+		model.addAttribute("result", result);
+		
+		return "main/uploadResult";
 	}
 	
 	

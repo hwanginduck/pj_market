@@ -13,9 +13,12 @@ public class ProductServiceImpl implements ProductService{
 	private ProductDaoImpl productdao;
 	
 	@Override
-	public void insertProduct(Product product) throws Exception{
+	public int insertProduct(Product product) throws Exception{
 		System.out.println("insertProduct Service 진입");
-		productdao.insertProduct(product);
+		
+		int result = productdao.insertProduct(product);
+
+		return result;
 	}
 	
 	

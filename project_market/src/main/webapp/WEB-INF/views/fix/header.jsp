@@ -639,17 +639,18 @@ input[type=file]::file-selector-button {
 			});
 
 	/* 장바구니 숫자 증가 감소 */
-	function count(type) {
+	function count(type, num) {
+		
 		// 결과를 표시할 element
-		const resultElement = document.getElementById('result');
-
+		const resultElement = document.getElementById('result'+num);
+		
 		// 현재 화면에 표시된 값
 		let number = resultElement.innerText;
-
+		
 		// 더하기/빼기
-		if (type === 'plus') {
+		if (type === 'plus'+num) {
 			number = parseInt(number) + 1;
-		} else if (type === 'minus') {
+		} else if (type === 'minus'+num) {
 			number = parseInt(number) - 1
 			if (number == 0) {
 				alert("1 이하로는 내릴수 없습니다.");
