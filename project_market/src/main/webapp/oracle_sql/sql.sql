@@ -26,8 +26,8 @@ select*from qna;
 
 insert into likes values(1,'아이디컬럼');
 insert into likes values(likes_seq.nextval,1,'test', 1);
-insert into likes values(likes_seq.nextval,1,'test', 1);
-insert into likes values(likes_seq.nextval,1,'test', 1);
+insert into likes values(likes_seq.nextval,2,'test', 1);
+insert into likes values(likes_seq.nextval,3,'test', 1);
 select*from likes;
 --review_re 테이블
 insert into review_re values('아이디컬럼',1,'리댓글내용',sysdate,0,0,0);

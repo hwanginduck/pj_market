@@ -75,16 +75,12 @@ public class MarketController {
 	// 찜목록 이동
 	@RequestMapping("like_list.do")
 	public String Like_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
-		System.out.println("like_list controller");
+		System.out.println("like_list controller 진입");
 		List<LikeList> likelist = new ArrayList<LikeList>();
 		
 		String member_id = (String)session.getAttribute("member_id");
-		//세션으로 받아온 아이디 값 확인
-		System.out.println("session id : " + member_id);
 		
 		likelist = likeservice.getLikeList(member_id);// 리스트를 받아옴.
-		//list 제대로 받아왓는지 확인
-		System.out.println("likelist : " +likelist);
 		
 		model.addAttribute("likelist", likelist);
 			
@@ -101,13 +97,9 @@ public class MarketController {
 		
 		int result = likeservice.deleteLikes(likes_num);
 		
-		if(result == 1) {
-			System.out.println("삭제 성공");
-		}else {
-			System.out.println("삭제 실패");
-		}
+		model.addAttribute("result", result);
 		
-		return "main/like_list";
+		return "main/likesResult";
 		
 	}
 	
@@ -123,6 +115,7 @@ public class MarketController {
 			getCart_List(request, session, model);
 			
 			return "main/cart_list";			
+		
 		}else if(request.getParameter("likes_num") != null) {
 			System.out.println("likes_num 받아서 insertCart > Like_delete > get cart_List");
 
@@ -135,16 +128,27 @@ public class MarketController {
 			
 			getCart_List(request, session, model);
 			
-			return "main/cart_list";			
+			if(result == 1) {
+				model.addAttribute("result", result);
+			}
+			
+			return "main/cartResult";			
+		
 		}else if(request.getParameter("likes_num") == null && request.getParameter("cart_num") != null) {
 			
 			System.out.println("cartlist 삭제 controller 진입");
 			int cart_num = Integer.parseInt(request.getParameter("cart_num"));
 			System.out.println("cart_num 확인 : " +cart_num);
 			
-			int reseult = deleteCart(cart_num, model);
+			int result = deleteCart(cart_num, model);
 			
-			return "main/cart_list";
+			if(result == 1) {
+				result = 2;
+				model.addAttribute("result", result);
+				System.out.println("result 값 출력 : " +result);
+			}
+			
+			return "main/cartResult";	
 			
 		}
 		
