@@ -1,5 +1,8 @@
 package pjmarket.service;
 
-public interface MemberService {
+import pjmarket.model.MemberDTO;
 
+public interface MemberService {
+	
+	public abstract int MemberInsert(MemberDTO member) throws Exception;
 }
