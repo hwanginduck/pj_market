@@ -24,6 +24,18 @@ public class MemberDTO {
 	private String member_phone;
 	private String member_profile1;
 	private String member_zip1;
+	
+	//추가 된 컬럼
+	private int member_no;
+	
+	
+	
+	public int getMember_no() {
+		return member_no;
+	}
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

@@ -443,3 +443,35 @@ ALTER TABLE qna
 		REFERENCES member (
 			member_id
 		);	
+
+		
+-- 추가
+
+ALTER TABLE member ADD (member_no number(38) unique not null); 	-- 10/27 준호 추가
+
+create sequence join_member_memberno_seq 
+increment by 1 start with 1 nocache;							-- 10/27 준호 추가
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

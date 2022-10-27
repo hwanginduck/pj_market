@@ -41,13 +41,13 @@
 
 				<tr>
 					<th>회원비번</th>
-					<td><input type="password" name="member_pwd" id="member_pwd"
+					<td><input type="password" name="member_pw" id="member_pw"
 						size="14" class="input_box" /></td>
 				</tr>
 
 				<tr>
 					<th>회원비번확인</th>
-					<td><input type="password" name="member_pwd2" id="member_pwd2"
+					<td><input type="password" name="member_pw2 id="member_pw2"
 						size="14" class="input_box" /></td>
 				</tr>
 

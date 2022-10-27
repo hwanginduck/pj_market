@@ -19,5 +19,14 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("DAO로 값들어옴");
 		return session.insert("member_join", member);
 	}
+	
+	// 로그인 인증
+	@Override
+	public MemberDTO UserCheck(String member_id) {
+		// TODO Auto-generated method stub
+		System.out.println("ID: "+member_id);
+		return session.selectOne("login_check", member_id);
+	}
+
 
 }
