@@ -18,6 +18,14 @@
 	</bean> -->
 	
 	<!-- Data Source -->
+<!-- 	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@54.180.88.227:1521:xe" />
+		<property name="username" value="spring" />
+		<property name="password" value="spring123" />
+	</bean> -->
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
@@ -25,6 +33,8 @@
 		<property name="username" value="totoro" />
 		<property name="password" value="totoro123" />
 	</bean>
+
+
 	
 	<!-- 스프링 jdbc 즉 스프링으로 oracle 디비 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
