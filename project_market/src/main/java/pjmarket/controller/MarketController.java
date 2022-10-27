@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pjmarket.dao.QnaDao;
 import pjmarket.model.QnaBoard;
 import pjmarket.service.MarketService;
-import pjmarket.service.QnaService;
+import pjmarket.service.QnaServiceImpl;
 
 @Controller
 public class MarketController {
@@ -22,7 +22,7 @@ public class MarketController {
 	private MarketService ms;
 
 	@Autowired
-	private QnaService qs;
+	private QnaServiceImpl qs;
 
 	// 메인페이지
 	@RequestMapping("mainpage.do")

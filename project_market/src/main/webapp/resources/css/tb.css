@@ -14,3 +14,15 @@ th, td {
 th:first-child, td:first-child {
 	border-left: none;
 } */
+
+.th {
+	color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da
+}
+
+.tr {
+	color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da
+}

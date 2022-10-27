@@ -7,9 +7,8 @@
 <html>
 <head>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<link href="${path}/resources/css/tb.css" rel="stylesheet">
-<link href="${path}/resources/css/pgbt.css" rel="stylesheet">
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/resources/css/tb.css" rel="stylesheet">
 
 <meta charset="UTF-8">
 <title>Q&A BoardPage</title>
@@ -41,13 +40,14 @@
 						<td>사용자아이디</td>
 						<td>상품명</td>
 						<td>작성일</td>
+						<td>[답변]</td>
 					</tr>
 					<tr>
-						<th>${boardlist.qna_no }</th>
+						<td>${boardlist.qna_no }</td>
 
 						<!-- ----------------------- ID 마스킹처리하는 구간 ----------------------- -->
 
-						<th><c:set var="name" value="${boardlist.member_id}" /> <c:set
+						<td><c:set var="name" value="${boardlist.member_id}" /> <c:set
 								var="length" value="${fn:length(boardlist.member_id) }" /> <c:set
 								var="first" value="${fn:substring(boardlist.member_id, 0, 5) }" />
 							<c:set var="last"
@@ -57,13 +57,14 @@
 								<c:out value="${first}" />
 								<c:forEach var="count" begin="6"
 									end="${fn:length(boardlist.member_id) }" step="1">*</c:forEach>
-							</c:if></th>
+							</c:if></td>
 
 						<!-- ----------------------- ID 마스킹처리하는 END ----------------------- -->
 
 
-						<th>${boardlist.product_num }</th>
-						<th>${boardlist.qna_date }</th>
+						<td>${boardlist.product_num }</td>
+						<td>${boardlist.qna_date }</td>
+						<td> [수정] </td>
 					</tr>
 					<th colspan=5><pre> ${boardlist.qna_content } </pre></th>
 				</table>

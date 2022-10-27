@@ -11,6 +11,10 @@
 	mainpage.jsp <br>
 	메인페이지 입니다. <br>
 	<br>
+	
+
+	
+
 	<a href="qna_boardlist.do"><h2>상품문의 게시판</h2></a>
 	
 	
