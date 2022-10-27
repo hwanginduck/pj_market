@@ -1,24 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>mainpage.jsp</title>
-</head>
-<body>
-	
-	mainpage.jsp <br>
-	메인페이지 입니다. <br>
-	<br>
-	
+	pageEncoding="UTF-8"%>
 
-	
-
-	<a href="qna_boardlist.do"><h2>상품문의 게시판</h2></a>
-	
-	
-
-
-</body>
-</html>
+<%@ include file="../fix/header.jsp"%>
+<section class="main">
+	<div class="main-img">
+		<div class=welcome>
+		<div class="bubbles">
+			<h1 id="welcome_wording">WELCOME<br>GAGUMARKET</h1>
+		</div>
+		</div>
+	</div>
+</section>
+<%@ include file="../fix/footer.jsp"%>
