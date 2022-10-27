@@ -69,3 +69,8 @@ ALTER TABLE review
 		REFERENCES member (
 			member_id
 		);
+		
+		select * from review;
+		
+		 
+select * from (select rownum rnum, review.* from review order by review_no desc) ;

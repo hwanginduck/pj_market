@@ -36,11 +36,12 @@ values
 		
 <select id="review_boardlist" parameterType="int" resultType="review">
 
-  			<![CDATA[
+		select * from (select rownum rnum, review.* from review order by review_no desc)
+
+  		<!-- 	<![CDATA[
 		select * from (select rownum rnum, review.* from review order by review_no desc)
 		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
-			 ]]> 
-			 
+			 ]]>  -->
 </select> 
 
 

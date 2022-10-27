@@ -49,7 +49,7 @@
 			class="btn btn-info">답변</a>
 		<p>
 		<form name="frm" id="frm">
-			<input type="hidden" name="replyer" value="${member_id}">
+			<input type="hidden" name="member.id" value="${member_id}">
 			<textarea rows="3" cols="50" name="replytext"></textarea>
 			<input type="button" value="확인" id="repInsert">
 		</form>

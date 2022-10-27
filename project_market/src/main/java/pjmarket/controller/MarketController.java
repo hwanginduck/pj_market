@@ -78,6 +78,8 @@ public class MarketController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
+		
+		System.out.println("boardlistsize :"+boardlist.size());
 
 		return "review/review_boardlist";
 	}
