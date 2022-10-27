@@ -11,7 +11,7 @@
 				<div class="like-table">
 				<table width="800px">
 					<tr>
-						<th colspan="4" id="like-table-th">like it!</th>
+						<th colspan="4" id="like-table-th">${member_id}님의 찜 목록</th>
 					</tr>
 					<%
 						String member_id = (String)session.getAttribute("member_id");

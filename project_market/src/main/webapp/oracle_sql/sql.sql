@@ -490,7 +490,16 @@ insert into cart(cart_num, options_num, product_num, member_id, cart_count) sele
 
 
 
+CREATE TABLE CLIENT(
+ CNO CHAR(3) NOT NULL,
+ CNAME VARCHAR2(10) NOT NULL,
+ CID VARCHAR2(14) NOT NULL)
 
+INSERT INTO CLIENT VALUES( 1, 'a', 'a') 
+INSERT INTO CLIENT VALUES( 2 ,'b','b')
+INSERT INTO CLIENT VALUES( 3, 'c', 'c')
+
+select * from client
 
 
 

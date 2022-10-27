@@ -173,7 +173,11 @@ public class MarketController {
 		return result;
 	}
 	
-	
+	// 로그인폼이동
+		@RequestMapping("product_insert.do")
+		public String insertProductForm() {
+			return "main/product_insert";
+		}
 	
 	
 	

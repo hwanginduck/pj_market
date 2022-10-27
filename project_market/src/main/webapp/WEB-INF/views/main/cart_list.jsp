@@ -8,15 +8,22 @@
 	<div class="main-img">
 		<div class="cart-content">
 			<form>
-				<div class="cart-table">
-				<table width="1000px">
+				<div class="cart-table" style="width: 800px; float: left; margin-left: 200px">
+				<table width="800px">
 					<tr>
-						<th colspan="4" id="cart-table-th">Cart!</th>
+						<td id="cart-table-th">
+							<input class="cart-checkbox" type="checkbox">
+						</td>
+						<th colspan="4" id="cart-table-th">${member_id }'s Shopping Cart</th>
 					</tr>
 					
 					<!-- 반복문 시작 -->
 					<c:forEach var="cart" items="${cartlist}">
-					
+					<tr>
+						<td rowspan="3">
+							<input class="cart-checkbox" type="checkbox">
+						</td>
+					</tr>
 					<tr>
 						<td rowspan="2" height="150px" width="150px">${cart.product_img }</td>
 						<td align="left">${cart.product_name }</td>
@@ -50,6 +57,22 @@
 					<!-- 반복문 끝 -->	
 				
 				</table>
+				</div>
+				<div style="float:left; margin-left: 100px;">
+					<div class="cart-right-table">
+						<table width="500px">
+							<tr>
+								<th id="cart-table-th">${member_id }'s Receipt</th>
+							</tr>
+							<tr>
+								<td>
+									<button type="button" class="buy-button">구매하기</button>
+								</td>
+							</tr>
+					
+								
+					</table>
+					</div>
 				</div>
 			</form>
 		</div>
