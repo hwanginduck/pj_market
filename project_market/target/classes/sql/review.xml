@@ -3,7 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reviewns">
-<resultMap id="reviewresult"      type="review">
+
+<resultMap id="reviewresult"  type="review">
 		<result property="review_no"	     column="review_no" />
 		<result property="review_sb"         column="review_sb" />
 		<result property="member_id"         column="member_id" />
@@ -13,40 +14,35 @@
 		<result property="review_content"    column="review_content" />
 		<result property="review_img"     	 column="review_img" />
 		<result property="review_date"	     column="review_date" />
-	</resultMap>
+</resultMap>
 	
 
 <insert id="review_insertresult" parameterType="review">
+
 insert into review
 (review_no, review_sb, member_id, product_num, options_num, review_star, review_content,review_img,review_date)
+
 values
 (review_seq.nextval, #{review_sb}, #{member_id}, #{product_num}, #{options_num}, #{review_star},#{review_content},'s', sysdate)
 
 </insert>
 
-	<select id="review_count" resultType="int">
-		select count(review_no) from review
-	</select>
+<select id="review_count" resultType="int">
 
-		<!-- select * from REVIEW order by REVIEW_NO DESC -->
+		select count(review_no) from review
+		
+</select>
+
 		
 <select id="review_boardlist" parameterType="int" resultType="review">
+
   			<![CDATA[
 		select * from (select rownum rnum, review.* from review order by review_no desc)
 		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
 			 ]]> 
-	</select> 
+			 
+</select> 
 
-
-
-	<!-- 게시판 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
-	<!-- <select id="board_list" parameterType="int" resultType="board">
-	    <![CDATA[
-		select * from (select rownum rnum, board.* from  
-	  	(select * from board53 order by BOARD_RE_REF desc,BOARD_RE_SEQ asc) board) 
-	    where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
-		]]>
-	</select> -->
 
 	<!-- 게시판 내용보기 -->
 	<!-- <select id="board_cont" parameterType="int" resultType="board">

@@ -13,6 +13,9 @@ CREATE TABLE review (
 	review_img VARCHAR2(4000), /* 리뷰사진 */
 	review_date DATE /* 작성일 */
 );
+--	readcount number default 0, -- 읽은 횟수
+--	re_step number not null, -- ref내의 순서
+--	re_level number not null -- 들여쓰기
 
 insert into review values (review_seq.nextval, '글제목', 'memid', '상품코드컬림', '옵션코드넘', '5', '내용', 'img', sysdate);
 select*from tab;
