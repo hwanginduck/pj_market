@@ -10,16 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pjmarket.dao.QnaDao;
 import pjmarket.model.QnaBoard;
-import pjmarket.service.MarketService;
+import pjmarket.service.MemberServiceImpl;
 import pjmarket.service.QnaServiceImpl;
 
 @Controller
 public class MarketController {
 
 	@Autowired
-	private MarketService ms;
+	private MemberServiceImpl ms;
 
 	@Autowired
 	private QnaServiceImpl qs;
@@ -32,7 +31,7 @@ public class MarketController {
 
 	// 상품문의게시판
 	@RequestMapping("qna_boardlist.do")
-	public String QnaBoardList(HttpServletRequest request, Model model) {
+	public String QnaBoardList(HttpServletRequest request, Model model) { 
 		
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
 

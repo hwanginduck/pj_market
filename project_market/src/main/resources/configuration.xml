@@ -7,6 +7,7 @@
 <!-- alias 는 별명을 의미한다. Type은 풀패키지경로 -->
 	<typeAliases>
 		<typeAlias alias="market" type="pjmarket.model.Member" />
+		<typeAlias alias="member" type="pjmarket.model.MemberDTO" />
 		<typeAlias alias="qna" type="pjmarket.model.QnaBoard" />
 	</typeAliases>	
 	
