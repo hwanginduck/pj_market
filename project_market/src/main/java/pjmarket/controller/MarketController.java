@@ -55,7 +55,7 @@ public class MarketController {
 		List<Review> boardlist = new ArrayList<Review>();
 
 		int page = 1;
-		int limit = 10;
+		int limit = 5;
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -79,6 +79,7 @@ public class MarketController {
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
 		
+		System.out.println(listcount);
 		System.out.println("boardlistsize :"+boardlist.size());
 
 		return "review/review_boardlist";

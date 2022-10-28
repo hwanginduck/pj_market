@@ -30,12 +30,8 @@
 				<c:forEach var="boardlist" items="${boardlist }">
 					<tr>
 						<td>${boardlist.review_no}</td>
-						<c:if test="${board.del =='y' }">
-							<td colspan="4">삭제된 데이터 입니다</td>
-						</c:if>
-						<c:if test="${board.del !='y' }">
-							<td><a href="${path }/review_detail/num/${board.num}/pageNum/${pp.currentPage}"
-									class="btn btn-default"> 
+							<td><a href="${path }/review_detail"
+									class="btn btn-default">
 									<c:if test="${board.re_level >0 }">
 										<img alt="" src="${path }/images/level.gif" height="2" width="${board.re_level *5 }">
 										<img alt="" src="${path }/images/re.gif">
@@ -47,39 +43,39 @@
 							<td>${boardlist.member_id}</td>
 							<td>${boardlist.review_date}</td>
 							<td>views</td>
-						</c:if>
 					</tr>
 					<c:set var="no1" value="${no1 - 1}"></c:set>
 				</c:forEach>
 				
-			</c:if>
+		</c:if>
 		</table>
-		<ul class="pagination">
-			<c:if test="${not empty keyword}">
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-					<li><a href="${path }/review_boardlist/pageNum/${pp.startPage - 1}?search=${search}&keyword=${keyword}">이전</a></li>
-				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<li <c:if test="${pp.currentPage==i}">class="active"</c:if>><a
-						href="${path }/review_boardlist/pageNum/${i}?search=${search}&keyword=${keyword}">${i}</a></li>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-					<li><a href="${path }/review_boardlist/pageNum/${pp.endPage + 1}?search=${search}&keyword=${keyword}">다음</a></li>
-				</c:if>
+	<ul class="pagination">
+			<c:if test="${page <=1 }">
+				<li><a>이전</a></li>
 			</c:if>
-			<c:if test="${empty keyword}">
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-					<li><a href="${path }/review_boardlist/pageNum/${pp.startPage - 1}">이전</a></li>
+
+			<c:if test="${page > 1 }">
+				<li><a href="review_boardlist.do?page=${page-1}">이전</a></li>
+			</c:if>
+
+			<c:forEach var="a" begin="${startpage}" end="${endpage}">
+				<c:if test="${a == page }">
+					<li><a>${a}</a></li>
 				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<li <c:if test="${pp.currentPage==i}">class="active"</c:if>><a
-						href="${path }/review_boardlist/pageNum/${i}">${i}</a></li>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-					<li><a href="${path }/review_boardlist/pageNum/${pp.endPage + 1}">다음</a></li>
+				<c:if test="${a != page }">
+					<li><a href="review_boardlist.do?page=${a}">${a}</a></li>
 				</c:if>
-		  </c:if>
+			</c:forEach>
+
+			<c:if test="${page >= maxpage }">
+				<li><a>다음</a></li>
+			</c:if>
+			<c:if test="${page < maxpage }">
+				<li><a href="review_boardlist.do?page=${page+1}">다음</a></li>
+			</c:if>
+
 		</ul>
+
 		<div align="center">
 			<a href="${path}/review_writeform" class="btn btn-info">리뷰 글  작성</a>
 		</div>
