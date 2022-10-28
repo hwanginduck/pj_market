@@ -320,7 +320,13 @@ public class MarketController {
 
 	// 상품문의를 하기위한 폼으로이동
 	@RequestMapping("qna_writeform.do")
-	public String QnaBoardWriteForm() {
+	public String QnaBoardWriteForm(QnaBoard qnaboard, Model model) {
+		// 상품코드 = 상품명을 가져와야함
+		// 아이디값 세션으로 가져와야함
+		// qna_re값 1) admin일경우 1, 
+		// qna_group 그룹값을 조합해야함
+		
+		
 		return "qna/qna_writeform";
 	}
 
@@ -336,7 +342,5 @@ public class MarketController {
 		
 		return "redirect:/";
 	}
-
-	// QNA테이블 게시판리스트
 
 }

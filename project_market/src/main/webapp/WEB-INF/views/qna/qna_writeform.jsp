@@ -24,27 +24,9 @@ th:first-child, td:first-child {
 <title>상품문의 작성게시판</title>
 </head>
 <body>
-	<div align=center>
-		<table>
-			상품문의 게시판 입니다.
-			<tr>
-				<td align="center">글작성 성공</td>
-				<td align="center">글목록 수</td>
-				<td align="center">page</td>
-				<td align="center">startpage</td>
-				<td align="center">endpage</td>
-				<td align="center">maxpage</td>
-			<tr>
-			<tr>
-				<td align="center">${result }</td>
-				<td align="center">${listcount }</td>
-				<td align="center">${page }</td>
-				<td align="center">${startpage }</td>
-				<td align="center">${endpage }</td>
-				<td align="center">${maxpage }</td>
-			</tr>
-		</table>
-	</div>
+
+	<hr>
+	<h3 align=center> 상품문의글 작성</h3>
 	<hr>	
 
 	<div align=center>
@@ -57,7 +39,7 @@ th:first-child, td:first-child {
 				<tr>
 					<th> Member_id</th>
 					<td><input name="member_id" id="member_id" size="14"
-						value="ilovemoney2" /></td>
+						value="${member_id }" /></td>
 				</tr>
 
 				<tr>

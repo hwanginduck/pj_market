@@ -10,6 +10,7 @@ public class QnaBoard {
 	private int qna_re; /* 댓글여부 */
 	private String qna_content; /* 내용 */
 	private Timestamp qna_date; /* 작성일 */
+	private int qna_group;
 	
 	public int getQna_no() {
 		return qna_no;
@@ -47,6 +48,11 @@ public class QnaBoard {
 	public void setQna_date(Timestamp qna_date) {
 		this.qna_date = qna_date;
 	}
-
+	public int getQna_group() {
+		return qna_group;
+	}
+	public void setQna_group(int qna_group) {
+		this.qna_group = qna_group;
+	}
 	
 }
