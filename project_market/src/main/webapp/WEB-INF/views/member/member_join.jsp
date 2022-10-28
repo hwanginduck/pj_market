@@ -35,10 +35,9 @@
 					<th>회원아이디</th>
 					<td><input name="member_id" id="member_id" size="14"
 						class="input_box" /> <input type="button" value="아이디 중복체크"
-						class="input_button" onclick="id_check()" />
+						class="input_button" />
 						<div id="idcheck"></div></td>
 				</tr>
-
 				<tr>
 					<th>회원비번</th>
 					<td><input type="password" name="member_pw" id="member_pw"

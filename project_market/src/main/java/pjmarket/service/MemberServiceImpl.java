@@ -26,6 +26,13 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.UserCheck(member_id);
 	}
+	
+	// 아이디 중복검사
+	@Override
+	public int CheckMemberID(String member_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.CheckMemberID(member_id);
+	}
 
 
 

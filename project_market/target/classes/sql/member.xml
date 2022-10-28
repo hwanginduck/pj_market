@@ -14,7 +14,7 @@
 		#{member_phone},#{member_phone2},#{member_phone3},#{member_email},#{member_domain, jdbcType=VARCHAR},sysdate,1)
 	</insert>
 	
-	<!-- 로그인 인증 -->
+	<!-- 로그인 인증 --> <!-- ID중복검사 -->
 	<select id="login_check" parameterType="String" resultType="member">
 	 select * from member where member_id=#{member_id} and join_state=1
 	</select>

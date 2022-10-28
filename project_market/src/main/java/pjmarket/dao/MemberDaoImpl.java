@@ -27,6 +27,18 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("ID: "+member_id);
 		return session.selectOne("login_check", member_id);
 	}
+	
+	// 아이디 중복검사
+	@Override
+	public int CheckMemberID(String member_id) throws Exception {
+		// TODO Auto-generated method stub
+		int re = -1;	// 사용가능한 ID
+		MemberDTO DTO = session.selectOne("login_check", member_id);
+		if(DTO != null)
+			re = 1;		// 중복id
+		return re;
+	}
+
 
 
 }

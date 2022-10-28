@@ -16,6 +16,9 @@ import pjmarket.service.MemberServiceImpl;
 
 @Controller
 public class MemberController {
+	
+	@Autowired
+	private MemberDTO DTO;
 
 	@Autowired
 	private MemberServiceImpl ms;
@@ -45,7 +48,7 @@ public class MemberController {
 	}
 	
 	// 로그인 인증
-	@RequestMapping(value="/member_login_ok.do", method = RequestMethod.POST)
+	@RequestMapping(value="/member_login_ok.do")
 	public String MemberLoginOk(@RequestParam("member_id") String member_id, 
 								  @RequestParam("member_pw") String member_pw, 
 								  HttpSession session, Model model) throws Exception {
@@ -73,6 +76,27 @@ public class MemberController {
 			return "/main/mainpage";
 		}		 
 	}
+	
+	// 로그인 페이지로 이동
+	@RequestMapping("member_login_go.do")
+	public String MemberLoginGo() {
+		return "member/member_loginform";
+	}
+	
+	// ID중복검사 
+	@RequestMapping(value = "/member_idcheck.do")
+	public String Member_Idcheck(@RequestParam("member_id") String member_id, Model model) throws Exception {
+		System.out.println("아이디 중복체크하러 id 넘어옴");
+		
+		int result = ms.CheckMemberID(member_id);
+		model.addAttribute("result", result);
+		
+		return "member/member_idcheckresult";
+	}
+		
+		
+	
+		
 	
 	
 }
