@@ -4,16 +4,23 @@
 
 <configuration>
 
+<!-- alias 는 별명을 의미한다. Type은 풀패키지경로 -->
 	<typeAliases>
-		<typeAlias alias="market" type="pjmarket.model.Member" />
+		
+		<typeAlias alias="likelist" type="pjmarket.model.LikeList" />
+		<typeAlias alias="likes" type="pjmarket.model.Likes" />
+		<typeAlias alias="cartlist" type="pjmarket.model.CartList" />
+		<typeAlias alias="product" type="pjmarket.model.Product" />
+		<typeAlias alias="member" type="pjmarket.model.MemberDTO" />
+		<typeAlias alias="qna" type="pjmarket.model.QnaBoard" />
 		<typeAlias alias="review" type="pjmarket.model.Review" />
 	</typeAliases>	
 	
 	
 	<!-- 
 	<mappers>
-		<mapper resource="sql/Dept.xml" />
-		<mapper resource="sql/Emp.xml" />
+		<mapper resource="sql/market.xml" />
+		<mapper resource="sql/qna.xml" />
 	</mappers>  -->	
 	
 </configuration>

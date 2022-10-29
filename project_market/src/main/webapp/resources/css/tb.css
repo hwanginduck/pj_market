@@ -1,0 +1,28 @@
+/* table {
+	height: 35%;
+	width: 45%;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+}
+
+th, td {
+	border-bottom: 1px solid #444444;
+	border-left: 1px solid #444444;
+	padding: 10px;
+}
+
+th:first-child, td:first-child {
+	border-left: none;
+} */
+
+.th {
+	color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da
+}
+
+.tr {
+	color: #fff;
+	background-color: #5bc0de;
+	border-color: #46b8da
+}

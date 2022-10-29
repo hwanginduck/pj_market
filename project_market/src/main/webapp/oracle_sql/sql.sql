@@ -1,12 +1,16 @@
 --예시문
 --member 테이블
 insert into member values('아이디컬럼','비밀번호컬럼','이름컬럼','010-0000-0000','test@test.net','N','N','user',sysdate);
+insert into member values('test','1234','테스트','010-0000-0000','test@test.net','N','N','user',sysdate);
 select*from member;
 --product 테이블
 insert into product values(product_seq.nextval,'대분류컬럼','중분류컬럼','소분류컬럼','상품명',50000,'색상컬럼','상품내용컬럼','상품내용서브','이미지공간',10);
+insert into product values(product_seq.nextval,'대분류','중분류','소분류','폭신폭신 의자',50000,'우드','말랑말랑 푹신푹신 의자','아주 폭신폭신','jpg',10);
+insert into product values(product_seq.nextval,'대분류','중분류','소분류','딱딱 의자',50000,'페브릭', '페브릭인데 딱딱한 의자','아주 딱딱','그림',10);
 select*from product;
 --options 테이블
 insert into options values(options_seq.nextval,1,'옵션이름',5000,10);
+insert into options values(options_seq.nextval,1,'가죽변경',5000,10);
 select*from options;
 --addr 테이블
 insert into addr values(addr_seq.nextval,'아이디컬럼','여기주소','415-709','100동100호','Y');
@@ -18,13 +22,19 @@ select*from review;
 insert into qna values(qna_seq.nextval,'아이디컬럼',1,0,'리뷰내용',sysdate);
 select*from qna;
 --likes 테이블
+
+
 insert into likes values(1,'아이디컬럼');
+insert into likes values(likes_seq.nextval,1,'test', 1);
+insert into likes values(likes_seq.nextval,2,'test', 1);
+insert into likes values(likes_seq.nextval,3,'test', 1);
 select*from likes;
 --review_re 테이블
 insert into review_re values('아이디컬럼',1,'리댓글내용',sysdate,0,0,0);
 select*from review_re;
 --cart 테이블
-insert into cart values(1,1,'아이디컬럼',5);
+
+insert into cart values(cart_seq.nextval,1,1,'test',5);
 select*from cart;
 --orders 테이블
 insert into orders values(1,1,1,'아이디컬럼');
@@ -86,6 +96,22 @@ CREATE SEQUENCE qna_seq
 	MAXVALUE 99999
 	INCREMENT BY 1
 	START WITH 1;
+
+/* 찜목록 */
+CREATE SEQUENCE likes_seq 
+	MINVALUE 1
+	MAXVALUE 99999
+	INCREMENT BY 1
+	START WITH 1;
+
+/* 장바구니 */
+CREATE SEQUENCE cart_seq 
+	MINVALUE 1
+	MAXVALUE 99999
+	INCREMENT BY 1
+	START WITH 1;
+
+
 
 /* 구매(회원) */
 CREATE TABLE member (
@@ -192,6 +218,7 @@ ALTER TABLE addr
 
 /* 장바구니 */
 CREATE TABLE cart (
+	cart_num number not null,
 	options_num NUMBER NOT NULL, /* 옵션코드 */
 	product_num NUMBER, /* 상품코드 */
 	member_id VARCHAR2(30), /* 아이디 */
@@ -201,8 +228,10 @@ CREATE TABLE cart (
 
 /* 찜 */
 CREATE TABLE likes (
+	likes_num number not null,
 	product_num NUMBER NOT NULL, /* 상품코드 */
-	member_id VARCHAR2(30) /* 아이디 */
+	member_id VARCHAR2(30), /* 아이디 */
+	options_num number
 );
 ----------------------------------------??
 /* 리뷰게시판 */
@@ -512,3 +541,35 @@ ALTER TABLE review
 		REFERENCES member (
 			member_id
 		);
+
+		
+-- 추가
+
+ALTER TABLE member ADD (member_no number(38) unique not null); 	-- 10/27 준호 추가
+
+create sequence join_member_memberno_seq 
+increment by 1 start with 1 nocache;							-- 10/27 준호 추가
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
