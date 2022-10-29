@@ -472,39 +472,35 @@ ALTER TABLE qna
 		REFERENCES member (
 			member_id
 		);	
---테스트
-select p.product_img, p.product_name, p.product_price 
-			from product p inner join likes l on p.product_num = l.product_num where l.member_id = 'test'
 
-select p.product_img, p.product_name, c.cart_count, p.product_price, o.options_name, o.options_price
-from product p join cart c on p.product_num = c.product_num join options o on c.options_num = o.options_num where c.member_id = 'test'
+		
+-- 추가
 
-select p.product_img, p.product_name, p.product_price, l.likes_num, o.options_name, o.options_price, l.options_num
-from product p join likes l on p.product_num = l.product_num join options o on l.options_num = o.options_num where l.member_id = 'test'
+ALTER TABLE member ADD (member_no number(38) unique not null); 	-- 10/27 준호 추가
 
-
-select p.product_img, p.product_name, c.cart_count, p.product_price from product p inner join cart c on p.product_num = c.product_num where member_id = 'test'
-
-insert into cart(cart_num, options_num, product_num, member_id, cart_count) select cart_seq.nextval, options_num, product_num, member_id, 1 from likes where likes_num = 1
-
-
-
-
-CREATE TABLE CLIENT(
- CNO CHAR(3) NOT NULL,
- CNAME VARCHAR2(10) NOT NULL,
- CID VARCHAR2(14) NOT NULL)
-
-INSERT INTO CLIENT VALUES( 1, 'a', 'a') 
-INSERT INTO CLIENT VALUES( 2 ,'b','b')
-INSERT INTO CLIENT VALUES( 3, 'c', 'c')
-
-select * from client
-
-
-
-
-
-
-
-
+create sequence join_member_memberno_seq 
+increment by 1 start with 1 nocache;							-- 10/27 준호 추가
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

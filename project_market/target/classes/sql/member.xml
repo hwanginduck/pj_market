@@ -6,13 +6,20 @@
 
 	<!-- 회원저장 -->
 	<insert id="member_join" parameterType="member">
-		insert into member (member_id,member_pw,member_pw2,member_name,member_zip1,member_addr1,member_addr2, 
-		 member_phone,member_phone2,member_phone3,member_email,member_domain, ) 
-		values(#{member_id}, #{member_pw}, #{member_pw2}, #{member_name}, #{member_zip1}, 
-		 #{member_addr1}, #{member_addr2}, #{member_phone}, #{member_phone2}, #{member_phone3}, #{member_email,}, #{member_domain}, #{vin, jdbcType=VARCHAR} )
-	
+		insert into member (member_no,member_id,member_pw,member_name,
+		member_zip1,member_addr1,member_addr2,member_phone,member_phone2,member_phone3,member_email,member_domain,
+		member_date,join_state) values(join_member_memberno_seq.nextval,
+		#{member_id},#{member_pw},#{member_name},
+		#{member_zip1, jdbcType=VARCHAR},#{member_addr1, jdbcType=VARCHAR},#{member_addr2},
+		#{member_phone},#{member_phone2},#{member_phone3},#{member_email},#{member_domain, jdbcType=VARCHAR},sysdate,1)
 	</insert>
+	
+	<!-- 로그인 인증 --> <!-- ID중복검사 -->
+	<select id="login_check" parameterType="String" resultType="member">
+	 select * from member where member_id=#{member_id} and join_state=1
+	</select>
+	
 
-	
-	
+
+
 </mapper>
