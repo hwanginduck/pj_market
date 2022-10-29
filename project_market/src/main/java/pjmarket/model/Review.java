@@ -8,9 +8,9 @@ public class Review {
 	private int review_no; /* 글번호 */
 	private String review_sb;/* 글제목 */
 	private String member_id; /* 아이디 */
-	private String product_num; /* 상품코드 */
-	private String options_num; /* 옵션코드 */
-	private String review_star; /* 별점 */
+	private int product_num; /* 상품코드 */
+	private int options_num; /* 옵션코드 */
+	private int review_star; /* 별점 */
 	private String review_content; /* 내용 */
 	private String review_img; /* 리뷰사진 */
 	private Date review_date; /* 작성일 */
@@ -40,27 +40,27 @@ public class Review {
 		this.member_id = member_id;
 	}
 
-	public String getProduct_num() {
+	public int getProduct_num() {
 		return product_num;
 	}
 
-	public void setProduct_num(String product_num) {
+	public void setProduct_num(int product_num) {
 		this.product_num = product_num;
 	}
 
-	public String getOptions_num() {
+	public int getOptions_num() {
 		return options_num;
 	}
 
-	public void setOptions_num(String options_num) {
+	public void setOptions_num(int options_num) {
 		this.options_num = options_num;
 	}
 
-	public String getReview_star() {
+	public int getReview_star() {
 		return review_star;
 	}
 
-	public void setReview_star(String review_star) {
+	public void setReview_star(int review_star) {
 		this.review_star = review_star;
 	}
 
