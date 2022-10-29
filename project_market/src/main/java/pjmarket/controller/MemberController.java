@@ -16,9 +16,6 @@ import pjmarket.service.MemberServiceImpl;
 
 @Controller
 public class MemberController {
-	
-	@Autowired
-	private MemberDTO DTO;
 
 	@Autowired
 	private MemberServiceImpl ms;
