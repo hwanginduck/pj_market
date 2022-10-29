@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,55 +27,42 @@ th:first-child, td:first-child {
 <title>상품문의 작성게시판</title>
 </head>
 <body>
-	<div align=center>
-		<table>
-			상품문의 게시판 입니다.
-			<tr>
-				<td align="center">글작성 성공</td>
-				<td align="center">글목록 수</td>
-				<td align="center">page</td>
-				<td align="center">startpage</td>
-				<td align="center">endpage</td>
-				<td align="center">maxpage</td>
-			<tr>
-			<tr>
-				<td align="center">${result }</td>
-				<td align="center">${listcount }</td>
-				<td align="center">${page }</td>
-				<td align="center">${startpage }</td>
-				<td align="center">${endpage }</td>
-				<td align="center">${maxpage }</td>
-			</tr>
-		</table>
-	</div>
+
+	<hr>
+	<h3 align=center> 상품문의글 작성</h3>
 	<hr>	
 
 	<div align=center>
 		<form method="post" action="qna_boardinsert.do"
 			onSubmit="return board_check()">
-			<input type="hidden" name="qna_re" id="qna_re" size="14" value="0" />
 			
-			<table border=1>
-
+			qna_no :<input name="qna_no" id="qna_no" size="14" value="${qna_no }" /> <br>
+			member_id :<input name="member_id" id="member_id" size="14" value="${member_id }" /> <br>
+			product_num :<input name="product_num" id="product_num" size="14" value="${product_num }" /> <br>
+			
+			<c:if test="${member_id eq 'admin' }">qna_re: <input name="qna_re" id="qna_re" size="14" value="1" ><br></c:if>
+			<c:if test="${member_id ne 'admin' }">qna_re: <input name="qna_re" id="qna_re" size="14" value="0" ><br></c:if>
+			
+			qna_content:<input name="qna_content" id="qna_content" size="14" value="${qna_content }" /> <br>
+			qna_group:<input name="qna_group" id="qna_group" size="14" value="${qna_group }" /> <br>
+			
+			<%-- <table border=1>
 				<tr>
 					<th> Member_id</th>
 					<td><input name="member_id" id="member_id" size="14"
-						value="ilovemoney2" /></td>
+						value="${member_id }" /></td>
 				</tr>
-
 				<tr>
 					<th> Product_num</th>
 					<td><input name="product_num" id="product_num" size="14"
 						value="48" /></td>
 				</tr>
-
 				<tr>
 					<th> Qna_content</th>
 					<td><textarea name="qna_content" id="qna_content" rows="8"
 							cols="50" class="input_box">ㅎㅇ</textarea></td>
 				</tr>
-
-			</table>
+			</table> --%>
 
 
 			<input type="submit" value="등록" /> <input type="reset" value="취소" />

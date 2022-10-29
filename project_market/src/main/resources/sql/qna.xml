@@ -11,6 +11,7 @@
 		<result property="qna_re" column="qna_re" />
 		<result property="qna_content" column="qna_content" />
 		<result property="qna_date" column="qna_date" />
+		<result property="qna_group" column="qna_group" />
 	</resultMap>
 
 	<insert id="qna_insert" parameterType="qna">
@@ -24,14 +25,22 @@
 		select count(qna_no) from qna
 	</select>
 
-	<select id="qna_list" parameterType="int" resultType="qna">
-		 <!-- select * from QNA order by QNA_NO desc  -->
+<!-- 	<select id="qna_list" parameterType="int" resultType="qna">
+		 select * from QNA order by QNA_NO desc 
 		 
 		  <![CDATA[
 		select * from (select rownum rnum, qna.* from qna order by qna_no desc)
 		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
 		 ]]> 
+	</select> -->
+	
+	<select id="qna_list" parameterType="int" resultType="qna">
+		  <![CDATA[
+		select * from (select rownum rnum, qna.* from qna order by qna_no desc)
+		where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5) order by qna_group desc, qna_re asc
+		 ]]> 
 	</select>
+	
 
 
 
