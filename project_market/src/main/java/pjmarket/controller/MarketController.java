@@ -320,7 +320,8 @@ public class MarketController {
 
 	// 상품문의를 하기위한 폼으로이동
 	@RequestMapping("qna_writeform.do")
-	public String QnaBoardWriteForm(QnaBoard qnaboard, Model model) {
+	public String QnaBoardWriteForm(HttpServletRequest request, QnaBoard qnaboard, Model model) {
+		QnaBoardList(request, model);
 		// 상품코드 = 상품명을 가져와야함
 		// 아이디값 세션으로 가져와야함
 		// qna_re값 1) admin일경우 1, 

@@ -36,14 +36,14 @@
 				<table class="table table-striped">
 					<tr>
 					
-						<td><img src="${pageContext.request.contextPath}/resources/img/q.JPG"></td>
-						<td>사용자아이디</td>
-						<td>상품명</td>
-						<td>작성일</td>
-						<td><c:if test="${session_id  eq admin_user }"><a href="">[답변]</a></c:if></td>
+						<td width="100" align="left"><img src="${pageContext.request.contextPath}/resources/img/q.JPG"></td>
+						<td width="250" align="left">사용자아이디</td>
+						<td width="250" align="left">상품명</td>
+						<td width="250" align="left">작성일</td>
+						<td width="100" align="left"><c:if test="${session_id  eq admin_user }"><a href="">[답변]</a></c:if></td>
 					</tr>
 					<tr>
-						<td></td>
+						<td><c:if test="${boardlist.qna_re eq 1 }"><img src="${pageContext.request.contextPath}/resources/img/a.JPG"></c:if></td>
 
 						<!-- ----------------------- ID 마스킹처리하는 구간 ----------------------- -->
 
@@ -105,6 +105,9 @@
 		</ul>
 
 		<div align="center">
+		
+		<!-- qna_no 값 나중에 가져와서 세팅해야함. -------------------------------->
+		
 			<a href="qna_writeform.do" class="btn btn-info">문의글 작성</a>
 		</div>
 	</div>
