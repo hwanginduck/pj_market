@@ -836,9 +836,10 @@ $(document).ready(function() {
 
 			<div class="login-box">
 				<div class="login">
-					<a href="loginform.do">login</a> <a href="member_join.do">join</a>
+					<a href="loginform.do">'세션'</a> <a href="member_login_go.do">로그인</a> <a href="member_join.do">회원가입</a>
 				</div>
 			</div>
+			
 		</div>
 		<!-- <hr width="1200px"  style="border: solid 1px green; margin: 0px;"> -->
 		<div class="navbar">
