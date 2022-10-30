@@ -9,16 +9,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,13 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 import pjmarket.model.CartList;
 import pjmarket.model.LikeList;
 import pjmarket.model.Product;
-import pjmarket.service.CartServiceImpl;
-import pjmarket.service.LikeServiceImpl;
 import pjmarket.model.QnaBoard;
 import pjmarket.model.Review;
+import pjmarket.service.CartServiceImpl;
+import pjmarket.service.LikeServiceImpl;
 import pjmarket.service.MemberServiceImpl;
-import pjmarket.service.QnaServiceImpl;
 import pjmarket.service.ProductServiceImpl;
+import pjmarket.service.QnaServiceImpl;
 import pjmarket.service.ReviewService;
 
 @Controller
@@ -331,8 +321,15 @@ public class MarketController {
 
 	// 상품문의를 하기위한 폼으로이동
 	@RequestMapping("qna_writeform.do")
-	public String QnaBoardWriteForm(HttpServletRequest request, QnaBoard qnaboard, Model model) {
-		QnaBoardList(request, model);
+	public String QnaBoardWriteForm(QnaBoard qnaboard, Model model) {
+		System.out.println("writeform.do");
+		System.out.println("qna_no :"+qnaboard.getQna_no());
+		System.out.println("product_num :"+qnaboard.getProduct_num());
+		System.out.println("qna_group :"+qnaboard.getQna_group());
+		model.addAttribute("qna_no", qnaboard.getQna_no());
+		model.addAttribute("product_num", qnaboard.getProduct_num());
+		model.addAttribute("qna_group", qnaboard.getQna_group());
+		
 		// 상품코드 = 상품명을 가져와야함
 		// 아이디값 세션으로 가져와야함
 		// qna_re값 1) admin일경우 1, 
@@ -343,17 +340,17 @@ public class MarketController {
 	}
 
 	// QNA테이블 게시판글작성 메소드
-	@RequestMapping("qna_boardinsert.do")
-	public String QnaInsert(HttpServletRequest request, QnaBoard qnaboard, Model model) throws Exception {
+	@RequestMapping("qna_boardinsert")
+	public String QnaInsert(QnaBoard qnaboard, Model model) throws Exception {
+		System.out.println("qna_boardinsert");
 		int result = qs.QnaInsert(qnaboard);
 		if (result == 1)
-		System.out.println("----------글작성 성공----------");
+		System.out.println("qna_insert성공");
 		model.addAttribute("result", result);
-		
-		QnaBoardList(request, model);
-		
-		return "redirect:/";
+		return "qna/qna_insertok";
 	}
+	
+	
 
 	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")

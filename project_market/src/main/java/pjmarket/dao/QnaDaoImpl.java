@@ -17,15 +17,26 @@ public class QnaDaoImpl implements QnaDao {
 	//게시판에저장
 	@Override
 	public int QnaInsert(QnaBoard qnaboard) {
-		return session.insert("qnans.qna_insert", qnaboard); 
+		if(qnaboard.getMember_id().equals("admin")) {
+			int admin_result = session.insert("qnans.qna_admininsert", qnaboard);
+			return admin_result;
+		}
+		else {
+			int user_result = session.insert("qnans.qna_userinsert", qnaboard);
+			return user_result;
+		}
+		
+		
 	}
 	@Override
 	public int getListCount() {
 		return session.selectOne("qnans.qna_count");
 	}
+	@Override
 	public List<QnaBoard> getBoardList(int page) {
 		List<QnaBoard> list = session.selectList("qnans.qna_list", page);
 		return list ;
 	}
+	
 
 }

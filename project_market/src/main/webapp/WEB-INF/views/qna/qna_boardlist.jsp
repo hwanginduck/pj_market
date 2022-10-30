@@ -36,11 +36,14 @@
 				<table class="table table-striped">
 					<tr>
 					
-						<td width="100" align="left"><img src="${pageContext.request.contextPath}/resources/img/q.JPG"></td>
+						<td width="100" align="left">
+						<c:if test="${boardlist.member_id ne 'admin' }">	<img src="${pageContext.request.contextPath}/resources/img/q.JPG"> </c:if>
+						</td>
 						<td width="250" align="left">사용자아이디</td>
 						<td width="250" align="left">상품명</td>
 						<td width="250" align="left">작성일</td>
-						<td width="100" align="left"><c:if test="${session_id  eq admin_user }"><a href="">[답변]</a></c:if></td>
+						<td width="100" align="left"><c:if test="${session_id  eq admin_user }">
+						<a href="qna_writeform.do?qna_no=${boardlist.qna_no }&product_num=${boardlist.product_num}&qna_group=${boardlist.qna_group}">[답변]</a></c:if></td>
 					</tr>
 					<tr>
 						<td><c:if test="${boardlist.qna_re eq 1 }"><img src="${pageContext.request.contextPath}/resources/img/a.JPG"></c:if></td>

@@ -14,11 +14,18 @@
 		<result property="qna_group" column="qna_group" />
 	</resultMap>
 
-	<insert id="qna_insert" parameterType="qna">
+	<insert id="qna_userinsert" parameterType="qna">
 		insert into qna
-		(qna_no, member_id, product_num, qna_re, qna_content, qna_date)
+		(qna_no, member_id, product_num, qna_re, qna_content, qna_date, qna_group)
 		values
-		(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate)
+		(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate, qna_seq.nextval)
+	</insert>
+	
+	<insert id="qna_admininsert" parameterType="qna">
+		insert into qna
+		(qna_no, member_id, product_num, qna_re, qna_content, qna_date, qna_group)
+		values
+		(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate, #{qna_group})
 	</insert>
 
 	<select id="qna_count" resultType="int">
