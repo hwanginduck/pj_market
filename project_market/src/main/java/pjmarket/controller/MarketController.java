@@ -379,12 +379,77 @@ public class MarketController {
 
 	// 리뷰 게시판 작성 성공
 	@RequestMapping("review_insertresult")
-	public String ReviewInsert(Review review, Model model) throws Exception {
+	public String ReviewInsert(Review review, Model model, @RequestParam("review_img1") MultipartFile mf,
+		HttpServletRequest request) throws Exception {
+//		model.addAttribute("result", result);
+		
+		String filename = mf.getOriginalFilename();
+		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
 
-		int result = rs.ReviewInsert(review);
+		String path = request.getRealPath("upload");
+		System.out.println("mf=" + mf);
+		System.out.println("filename=" + filename); // filename="Koala.jpg"
+		System.out.println("size=" + size);
+		System.out.println("Path=" + path);
+		
+	    int result=0;
+
+		String file[] = new String[2];
+		//file = filename.split(".");
+		//System.out.println(file.length);
+		//System.out.println("file0="+file[0]);
+		//System.out.println("file1="+file[1]);
+
+		String newfilename = "";
+
+		if(filename != ""){	 // 첨부파일이 전송된 경우	
+
+			// 파일 중복문제 해결
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+			System.out.println("extension:"+extension);
+
+			UUID uuid = UUID.randomUUID();
+
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:"+newfilename);		
+
+			StringTokenizer st = new StringTokenizer(filename, ".");
+			file[0] = st.nextToken();		// 파일명		Koala
+			file[1] = st.nextToken();		// 확장자	    jpg
+
+			if(size > 200000){				// 100KB
+				result=2;
+				model.addAttribute("result", result);
+
+				return "review/review_insertresult";
+
+			}else if(!file[1].equals("jpg") &&
+					!file[1].equals("gif") &&
+					!file[1].equals("png") ){
+
+				result=3;
+				model.addAttribute("result", result);
+
+				return "review/review_insertresult";
+			}
+			
+		}
+		if (size > 0) { // 첨부파일이 전송된 경우
+
+			mf.transferTo(new File(path + "/" + newfilename));
+
+		}
+		
+		System.out.println("리뷰 글 작성 성공");
 		if (result == 1)
-		System.out.println("----------글작성 성공----------");
+			System.out.println("----------글작성 성공----------");
+		
+		review.setReview_img(newfilename);
+
+		result = rs.ReviewInsert(review);
+		
 		model.addAttribute("result", result);
+		
 
 		return "review/review_insertresult";
 	}

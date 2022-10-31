@@ -17,7 +17,7 @@ ${options_num }
  <div class="container" align="center">
 <h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰</h3>
 
-<form action="review_insertresult" method="post" onsubmit="return board_check()">
+<form action="review_insertresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
 			<input type="hidden" name="product_num" value="1"> 
 			<input type="hidden" name="options_num" value="1"> 
@@ -30,7 +30,7 @@ ${options_num }
 		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="테스트값"  />
 			</td>
 		</tr>
-		<tr>
+		<!--  --><tr>
 			<td style="font-weight: bold;" align="center"> 상품 별점</td>
 			<td>
 			<div>
@@ -54,7 +54,7 @@ ${options_num }
 		 <tr>
      <td style="font-weight: bold;" align="center">리뷰 사진</td>
      <td>
-      <input type="file" name="review_img" />
+      <input type="file" name="review_img1" />
      </td>
     </tr>
 		<tr>

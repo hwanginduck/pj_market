@@ -25,7 +25,6 @@
 				</tr>
 			</c:if>
 			<c:if test="${not empty boardlist}">
-				<c:set var="no1" value="${no }"></c:set>
 				
 				<c:forEach var="boardlist" items="${boardlist }">
 					<tr>
@@ -46,8 +45,7 @@
 					</tr>
 					<c:set var="no1" value="${no1 - 1}"></c:set>
 				</c:forEach>
-				
-		</c:if>
+				</c:if>
 		</table>
 	<ul class="pagination">
 			<c:if test="${page <=1 }">
