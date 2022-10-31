@@ -7,6 +7,7 @@ public class OfficialBoard {
 	
 	
 			private int of_num;				// 글번호
+			private String of_name;			// 작성자명
 			private String of_subject;		// 글제목
 			private String of_content;		// 글내용
 			private int of_readcount;		// 조회수
@@ -27,6 +28,12 @@ public class OfficialBoard {
 			}
 			public void setOf_subject(String of_subject) {
 				this.of_subject = of_subject;
+			}
+			public String getPf_name() {
+				return of_name;
+			}
+			public void setPf_name(String pf_name) {
+				this.of_name = pf_name;
 			}
 			public String getOf_content() {
 				return of_content;

@@ -7,12 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import pjmarket.model.OfficialBoard;
-import pjmarket.service.OfficialService;
 import pjmarket.service.OfficialServiceImpl;
 
 @Controller
@@ -24,19 +21,19 @@ public class OfficialController {
 	// 공지사항 작성 폼
 	@RequestMapping(value = "off_writeform")
 	public String off_writeform() {
-		return "views/off_writeform";
+		return "Official/off_writeform";
 	}
 	
 	// 공지사항 작성
 		@RequestMapping("off_write.do")
-		public String boardwrite(OfficialBoard off, Model model) {
+		public String off_write(OfficialBoard off, Model model) {
 			
 			int result = os.insert(off);
 			if(result == 1) System.out.println("글작성 성공");
 			
 			model.addAttribute("result", result);
 			
-			return "board/insertresult";
+			return "Official/insertresult";
 		}
 		
 		// 공지사항 목록

@@ -6,8 +6,9 @@ import pjmarket.dao.OfficialDao;
 import pjmarket.model.OfficialBoard;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class OfficialServiceImpl implements OfficialService{
 	
 	@Autowired

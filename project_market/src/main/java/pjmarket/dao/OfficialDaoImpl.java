@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import pjmarket.model.OfficialBoard;
 
+@Repository
 public class OfficialDaoImpl implements OfficialDao{
 	
-	@Autowired
+	@Autowired(required=false)
 	public SqlSessionTemplate session;
 	
 	   public int insert(OfficialBoard off) {
