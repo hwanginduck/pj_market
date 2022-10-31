@@ -322,7 +322,7 @@ public class MarketController {
 	// 상품문의를 하기위한 폼으로이동
 	@RequestMapping("qna_writeform.do")
 	public String QnaBoardWriteForm(QnaBoard qnaboard, Model model) {
-		System.out.println("writeform.do");
+		System.out.println("qna_writeform.do");
 		System.out.println("qna_no :"+qnaboard.getQna_no());
 		System.out.println("product_num :"+qnaboard.getProduct_num());
 		System.out.println("qna_group :"+qnaboard.getQna_group());
@@ -340,16 +340,29 @@ public class MarketController {
 	}
 
 	// QNA테이블 게시판글작성 메소드
-	@RequestMapping("qna_boardinsert")
+	@RequestMapping("qna_boardinsert.do")
 	public String QnaInsert(QnaBoard qnaboard, Model model) throws Exception {
-		System.out.println("qna_boardinsert");
+		System.out.println("qna_boardinsert.do");
 		int result = qs.QnaInsert(qnaboard);
 		if (result == 1)
-		System.out.println("qna_insert성공");
 		model.addAttribute("result", result);
 		return "qna/qna_insertok";
 	}
 	
+	
+	@RequestMapping("qna_updateform.do")
+	public String QnaUpdate(int qna_no, Model model) throws Exception {
+		QnaBoard qnaboard = qs.QnaUpdate(qna_no);
+		
+		System.out.println(qnaboard.getQna_no());
+		System.out.println(qnaboard.getMember_id());
+		System.out.println(qnaboard.getProduct_num());
+		System.out.println(qnaboard.getQna_re());
+		System.out.println(qnaboard.getQna_content());
+		
+		model.addAttribute("qnaboard", qnaboard);
+		return "qna/qna_updateform";
+	}
 	
 
 	// 리뷰 쓰는 폼으로 이동

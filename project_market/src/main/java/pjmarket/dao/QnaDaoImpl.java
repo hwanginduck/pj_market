@@ -25,18 +25,23 @@ public class QnaDaoImpl implements QnaDao {
 			int user_result = session.insert("qnans.qna_userinsert", qnaboard);
 			return user_result;
 		}
-		
-		
 	}
+	
 	@Override
 	public int getListCount() {
 		return session.selectOne("qnans.qna_count");
 	}
+	
 	@Override
 	public List<QnaBoard> getBoardList(int page) {
 		List<QnaBoard> list = session.selectList("qnans.qna_list", page);
 		return list ;
 	}
-	
 
+	@Override
+	public QnaBoard getMember(int qna_no) {
+		QnaBoard qboard = session.selectOne("qnans.qna_select", qna_no);
+		return qboard;
+	}
+	
 }

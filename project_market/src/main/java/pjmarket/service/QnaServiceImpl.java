@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import pjmarket.dao.QnaDao;
 import pjmarket.dao.QnaDaoImpl;
@@ -28,6 +29,11 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public List<QnaBoard> getBoardList(int page) {
 		return qnadao.getBoardList(page);
+	}
+	
+	@Override
+	public QnaBoard QnaUpdate(int qna_no) {
+		return qnadao.getMember(qna_no);
 	}
 
 }

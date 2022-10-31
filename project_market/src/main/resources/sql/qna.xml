@@ -48,6 +48,10 @@
 		 ]]> 
 	</select>
 	
+	<select id="qna_select" resultType="qna">
+		select * from qna where qna_no = #{qna_no}
+	</select>
+	
 
 
 
