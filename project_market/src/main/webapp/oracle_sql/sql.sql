@@ -551,6 +551,21 @@ create sequence join_member_memberno_seq
 increment by 1 start with 1 nocache;							-- 10/27 준호 추가
 		
 		
+select count(product_num) from product where product_l = '홈스마트'		
+		
+select * from (select rownum rnum, product_num, product_l, product_m, product_s, product_name, product_price, product_color,
+ product_content, product_sub, product_img, product_stock from (select * from product order by product_num desc))
+where rnum >= 1 and rnum <= 10 and product_l = '홈스마트'
+
+select * from 
+		 (select rownum rnum,BOARD_NUM,BOARD_NAME,BOARD_SUBJECT,BOARD_CONTENT,
+		 BOARD_RE_REF,BOARD_RE_LEV,BOARD_RE_SEQ,BOARD_READCOUNT,
+	 	 BOARD_DATE from  
+	  	 (select * from board53 order by BOARD_RE_REF desc,BOARD_RE_SEQ asc)) 
+	   		 where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
+
+
+
 		
 		
 		
@@ -560,10 +575,7 @@ increment by 1 start with 1 nocache;							-- 10/27 준호 추가
 		
 		
 		
-		
-		
-		
-		
+--수정 테스트
 		
 		
 		

@@ -7,8 +7,21 @@
 	<!-- 게시판 목록 (member_id를 전달 받아 join하여 조회) -->
 	<!-- 	id= dao 에서 호출할 이름 parameterType = dao로 돌려줄 타입 resultType = 어떻게 받을지 하는 타입 configurateion에서 참조-->
     <insert id="product_insert" parameterType="product">
-     insert into product values(product_seq.nextval, #{product_l},#{product_m},#{product_s},
-     #{product_name},#{product_price},#{product_color},#{product_content},
+     insert into product values(product_seq.nextval, #{product_l},#{product_m},
+     #{product_name},#{product_price},#{product_content},
      #{product_sub},#{product_img},#{product_stock})
     </insert>
+    
+    <!-- 해당 카테고리 총 상품 수 -->
+	<select id="product_count" resultType="int">
+		select count(product_num) from product where product_l = #{product_l}
+	</select>
+    
+    <select id="product_list" parameterType="list" resultType="product">
+	 <![CDATA[
+		select * from (select rownum rnum, product_num, product_l, product_m, product_name, product_price,
+		product_content, product_sub, product_img, product_stock from (select * from product order by product_num desc))
+	   	where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10) and product_l = #{product_l}
+		]]>
+    </select>
 </mapper>

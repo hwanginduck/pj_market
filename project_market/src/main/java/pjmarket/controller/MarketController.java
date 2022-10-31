@@ -213,76 +213,7 @@ public class MarketController {
 		}
 	
 	
-	// 상품등록
-	@RequestMapping("insert_product.do")
-	public String insertProduct(@RequestParam("product_img1") MultipartFile mf, Product product, HttpServletRequest request, Model model) throws Exception {
-
-		String filename = mf.getOriginalFilename();
-		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
-
-		String path = request.getRealPath("upload");
-		System.out.println("mf=" + mf);
-		System.out.println("filename=" + filename); // filename="Koala.jpg"
-		System.out.println("size=" + size);
-		System.out.println("Path=" + path);
-		int result=0;
-
-		String file[] = new String[2];
-		//file = filename.split(".");
-		//System.out.println(file.length);
-		//System.out.println("file0="+file[0]);
-		//System.out.println("file1="+file[1]);
-
-		String newfilename = "";
-
-		if(filename != ""){	 // 첨부파일이 전송된 경우	
-
-			// 파일 중복문제 해결
-			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-			System.out.println("extension:"+extension);
-
-			UUID uuid = UUID.randomUUID();
-
-			newfilename = uuid.toString() + extension;
-			System.out.println("newfilename:"+newfilename);		
-
-			StringTokenizer st = new StringTokenizer(filename, ".");
-			file[0] = st.nextToken();		// 파일명		Koala
-			file[1] = st.nextToken();		// 확장자	    jpg
-
-			if(size > 200000){				// 100KB
-				result=2;
-				model.addAttribute("result", result);
-
-				return "main/uploadResult";
-
-			}else if(!file[1].equals("jpg") &&
-					!file[1].equals("gif") &&
-					!file[1].equals("png") ){
-
-				result=3;
-				model.addAttribute("result", result);
-
-				return "main/uploadResult";
-			}
-			
-		}
-		if (size > 0) { // 첨부파일이 전송된 경우
-
-			mf.transferTo(new File(path + "/" + newfilename));
-
-		}
-		
-		System.out.println("여기까지 되나?");
-		
-		product.setProduct_img(newfilename);
-
-		result = productservice.insertProduct(product);
-		
-		model.addAttribute("result", result);
-		
-		return "main/uploadResult";
-	}
+	
 	
 	
 
@@ -409,5 +340,6 @@ public class MarketController {
 
 		return "review/review_boardlist";
 	}
+
 
 }

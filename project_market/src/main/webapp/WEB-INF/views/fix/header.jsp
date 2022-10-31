@@ -529,8 +529,7 @@ input[type=file]::file-selector-button {
 	border: 1px solid #5FB404;
 	border-radius: 10px;
 	cursor: pointer; &: hover { background : rgb( 77, 77, 77);
-	color: #fff;
-}
+	color: #fff;}
 
 }
 .image-box {
@@ -589,7 +588,15 @@ input[type=file]::file-selector-button {
 	font-size: 30px; 
 	border-radius: 10px; 
 	background-color: #5FB404; 
-	color: white;"
+	color: white;
+}
+
+.productlist-content {
+	padding-top: 300px;
+	padding-left: 120px;
+	padding-right: 120px;
+	width: 1200px;
+	float: left;
 }
 </style>
 <script type="text/javascript">
@@ -853,10 +860,17 @@ $(document).ready(function() {
 					<div class="dropdown menu-box">
 						<button class="dropbtn">Category</button>
 						<div class="dropdown-content">
-							<a href="#">홈스마트</a> <a href="#">가구</a> <a href="#">홈오피스</a> <a
-								href="#">침대/매트리스</a> <a href="#">어린이IKEA</a> <a href="#">조명</a>
-							<a href="#">수납/정리</a> <a href="#">주방용품</a> <a href="#">주방가구</a> <a
-								href="#">아웃도어/야외용품</a> <a href="#">욕실</a> <a href="#">텍스타일</a>
+							<a href="productlist.do?product_l=홈스마트">홈스마트</a>
+							<a href="productlist.do?product_l=가구">가구</a>
+							<a href="productlist.do?product_l=홈오피스">홈오피스</a> 
+							<a href="productlist.do?product_l=침대매트리스">침대/매트리스</a> 
+							<a href="productlist.do?product_l=어린이GaGu">어린이GaGu</a> 
+							<a href="productlist.do?product_l=조명">조명</a>
+							<a href="productlist.do?product_l=수납정리">수납/정리</a> 
+							<a href="productlist.do?product_l=주방용품">주방용품</a> 
+							<a href="productlist.do?product_l=주방가구">주방가구</a> 
+							<a href="productlist.do?product_l=욕실">욕실</a> 
+							<a href="productlist.do?product_l=텍스타일">텍스타일</a>
 						</div>
 					</div>
 				</li>

@@ -1,5 +1,7 @@
 package pjmarket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,22 @@ public class ProductServiceImpl implements ProductService{
 		int result = productdao.insertProduct(product);
 
 		return result;
+	}
+	
+	@Override
+	public int getListCount(String product_l) throws Exception{
+		System.out.println("카테고리 상품 갯수 검색 service 진입");
+		System.out.println("service product_l 확인 : " +product_l);
+		
+		return productdao.getProductCount(product_l);
+
+	}
+
+	@Override
+	public List<Product> getProductlist(int page, String product_l) throws Exception{
+		
+		return productdao.getProductlist(page, product_l);
+		
 	}
 	
 	

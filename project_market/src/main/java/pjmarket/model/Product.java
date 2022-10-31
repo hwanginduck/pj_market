@@ -5,10 +5,8 @@ public class Product {
 	private int product_num;
 	private String product_l;
 	private String product_m;
-	private String product_s;
 	private String product_name;
 	private int product_price;
-	private String product_color;
 	private String product_content;
 	private String product_sub;
 	private String product_img;
@@ -32,12 +30,7 @@ public class Product {
 	public void setProduct_m(String product_m) {
 		this.product_m = product_m;
 	}
-	public String getProduct_s() {
-		return product_s;
-	}
-	public void setProduct_s(String product_s) {
-		this.product_s = product_s;
-	}
+
 	public String getProduct_name() {
 		return product_name;
 	}
@@ -49,12 +42,6 @@ public class Product {
 	}
 	public void setProduct_price(int product_price) {
 		this.product_price = product_price;
-	}
-	public String getProduct_color() {
-		return product_color;
-	}
-	public void setProduct_color(String product_color) {
-		this.product_color = product_color;
 	}
 	public String getProduct_content() {
 		return product_content;

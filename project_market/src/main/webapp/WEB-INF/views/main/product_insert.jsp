@@ -13,7 +13,7 @@
 				<div class="product-insert-table">
 					<table width="1000px">
 						<tr>
-							<td rowspan="8" colspan="2">
+							<td rowspan="6" colspan="2">
 								<div class="image-box">
 								<div id="image_container"></div>
 								</div>
@@ -47,18 +47,8 @@
 						</tr>
 
 						<tr>
-							<th id="product-insert-table-th">소분류</th>
-							<td><input type="text" id="product-insert-bar" name="product_s"/></td>
-						</tr>
-
-						<tr>
 							<th id="product-insert-table-th">가격</th>
 							<td><input type="text" id="product-insert-bar" name="product_price"/></td>
-						</tr>
-
-						<tr>
-							<th id="product-insert-table-th">색상</th>
-							<td><input type="text" id="product-insert-bar" name="product_color" /></td>
 						</tr>
 
 						<tr>
