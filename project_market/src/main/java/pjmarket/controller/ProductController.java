@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,9 @@ public class ProductController {
 
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
-
-		String path = request.getRealPath("upload");
+		
+		
+		String path = request.getRealPath("/resources/upload/");
 		System.out.println("mf=" + mf);
 		System.out.println("filename=" + filename); // filename="Koala.jpg"
 		System.out.println("size=" + size);
