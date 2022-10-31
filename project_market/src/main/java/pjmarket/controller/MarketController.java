@@ -1,6 +1,7 @@
 package pjmarket.controller;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -357,7 +358,22 @@ public class MarketController {
 
 	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")
-	public String ReviewWriteForm() {
+	public String ReviewWriteForm(Model model ,String member_id, HttpSession session ) throws Exception {
+		
+//		@RequestParam("product_num") int product_num,
+//		 @RequestParam("options_num") int options_num 
+	
+		// session 에서 아이디 구해오기
+				member_id = (String)session.getAttribute("member_id");
+				System.out.println("아이디 : "+member_id);
+				
+				// 상품코드 구해오기
+//				Product product = rs.getProductNum(product_num);
+//				
+//				model.addAttribute("product", product);
+//				model.addAttribute("member_id", member_id);
+//				model.addAttribute("options_num", options_num);
+		
 		return "review/review_writeform";
 	}
 
