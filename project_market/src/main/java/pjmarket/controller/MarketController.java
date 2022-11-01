@@ -131,6 +131,7 @@ public class MarketController {
 	public String Cart_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
 		System.out.println("cart_list controller start");
 		
+		
 		//product_num 이 null이 아니다 == 찜리스트 || 제품상세 페이지에서 장바구니로 product_num을 가지고 넘어올때
 		if(request.getParameter("likes_num") == null && request.getParameter("cart_num") == null) {
 			System.out.println("likes_num 없이 장바구니 리스트 실행");
@@ -157,25 +158,27 @@ public class MarketController {
 			
 			return "main/cartResult";			
 		
-		}else if(request.getParameter("likes_num") == null && request.getParameter("cart_num") != null) {
+		}else{
 			
 			System.out.println("cartlist 삭제 controller 진입");
+			
 			int cart_num = Integer.parseInt(request.getParameter("cart_num"));
-			System.out.println("cart_num 확인 : " +cart_num);
 			
 			int result = deleteCart(cart_num, model);
+			System.out.println("result 1값 출력 : " +result);
 			
 			if(result == 1) {
+				System.out.println("result 2값 출력 : " +result);
 				result = 2;
 				model.addAttribute("result", result);
-				System.out.println("result 값 출력 : " +result);
+				System.out.println("result 3값 출력 : " +result);
 			}
 			
 			return "main/cartResult";	
 			
 		}
 		
-		return null;
+		
 	}
 	
 	//장바구니 리스트 불러오기

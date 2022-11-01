@@ -25,7 +25,8 @@
 						<c:forEach var="like" items="${likelist}">
 							<tr>
 								<td rowspan="2" height="150px" width="150px">
-									${like.product_img }</td>
+									<img src="<%=request.getContextPath()%>/resources/upload/${like.product_img}" height="200px" width="200px" >	
+								</td>
 								<td align="left">${like.product_name }</td>
 								<td align="left">${like.options_name }</td>
 								<td>
