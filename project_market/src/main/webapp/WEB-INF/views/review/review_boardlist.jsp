@@ -27,7 +27,7 @@
 			<c:if test="${not empty boardlist}">
 				
 				<!-- 화면 출력 번호  변수 정의 -->		
-			<c:set var="num" value="${listcount-(page-1)*10}"/> 	
+			<c:set var="num" value="${listcount-(page-1)*5}"/> 	
 	
 			<!-- 반복문 시작 -->
 			<c:forEach var="b" items="${boardlist}">
