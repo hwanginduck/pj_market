@@ -4,6 +4,11 @@
 
 <configuration>
 
+	<!-- <settings> 
+    <setting name="cacheEnabled" value="false" />
+    <setting name="jdbcTypeForNull" value="NULL" />
+  </settings> -->
+
 <!-- alias 는 별명을 의미한다. Type은 풀패키지경로 -->
 	<typeAliases>
 		
@@ -14,7 +19,12 @@
 		<typeAlias alias="member" type="pjmarket.model.MemberDTO" />
 		<typeAlias alias="qna" type="pjmarket.model.QnaBoard" />
 		<typeAlias alias="review" type="pjmarket.model.Review" />
+		<typeAlias alias="off" type="pjmarket.model.OfficialBoard" />
+		
+		
 	</typeAliases>	
+	
+
 	
 	
 	<!-- 
