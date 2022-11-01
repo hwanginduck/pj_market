@@ -84,6 +84,7 @@ public class MemberController {
 	@RequestMapping(value = "/member_idcheck.do")
 	public String Member_Idcheck(@RequestParam("member_id") String member_id, Model model) throws Exception {
 		System.out.println("아이디 중복체크하러 id 넘어옴");
+		System.out.println("id:"+member_id);
 		
 		int result = ms.CheckMemberID(member_id);
 		model.addAttribute("result", result);
