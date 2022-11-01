@@ -51,4 +51,10 @@ public class ProductDaoImpl implements ProductDao{
 		return list;
 	}
 	
+	@Override
+	public Product getProductDetail(int product_num) {
+		System.out.println("product detail dao start");
+		return (Product)sqlSession.selectOne("productns.product_detail", product_num);
+	}
+	
 }

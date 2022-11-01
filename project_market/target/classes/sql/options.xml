@@ -10,4 +10,8 @@
      insert into options values(options_seq.nextval, (select Max(product_num) from product), #{options_name}, #{options_price}, #{options_sale})
     </insert>
     
+    <select id="options_list" parameterType="list" resultType="options">
+		select * from options where product_num = #{product_num}
+    </select>
+    
 </mapper>

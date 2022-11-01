@@ -24,4 +24,9 @@
 	   	where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10) and product_l = #{product_l}
 		]]>
     </select>
+    
+       <!-- 상품디테일 -->
+	<select id="product_detail" resultType="product">
+		select * from product where product_num = #{product_num}
+	</select>
 </mapper>
