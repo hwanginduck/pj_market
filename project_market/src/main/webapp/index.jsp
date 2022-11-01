@@ -13,6 +13,7 @@
 	/* 메인페이지로 이동 */
 	location.href="mainpage.do";
 	
+	
 	// 2022-10-21 18:40 
 
 </script>
