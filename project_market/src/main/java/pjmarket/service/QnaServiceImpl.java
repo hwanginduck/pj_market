@@ -35,5 +35,15 @@ public class QnaServiceImpl implements QnaService{
 	public QnaBoard QnaUpdate(int qna_no) {
 		return qnadao.getMember(qna_no);
 	}
+	
+	@Override
+	public int QnaUpdateok(QnaBoard qnaboard) {
+		return qnadao.UpdateQna(qnaboard);
+	}
+	
+	@Override
+	public int QnaDelete(int qna_re, int qna_group) {
+		return qnadao.DeleteQna(qna_re, qna_group);
+	}
 
 }

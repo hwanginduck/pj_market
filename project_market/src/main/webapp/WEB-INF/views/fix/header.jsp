@@ -878,7 +878,7 @@ $(document).ready(function() {
 						<a href="">Rangking</a>
 					</div></li>
 				<li><div class="menu-box active">
-						<a href="qna_boardlist.do">Q&A</a>
+						<a href="qna_boardlist.do?page=1">Q&A</a>
 					</div></li>
 				<li><div class="menu-box active">
 						<a href="review_writeform">리뷰작성</a>

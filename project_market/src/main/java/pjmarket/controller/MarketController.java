@@ -212,13 +212,15 @@ public class MarketController {
 	public String QnaBoardList(HttpServletRequest request, Model model) { 
 		
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
-
+		
 		int page = 1;
-		int limit = 5; // 한 화면에 출력할 레코드수
+		int limit = 5;
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
+		
+		
 
 		// 총 리스트 수를 받아옴.
 		int listcount = qs.getListCount();
@@ -277,7 +279,8 @@ public class MarketController {
 		int result = qs.QnaInsert(qnaboard);
 		if (result == 1)
 		model.addAttribute("result", result);
-		return "qna/qna_insertok";
+//		return "qna/qna_insertok";
+		return "redirect:/qna_boardlist.do";
 	}
 	
 	
@@ -300,8 +303,20 @@ public class MarketController {
 		System.out.println("4_Qna_re: "+qnaboard.getQna_re());
 		System.out.println("5_Qna_content: "+qnaboard.getQna_content());
 
-		int result =1;
-		return "qna/qnab_boardlist";
+		int result = qs.QnaUpdateok(qnaboard);
+		if (result==1) {
+			System.out.println("수정성공");
+		}
+		return "redirect:/qna_boardlist.do";
+	}
+	
+	@RequestMapping("qna_delete.do")
+	public String QnaDelete(int qna_re, int qna_group, Model model) throws Exception {
+		int result = qs.QnaDelete(qna_re, qna_group);
+		if (result == 1) {
+			System.out.println("--글삭제성공--");
+		}
+		return "redirect:/qna_boardlist.do";
 	}
 	
 

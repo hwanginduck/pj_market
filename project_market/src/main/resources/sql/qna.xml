@@ -52,7 +52,17 @@
 		select * from qna where qna_no = #{qna_no}
 	</select>
 	
-
+	<update id="qna_update" parameterType="qna">
+		update qna set qna_content = #{qna_content} where qna_no = #{qna_no} 
+	</update>
+	
+	<delete id="qna_userdelete">
+		delete qna where qna_group = #{qna_group}
+	</delete>
+	
+	<delete id="qna_admindelete">
+		delete qna where qna_re = 1 and qna_group = #{qna_group}
+	</delete>
 
 
 

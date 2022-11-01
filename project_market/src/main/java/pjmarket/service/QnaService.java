@@ -16,4 +16,8 @@ public interface QnaService {
 	
 	public QnaBoard QnaUpdate(int qna_no);
 	
+	public int QnaUpdateok(QnaBoard qnaboard);
+	
+	public int QnaDelete(int qna_re, int qna_group);
+	
 }

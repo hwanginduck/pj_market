@@ -44,6 +44,21 @@ public class QnaDaoImpl implements QnaDao {
 		return qboard;
 	}
 	//수정 후 1개의 객체정보 업데이트
-	
+	@Override
+	public int UpdateQna(QnaBoard qnaboard) {
+		int result = session.update("qnans.qna_update", qnaboard);
+		return result;
+	}
+	// QNA삭제
+	@Override
+	public int DeleteQna(int qna_re, int qna_group) {
+		int result = -1;
+		if (qna_re == 0) { // 사용자일경우
+			result = session.delete("qnans.qna_userdelete", qna_group);
+		} else {			// 관리자일경우
+			result = session.delete("qnans.qna_admindelete", qna_group);
+		}
+		return result;
+	}
 	
 }

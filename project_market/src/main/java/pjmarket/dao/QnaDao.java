@@ -13,4 +13,8 @@ public interface QnaDao {
 	public List<QnaBoard> getBoardList(int page);
 	
 	public QnaBoard getMember(int qna_no);
+	
+	public int UpdateQna(QnaBoard qnaboard);
+	
+	public int DeleteQna(int qna_re, int qna_group);
 }

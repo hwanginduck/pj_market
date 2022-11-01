@@ -4,17 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index</title>
+<title>Insert title here</title>
 </head>
 <body>
 
 <script>
-
-	location.href="mainpage.do";
-
+location.href="qna_boardinsert.do";
 </script>
-
-
 
 </body>
 </html>

@@ -4,15 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index</title>
+<title>Insert title here</title>
 </head>
 <body>
 
+qna_delete
+
 <script>
-
-	location.href="mainpage.do";
-
+location.href="qna_boardlist.do";
 </script>
+
+
+
 
 
 
