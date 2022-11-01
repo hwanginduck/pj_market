@@ -14,6 +14,7 @@
 		<typeAlias alias="member" type="pjmarket.model.MemberDTO" />
 		<typeAlias alias="qna" type="pjmarket.model.QnaBoard" />
 		<typeAlias alias="review" type="pjmarket.model.Review" />
+		<typeAlias alias="options" type="pjmarket.model.Options" />
 	</typeAliases>	
 	
 	

@@ -67,9 +67,8 @@
 							<td><input type="text" id="product-insert-bar" name="product_stock"/></td>
 						</tr>
 					</table>
-				<input type="submit" value="상품등록" class="insert-product-btn">
-				</div>
-				<div class="option-insert-table">
+			
+				
 					<table id = "option_space">
 						<tr>
 							<!-- <th rowspan="2" style="padding: 30px 30px;">옵션</th> -->
@@ -77,19 +76,19 @@
 							<th>변동가격</th>
 							<th>할인율(%)</th>
 							<th rowspan="2">
-								<input type="button" value="+" id="option_plus"  onclick='return submit2(this.form)'
+								<input type="button" value="+" id="option_plus"
 								style="margin: 10px 10px; padding: 0px 20px; font-size: 50px; border-radius: 10px; background-color: #5FB404; color: white;" />
 							</th>
-							<th rowspan="2">
-								<input type="button" value="옵션등록" id="option_plus"  onclick='return submit2(this.form)'
-								style="margin: 10px 10px; padding: 5px 20px; font-size: 40px; border-radius: 10px; background-color: #5FB404; color: white;" />
-							</th>
-							
 						</tr>
 						<tr>
-							<td><input type="text" id="option-insert-bar" name="options_name"/></td>
-							<td><input type="text" id="option-insert-bar"name="options_price"/></td>
-							<td><input type="text" id="option-insert-bar"name="options_sale"/></td>
+							<td><input type="text" id="option-insert-bar" name="options_name1"/></td>
+							<td><input type="text" id="option-insert-bar"name="options_price1"/></td>
+							<td><input type="text" id="option-insert-bar"name="options_sale1"/></td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td colspan="4"><input type="submit" value="상품등록" class="insert-product-btn"></td>
 						</tr>
 					</table>
 				</div>

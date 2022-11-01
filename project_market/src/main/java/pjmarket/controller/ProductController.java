@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import pjmarket.model.Product;
+import pjmarket.service.OptionsServiceImpl;
 import pjmarket.service.ProductServiceImpl;
 
 @Controller
@@ -24,6 +25,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductServiceImpl ps;
+	
+	@Autowired
+	private OptionsServiceImpl os;
 	
 	// 상품등록
 	@RequestMapping("insert_product.do")
@@ -84,6 +88,33 @@ public class ProductController {
 
 			result = ps.insertProduct(product);
 			
+			if(result == 1) {
+				System.out.println("상품등록 완료");
+			}else {
+				System.out.println("상품등록 실패");
+			}
+			
+			int i = 1;
+			
+			while(request.getParameter("options_name"+i) != null) {
+				
+				String options_name = (String)request.getParameter("options_name"+i);
+				int options_price = Integer.parseInt(request.getParameter("options_price"+i));
+				int options_sale = Integer.parseInt(request.getParameter("options_sale"+i));
+				
+					System.out.println(i+"번째 옵션 등록 시작");
+				
+				result = os.insertOptions(options_name, options_price, options_sale);
+				
+				if(result == 1) {
+					System.out.println(i+"번째 옵션 등록 완료");
+				}else {
+					System.out.println(i+"번째 옵션 등록 실패");
+				}
+				
+				i++;
+			}
+			
 			model.addAttribute("result", result);
 			
 			return "main/uploadResult";
@@ -131,5 +162,6 @@ public class ProductController {
 		
 		return "main/productlist";
 	}
+
 	
 }

@@ -565,12 +565,8 @@ select * from
 	   		 where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
 
 
-
-		
-		
-		
-		
-		
+ insert into options values(options_seq.nextval,
+							(select Max(product_num) from product), '빨' , 1,1)
 		
 		
 		
