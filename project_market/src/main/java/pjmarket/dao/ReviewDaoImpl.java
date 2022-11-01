@@ -27,9 +27,9 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int ReviewInsert(Review review) throws Exception {
 		System.out.println("review_insert.jsp------------");
 
-//		return session.insert("reviewns.review_insertresult", review);
-		int result = session.insert("reviewns.review_insertresult", review);
-		return result;
+		return session.insert("reviewns.review_insertresult", review);
+//		int result = session.insert("reviewns.review_insertresult", review);
+//		return result;
 	}
 
 	@Override

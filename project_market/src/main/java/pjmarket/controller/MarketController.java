@@ -38,6 +38,7 @@ import pjmarket.service.MemberServiceImpl;
 import pjmarket.service.QnaServiceImpl;
 import pjmarket.service.ProductServiceImpl;
 import pjmarket.service.ReviewService;
+import pjmarket.service.ReviewServiceImpl;
 
 @Controller
 public class MarketController {
@@ -58,7 +59,7 @@ public class MarketController {
 	private ProductServiceImpl productservice;
 
 	@Autowired
-	private ReviewService rs;
+	private ReviewServiceImpl rs;
 
 	// 메인페이지
 	@RequestMapping("mainpage.do")
@@ -377,7 +378,7 @@ public class MarketController {
 		return "review/review_writeform";
 	}
 
-	// 리뷰 게시판 작성 성공
+	// 리뷰 게시판 작성 성공 이미지 불러오기
 	@RequestMapping("review_insertresult")
 	public String ReviewInsert(Review review, Model model, @RequestParam("review_img1") MultipartFile mf,
 		HttpServletRequest request) throws Exception {
@@ -388,7 +389,7 @@ public class MarketController {
 
 		String path = request.getRealPath("upload");
 		System.out.println("mf=" + mf);
-		System.out.println("filename=" + filename); // filename="Koala.jpg"
+		System.out.println("filename=" + filename); 
 		System.out.println("size=" + size);
 		System.out.println("Path=" + path);
 		
@@ -414,16 +415,17 @@ public class MarketController {
 			System.out.println("newfilename:"+newfilename);		
 
 			StringTokenizer st = new StringTokenizer(filename, ".");
-			file[0] = st.nextToken();		// 파일명		Koala
-			file[1] = st.nextToken();		// 확장자	    jpg
+			file[0] = st.nextToken();		
+			file[1] = st.nextToken();		
 
-			if(size > 200000){				// 100KB
+			if(size > 2000000){				
 				result=2;
 				model.addAttribute("result", result);
-
+				
 				return "review/review_insertresult";
 
 			}else if(!file[1].equals("jpg") &&
+					!file[1].equals("jpeg") &&
 					!file[1].equals("gif") &&
 					!file[1].equals("png") ){
 
@@ -440,9 +442,7 @@ public class MarketController {
 
 		}
 		
-		System.out.println("리뷰 글 작성 성공");
-		if (result == 1)
-			System.out.println("----------글작성 성공----------");
+//		System.out.println("리뷰 글 작성 성공");
 		
 		review.setReview_img(newfilename);
 

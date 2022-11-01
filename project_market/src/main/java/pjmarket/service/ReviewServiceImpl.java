@@ -20,11 +20,11 @@ public class ReviewServiceImpl implements ReviewService {
 	// 게시판 저장
 	@Override
 	public int ReviewInsert(Review review) throws Exception {
-//		return reviewdao.ReviewInsert(review);
+		return reviewdao.ReviewInsert(review);
 
-		int result = reviewdao.ReviewInsert(review);
+//		int result = reviewdao.ReviewInsert(review);
 
-		return result;
+//		return result;
 	}
 
 	@Override
