@@ -6,14 +6,19 @@ import pjmarket.model.OfficialBoard;
 
 public interface OfficialDao {
 	
-	public int insert(OfficialBoard off);
+	  public int insert(OfficialBoard off);
 	
-	 public int getCount();
+	  public int getCount();
 	 
 	  public List<OfficialBoard> getoff_list(int page);
 	  
-	  public void updatecount(int no);
+	  public void updatecount(int num);
 	  
-	  public OfficialBoard off_cont(int no); 
+	  public OfficialBoard off_cont(int num);
+	  
+	public int off_updatecont(OfficialBoard off);
+	
+	public int off_delete(int of_num);
+
 
 }

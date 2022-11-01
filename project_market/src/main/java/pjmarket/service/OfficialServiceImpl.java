@@ -4,7 +4,6 @@ import java.util.List;
 
 import pjmarket.dao.OfficialDao;
 import pjmarket.model.OfficialBoard;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +25,21 @@ public class OfficialServiceImpl implements OfficialService{
 		return dao.getoff_list(page);
 	}
 	
-	public void updatecount(int no) {
-		dao.updatecount(no);
+	public void updatecount(int num) {					// 조회수
+		dao.updatecount(num);
 	}
 	
-	public OfficialBoard off_cont(int no) {
-		return dao.off_cont(no);
+	public OfficialBoard off_cont(int num) {
+		return dao.off_cont(num);
+	}
+	
+	public int off_updatecont(OfficialBoard off) {		// 공지사항 수정
+		return dao.off_updatecont(off);
+	}
+
+	public int off_delete(int of_num) {
+		return dao.off_delete(of_num);
+	}
 
 }
-}
+

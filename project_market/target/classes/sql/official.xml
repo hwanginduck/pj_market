@@ -17,10 +17,9 @@
 	<!-- 공지사항 글작성 -->
 	
 	<insert id="off_insert" parameterType="off">	
-		insert into official
-		(of_num,of_name,of_subject, of_content, of_readcount, of_date)
-		values
-	(official_seq.nextval,#{of_name},#{of_subject}, #{of_content}, #{of_readcount}, sysdate)
+		insert into official values
+	(official_seq.nextval,#{of_name},#{master_pw},#{of_subject}, #{of_content},
+	0, sysdate)
 	</insert>
 	
 	<!-- 공지사항 글갯수 -->
@@ -29,31 +28,15 @@
 	</select>
 	
 
-<!-- 게시판 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
-	<!-- <select id="off_list" parameterType="int" resultType="board">
-	    <![CDATA[
-		select * from 
-		 (select rownum rnum, board.* from  
-	  	 (select * from official order by BOARD_RE_REF desc,BOARD_RE_SEQ asc) board) 
-	   		 where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
-		]]>
-	</select> -->
-
-	<!-- 공지사항 목록 -->
+ 	<!-- 공지사항 목록 -->
 <select id="off_list" parameterType="int" resultType="off">
 	<![CDATA[
-	select * from (select rownum rnum, off.* from
-	(select * from official order by no desc) off)
+	select * from (select rownum rnum, off.* from(
+	select * from official order by no desc) off)
 	where rnum >= ((#{page}-1) * 10 + 1) and rnum <= (#{page} * 10) 
 	]]>
 </select> 
 
-
-	
-		<!-- 공지사항 내용보기 -->
-	<select id="off_cont" resultType="off" parameterType="int">
-		select * from official where of_num=#{of_num}
-	</select>
 	
 		<!-- 공지사항 조회수 증가 -->
 	<update id="off_hit" parameterType="int">
@@ -62,17 +45,23 @@
 		where of_num=#{of_num}
 	</update>
 	
+		<!-- 공지사항 내용보기 -->
+	<select id="off_content" resultType="off" parameterType="int">
+		select * from official where of_num=#{of_num}
+	</select>
+	
 	<!-- 공지사항 수정 -->
-	<update id="off_edit" parameterType="off">
+	<update id="off_updatecontent" parameterType="off">
 		update official set
+		of_name=#{of_name},
 		of_subject=#{of_subject},
-		of_subject=#{of_subject},
-		of_content=#{of_content}
+		of_content=#{of_content},
+		of_date=sysdate
 		where of_num=#{of_num}
 	</update>
 
 	<!-- 공지사항 삭제 -->
-	<delete id="off_del" parameterType="int">
+	<delete id="off_delete" parameterType="int">
 		delete from official where of_num=#{of_num}
 	</delete>
 

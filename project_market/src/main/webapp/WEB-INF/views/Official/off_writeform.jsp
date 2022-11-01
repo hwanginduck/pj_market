@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    
     
 <!DOCTYPE html>
 <html>
@@ -14,17 +17,22 @@
 	<caption><h3>공지사항</h3></caption>
 	<tr>
 		<th>번호</th>
-		<td><input type="number" name="number" required="required"></td>
+		<td><input type="number" name="of_num" required="required"></td>
 	</tr>
 	
 	<tr><th>작성자명</th>
-		<td><input type=text name="writer" required="required"></td>
+		<td><input type=text name="of_name" required="required"></td>
 	</tr>
+	
+	<tr><th>비밀번호</th>
+		<td><input type=password name="master_pw" required="required"></td>
+	</tr>
+	
 	<tr><th>제목</th>
-		<td><input type=text name="subject" required="required"></td>
+		<td><input type=text name="of_subject" required="required"></td>
 	</tr>
 	<tr><th>내용</th>
-		<td><textarea cols=40 rows=5 name="content" required="required"></textarea></td>
+		<td><textarea cols=40 rows=5 name="of_content" required="required"></textarea></td>
 	</tr>
 	<tr><td colspan=2 align=center>
 			<input type=submit value="등록">
