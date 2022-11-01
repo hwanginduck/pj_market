@@ -5,9 +5,9 @@
 <section class="main">
 	<div class="main-img">
 		<div class=welcome>
-		<div class="bubbles">
+<!-- 		<div class="bubbles">
 			<h1 id="welcome_wording">WELCOME<br>GAGUMARKET</h1>
-		</div>
+		</div> -->
 		</div>
 	</div>
 </section>

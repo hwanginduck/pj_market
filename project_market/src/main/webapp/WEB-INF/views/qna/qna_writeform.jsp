@@ -43,7 +43,7 @@ th:first-child, td:first-child {
 			<c:if test="${member_id eq 'admin' }">qna_re: <input name="qna_re" id="qna_re" size="14" value="1" ><br></c:if>
 			<c:if test="${member_id ne 'admin' }">qna_re: <input name="qna_re" id="qna_re" size="14" value="0" ><br></c:if>
 			
-			qna_content:<input name="qna_content" id="qna_content" size="14"  /> <br>
+			qna_content:<input name="qna_content" id="qna_content" size="150"  /> <br>
 			qna_group:<input name="qna_group" id="qna_group" size="14" /> <br>
 			
 			<c:if test="${member_id eq 'admin' }" > qna_group: <input name="qna_group" id="qna_group" size="14" value="${qna_no }" /><br></c:if>

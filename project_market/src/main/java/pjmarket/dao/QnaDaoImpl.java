@@ -26,22 +26,24 @@ public class QnaDaoImpl implements QnaDao {
 			return user_result;
 		}
 	}
-	
+	//게시글 수 조회
 	@Override
 	public int getListCount() {
 		return session.selectOne("qnans.qna_count");
 	}
-	
+	//게시글리스트조회
 	@Override
 	public List<QnaBoard> getBoardList(int page) {
 		List<QnaBoard> list = session.selectList("qnans.qna_list", page);
 		return list ;
 	}
-
+	//수정폼을위한 1개의 객체정보 조회
 	@Override
 	public QnaBoard getMember(int qna_no) {
 		QnaBoard qboard = session.selectOne("qnans.qna_select", qna_no);
 		return qboard;
 	}
+	//수정 후 1개의 객체정보 업데이트
+	
 	
 }

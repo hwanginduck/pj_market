@@ -32,11 +32,11 @@ body {
 body::after {
 	content: "";
 	background-image:
-		url("${pageContext.request.contextPath}/resources/img/main.jpg");
+	/* 	url("${pageContext.request.contextPath}/resources/img/main.jpg"); */
 	background-size: cover;
 	background-repeat: no-repeat;
 	/* 스크롤에 따라서 배경이미지가 따라다님 */
-	background-color: #212529;
+	/* background-color: #212529; */
 	opacity: 0.5;
 	position: fixed;
 	top: 0;

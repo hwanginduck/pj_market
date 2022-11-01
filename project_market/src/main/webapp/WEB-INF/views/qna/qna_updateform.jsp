@@ -18,14 +18,14 @@
 	<hr>	
 
 	<div align=center>
-		<form method="post" action="qna_boardupdate.ok">
+		<form method="post" action="qna_update.ok">
 	
 			
 			qna_no :<input name="qna_no" id="qna_no" size="14" value="${qnaboard.qna_no }" /> <br>
 			member_id :<input name="member_id" id="member_id" size="14" value="${qnaboard.member_id }" /> <br>
 			product_num :<input name="product_num" id="product_num" size="14" value="${qnaboard.product_num }" /> <br>
 			qna_re : <input name="qna_re" id="qna_re" size="14" value=${qnaboard.qna_re } /> <br>
-			qna_content:<input name="qna_content" id="qna_content" size="14" value="${qnaboard.qna_content }" /> <br>
+			qna_content:<input name="qna_content" id="qna_content" size="150" value="${qnaboard.qna_content }" /> <br>
 			
 			<input type="submit" value="수정" /> <input type="reset" value="취소" />
 

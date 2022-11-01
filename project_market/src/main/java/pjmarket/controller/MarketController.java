@@ -281,18 +281,27 @@ public class MarketController {
 	}
 	
 	
+	//QNA 업데이트 폼으로 이동 , 기존 작성내용들을 가지고감
 	@RequestMapping("qna_updateform.do")
 	public String QnaUpdate(int qna_no, Model model) throws Exception {
+		System.out.println("qna_updateform.do 컨트롤러");
 		QnaBoard qnaboard = qs.QnaUpdate(qna_no);
-		
-		System.out.println(qnaboard.getQna_no());
-		System.out.println(qnaboard.getMember_id());
-		System.out.println(qnaboard.getProduct_num());
-		System.out.println(qnaboard.getQna_re());
-		System.out.println(qnaboard.getQna_content());
-		
 		model.addAttribute("qnaboard", qnaboard);
 		return "qna/qna_updateform";
+	}
+	
+	// QNA수정된글 DB에 저장하는 메소드
+	@RequestMapping("qna_update.ok")
+	public String QnaUpdateok(QnaBoard qnaboard, Model model) throws Exception {
+		System.out.println("qna_update.ok 컨트롤러");
+		System.out.println("1_Qna_no: "+qnaboard.getQna_no());
+		System.out.println("2_Member_id: "+qnaboard.getMember_id());
+		System.out.println("3_Product_num: "+qnaboard.getProduct_num());
+		System.out.println("4_Qna_re: "+qnaboard.getQna_re());
+		System.out.println("5_Qna_content: "+qnaboard.getQna_content());
+
+		int result =1;
+		return "qna/qnab_boardlist";
 	}
 	
 
