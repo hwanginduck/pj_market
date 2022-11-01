@@ -10,7 +10,7 @@
 
 <script>
 
-	location.href="mainpage.do";
+	location.href="mainpage.do"; 
 
 </script>
 
