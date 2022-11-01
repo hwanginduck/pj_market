@@ -382,7 +382,6 @@ public class MarketController {
 	@RequestMapping("review_insertresult")
 	public String ReviewInsert(Review review, Model model, @RequestParam("review_img1") MultipartFile mf,
 		HttpServletRequest request) throws Exception {
-//		model.addAttribute("result", result);
 		
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
