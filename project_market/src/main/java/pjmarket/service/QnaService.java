@@ -2,6 +2,8 @@ package pjmarket.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import pjmarket.model.QnaBoard;
 
 public interface QnaService {
@@ -11,5 +13,7 @@ public interface QnaService {
 	public int getListCount();
 
 	public List<QnaBoard> getBoardList(int page);
-
+	
+	public QnaBoard QnaUpdate(int qna_no);
+	
 }

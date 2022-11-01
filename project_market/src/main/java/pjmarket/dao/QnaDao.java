@@ -11,5 +11,6 @@ public interface QnaDao {
 	public int getListCount();
 	
 	public List<QnaBoard> getBoardList(int page);
-
+	
+	public QnaBoard getMember(int qna_no);
 }
