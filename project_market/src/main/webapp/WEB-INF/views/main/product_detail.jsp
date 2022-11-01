@@ -32,7 +32,7 @@
 				<div class="product-insert-table">
 					<table width="1000px" border="1">
 						<tr>
-							<td rowspan="7">
+							<td rowspan="8">
 								<img src="<%=request.getContextPath()%>/resources/upload/${product.product_img}">
 							</td>
 							<td>
@@ -51,7 +51,7 @@
 						</tr>
 						<tr>
 							<td>
-								<button type="submit" onClick=''>
+								<button type="submit" onClick="javascript: form.action='cartinsert.do'">
 								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/cart.png" />
 								</button>
 								<button type="submit" onClick="javascript: form.action='likeinsert.do';">
@@ -77,6 +77,11 @@
 										<fmt:formatNumber value="${ol.options_price}" pattern="+#,###" /></option>
 									</c:forEach>
 								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="number" class="cart-count" id='result' name="cart_count" value="1" min="1">
 							</td>
 						</tr>
 						<tr>
