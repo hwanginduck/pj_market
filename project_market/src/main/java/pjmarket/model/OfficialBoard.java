@@ -11,9 +11,6 @@ public class OfficialBoard {
 			private String master_pw;		// 관리자비밀번호
 			private String of_subject;		// 글제목
 			private String of_content;		// 글내용
-			private int of_re_ref;
-			private int of_re_lev;
-			private int of_re_seq;
 			private int of_readcount;		// 조회수
 			private Date of_date;			// 글 등록날짜
 			
@@ -75,24 +72,5 @@ public class OfficialBoard {
 			public void setMaster_pw(String master_pw) {
 				this.master_pw = master_pw;
 			}
-			public int getOf_re_ref() {
-				return of_re_ref;
-			}
-			public void setOf_re_ref(int of_re_ref) {
-				this.of_re_ref = of_re_ref;
-			}
-			public int getOf_re_lev() {
-				return of_re_lev;
-			}
-			public void setOf_re_lev(int of_re_lev) {
-				this.of_re_lev = of_re_lev;
-			}
-			public int getOf_re_seq() {
-				return of_re_seq;
-			}
-			public void setOf_re_seq(int of_re_seq) {
-				this.of_re_seq = of_re_seq;
-			}
-	
 
 }
