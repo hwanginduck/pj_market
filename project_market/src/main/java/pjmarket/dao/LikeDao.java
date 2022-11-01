@@ -9,4 +9,6 @@ public interface LikeDao {
 	List<LikeList> getLikeList(String member_id);
 	
 	int deleteLikes(int likes_num);
+	
+	int insertLike(int product_num, int options_num, String member_id);
 }

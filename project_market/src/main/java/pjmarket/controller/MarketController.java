@@ -88,6 +88,28 @@ public class MarketController {
 		return "main/like_list";
 	}
 	
+	@RequestMapping("likeinsert.do")
+	public String insertLike(HttpServletRequest request, HttpSession session ,Model model) {
+		
+		System.out.println("insert Like controller");
+		
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
+		int options_num = Integer.parseInt(request.getParameter("options_num"));
+		String member_id = (String)session.getAttribute("member_id");
+		
+		System.out.println("product_num 확인 :" +product_num);
+		System.out.println("options_num 확인 :" +options_num);
+		System.out.println("member_id 확인 :" +member_id);
+		
+		int result = likeservice.insertLike(product_num, options_num, member_id);
+		
+		System.out.println("result check : " + result);
+		
+		model.addAttribute("result", result);
+		
+		return "main/likeResult";
+	}
+	
 	//찜삭제
 	@RequestMapping("likedelete.do")
 	public String Like_Delete(HttpServletRequest request, HttpSession session, Model model) throws Exception{
@@ -201,10 +223,6 @@ public class MarketController {
 		public String insertProductForm() {
 			return "main/product_insert";
 		}
-	
-	
-	
-	
 	
 
 	// 상품문의게시판

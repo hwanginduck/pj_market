@@ -802,10 +802,11 @@ $(document).on('click', '#addcart', function(e){
 <!-- 옵션 + 누르면 증가해주는 기능 -->
 <script>
 $(document).ready(function() {
-	var i=1; // 변수설정은 함수의 바깥에 설정!
+	var i=2; // 변수설정은 함수의 바깥에 설정!
   $("#option_plus").click(function() {
     
-    $("#option_space").append("<tr><td><input type='text' id='option-insert-bar'/></td><td><input type='text' id='option-insert-bar'/></td><td><input type='text' id='option-insert-bar'/></td></tr>");
+    $("#option_space").append("<tr><td><input type='text' id='option-insert-bar' name='options_name"+i+"' /></td><td><input type='text' id='option-insert-bar' name='options_price"+i+"'/></td><td><input type='text' id='option-insert-bar'name='options_sale"+i+"'/></td></tr>");
+    
     
     i++; // 함수 내 하단에 증가문 설정
     
@@ -814,14 +815,6 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- 옵션등록버튼 -->
-<script> 
-  function submit2(frm) { 
-    frm.action='두번째로 보낼 경로'; 
-    frm.submit(); 
-    return true; 
-  } 
-</script> 
 </head>
 <body>
 	<header>

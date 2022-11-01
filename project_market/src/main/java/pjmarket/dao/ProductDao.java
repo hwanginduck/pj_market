@@ -11,4 +11,6 @@ public interface ProductDao {
 	int getProductCount(String product_l) throws Exception;
 
 	List<Product> getProductlist(int page, String product_l) throws Exception;
+	
+	Product getProductDetail(int product_num);
 }

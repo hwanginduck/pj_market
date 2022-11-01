@@ -27,4 +27,10 @@ public class LikeServiceImpl implements LikeService  {
 		
 		return likedao.deleteLikes(likes_num);
 	}
+	
+	@Override
+	public int insertLike(int product_num, int options_num, String member_id) {
+		System.out.println("insert Like service");
+		return likedao.insertLike(product_num, options_num, member_id);
+	}
 }

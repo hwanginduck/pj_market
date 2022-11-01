@@ -1,6 +1,8 @@
 package pjmarket.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +32,26 @@ public class LikeDaoImpl implements LikeDao{
 		
 		int result = 0;
 		
-		result = sqlSession.delete("like_delete", likes_num);		
+		result = sqlSession.delete("likens.like_delete", likes_num);		
 		
 		System.out.println("result : " +result);
 		
 		return result;
+	}
+	
+	@Override
+	public int insertLike(int product_num, int options_num, String member_id) {
+		System.out.println("insert Like dao");
+		
+		Map<String , Object> map = new HashMap<String, Object>();
+		map.put("product_num", product_num);
+		map.put("options_num", options_num);
+		map.put("member_id", member_id);
+		
+		int result = sqlSession.insert("likens.insertlike", map);
+		
+		return result;
+		
 	}
 	
 }

@@ -11,4 +11,6 @@ public interface LikeService {
 	
 	//찜목록 지우기
 	int deleteLikes(int likes_num) throws Exception;
+	
+	int insertLike(int product_num, int options_num, String member_id);
 }

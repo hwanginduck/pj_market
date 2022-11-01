@@ -32,7 +32,7 @@
 									<button class="like-table-btn"
 										onclick="location.href='likedelete.do?likes_num=${like.likes_num}'">
 										<img class="like-btn"
-											src="${pageContext.request.contextPath}/resources/img/like.png" />
+											src="${pageContext.request.contextPath}/resources/img/likeit.png" />
 									</button>
 								</td>
 							</tr>

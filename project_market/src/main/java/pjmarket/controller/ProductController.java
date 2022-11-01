@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import pjmarket.model.Options;
 import pjmarket.model.Product;
+import pjmarket.service.OptionsServiceImpl;
 import pjmarket.service.ProductServiceImpl;
 
 @Controller
@@ -24,6 +26,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductServiceImpl ps;
+	
+	@Autowired
+	private OptionsServiceImpl os;
 	
 	// 상품등록
 	@RequestMapping("insert_product.do")
@@ -84,6 +89,33 @@ public class ProductController {
 
 			result = ps.insertProduct(product);
 			
+			if(result == 1) {
+				System.out.println("상품등록 완료");
+			}else {
+				System.out.println("상품등록 실패");
+			}
+			
+			int i = 1;
+			
+			while(request.getParameter("options_name"+i) != null) {
+				
+				String options_name = (String)request.getParameter("options_name"+i);
+				int options_price = Integer.parseInt(request.getParameter("options_price"+i));
+				int options_sale = Integer.parseInt(request.getParameter("options_sale"+i));
+				
+					System.out.println(i+"번째 옵션 등록 시작");
+				
+				result = os.insertOptions(options_name, options_price, options_sale);
+				
+				if(result == 1) {
+					System.out.println(i+"번째 옵션 등록 완료");
+				}else {
+					System.out.println(i+"번째 옵션 등록 실패");
+				}
+				
+				i++;
+			}
+			
 			model.addAttribute("result", result);
 			
 			return "main/uploadResult";
@@ -97,7 +129,7 @@ public class ProductController {
 		List<Product> productlist = new ArrayList<Product>();
 
 		int page = 1;
-		int limit = 10; // 한 화면에 출력할 레코드수
+		int limit = 16; // 한 화면에 출력할 레코드수
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -115,12 +147,12 @@ public class ProductController {
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
 																	// 처리.
 		// 현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
-		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+		int startpage = (((int) ((double) page / 16 + 0.9)) - 1) * 16 + 1;
 		// 현재 페이지에 보여줄 마지막 페이지 수.(10, 20, 30 등...)
 		int endpage = maxpage;
 
-		if (endpage > startpage + 10 - 1)
-			endpage = startpage + 10 - 1;
+		if (endpage > startpage + 16 - 1)
+			endpage = startpage + 16 - 1;
 
 		model.addAttribute("page", page);
 		model.addAttribute("startpage", startpage);
@@ -131,5 +163,36 @@ public class ProductController {
 		
 		return "main/productlist";
 	}
+	
+	@RequestMapping("productdetail.do")
+	public String getProductDetail(@RequestParam("page") int page, HttpServletRequest request, Model model) {
+		
+		System.out.println("product detail controller start");
+		
+		int product_num = Integer.parseInt(request.getParameter("product_num"));
+		
+		System.out.println("product_num check : " +product_num);
+		
+		Product product = ps.getProductDetail(product_num);
+		
+		List<Options> optionslist = new ArrayList<Options>(); 
+		
+		System.out.println("options list controller start");
+		
+		optionslist = os.getOptionList(product_num);
+		
+		System.out.println("product : " +product);
+		System.out.println("optionslist : " +optionslist);
+		System.out.println("page : " +page);
+
+		model.addAttribute("product", product);
+		model.addAttribute("optionslist", optionslist);
+		model.addAttribute("page", page);
+		
+		System.out.println("getProductDetail end");
+		
+		return "main/product_detail";
+	}
+
 	
 }

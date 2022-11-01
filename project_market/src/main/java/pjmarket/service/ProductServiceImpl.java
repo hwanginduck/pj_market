@@ -39,5 +39,11 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 	
+	@Override
+	public Product getProductDetail(int product_num) {
+		System.out.println("product detail service start");		
+		return productdao.getProductDetail(product_num);
+	}
+	
 	
 }

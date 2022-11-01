@@ -22,6 +22,7 @@
 		<typeAlias alias="off" type="pjmarket.model.OfficialBoard" />
 		
 		
+		<typeAlias alias="options" type="pjmarket.model.Options" />
 	</typeAliases>	
 	
 
