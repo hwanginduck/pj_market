@@ -273,10 +273,15 @@ public class MarketController {
 	// 상품문의를 하기위한 폼으로이동
 	@RequestMapping("qna_writeform.do")
 	public String QnaBoardWriteForm(QnaBoard qnaboard, Model model) {
+		
 		System.out.println("qna_writeform.do");
 		System.out.println("qna_no :"+qnaboard.getQna_no());
 		System.out.println("product_num :"+qnaboard.getProduct_num());
 		System.out.println("qna_group :"+qnaboard.getQna_group());
+		
+		
+		
+		
 		model.addAttribute("qna_no", qnaboard.getQna_no());
 		model.addAttribute("product_num", qnaboard.getProduct_num());
 		model.addAttribute("qna_group", qnaboard.getQna_group());
