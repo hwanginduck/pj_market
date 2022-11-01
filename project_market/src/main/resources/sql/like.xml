@@ -16,7 +16,7 @@
 	</delete>
 	
 	<insert id="insertlike" parameterType="int">
-		insert likes values(likes_seq.nextval, #{product_num}, #{member_id}, #{options_num})
+		insert into likes values(likes_seq.nextval, #{product_num}, #{member_id}, #{options_num})
 	</insert>
 
 	
