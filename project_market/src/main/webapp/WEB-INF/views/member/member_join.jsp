@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입폼</title>
-<!-- <script src="/springmember/js/jquery.js"></script> -->
+<script src="/springmember/js/jquery.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/js/member.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -18,8 +18,8 @@
 			oncomplete : function(data) {
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 				// 우편번호와 주소 정보를 해당 필드에 넣고, 커서를 상세주소 필드로 이동한다.
-				document.getElementById('join_zip1').value = data.zonecode;
-				document.getElementById('join_addr1').value = data.address;
+				document.getElementById('member_zip1').value = data.zonecode;
+				document.getElementById('member_addr1').value = data.address;
 			}
 		}).open();
 	}
@@ -35,8 +35,8 @@
 					<th>회원아이디</th>
 					<td><input name="member_id" id="member_id" size="14"
 						class="input_box" /> <input type="button" value="아이디 중복체크"
-						class="input_button" />
-						<div id="idcheck"></div></td>
+						class="input_button" onClick="location.href='member_idcheck.do?member_id=${member.member_id}'" />
+						<div id="member_id"></div></td>
 				</tr>
 				<tr>
 					<th>회원비번</th>
@@ -94,7 +94,7 @@
 					<th>전자우편</th>
 					<td><input name="member_email" id="member_email" size="10"
 						class="input_box" />@<input name="join_maildomain"
-						id="member_maildomain" size="20" class="input_box" readonly /> <!--readonly는 단지 쓰기,수정이 불가능하고 읽기만 가능하다 //-->
+						id="member_maildomain" size="20" class="input_box" /> <!--readonly는 단지 쓰기,수정이 불가능하고 읽기만 가능하다 //-->
 						<select name="mail_list" onchange="domain_list()">
 							<option value="">=이메일선택=</option>
 							<option value="daum.net">daum.net</option>

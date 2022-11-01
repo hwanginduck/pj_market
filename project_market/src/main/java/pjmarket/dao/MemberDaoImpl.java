@@ -17,7 +17,7 @@ public class MemberDaoImpl implements MemberDao {
 	public int MemberInsert(MemberDTO member) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("DAO로 값들어옴");
-		return session.insert("member_join", member);
+		return session.insert("memberns.member_join", member);
 	}
 	
 	// 로그인 인증
@@ -25,7 +25,7 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberDTO UserCheck(String member_id) {
 		// TODO Auto-generated method stub
 		System.out.println("ID: "+member_id);
-		return session.selectOne("login_check", member_id);
+		return session.selectOne("memberns.login_check", member_id);
 	}
 	
 	// 아이디 중복검사
@@ -33,12 +33,18 @@ public class MemberDaoImpl implements MemberDao {
 	public int CheckMemberID(String member_id) throws Exception {
 		// TODO Auto-generated method stub
 		int re = -1;	// 사용가능한 ID
-		MemberDTO DTO = session.selectOne("login_check", member_id);
-		if(DTO != null)
-			re = 1;		// 중복id
+		
+		MemberDTO dto = session.selectOne("memberns.id_check", member_id);
+		System.out.println("dto:"+dto);
+		if(dto != null) {
+			re = -1;		// 중복id
+		}else {
+			re = 1;
+		}
+		System.out.println("re:"+re);
 		return re;
 	}
-
+	
 
 
 }
