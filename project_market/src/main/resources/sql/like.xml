@@ -14,6 +14,10 @@
 	<delete id="like_delete" parameterType="int">
 		delete from likes where likes_num=#{likes_num}
 	</delete>
+	
+	<insert id="insertlike" parameterType="int">
+		insert likes values(likes_seq.nextval, #{product_num}, #{member_id}, #{options_num})
+	</insert>
 
 	
 	

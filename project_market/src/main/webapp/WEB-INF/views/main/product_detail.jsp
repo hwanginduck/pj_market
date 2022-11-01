@@ -2,68 +2,87 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <%@ include file="../fix/header.jsp"%>
+<style>
+	select {
+		width: 200px; 
+		padding: .8em .5em; 
+		border: 1px solid #999;
+		font-family: inherit;  
+		background: url('arrow.jpg') no-repeat 95% 50%; 
+		border-radius: 0px; 
+		-webkit-appearance: none; 
+		-moz-appearance: none;
+		appearance: none;
+	}
+	
+	select::-ms-expand {
+	    display: none;
+	}
+	
+</style>
+
+
 <section class="main">
 	<div class="main-img">
 		<div class="cart-content">
-			<form name="f" method="post" action="insert_product.do"
-				onsubmit="return check()" enctype="multipart/form-data">
+			<form name="f" method="post" action="">
+			<input type="hidden" name="product_num" value=${product.product_num }>
 				<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
 				<div class="product-insert-table">
-					<table width="1000px">
+					<table width="1000px" border="1">
 						<tr>
-							<td rowspan="6" colspan="2">
-								<div class="image-box">
-								<div id="image_container"></div>
-								</div>
+							<td rowspan="7">
+								<img src="<%=request.getContextPath()%>/resources/upload/${product.product_img}">
 							</td>
-							<th id="product-insert-table-th">상품명</th>
-							<td><input type="text" name="product_name" id="product-insert-bar" /></td>
+							<td>
+								<input type="text" name="product_name" value="${product.product_name}">
+							</td>
 						</tr>
 						<tr>
-							<th id="product-insert-table-th">가격</th>
-							<td><input type="text" id="product-insert-bar" name="product_price"/></td>
-						</tr>
-
-						<tr>
-							<th id="product-insert-table-th">상품내용</th>
-							<td><textarea  id="product-insert-textarea" name="product_content"></textarea></td>
-						</tr>
-
-						<tr>
-							<th id="product-insert-table-th">상품보조설명</th>
-							<td><input type="text" id="product-insert-bar" name="product_sub"/></td>
+							<td>
+								<input type="text" name="product_sub" value="${product.product_sub}">
+							</td>
 						</tr>
 						<tr>
-							<th id="product-insert-table-th">상품 사진</th>
-							<td><input type="file" id="image" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /></td>
-							<th id="product-insert-table-th">재고수량</th>
-							<td><input type="text" id="product-insert-bar" name="product_stock"/></td>
-						</tr>
-					</table>
-			
-				
-					<table id = "option_space">
-						<tr>
-							<!-- <th rowspan="2" style="padding: 30px 30px;">옵션</th> -->
-							<th>옵션이름</th>
-							<th>변동가격</th>
-							<th>할인율(%)</th>
-							<th rowspan="2">
-								<input type="button" value="+" id="option_plus"
-								style="margin: 10px 10px; padding: 0px 20px; font-size: 50px; border-radius: 10px; background-color: #5FB404; color: white;" />
-							</th>
+							<td>
+								별점 ★★★★★ (123)
+							</td>
 						</tr>
 						<tr>
-							<td><input type="text" id="option-insert-bar" name="options_name1"/></td>
-							<td><input type="text" id="option-insert-bar"name="options_price1"/></td>
-							<td><input type="text" id="option-insert-bar"name="options_sale1"/></td>
+							<td>
+								<button type="submit" onClick=''>
+								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/cart.png" />
+								</button>
+								<button type="submit" onClick="javascript: form.action='likeinsert.do';">
+								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/unlikeit.png" />
+								</button>
+							</td>
 						</tr>
-					</table>
-					<table>
 						<tr>
-							<td colspan="4"><input type="submit" value="상품등록" class="insert-product-btn"></td>
+							<td>
+								<textarea>${product.product_content}</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="product_price" value="<fmt:formatNumber value="${product.product_price}" pattern="₩#,###" />">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="options_num">
+									<c:forEach var="ol" items="${optionslist}" varStatus="status" >
+										<option value="${ol.options_num}">${ol.options_name} 
+										<fmt:formatNumber value="${ol.options_price}" pattern="+#,###" /></option>
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button type="submit">구매하기</button>
+							</td>
 						</tr>
 					</table>
 				</div>

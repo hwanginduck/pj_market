@@ -815,14 +815,6 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- 옵션등록버튼 -->
-<script> 
-  function submit2(frm) { 
-    frm.action='optionsinsert.do'; 
-    frm.submit(); 
-    return true; 
-  } 
-</script> 
 </head>
 <body>
 	<header>
