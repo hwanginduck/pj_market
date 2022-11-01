@@ -3,6 +3,7 @@ package pjmarket.service;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,16 @@ public class ReviewServiceImpl implements ReviewService {
 	
 		Product product= reviewdao.getProductNum(product_num);
 		return product;
+	}
+
+	public int updateHit(int review_no) {
+		int result = reviewdao.updateHit(review_no);
+		return result;
+	}
+
+	public Review select(int review_no) {
+		Review review = reviewdao.select(review_no);
+		return review;
 	}
 	
 	

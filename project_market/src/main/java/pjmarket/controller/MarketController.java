@@ -2,6 +2,7 @@ package pjmarket.controller;
 
 import java.io.File;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -488,6 +489,41 @@ public class MarketController {
 		System.out.println("boardlistsize :"+boardlist.size());
 
 		return "review/review_boardlist";
+	}
+	
+	// 리뷰 상세 
+	@RequestMapping("review_detail")
+	public String reviewDetail(@RequestParam("review_no") int review_no,
+							   Model model, Review review) throws Exception{
+		
+//		   @RequestParam("p_no") int p_no
+		System.out.println("디테일 폼");
+		// 조회수 증가
+		int result = rs.updateHit(review_no);
+		System.out.println("조회수 증가 결과: "+ result);
+		
+		// 상품명
+//		Product product = rs.getProductName(p_no);
+		
+		// 리뷰 내용 구해오기
+		review = rs.select(review_no);
+		System.out.println("리뷰 상세 내용: "+review);
+		
+		String content = review.getReview_content().replace("\n","<br>");
+		
+		model.addAttribute("review", review);
+		model.addAttribute("content", content);
+//		model.addAttribute("product", product);
+
+		if(review.getReview_img() != null) {
+		
+			String imgs = review.getReview_img();		
+			String[] img = imgs.split("/");
+			model.addAttribute("img", img);
+		}
+		
+				
+		return "review/review_detail";
 	}
 
 }

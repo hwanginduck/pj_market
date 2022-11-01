@@ -15,5 +15,8 @@ public interface ReviewService {
 
 	public Product getProductNum(int product_num) throws Exception;
 
+	public int updateHit(int review_no);
+
+	public Review select(int review_no);
 
 }

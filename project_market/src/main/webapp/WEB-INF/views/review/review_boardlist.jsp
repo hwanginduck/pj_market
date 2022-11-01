@@ -69,9 +69,9 @@
 					
 					</div>
 				</td>
-				<%-- <td style="font-family: Tahoma; font-size: 10pt;">
-					<div align="center">${b.board_readcount}</div>
-				</td> --%>
+				<td style="font-family: Tahoma; font-size: 10pt;">
+					<div align="center">${b.r_hit}</div>
+				</td>
 			</tr>
 			
 			</c:forEach>

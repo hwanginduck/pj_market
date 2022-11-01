@@ -44,5 +44,13 @@ public class ReviewDaoImpl implements ReviewDao {
 		return list;
 	}
 
+	public int updateHit(int review_no) {
+		return session.update("reviewns.updateHit", review_no);
+	}
+
+	public Review select(int review_no) {
+		return session.selectOne("reviewns.select", review_no);
+	}
+
 
 }
