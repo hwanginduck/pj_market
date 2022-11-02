@@ -16,14 +16,14 @@
 						</td>
 						<th colspan="4" id="cart-table-th">${member_id }'s Shopping Cart</th>
 					</tr>
-					<c:if test="${empty cartlist}">
+					<c:if test="${empty list}">
 							<tr>
 								<td colspan="5">데이터가 없습니다</td>
 							</tr>
 						</c:if>
 					
 					<!-- 반복문 시작 -->
-					<c:forEach var="cart" items="${cartlist}" varStatus="status">
+					<c:forEach var="cart" items="${list}" varStatus="status">
 					<tr>
 						<td rowspan="3">
 							<input class="cart-checkbox" type="checkbox">
@@ -51,9 +51,9 @@
 						<fmt:formatNumber value="${cart.options_price }" pattern="#,###" />
 						</td>
 						<td>
-							<button class="cart-table-btn" onClick="location.href='cart_list.do?cart_num=${cart.cart_num}'">
+							<a class="cart-table-btn" onClick="location.href='deletecart.do?cart_num=${cart.cart_num}'">
 								<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus_cart.png" />
-							</button>
+							</a>
 						</td>
 					</tr>
 					<tr>

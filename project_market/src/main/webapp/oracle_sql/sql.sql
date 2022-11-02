@@ -25,9 +25,9 @@ select*from qna;
 
 
 insert into likes values(1,'아이디컬럼');
-insert into likes values(likes_seq.nextval,1,'test', 1);
-insert into likes values(likes_seq.nextval,2,'test', 1);
-insert into likes values(likes_seq.nextval,3,'test', 1);
+insert into likes values(likes_seq.nextval,10,'test', 7);
+insert into likes values(likes_seq.nextval,11,'test', 7);
+insert into likes values(likes_seq.nextval,12,'test', 7);
 select*from likes;
 --review_re 테이블
 insert into review_re values('아이디컬럼',1,'리댓글내용',sysdate,0,0,0);
@@ -573,11 +573,15 @@ select * from
 		
 --수정 테스트
 		
+	select * from seq
 		
+select * from likes
+
+select * from cart
 		
+insert into cart(cart_num, options_num, product_num, member_id, cart_count)
+		 select cart_seq.nextval, options_num, product_num, member_id, 1 from likes where likes_num = 33
 		
-		
-		
-		
-		
+insert into cart(cart_num, options_num, product_num, member_id, cart_count)
+		 select cart_seq.nextval, options_num, product_num, member_id, 1 from likes where likes_num = 44
 		

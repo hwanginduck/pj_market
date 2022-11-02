@@ -26,7 +26,7 @@
 <section class="main">
 	<div class="main-img">
 		<div class="cart-content">
-			<form name="f" method="post" action="">
+			<form name="f" method="post">
 			<input type="hidden" name="product_num" value=${product.product_num }>
 				<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
 				<div class="product-insert-table">
@@ -51,7 +51,7 @@
 						</tr>
 						<tr>
 							<td>
-								<button type="submit" onClick="javascript: form.action='cartinsert.do'">
+								<button type="submit" onClick="javascript: form.action='product_to_cart.do'">
 								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/cart.png" />
 								</button>
 								<button type="submit" onClick="javascript: form.action='likeinsert.do';">

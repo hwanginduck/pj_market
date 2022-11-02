@@ -3,7 +3,7 @@ package pjmarket.model;
 public class Cart {
 
 	private int cart_num;
-	private int option_num;
+	private int options_num;
 	private int product_num;
 	private String member_id;
 	private int cart_count;
@@ -14,11 +14,11 @@ public class Cart {
 	public void setCart_num(int cart_num) {
 		this.cart_num = cart_num;
 	}
-	public int getOption_num() {
-		return option_num;
+	public int getOptions_num() {
+		return options_num;
 	}
-	public void setOption_num(int option_num) {
-		this.option_num = option_num;
+	public void setOptions_num(int options_num) {
+		this.options_num = options_num;
 	}
 	public int getProduct_num() {
 		return product_num;

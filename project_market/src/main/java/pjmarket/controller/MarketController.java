@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import pjmarket.model.Cart;
 import pjmarket.model.CartList;
 import pjmarket.model.LikeList;
 import pjmarket.model.Product;
@@ -38,14 +39,11 @@ public class MarketController {
 	private QnaServiceImpl qs;
 	
 	@Autowired
-	private LikeServiceImpl likeservice;
+	private LikeServiceImpl ls;
 	
 	@Autowired
-	private CartServiceImpl cartservice;
+	private CartServiceImpl cs;
 	
-	@Autowired
-	private ProductServiceImpl productservice;
-
 	@Autowired
 	private ReviewService rs;
 
@@ -74,21 +72,23 @@ public class MarketController {
 	}
 	
 	// 찜목록 이동
-	@RequestMapping("like_list.do")
-	public String Like_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
-		System.out.println("like_list controller 진입");
+	@RequestMapping("listlike.do")
+	public String getListLike(HttpSession session, Model model) throws Exception{
+		System.out.println("getLikeList controller");
 		List<LikeList> likelist = new ArrayList<LikeList>();
-		
 		String member_id = (String)session.getAttribute("member_id");
 		
-		likelist = likeservice.getLikeList(member_id);// 리스트를 받아옴.
+		System.out.println("Session id check : " +member_id);
+		
+		likelist = ls.getLikeList(member_id);// 리스트를 받아옴.
 		
 		model.addAttribute("likelist", likelist);
 			
 		return "main/like_list";
 	}
 	
-	@RequestMapping("likeinsert.do")
+	// 찜 등록
+	@RequestMapping("insertlike.do")
 	public String insertLike(HttpServletRequest request, HttpSession session ,Model model) {
 		
 		System.out.println("insert Like controller");
@@ -101,9 +101,10 @@ public class MarketController {
 		System.out.println("options_num 확인 :" +options_num);
 		System.out.println("member_id 확인 :" +member_id);
 		
-		int result = likeservice.insertLike(product_num, options_num, member_id);
+		int result = ls.insertLike(product_num, options_num, member_id);
 		
-		System.out.println("result check : " + result);
+		if(result == 1) System.out.println("insert like complete");
+		if(result != 1) System.out.println("insert like fail");
 		
 		model.addAttribute("result", result);
 		
@@ -111,123 +112,98 @@ public class MarketController {
 	}
 	
 	//찜삭제
-	@RequestMapping("likedelete.do")
-	public String Like_Delete(HttpServletRequest request, HttpSession session, Model model) throws Exception{
+	@RequestMapping("deletelike.do")
+	public String deleteLike(int likes_num, Model model) throws Exception{
+		System.out.println("delete Like controller");
 		
-		System.out.println("Like_Delete controller진입");
+//		int likes_num = Integer.parseInt(request.getParameter("likes_num"));
 		
-		int likes_num = Integer.parseInt(request.getParameter("likes_num"));
+		int result = ls.deleteLikes(likes_num);
 		
-		int result = likeservice.deleteLikes(likes_num);
+		if(result == 1) {
+			System.out.println("result check : " +result);
+			result = 3;
+		}
 		
 		model.addAttribute("result", result);
 		
-		return "main/likesResult";
+		return "main/likeResult";
 		
 	}
 	
-	//장바구니로 이동
-	@RequestMapping("cart_list.do")
-	public String Cart_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
-		System.out.println("cart_list controller start");
-		
-		
-		//product_num 이 null이 아니다 == 찜리스트 || 제품상세 페이지에서 장바구니로 product_num을 가지고 넘어올때
-		if(request.getParameter("likes_num") == null && request.getParameter("cart_num") == null) {
-			System.out.println("likes_num 없이 장바구니 리스트 실행");
-
-			getCart_List(request, session, model);
-			
-			return "main/cart_list";			
-		
-		}else if(request.getParameter("likes_num") != null) {
-			System.out.println("likes_num 받아서 insertCart > Like_delete > get cart_List");
-
-			int likes_num = Integer.parseInt(request.getParameter("likes_num"));
-			System.out.println("likes_num 확인 : " +likes_num);
-			
-			int result = insertCart(likes_num, session, model);
-			
-			Like_Delete(request, session, model);
-			
-			getCart_List(request, session, model);
-			
-			if(result == 1) {
-				model.addAttribute("result", result);
-			}
-			
-			return "main/cartResult";			
-		
-		}else{
-			
-			System.out.println("cartlist 삭제 controller 진입");
-			
-			int cart_num = Integer.parseInt(request.getParameter("cart_num"));
-			
-			int result = deleteCart(cart_num, model);
-			System.out.println("result 1값 출력 : " +result);
-			
-			if(result == 1) {
-				System.out.println("result 2값 출력 : " +result);
-				result = 2;
-				model.addAttribute("result", result);
-				System.out.println("result 3값 출력 : " +result);
-			}
-			
-			return "main/cartResult";	
-			
-		}
-		
-		
-	}
-	
-	//장바구니 리스트 불러오기
-	public List<CartList> getCart_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
-		
-		List<CartList> cartlist = new ArrayList<CartList>();
+	// 장바구니로 이동
+	@RequestMapping("listcart.do")
+	public String getListCart(HttpSession session, Model model) throws Exception {
 		
 		String member_id = (String)session.getAttribute("member_id");
 		
-		cartlist = cartservice.getCartList(member_id);// 리스트를 받아옴.
-		//list 제대로 받아왓는지 확인
-		System.out.println("cartlist : " +cartlist);
+		List<CartList> list = new ArrayList<CartList>();
 		
-		model.addAttribute("cartlist", cartlist);
-			
-		return cartlist;
+		list = cs.getListCart(member_id);
+		
+		model.addAttribute("list", list);
+	
+		return "main/cart_list";
 	}
 	
-	// 찜 목록 > 장바구니 할때, 찜목록에서 상품정보 받아서 장바구니에 추가하기
-	public int insertCart(int likes_num, HttpSession session, Model model) throws Exception {
-		System.out.println("insertCart controller 진입");
-		int result = 0;
+	// 찜목록 > 장바구니
+	@RequestMapping("like_to_cart.do")
+	public String LikeToCart(int likes_num, HttpSession session ,Model model) throws Exception {
+		System.out.println("Like to Cart controller");
+//		int likes_num = Integer.parseInt(request.getParameter("likes_num"));
 		
-		result = cartservice.insertCart(likes_num);
+		deleteLike(likes_num, model);
+		System.out.println("delete like complete");
 		
-		model.addAttribute("result", result);
 		
-		return result;
+		System.out.println("likes_num check : " +likes_num);
+		int result = cs.insertCart(likes_num);
+		
+		if(result == 1) System.out.println("insert Cart complete");
+		if(result != 1) System.out.println("insert Cart fail");
+		
+		getListCart(session, model);
+		System.out.println("getListCart complete");
+		
+		return "main/cart_list";
 	}
 	
-	// 찜목록 삭제
-	public int deleteCart(int cart_num, Model model) throws Exception{
-		System.out.println("deleteCart controller 진입");
-		int result = 0;
+	// 상품상세 > 장바구니
+	@RequestMapping("product_to_cart.do")
+	public String ProductToCart(Cart cart, HttpServletRequest request,  HttpSession session ,Model model) throws Exception{
 		
-		result = cartservice.deleteCart(cart_num);
+		String member_id = (String)session.getAttribute("member_id");
 		
-		model.addAttribute("result", result);
+		cart.setMember_id(member_id);
 		
-		return result;
+		int result = cs.insertCart(cart);
+		
+		getListCart(session, model);
+		
+		if(result == 1) System.out.println("insert Cart complete");
+		
+		return "main/cart_list";
 	}
 	
-	// 로그인폼이동
-		@RequestMapping("product_insert.do")
-		public String insertProductForm() {
-			return "main/product_insert";
+	// 장바구니 삭제
+	@RequestMapping("deletecart.do")
+	public String deleteCart(HttpServletRequest request, Model model) throws Exception{
+		System.out.println("delete Cart controller");
+		
+		int cart_num = Integer.parseInt(request.getParameter("cart_num"));
+		
+		int result = cs.deleteCart(cart_num);
+		
+		if(result == 1) {
+			System.out.println("delete cart complete");
+			result = 2;
 		}
+		
+		model.addAttribute("result", result);
+		
+		return "main/cartResult";
+	}
 	
-
 	// 상품문의게시판
 	@RequestMapping("qna_boardlist.do")
 	public String QnaBoardList(HttpServletRequest request, Model model) { 
@@ -241,8 +217,6 @@ public class MarketController {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		
-
 		// 총 리스트 수를 받아옴.
 		int listcount = qs.getListCount();
 
