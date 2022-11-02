@@ -37,9 +37,9 @@ public class MemberDaoImpl implements MemberDao {
 		MemberDTO dto = session.selectOne("memberns.id_check", member_id);
 		System.out.println("dto:"+dto);
 		if(dto != null) {
-			re = -1;		// 중복id
+			re = 1;		// 중복id
 		}else {
-			re = 1;
+			re = -1;
 		}
 		System.out.println("re:"+re);
 		return re;
