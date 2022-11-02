@@ -1,6 +1,6 @@
 package pjmarket.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class OfficialBoard {
 	
@@ -11,14 +11,8 @@ public class OfficialBoard {
 			private String off_pw;		// 관리자비밀번호
 			private String off_subject;		// 글제목
 			private String off_content;		// 글내용
-			private int off_ref;
-			private int off_seq;
-			private int off_lev;
 			private int off_readcount;		// 조회수
 			private Date off_date;			// 글 등록날짜
-			
-			private int startRow;
-			private int endRow;
 			
 			
 			public int getOff_num() {
@@ -51,24 +45,6 @@ public class OfficialBoard {
 			public void setOff_content(String off_content) {
 				this.off_content = off_content;
 			}
-			public int getOff_ref() {
-				return off_ref;
-			}
-			public void setOff_ref(int off_ref) {
-				this.off_ref = off_ref;
-			}
-			public int getOff_seq() {
-				return off_seq;
-			}
-			public void setOff_seq(int off_seq) {
-				this.off_seq = off_seq;
-			}
-			public int getOff_lev() {
-				return off_lev;
-			}
-			public void setOff_lev(int off_lev) {
-				this.off_lev = off_lev;
-			}
 			public int getOff_readcount() {
 				return off_readcount;
 			}
@@ -81,18 +57,5 @@ public class OfficialBoard {
 			public void setOff_date(Date off_date) {
 				this.off_date = off_date;
 			}
-			public int getStartRow() {
-				return startRow;
-			}
-			public void setStartRow(int startRow) {
-				this.startRow = startRow;
-			}
-			public int getEndRow() {
-				return endRow;
-			}
-			public void setEndRow(int endRow) {
-				this.endRow = endRow;
-			}
-			
 			
 }

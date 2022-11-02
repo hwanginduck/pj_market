@@ -12,6 +12,8 @@
 
 //	location.href="mainpage.do";
 	location.href="off_list.do";
+//	location.href="off_write.do";
+	
 </script>
 
 

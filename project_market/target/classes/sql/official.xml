@@ -17,25 +17,34 @@
 	<!-- 공지사항 글작성 -->
 
 	<insert id="off_insert" parameterType="off">
-		insert into official values
-		(official_seq.nextval,#{off_name},#{off_pw},#{off_subject},#{off_content},
-		official_seq.nextval,0,0,0, sysdate)
+	
+	insert into official values
+	
+	(official_seq.nextval,#{off_name},#{off_pw},#{off_subject},#{off_content},0,sysdate)
 	</insert>
 
 	<!-- 공지사항 글갯수 -->
 	<select id="off_count" resultType="int">
-		select count(off_num) from
-		official
+		select count(*) from official
 	</select>
 
 
 	<!-- 공지사항 목록 -->
 	<!-- page 전달 -->
-	<select id="off_list" parameterType="int" resultType="off">
+	<!-- <select id="off_list" parameterType="int" resultType="off">
 		select * from (select rownum rnum, off.* from (
 		select * from official order by off_re_ref desc,off_re_seq asc) off )
 		where rnum = (#{page}-1) * 10 + 1 and rnum = #{page}*10
-	</select>
+	</select> -->
+	
+	<!-- 글목록 -->
+<select id="off_list" parameterType="int" resultType="off">
+	<![CDATA[
+	select * from (select rownum rnum, off.* from
+	(select * from official order by off_num desc) off)
+	where rnum >= ((#{page}-1) * 10 + 1) and rnum <= (#{page} * 10) 
+	]]>
+</select>
 
 
 	<!-- 공지사항 조회수 증가 -->

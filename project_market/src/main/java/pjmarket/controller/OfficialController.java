@@ -19,7 +19,7 @@ public class OfficialController {
 	private OfficialServiceImpl os;
 
 	// 공지사항 작성 폼
-	@RequestMapping(value = "off_writeform")
+	@RequestMapping(value = "off_writeform.do")
 	public String off_writeform() {
 		return "Official/off_writeform";
 	}
@@ -38,7 +38,7 @@ public class OfficialController {
 	}
 
 	// 공지사항 목록
-	@RequestMapping("off_list")
+	@RequestMapping("off_list.do")
 	public String off_list(HttpServletRequest request, Model model) {
 
 		int page = 1; // 현재 페이지 번호
@@ -77,7 +77,7 @@ public class OfficialController {
 	}
 
 	// 공지사항 내용
-	@RequestMapping("off_content")
+	@RequestMapping("off_content.do")
 	public String off_cont(int num, String page, Model model) {
 		os.updatecount(num); // 조회수 1증가
 		
@@ -94,7 +94,7 @@ public class OfficialController {
 	}
 
 	// 공지사항 수정 폼
-	@RequestMapping("off_updateform")
+	@RequestMapping("off_updateform.do")
 	public String off_updateform(int num, String page, Model model) {
 
 		OfficialBoard off = os.off_cont(num); // 상세 정보 구하기
@@ -127,7 +127,7 @@ public class OfficialController {
 	}
 
 	// 공지사항 삭제 폼
-	@RequestMapping("off_deleteform")
+	@RequestMapping("off_deleteform.do")
 	public String boarddeleteform() {
 		return "Official/off_deleteform";
 	}
