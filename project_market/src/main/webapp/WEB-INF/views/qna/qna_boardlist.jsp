@@ -125,7 +125,7 @@
 		</ul>
 
 		<div align="center">
-			<a href="qna_writeform.do" class="btn btn-info">문의글 작성</a>
+			<a href="qna_writeform.do?product_num=${pnum }" class="btn btn-info">문의글 작성</a>
 		</div>
 	</div>
 </body>
