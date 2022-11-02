@@ -492,7 +492,7 @@ CREATE TABLE review (
 	review_content VARCHAR2(500), /* 내용 */
 	review_img VARCHAR2(4000), /* 리뷰사진 */
 	review_date DATE, /* 작성일 */
-	r_hit NUMBER /* 조회수 */
+	r_hit NUMBER default 0 /* 조회수 */
 );
 
 /* 리뷰글번호 */
@@ -544,6 +544,8 @@ ALTER TABLE review
 		REFERENCES member (
 			member_id
 		);
+		
+alter table review modify r_hit default 0;
 
 		
 -- 추가

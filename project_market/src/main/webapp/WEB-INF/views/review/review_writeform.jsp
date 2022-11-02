@@ -19,8 +19,8 @@ ${options_num }
 
 <form action="review_insertresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
-			<input type="hidden" name="product_num" value="1"> 
-			<input type="hidden" name="options_num" value="1"> 
+			<input type="hidden" name="product_num" value="12"> 
+			<input type="hidden" name="options_num" value="7"> 
     
 
 	<table class="table table-striped">

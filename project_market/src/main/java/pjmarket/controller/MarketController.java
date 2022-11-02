@@ -497,6 +497,7 @@ public class MarketController {
 							   Model model, Review review) throws Exception{
 		
 //		   @RequestParam("p_no") int p_no
+		
 		System.out.println("디테일 폼");
 		// 조회수 증가
 		int result = rs.updateHit(review_no);
@@ -521,8 +522,6 @@ public class MarketController {
 			String[] img = imgs.split("/");
 			model.addAttribute("img", img);
 		}
-		
-				
 		return "review/review_detail";
 	}
 
