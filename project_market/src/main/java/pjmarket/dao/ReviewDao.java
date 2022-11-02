@@ -3,7 +3,6 @@ package pjmarket.dao;
 
 import java.util.List;
 
-
 import org.springframework.stereotype.Repository;
 
 import pjmarket.model.Review;
@@ -16,5 +15,9 @@ public interface ReviewDao {
 	public int getListCount();
 
 	public List<Review> getBoardList(int page) throws Exception;
+
+	public int updateHit(int review_no);
+
+	public Review select(int review_no);
 
 }

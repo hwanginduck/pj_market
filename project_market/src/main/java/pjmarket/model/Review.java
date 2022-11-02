@@ -14,7 +14,7 @@ public class Review {
 	private String review_content; /* 내용 */
 	private String review_img; /* 리뷰사진 */
 	private Date review_date; /* 작성일 */
-	
+	private int r_hit; /* 조회수 */
 
 	public int getReview_no() {
 		return review_no;
@@ -86,6 +86,14 @@ public class Review {
 
 	public void setReview_date(Date review_date) {
 		this.review_date = review_date;
+	}
+
+	public int getR_hit() {
+		return r_hit;
+	}
+
+	public void setR_hit(int r_hit) {
+		this.r_hit = r_hit;
 	}
 
 }

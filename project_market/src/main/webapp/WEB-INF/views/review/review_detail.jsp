@@ -17,7 +17,7 @@
 <table class="table table-bordered">
 		<tr>
 			<th>상품코드</th>
-			<td>${reviw.product_num }</td>
+			<td>${review.product_num }</td>
 			<th>별 점</th>
 			<td>
 				<c:if test="${review.review_star == 0}">☆☆☆☆☆</c:if>

@@ -17,7 +17,7 @@
 	</script>
 </c:if>
 
-<c:if test="${result != 1 }">
+<c:if test="${result == 2 }">
 	<script>
 		alert("리뷰가 삭제 되지 못했습니다. \n 잠시 후 다시 시도해 주세요!")
 		history.go(-1);
