@@ -19,7 +19,7 @@ public class OfficialController {
 	private OfficialServiceImpl os;
 
 	// 공지사항 작성 폼
-	@RequestMapping(value = "off_writeform.do")
+	@RequestMapping(value = "off_writeform")
 	public String off_writeform() {
 		return "Official/off_writeform";
 	}
@@ -38,7 +38,7 @@ public class OfficialController {
 	}
 
 	// 공지사항 목록
-	@RequestMapping("off_list.do")
+	@RequestMapping("off_list")
 	public String off_list(HttpServletRequest request, Model model) {
 
 		int page = 1; // 현재 페이지 번호
@@ -77,13 +77,13 @@ public class OfficialController {
 	}
 
 	// 공지사항 내용
-	@RequestMapping("off_content.do")
+	@RequestMapping("off_content")
 	public String off_cont(int num, String page, Model model) {
 		os.updatecount(num); // 조회수 1증가
 		
 		OfficialBoard off = os.off_cont(num); // 상세 정보 구하기
 		
-		String content = off.getOf_content().replace("\n", "<br>");
+		String content = off.getOff_content().replace("\n", "<br>");
 
 		model.addAttribute("board", off);
 		model.addAttribute("content", content);
@@ -94,7 +94,7 @@ public class OfficialController {
 	}
 
 	// 공지사항 수정 폼
-	@RequestMapping("off_updateform.do")
+	@RequestMapping("off_updateform")
 	public String off_updateform(int num, String page, Model model) {
 
 		OfficialBoard off = os.off_cont(num); // 상세 정보 구하기
@@ -110,10 +110,10 @@ public class OfficialController {
 	public String off_updateform(OfficialBoard off, String page, Model model) {
 		int result = 0;
 
-		OfficialBoard old = os.off_cont(off.getOf_num());
+		OfficialBoard old = os.off_cont(off.getOff_num());
 
 		// 비밀번호 비교문
-		if (old.getMaster_pw().equals(off.getMaster_pw())) { // 비밀번호 일치
+		if (old.getOff_pw().equals(off.getOff_pw())) { // 비밀번호 일치
 			result = os.off_updatecont(off); // 글수정
 		} else { // 비밀번호 불일치
 			result = -1;
@@ -127,7 +127,7 @@ public class OfficialController {
 	}
 
 	// 공지사항 삭제 폼
-	@RequestMapping("off_deleteform.do")
+	@RequestMapping("off_deleteform")
 	public String boarddeleteform() {
 		return "Official/off_deleteform";
 	}
@@ -137,11 +137,11 @@ public class OfficialController {
 	public String off_delete(OfficialBoard off, String page, Model model) {
 		int result = 0;
 		
-		OfficialBoard old = os.off_cont(off.getOf_num()); // 상세정보구하기
+		OfficialBoard old = os.off_cont(off.getOff_num()); // 상세정보구하기
 
 		// 비밀번호 비교문
-		if (old.getMaster_pw().equals(off.getMaster_pw())) {
-			result = os.off_delete(off.getOf_num()); // 글삭제
+		if (old.getOff_pw().equals(off.getOff_pw())) {
+			result = os.off_delete(off.getOff_num()); // 글삭제
 		} else {
 			result = -1;
 		}

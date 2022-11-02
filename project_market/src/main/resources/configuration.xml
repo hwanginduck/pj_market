@@ -23,8 +23,6 @@
 		<typeAlias alias="options" type="pjmarket.model.Options" />
 	</typeAliases>	
 	
-
-	
 	
 	<!-- 
 	<mappers>

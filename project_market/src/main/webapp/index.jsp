@@ -10,8 +10,8 @@
 
 <script>
 
-	location.href="mainpage.do";
-
+//	location.href="mainpage.do";
+	location.href="off_list.do";
 </script>
 
 
