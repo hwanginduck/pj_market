@@ -378,7 +378,7 @@ public class MarketController {
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
 
-		String path = request.getRealPath("upload");
+		String path = request.getRealPath("/resources/upload/");
 		System.out.println("mf=" + mf);
 		System.out.println("filename=" + filename); 
 		System.out.println("size=" + size);
@@ -500,19 +500,21 @@ public class MarketController {
 		// 리뷰 내용 구해오기
 		review = rs.select(review_no);
 		System.out.println("리뷰 상세 내용: "+review);
+		System.out.println("리뷰이미지:"+review.getReview_img());
 		
 		String content = review.getReview_content().replace("\n","<br>");
 		
 		model.addAttribute("review", review);
 		model.addAttribute("content", content);
+//		model.addAttribute("review_img", review.getReview_img());
 //		model.addAttribute("product", product);
 
-		if(review.getReview_img() != null) {
+	if(review.getReview_img() != null) {
 		
 			String imgs = review.getReview_img();		
 			String[] img = imgs.split("/");
 			model.addAttribute("img", img);
-		}
+			}
 		return "review/review_detail";
 	}
 

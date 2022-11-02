@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 <script src="${path}/resources/js/jquery.js"></script>
-<script src="${path}/resources/js/bootstrap.min..js"></script>
 <style>
 .err {
 	color: red;
