@@ -4,7 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-	<a href="off_writeform">공지사항 작성</a>
+	<a href="off_writeform.do">공지사항 작성</a>
 	<br> 글갯수 : ${listcount }
 	
 
@@ -59,11 +59,11 @@
 		<c:if test="${listcount > 0 }">
 
 			<!-- 1페이지 이동 -->
-			<a href="off_list?page=1" style="text-decoration: none"> < </a>
+			<a href="off_list.do?page=1" style="text-decoration: none"> < </a>
 
 			<!-- 이전블럭으로 이동 -->
 			<c:if test="${startPage > 10 }">
-				<a href="off_list?page=${startPage-10 }">[이전]</a>
+				<a href="off_list.do?page=${startPage-10 }">[이전]</a>
 			</c:if>
 
 			<!-- 각 블럭에 10개 페이지 출력 -->
@@ -72,16 +72,16 @@
 							[${i}]
 				</c:if>
 				<c:if test="${i != page}">
-					<a href="off_list?page=${i}">[${i}]</a>
+					<a href="off_list.do?page=${i}">[${i}]</a>
 				</c:if>
 			</c:forEach>
 			<!-- 다음 블럭으로 이동 -->
 			<c:if test="${endPage < pageCount }">
-				<a href="off_list?page=${startPage+10 }">[다음]</a>
+				<a href="off_list.do?page=${startPage+10 }">[다음]</a>
 			</c:if>
 
 			<!-- 마지막 페이지로 이동 -->
-			<a href="off_list?page=${pageCount}" style="text-decoration: none">
+			<a href="off_list.do?page=${pageCount}" style="text-decoration: none">
 				> </a>
 	</c:if>
 	</center>
