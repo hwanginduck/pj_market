@@ -36,7 +36,7 @@ th:first-child, td:first-child {
 		<form method="post" action="qna_boardinsert.do">
 
 			
-			qna_no :<input name="qna_no" id="qna_no" size="14"  /> <br>
+			 qna_no :<input name="qna_no" id="qna_no" size="14" value="${qna_no }" /> <br>
 			member_id :<input name="member_id" id="member_id" size="14" value="${member_id }" /> <br>
 			product_num :<input name="product_num" id="product_num" size="14"  /> <br>
 			

@@ -30,7 +30,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td rowspan="2" height="150px" width="150px">${cart.product_img }</td>
+						<td rowspan="2" height="150px" width="150px">
+							<img src="<%=request.getContextPath()%>/resources/upload/${cart.product_img}" height="200px" width="200px">
+						</td>
 						<td align="left">${cart.product_name }</td>
 						<td align="left">${cart.options_name }</td>
 						<td>

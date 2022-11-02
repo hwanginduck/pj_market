@@ -1,6 +1,8 @@
 package pjmarket.controller;
 
 import java.io.File;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -27,6 +29,7 @@ import pjmarket.service.MemberServiceImpl;
 import pjmarket.service.ProductServiceImpl;
 import pjmarket.service.QnaServiceImpl;
 import pjmarket.service.ReviewService;
+import pjmarket.service.ReviewServiceImpl;
 
 @Controller
 public class MarketController {
@@ -47,7 +50,7 @@ public class MarketController {
 	private ProductServiceImpl productservice;
 
 	@Autowired
-	private ReviewService rs;
+	private ReviewServiceImpl rs;
 
 	// 메인페이지
 	@RequestMapping("mainpage.do")
@@ -131,6 +134,7 @@ public class MarketController {
 	public String Cart_List(HttpServletRequest request, HttpSession session, Model model) throws Exception{
 		System.out.println("cart_list controller start");
 		
+		
 		//product_num 이 null이 아니다 == 찜리스트 || 제품상세 페이지에서 장바구니로 product_num을 가지고 넘어올때
 		if(request.getParameter("likes_num") == null && request.getParameter("cart_num") == null) {
 			System.out.println("likes_num 없이 장바구니 리스트 실행");
@@ -157,25 +161,27 @@ public class MarketController {
 			
 			return "main/cartResult";			
 		
-		}else if(request.getParameter("likes_num") == null && request.getParameter("cart_num") != null) {
+		}else{
 			
 			System.out.println("cartlist 삭제 controller 진입");
+			
 			int cart_num = Integer.parseInt(request.getParameter("cart_num"));
-			System.out.println("cart_num 확인 : " +cart_num);
 			
 			int result = deleteCart(cart_num, model);
+			System.out.println("result 1값 출력 : " +result);
 			
 			if(result == 1) {
+				System.out.println("result 2값 출력 : " +result);
 				result = 2;
 				model.addAttribute("result", result);
-				System.out.println("result 값 출력 : " +result);
+				System.out.println("result 3값 출력 : " +result);
 			}
 			
 			return "main/cartResult";	
 			
 		}
 		
-		return null;
+		
 	}
 	
 	//장바구니 리스트 불러오기
@@ -273,10 +279,15 @@ public class MarketController {
 	// 상품문의를 하기위한 폼으로이동
 	@RequestMapping("qna_writeform.do")
 	public String QnaBoardWriteForm(QnaBoard qnaboard, Model model) {
+		
 		System.out.println("qna_writeform.do");
 		System.out.println("qna_no :"+qnaboard.getQna_no());
 		System.out.println("product_num :"+qnaboard.getProduct_num());
 		System.out.println("qna_group :"+qnaboard.getQna_group());
+		
+		
+		
+		
 		model.addAttribute("qna_no", qnaboard.getQna_no());
 		model.addAttribute("product_num", qnaboard.getProduct_num());
 		model.addAttribute("qna_group", qnaboard.getQna_group());
@@ -340,18 +351,96 @@ public class MarketController {
 
 	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")
-	public String ReviewWriteForm() {
+	public String ReviewWriteForm(Model model ,String member_id, HttpSession session ) throws Exception {
+		
+//		@RequestParam("product_num") int product_num,
+//		 @RequestParam("options_num") int options_num 
+	
+		// session 에서 아이디 구해오기
+				member_id = (String)session.getAttribute("member_id");
+				System.out.println("아이디 : "+member_id);
+				
+				// 상품코드 구해오기
+//				Product product = rs.getProductNum(product_num);
+//				
+//				model.addAttribute("product", product);
+//				model.addAttribute("member_id", member_id);
+//				model.addAttribute("options_num", options_num);
+		
 		return "review/review_writeform";
 	}
 
-	// 리뷰 게시판 작성 성공
+	// 리뷰 게시판 작성 성공 이미지 불러오기
 	@RequestMapping("review_insertresult")
-	public String ReviewInsert(Review review, Model model) throws Exception {
+	public String ReviewInsert(Review review, Model model, @RequestParam("review_img1") MultipartFile mf,
+		HttpServletRequest request) throws Exception {
+		
+		String filename = mf.getOriginalFilename();
+		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
 
-		int result = rs.ReviewInsert(review);
-		if (result == 1)
-		System.out.println("----------글작성 성공----------");
+		String path = request.getRealPath("upload");
+		System.out.println("mf=" + mf);
+		System.out.println("filename=" + filename); 
+		System.out.println("size=" + size);
+		System.out.println("Path=" + path);
+		
+	    int result=0;
+
+		String file[] = new String[2];
+		//file = filename.split(".");
+		//System.out.println(file.length);
+		//System.out.println("file0="+file[0]);
+		//System.out.println("file1="+file[1]);
+
+		String newfilename = "";
+
+		if(filename != ""){	 // 첨부파일이 전송된 경우	
+
+			// 파일 중복문제 해결
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+			System.out.println("extension:"+extension);
+
+			UUID uuid = UUID.randomUUID();
+
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:"+newfilename);		
+
+			StringTokenizer st = new StringTokenizer(filename, ".");
+			file[0] = st.nextToken();		
+			file[1] = st.nextToken();		
+
+			if(size > 2000000){				
+				result=2;
+				model.addAttribute("result", result);
+				
+				return "review/review_insertresult";
+
+			}else if(!file[1].equals("jpg") &&
+					!file[1].equals("jpeg") &&
+					!file[1].equals("gif") &&
+					!file[1].equals("png") ){
+
+				result=3;
+				model.addAttribute("result", result);
+
+				return "review/review_insertresult";
+			}
+			
+		}
+		if (size > 0) { // 첨부파일이 전송된 경우
+
+			mf.transferTo(new File(path + "/" + newfilename));
+
+		}
+		
+//		System.out.println("리뷰 글 작성 성공");
+		
+		review.setReview_img(newfilename);
+
+		result = rs.ReviewInsert(review);
+		
 		model.addAttribute("result", result);
+		
 
 		return "review/review_insertresult";
 	}
@@ -391,6 +480,40 @@ public class MarketController {
 		System.out.println("boardlistsize :"+boardlist.size());
 
 		return "review/review_boardlist";
+	}
+	
+	// 리뷰 상세 
+	@RequestMapping("review_detail")
+	public String reviewDetail(@RequestParam("review_no") int review_no,
+							   Model model, Review review) throws Exception{
+		
+//		   @RequestParam("p_no") int p_no
+		
+		System.out.println("디테일 폼");
+		// 조회수 증가
+		int result = rs.updateHit(review_no);
+		System.out.println("조회수 증가 결과: "+ result);
+		
+		// 상품명
+//		Product product = rs.getProductName(p_no);
+		
+		// 리뷰 내용 구해오기
+		review = rs.select(review_no);
+		System.out.println("리뷰 상세 내용: "+review);
+		
+		String content = review.getReview_content().replace("\n","<br>");
+		
+		model.addAttribute("review", review);
+		model.addAttribute("content", content);
+//		model.addAttribute("product", product);
+
+		if(review.getReview_img() != null) {
+		
+			String imgs = review.getReview_img();		
+			String[] img = imgs.split("/");
+			model.addAttribute("img", img);
+		}
+		return "review/review_detail";
 	}
 
 
