@@ -175,7 +175,7 @@ function domain_list() {
 
  
  /* 회원정보 수정 경고창 */
-function edit_check(){
+function memberedit_check(){
 	if($.trim($("#member_pw").val())==""){
 		 alert("회원비번을 입력하세요.");
 		 $("#member_pw").val("").focus();
