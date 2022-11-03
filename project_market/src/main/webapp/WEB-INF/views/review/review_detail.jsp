@@ -15,6 +15,7 @@
 <div class="vf-wide700-card">
 <h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">리뷰 상세</h3>
 <table class="table table-bordered">
+999999:  ${ review.review_no}
 		<tr>
 			<th>상품코드</th>
 			<td>${review.product_num }</td>
@@ -76,14 +77,15 @@
 		</tr>
 		<tr>
 			<td colspan="4" style="text-align: center;">
-				<input type="button" class="btn btn-outline-success" value="수정"
-				onclick="location='review_update.do'">
-				<input type="button" class="btn btn-outline-success" value="삭제"
-				onclick="location='review_delete.do?r_no=${review.review_no}'">
+				 <input type="button" class="btn btn-outline-success" value="수정"
+				onclick="location='review_update.do?review_no=${review.review_no}'">
+				 <input type="button" class="btn btn-outline-success" value="삭제"
+				onclick="location='review_delete.do?review_no=${review.review_no}'">
 				<input type="button" class="btn btn-success" value="리뷰 목록"
 				onclick="location='review_boardlist.do'">
 			</td>
 		</tr>
+		<%-- ?review_no=${review.review_no}' --%>
 	</table>
 
 </div>

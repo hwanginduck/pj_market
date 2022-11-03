@@ -54,6 +54,10 @@ update review set r_hit = r_hit + 1 where review_no = #{review_no}
 select * from review where review_no = #{review_no}
 </select>
  
+<!-- 리뷰  수정 -->
+<update id="review_update" parameterType="review">
+		update review set review_content = #{review_content} where review_no = #{review_no} 
+	</update>
  
  
  <!-- 상품명 구하기 -->

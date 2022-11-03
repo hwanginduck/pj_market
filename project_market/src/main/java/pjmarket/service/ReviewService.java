@@ -18,5 +18,7 @@ public interface ReviewService {
 	public int updateHit(int review_no);
 
 	public Review select(int review_no);
+	public Review Reviewupdate(int review_no) ;
+	
 
 }

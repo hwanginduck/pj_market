@@ -53,6 +53,17 @@ public class ReviewServiceImpl implements ReviewService {
 		Review review = reviewdao.select(review_no);
 		return review;
 	}
+
+	public Review Reviewupdate(int review_no) {
+		// TODO Auto-generated method stub
+		return reviewdao.getMember(review_no);
+	}
+
+	public int ReviewUpdateok(Review review) {
+		// TODO Auto-generated method stub
+		return reviewdao.Updatereview(review);
+	}
+
 	
 	
 

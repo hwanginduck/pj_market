@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pjmarket.model.Product;
+import pjmarket.model.QnaBoard;
 import pjmarket.model.Review;
 
 @Repository
@@ -51,6 +52,17 @@ public class ReviewDaoImpl implements ReviewDao {
 	public Review select(int review_no) {
 		return session.selectOne("reviewns.select", review_no);
 	}
+
+	public Review getMember(int review_no) {
+		Review review = session.selectOne("reviewns.review_update", review_no);
+		return review;
+	}
+
+	public int Updatereview(Review review) {
+		int result = session.update("reviewns.review_update", review);
+		return result;
+	}
+
 
 
 }

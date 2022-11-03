@@ -8,16 +8,16 @@
     <script src="/js/board.js"></script>
 	
 <meta charset="UTF-8">
-<title>리뷰 작성 게시판</title>
+<title>리뷰 수정 게시판</title>
 </head>
 <body>
 ${member_id }
 ${product_num }
 ${options_num }
  <div class="container" align="center">
-<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰</h3>
+<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰 수정</h3>
 
-<form action="review_insertresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
+<form action="review_updateresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
 			<input type="hidden" name="product_num" value="12"> 
 			<input type="hidden" name="options_num" value="7"> 
@@ -27,7 +27,7 @@ ${options_num }
 		<tr>
 		 <td style="font-weight: bold;" align="center">제목</td>
 	       <td>
-		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="테스트값"  />
+		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="${review.review_sb }"  />
 			</td>
 		</tr>
 		<!--  --><tr>
@@ -48,7 +48,7 @@ ${options_num }
 		</tr>
 		<tr>
 			 <td style="font-weight: bold;" align="center" colspan="2">
-				<textarea id="review_content" name="review_content" rows="10" cols="50" placeholder="※리뷰 내용은 필수 작성 항목입니다※" >
+				<textarea id="review_content" name="review_content" rows="10" cols="50" placeholder="※리뷰 내용은 필수 작성 항목입니다※" ${review.review_content }>
 				</textarea></td>
 		</tr> 
 		 <tr>
@@ -59,7 +59,7 @@ ${options_num }
     </tr>
 		<tr>
 			<td colspan="2" style="text-align: center;">
-				<input type="submit" class="btn btn-success" value="리뷰 등록">
+				<input type="submit" class="btn btn-success" value="리뷰 수정">
 				<input type="reset" class="btn btn-outline-success"  value="취소" onclick="history.go(-1)">
 			</td>
 		</tr>
