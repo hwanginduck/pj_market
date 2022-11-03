@@ -55,23 +55,14 @@ select * from review where review_no = #{review_no}
 </select>
  
  
+ 
  <!-- 상품명 구하기 -->
 <!-- <select id="getProductName" parameterType="int" resultType="product">
 select * from product where p_no = #{p_no}
 </select> -->
 
 
-	<!-- 게시판 내용보기 -->
-	<!-- <select id="board_cont" parameterType="int" resultType="board">
-		select * from board53 where board_num=#{board_num}
-	</select> -->
 
-	<!-- 게시판 조회수 증가 -->
-	<!-- <update id="board_hit" parameterType="int">
-		update review set
-		board_readcount=board_readcount+1
-		where member_id=#{member_id}
-	</update> -->
 	
 	
 </mapper>
