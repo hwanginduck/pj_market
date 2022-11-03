@@ -1,7 +1,14 @@
 package pjmarket.controller;
 
-import java.util.ArrayList;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +69,13 @@ public class MemberController {
 			
 		}else {
 			if(DTO.getMember_pw().equals(member_pw)) {
-				session.setAttribute(member_id, member_id);		// 비번 일치시
+				session.setAttribute("member_id", DTO.getMember_id());	 	// 비번 일치시
+				session.setAttribute("member_pw", DTO.getMember_pw());
 				System.out.println("있는 회원인증 데이터 DB에서 넘어옴");
 			}else {		// 비번 불일치시
 				result = 2;
 				model.addAttribute("result", result);
+			
 				
 				return "member/member_loginresult";
 			}		
@@ -91,10 +100,32 @@ public class MemberController {
 		
 		return "member/member_idcheckresult";
 	}
-		
-		
 	
+	// 회원정보 수정폼(수정폼에 데이터 넣기)
+	@RequestMapping(value = "/member_edit.do")
+	public String MemberEdit(HttpSession session, Model m) throws Exception{
 		
+		String member_id = (String) session.getAttribute("member_id");
+		
+		MemberDTO medit = ms.UserCheck(member_id);
+		
+		String member_phone = medit.getMember_phone();
+		String member_phone2 = medit.getMember_phone2();
+		String member_phone3 = medit.getMember_phone3();
+		
+		String member_email = medit.getMember_email();
+		String member_domain = medit.getMember_domain();
+		
+		m.addAttribute("medit", medit);
+		m.addAttribute("member_phone", member_phone);
+		m.addAttribute("member_phone2", member_phone2);
+		m.addAttribute("member_phone3", member_phone3);
+		m.addAttribute("member_email", member_email);
+		m.addAttribute("member_domain", member_domain);
+
+		
+		return "member/member_edit";
+	}
 	
 	
 }
