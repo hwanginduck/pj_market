@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -165,32 +165,19 @@ public class ProductController {
 	}
 	
 	@RequestMapping("productdetail.do")
-	public String getProductDetail(@RequestParam("page") int page, HttpServletRequest request, Model model) {
-		
-		System.out.println("product detail controller start");
-		
-		int product_num = Integer.parseInt(request.getParameter("product_num"));
-		
-		System.out.println("product_num check : " +product_num);
+	public String getProductDetail(HttpServletRequest request, int product_num, int page, Model model) {
+
+		HttpSession pnum_session = request.getSession();
+		pnum_session.setAttribute("pnum", product_num);
 		
 		Product product = ps.getProductDetail(product_num);
-		
 		List<Options> optionslist = new ArrayList<Options>(); 
-		
-		System.out.println("options list controller start");
-		
 		optionslist = os.getOptionList(product_num);
-		
-		System.out.println("product : " +product);
-		System.out.println("optionslist : " +optionslist);
-		System.out.println("page : " +page);
 
 		model.addAttribute("product", product);
 		model.addAttribute("optionslist", optionslist);
 		model.addAttribute("page", page);
-		
-		System.out.println("getProductDetail end");
-		
+
 		return "main/product_detail";
 	}
 
