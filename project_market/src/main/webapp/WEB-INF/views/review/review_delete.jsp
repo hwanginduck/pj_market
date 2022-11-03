@@ -4,18 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<script>
-
-location.href="mainpage.do";
-//	location.href="review_boardlist";
-
-</script>
-
-
 
 </body>
 </html>

@@ -475,10 +475,12 @@ ALTER TABLE qna
 		
 		-----------------------------------------------------------
 		
-		
-		drop table review purge;
+drop table review_re purge;	
+drop table review purge;
 drop SEQUENCE review_seq;
+
 select * from REVIEW;
+
 /* 리뷰게시판 */
 CREATE TABLE review (
 	review_no NUMBER NOT NULL, /* 글번호 */
@@ -489,7 +491,8 @@ CREATE TABLE review (
 	review_star NUMBER, /* 별점 */
 	review_content VARCHAR2(500), /* 내용 */
 	review_img VARCHAR2(4000), /* 리뷰사진 */
-	review_date DATE /* 작성일 */
+	review_date DATE, /* 작성일 */
+	r_hit NUMBER default 0 /* 조회수 */
 );
 
 /* 리뷰글번호 */
@@ -541,6 +544,8 @@ ALTER TABLE review
 		REFERENCES member (
 			member_id
 		);
+		
+alter table review modify r_hit default 0;
 
 		
 -- 추가
