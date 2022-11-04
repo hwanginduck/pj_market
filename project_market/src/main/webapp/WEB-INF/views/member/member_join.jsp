@@ -86,7 +86,7 @@
 							<option value="016">016</option>
 							<option value="017">017</option>
 							<option value="018">018</option>
-					</select> </select>-<input name="member_phone2" id="member_phone2" size="4" maxlength="4"
+				        </select>-<input name="member_phone2" id="member_phone2" size="4" maxlength="4"
 						class="input_box" />-<input name="member_phone3" id="member_phone3"
 						size="4" maxlength="4" class="input_box" /></td>
 				</tr>
@@ -94,8 +94,8 @@
 				<tr>
 					<th>전자우편</th>
 					<td><input name="member_email" id="member_email" size="10"
-						class="input_box" />@<input name="maildomain"
-						id="maildomain" size="20" class="input_box" readonly />
+						class="input_box" />@<input name="member_domain"
+						id="member_domain" size="20" class="input_box" readonly />
 						<select name="mail_list" onchange="domain_list()">
 							<option value="">=이메일선택=</option>
 							<option value="daum.net">daum.net</option>

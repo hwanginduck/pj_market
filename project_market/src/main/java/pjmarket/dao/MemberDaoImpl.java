@@ -44,6 +44,12 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("re:"+re);
 		return re;
 	}
+
+	public void UpdateMember(MemberDTO member) throws Exception {
+		// TODO Auto-generated method stub
+		session.update("member_edit", member);
+		
+	}
 	
 
 

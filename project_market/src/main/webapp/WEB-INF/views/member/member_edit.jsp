@@ -29,13 +29,12 @@
 <body>
 	<div id="join_wrap" align="center">
 		<h2 class="join_title">회원가입</h2>
-		<form name="f" method="post" action="member_join_ok.do" onsubmit="return memberedit_check()">
+		<form name="f" method="post" action="member_edit_ok.do"
+			onsubmit="return memberedit_check()">
 			<table id="join_t">
 				<tr>
 					<th>회원아이디</th>
-					<td>
-						${member_id}
-					</td>
+					<td>${member_id}</td>
 				</tr>
 				<tr>
 					<th>회원비번</th>
@@ -52,13 +51,14 @@
 				<tr>
 					<th>회원이름</th>
 					<td><input name="member_name" id="member_name" size="14"
-						class="input_box" value="${medit.member_name}"/></td>
+						class="input_box" value="${medit.member_name}" /></td>
 				</tr>
 
 				<tr>
 					<th>우편번호</th>
 					<td><input name="member_zip1" id="member_zip1" size="5"
-						class="input_box" readonly onclick="post_search()" value="${medit.member_zip1}" /> <!-- -<input name="join_zip2" id="join_zip2" size="3" class="input_box" readonly 
+						class="input_box" readonly onclick="post_search()"
+						value="${medit.member_zip1}" /> <!-- -<input name="join_zip2" id="join_zip2" size="3" class="input_box" readonly 
       		onclick="post_search()"/> --> <input type="button"
 						value="우편번호검색" class="input_button" onclick="openDaumPostcode()" />
 					</td>
@@ -67,13 +67,14 @@
 				<tr>
 					<th>주소</th>
 					<td><input name="member_addr1" id="member_addr1" size="50"
-						class="input_box" readonly value="${medit.member_addr1}" onclick="post_search()" /></td>
+						class="input_box" readonly value="${medit.member_addr1}"
+						onclick="post_search()" /></td>
 				</tr>
 
 				<tr>
 					<th>나머지 주소</th>
 					<td><input name="member_addr2" id="member_addr2" size="37"
-						class="input_box" value="${medit.member_addr2}"/></td>
+						class="input_box" value="${medit.member_addr2}" /></td>
 				</tr>
 				<tr>
 					<th>휴대전화번호</th>
@@ -84,23 +85,40 @@
 							<option value="016">016</option>
 							<option value="017">017</option>
 							<option value="018">018</option>
-					</select> </select>-<input name="member_phone2" id="member_phone2" size="4" maxlength="4"
-						class="input_box" value="${medit.member_phone2}" />-<input name="member_phone3" id="member_phone3"
-						size="4" maxlength="4" class="input_box" value="${medit.member_phone3}" /></td>
+					</select>-<input name="member_phone2" id="member_phone2" size="4"
+						maxlength="4" class="input_box" value="${medit.member_phone2}" />-<input
+						name="member_phone3" id="member_phone3" size="4" maxlength="4"
+						class="input_box" value="${medit.member_phone3}" /></td>
 				</tr>
 
 				<tr>
 					<th>전자우편</th>
 					<td><input name="member_email" id="member_email" size="10"
-						class="input_box" value="${medit.member_email}" />@<input name="maildomain"
-						id="maildomain" size="20" class="input_box" readonly value="${medit.member_domain}"/>
-						<select name="mail_list" onchange="domain_list()">
+						class="input_box" value="${medit.member_email}" />@<input
+						name="member_domain" id="member_domain" size="20"
+						class="input_box" readonly value="${medit.member_domain}" /> <select
+						name="mail_list" onchange="domain_list()">
 							<option value="">=이메일선택=</option>
-							<option value="daum.net">daum.net</option>
-							<option value="nate.com">nate.com</option>
-							<option value="naver.com">naver.com</option>
-							<option value="hotmail.com">hotmail.com</option>
-							<option value="gmail.com">gmail.com</option>
+							<option value="daum.net">
+								<c:if test="${member_domain == 'daum.net'}">${'selected'}</c:if>
+								daum.net
+							</option>
+							<option value="nate.com">
+								<c:if test="${member_domain == 'nate.com'}">${'selected'}</c:if>
+								nate.com
+							</option>
+							<option value="naver.com">
+								<c:if test="${member_domain == 'naver.com'}">${'selected'}</c:if>
+								naver.com
+							</option>
+							<option value="hotmail.com">
+								<c:if test="${member_domain == 'hotmail.com'}">${'selected'}</c:if>
+								hotmail.com
+							</option>
+							<option value="gmail.com">
+								<c:if test="${member_domain == 'gmail.com'}">${'selected'}</c:if>
+								gmail.com
+							</option>
 							<option value="0">직접입력</option>
 					</select></td>
 				</tr>
@@ -108,10 +126,17 @@
 			</table>
 
 			<div id="member_menu">
-				<input type="submit" value="회원수정" class="input_button" /> <input
-					type="reset" value="수정취소" class="input_button"
-					onclick="$('#member_id').focus();" />
+				<input type="submit" value="회원수정" class="input_button"
+					onClick="javascript:btn()" /> <input type="reset" value="수정취소"
+					class="input_button" onclick="$('#member_pw').focus();" />
 			</div>
+
+			<script>
+				function btn() {
+					alert('회원정보 수정 성공');
+				}
+			</script>
+
 		</form>
 	</div>
 </body>

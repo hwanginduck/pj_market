@@ -155,21 +155,21 @@ function domain_list() {
 	 if(f.mail_list.value=="0") // 직접입력
 	 {
 	/*리스트에서 직접입력을 선택했을때*/
-	 f.maildomain.value="";
+	 f.member_domain.value="";
 	//@뒤의 도메인입력란을 빈공간시켜라.
-	 f.maildomain.readOnly=false;
+	 f.member_domain.readOnly=false;
 	//@뒤의 도메인입력란을 쓰기 가능
-	f.maildomain.focus();
+	f.member_domain.focus();
 	//도메인입력란으로 입력대기상태
 	}
 	 
 	 else {
 	//리스트목록을 선택했을때
 	 
-	f.maildomain.value=f.mail_list.options[num].value;
+	f.member_domain.value=f.mail_list.options[num].value;
 	/*num변수에는 해당리스트 목록번호가 저장되어있다.해당리스트 번호의 option value값이 도메인입력란에 선택된다.options속성은 select객체의 속성으로서 해당리스트번호의 value값을 가져온다
 	*/
-	f.maildomain.readOnly=true;
+	f.member_domain.readOnly=true;
 	 }
  }
 
@@ -238,7 +238,9 @@ function memberedit_check(){
 		 alert("메일 주소를 입력하세요.");
 		 $("#member_domain").val("").focus();
 		 return false;
-	 }	 	 
+	 }	 
+
+	 
 }
  
  

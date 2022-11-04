@@ -24,6 +24,13 @@
 	 select member_id from member where member_id = #{member_id}
 	</select>
 	
+	<!-- 회원정보수정 -->
+	<update id="member_edit" parameterType="member">
+		update member set member_pw=#{member_pw},member_name=#{member_name},member_zip1=#{member_zip1}, 
+		member_addr1=#{member_addr1},member_addr2=#{member_addr2},member_phone=#{member_phone}, 
+		member_phone2=#{member_phone2},member_phone3=#{member_phone3},member_email=#{member_email},
+		member_domain=#{member_domain} where member_id=#{member_id}
+	</update>
 
 
 

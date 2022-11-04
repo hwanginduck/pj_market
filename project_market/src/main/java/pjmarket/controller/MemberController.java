@@ -127,6 +127,35 @@ public class MemberController {
 		return "member/member_edit";
 	}
 	
+	// 회원정보 수정 저장 (수정된 회정정보 DB에 저장)
+	@RequestMapping(value = "/member_edit_ok.do", method = RequestMethod.POST)
+	public String MemberEditOk(MemberDTO member, HttpServletRequest request,
+							   HttpSession session, Model model) throws Exception{
+		
+		String member_id = (String) session.getAttribute("member_id");
+		
+		String member_phone = request.getParameter("member_phone");
+		String member_phone2 = request.getParameter("member_phone2");
+		String member_phone3 = request.getParameter("member_phone3");
+		String member_email = request.getParameter("member_email");
+		String member_domain = request.getParameter("member_domain");
+		
+		MemberDTO medit = this.ms.UserCheck(member_id);
+		
+		member.setMember_id(member_id);
+		member.setMember_phone(member_phone);
+		member.setMember_phone2(member_phone2);
+		member.setMember_phone3(member_phone3);
+		member.setMember_email(member_email);
+		member.setMember_domain(member_domain);
+		
+		ms.UpdateMember(member);
+		
+		model.addAttribute("member_name", member.getMember_name());
+		
+		return "/main/mainpage";
+	}
+	
 	
 }
 
