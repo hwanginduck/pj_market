@@ -152,12 +152,12 @@ public class MarketController {
 		System.out.println("Like to Cart controller");
 //		int likes_num = Integer.parseInt(request.getParameter("likes_num"));
 		
-		deleteLike(likes_num, model);
-		System.out.println("delete like complete");
-		
 		
 		System.out.println("likes_num check : " +likes_num);
 		int result = cs.insertCart(likes_num);
+		
+		deleteLike(likes_num, model);
+		System.out.println("delete like complete");
 		
 		if(result == 1) System.out.println("insert Cart complete");
 		if(result != 1) System.out.println("insert Cart fail");
@@ -180,9 +180,13 @@ public class MarketController {
 		
 		getListCart(session, model);
 		
-		if(result == 1) System.out.println("insert Cart complete");
+		if(result == 1) {
+			result = 3;
+		}
 		
-		return "main/cart_list";
+		model.addAttribute("result", result);
+		
+		return "main/cartResult";
 	}
 	
 	// 장바구니 삭제

@@ -584,4 +584,12 @@ insert into cart(cart_num, options_num, product_num, member_id, cart_count)
 		
 insert into cart(cart_num, options_num, product_num, member_id, cart_count)
 		 select cart_seq.nextval, options_num, product_num, member_id, 1 from likes where likes_num = 44
+
+
+select options_num, product_num, member_id from likes where likes_num = 57
+
+select options_num from options;
+select product_num from product;
+select member_id from member;
+
 		
