@@ -54,11 +54,12 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	public Review getMember(int review_no) {
-		Review review = session.selectOne("reviewns.review_update", review_no);
+		Review review = session.selectOne("reviewns.updateselect", review_no);
 		return review;
 	}
 
 	public int Updatereview(Review review) {
+		System.out.println("review_updateresult");
 		int result = session.update("reviewns.review_update", review);
 		return result;
 	}

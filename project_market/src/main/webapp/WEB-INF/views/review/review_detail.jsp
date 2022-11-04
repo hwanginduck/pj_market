@@ -49,7 +49,7 @@
 		<tr>
 			<th>리뷰 사진 </th>
 			<td colspan="5">
-								<img src="<%=request.getContextPath()%>/resources/upload/${review.review_img}">
+								<img src="<%=request.getContextPath()%>/resources/upload/${review.review_img}" width="100%">
 							</td>
 		</tr>
 			

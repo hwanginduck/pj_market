@@ -61,6 +61,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	public int ReviewUpdateok(Review review) {
 		// TODO Auto-generated method stub
+		System.out.println("review_updateresult");
 		return reviewdao.Updatereview(review);
 	}
 

@@ -10,8 +10,8 @@
 
 <script>
 
-location.href="mainpage.do";
-//	location.href="review_boardlist";
+//location.href="mainpage.do";
+	location.href="review_boardlist";
 
 </script>
 

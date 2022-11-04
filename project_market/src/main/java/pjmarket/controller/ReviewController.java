@@ -238,10 +238,11 @@ public class ReviewController {
 			System.out.println("review_updateresult");
 
 			int result = rs.ReviewUpdateok(review);
-			if (result==1) {
-				System.out.println("수정성공");
-			}
-			return "review_updateresult";
+			if(result == 1) System.out.println("수정성공");
+			
+			model.addAttribute("result", result);
+			
+			return "review/review_updateresult";
 		}
 
 }

@@ -19,7 +19,10 @@ public interface ReviewDao {
 	public int updateHit(int review_no);
 
 	public Review select(int review_no);
+
 	public Review getMember(int review_no);
+
+	public int Updatereview(Review review);
 	
 
 }
