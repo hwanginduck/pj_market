@@ -39,7 +39,7 @@ public class MarketController {
 
 	@Autowired
 	private QnaServiceImpl qs;
-	
+	 
 	@Autowired
 	private LikeServiceImpl likeservice;
 	

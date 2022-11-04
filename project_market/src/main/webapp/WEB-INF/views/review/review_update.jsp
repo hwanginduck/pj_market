@@ -67,7 +67,7 @@ ${options_num }
     </tr>
 		<tr>
 			<td colspan="2" style="text-align: center;">
-				<input type="submit" class="btn btn-success" value="리뷰 수정">
+				<input type="submit" class="btn btn-success" value="리뷰 수정하기">
 				<input type="reset" class="btn btn-outline-success"  value="취소" onclick="history.go(-1)">
 			</td>
 		</tr>
