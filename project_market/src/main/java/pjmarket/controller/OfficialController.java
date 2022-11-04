@@ -78,11 +78,10 @@ public class OfficialController {
 
 	// 공지사항 내용
 	@RequestMapping("off_content.do")
-	public String off_cont(int num, String page, Model model) {
-		os.updatecount(num); // 조회수 1증가
-		
-		OfficialBoard off = os.off_cont(num); // 상세 정보 구하기
-		
+	
+	public String off_content(int off_num, String page, Model model) {
+		os.updatecount(off_num); // 조회수 1증가
+		OfficialBoard off = os.off_cont(off_num); // 상세 정보 구하기
 		String content = off.getOff_content().replace("\n", "<br>");
 
 		model.addAttribute("board", off);
@@ -95,9 +94,9 @@ public class OfficialController {
 
 	// 공지사항 수정 폼
 	@RequestMapping("off_updateform.do")
-	public String off_updateform(int num, String page, Model model) {
+	public String off_updateform(int off_num, String page, Model model) {
 
-		OfficialBoard off = os.off_cont(num); // 상세 정보 구하기
+		OfficialBoard off = os.off_cont(off_num); // 상세 정보 구하기
 
 		model.addAttribute("board", off);
 		model.addAttribute("page", page);

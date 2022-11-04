@@ -12,7 +12,7 @@
 	
 	
 	<table border=1 align=center width=700>
-		<caption>공지사항 목록</caption>
+		<caption><h3>공지사항 목록</h3></caption>
 		<tr>
 			<th>번호</th>
 

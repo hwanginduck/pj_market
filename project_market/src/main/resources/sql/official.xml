@@ -56,8 +56,7 @@
 
 	<!-- 공지사항 내용보기 -->
 	<select id="off_content" resultType="off" parameterType="int">
-		select *
-		from official where off_num=#{off_num}
+		select * from official where off_num = #{off_num}
 	</select>
 
 	<!-- 공지사항 수정 -->

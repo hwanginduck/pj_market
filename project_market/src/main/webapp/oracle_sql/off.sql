@@ -3,9 +3,8 @@ select * from seq;
 select * from official;
 
 
-
 create table official(
-off_num NUMBER PRIMARY KEY,
+off_num NUMBER PRIMARY KEY not null,
 off_name VARCHAR2(100),
 off_pw VARCHAR2(100),
 off_subject VARCHAR2(100),
@@ -21,6 +20,9 @@ CREATE SEQUENCE official_seq
 	MAXVALUE 99999
 	INCREMENT BY 1
 	START WITH 1;
+	
+	
+INSERT INTO official VALUES(official_seq.nextval, '마스터', '비밀번호', '공지사항', '공지사항내용', 0, sysdate);
 	
 		select * from (select rownum rnum, off.* from
 	(select * from official order by off_num desc) off)

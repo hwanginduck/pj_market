@@ -25,20 +25,20 @@ public class OfficialServiceImpl implements OfficialService{
 		return dao.getoff_list(page);
 	}
 	
-	public void updatecount(int num) {					// 조회수
-		dao.updatecount(num);
+	public void updatecount(int off_num) {					// 조회수
+		dao.updatecount(off_num);
 	}
 	
-	public OfficialBoard off_cont(int num) {
-		return dao.off_cont(num);
+	public OfficialBoard off_cont(int off_num) {
+		return dao.off_cont(off_num);
 	}
 	
-	public int off_updatecont(OfficialBoard off) {		// 공지사항 수정
-		return dao.off_updatecont(off);
+	public int off_updatecont(OfficialBoard off_num) {		// 공지사항 수정
+		return dao.off_updatecont(off_num);
 	}
 
-	public int off_delete(int of_num) {
-		return dao.off_delete(of_num);
+	public int off_delete(int off_num) {
+		return dao.off_delete(off_num);
 	}
 
 }

@@ -12,10 +12,10 @@ public interface OfficialService {
 	
 	public List<OfficialBoard> getoff_list(int page);
 
-	public void updatecount(int num);
+	public void updatecount(int off_num);
 	
-	public int off_updatecont(OfficialBoard off);
+	public int off_updatecont(OfficialBoard off_num);
 	
-	public int off_delete(int of_num);
+	public int off_delete(int off_num);
 
 }

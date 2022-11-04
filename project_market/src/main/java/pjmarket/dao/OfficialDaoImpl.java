@@ -27,20 +27,20 @@ public class OfficialDaoImpl implements OfficialDao {
 		return session.selectList("off_list", page);
 	}
 
-	public void updatecount(int num) {
-		session.update("off_hit", num);
+	public void updatecount(int off_num) {
+		session.update("off_hit", off_num);
 	}
 
-	public OfficialBoard off_cont(int num) {
-		return session.selectOne("off_content", num);
+	public OfficialBoard off_cont(int off_num) {
+		return session.selectOne("off_content", off_num);
 	}
 
-	public int off_updatecont(OfficialBoard off) {
-		return session.selectOne("off_updatecont", off);
+	public int off_updatecont(OfficialBoard off_num) {
+		return session.selectOne("off_updatecont", off_num);
 	}
 
-	public int off_delete(int of_num) {
-		return session.selectOne("off_delete", of_num);
+	public int off_delete(int off_num) {
+		return session.selectOne("off_delete", off_num);
 	}
 
 }
