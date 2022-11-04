@@ -156,6 +156,44 @@ public class MemberController {
 		return "/main/mainpage";
 	}
 	
+	// 회원정보 삭제 (값 일치하는지 확인)
+	@RequestMapping(value = "/member_del.do")
+	public String MemberDel(HttpSession session, Model model) throws Exception {
+		
+		String member_id = (String) session.getAttribute("member_id");
+		MemberDTO md = ms.UserCheck(member_id);
+		model.addAttribute("d_id", member_id);
+		model.addAttribute("d_name", md.getMember_name());
+		
+		System.out.println("model값:"+model);
+		return "/member/member_delete";
+	}
+	
+	// 회원정보 삭제 완료
+	@RequestMapping(value = "/member_del_ok.do")
+	public String MemberDelOk(@RequestParam("member_pw") String member_pw, 
+							  HttpSession session) throws Exception {
+		
+		String member_id = (String) session.getAttribute("member_id");
+		MemberDTO member = this.ms.UserCheck(member_id);
+		
+		if(!member.getMember_pw().equals(member_pw)) {				// 비번 불일치시
+			
+			return "member/member_delete_false";
+		}else {														// 일치시
+			
+			MemberDTO demem = new MemberDTO();
+			ms.DeleteMember(member);
+			
+			session.invalidate();
+			
+			
+			return "/member/member_delete_result";
+		}
+	}
+	
+	
+	
 	
 }
 

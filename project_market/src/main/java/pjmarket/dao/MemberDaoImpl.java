@@ -45,10 +45,17 @@ public class MemberDaoImpl implements MemberDao {
 		return re;
 	}
 
+	// 회원정보 수정	
 	public void UpdateMember(MemberDTO member) throws Exception {
 		// TODO Auto-generated method stub
 		session.update("member_edit", member);
 		
+	}
+
+	// 회원 탈퇴
+	public void DeleteMember(MemberDTO member) throws Exception {
+		// TODO Auto-generated method stub
+		session.update("member_delete", member);
 	}
 	
 

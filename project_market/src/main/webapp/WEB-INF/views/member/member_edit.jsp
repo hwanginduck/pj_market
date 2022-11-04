@@ -129,6 +129,8 @@
 				<input type="submit" value="회원수정" class="input_button"
 					onClick="javascript:btn()" /> <input type="reset" value="수정취소"
 					class="input_button" onclick="$('#member_pw').focus();" />
+				   <input type="button" value="회원탈퇴" class="input_button"
+     				onclick="location='member_del.do'" />	
 			</div>
 
 			<script>

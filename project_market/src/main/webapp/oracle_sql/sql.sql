@@ -547,8 +547,13 @@ ALTER TABLE review
 
 ALTER TABLE member ADD (member_no number(38) unique not null); 	-- 10/27 준호 추가
 
+
+
 create sequence join_member_memberno_seq 
 increment by 1 start with 1 nocache;							-- 10/27 준호 추가
+
+
+ALTER TABLE member ADD (member_deldate date); 	-- 11/4 준호 추가
 		
 		
 select count(product_num) from product where product_l = '홈스마트'		

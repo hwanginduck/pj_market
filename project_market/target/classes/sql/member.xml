@@ -31,7 +31,10 @@
 		member_phone2=#{member_phone2},member_phone3=#{member_phone3},member_email=#{member_email},
 		member_domain=#{member_domain} where member_id=#{member_id}
 	</update>
-
-
+	
+	<!-- 회원 탈퇴 -->
+	<update id="member_delete" parameterType="member">
+		update member set join_state=2, member_deldate=sysdate where member_id=#{member_id}
+	</update>
 
 </mapper>

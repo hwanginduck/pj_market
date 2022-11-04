@@ -15,4 +15,7 @@ public interface MemberService {
 	
 	// 회원정보 수정
 	public abstract void UpdateMember(MemberDTO member) throws Exception; 
+	
+	// 회원 탈퇴
+	public abstract void DeleteMember(MemberDTO member) throws Exception;
 }

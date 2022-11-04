@@ -54,9 +54,9 @@
 		 $("#member_email").val("").focus();
 		 return false;
 	 }
-	 if($.trim($("#maildomain").val())==""){
+	 if($.trim($("#member_domain").val())==""){
 		 alert("메일 주소를 입력하세요.");
-		 $("#join_maildomain").val("").focus();
+		 $("#member_domain").val("").focus();
 		 return false;
 	 }	 	 
  }

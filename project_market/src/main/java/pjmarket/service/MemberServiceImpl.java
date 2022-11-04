@@ -41,5 +41,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	public void DeleteMember(MemberDTO member) throws Exception{
+		// TODO Auto-generated method stub
+		dao.DeleteMember(member);
+	}
+
+
+
+
 
 }
