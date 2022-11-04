@@ -38,7 +38,7 @@ public class MarketController {
 	private MemberServiceImpl ms;
 
 	@Autowired
-	private QnaServiceImpl qs;
+	private QnaServiceImpl qs; 
 	 
 	@Autowired
 	private LikeServiceImpl likeservice;
