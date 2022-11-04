@@ -4,9 +4,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항 삭제</title>
 </head>
 <body>
+
+no :${param.no } <br>
+page :${param.page } <br>
+
+<form method=post action="off_delete.do">
+<input type="hidden" name="no" value="${param.no}">
+<input type="hidden" name="page" value="${param.page}">
+
+<table border=1 width=400 align=center>
+	<caption>공지사항 </caption>
+	
+	<tr><th>비밀번호</th>
+		<td><input type=password name="passwd" required="required"></td>
+	</tr>
+	
+	<tr><td colspan=2 align=center>
+			<input type=submit value="글삭제">
+			<input type=reset value="취소">
+		</td>
+	</tr>
+</table>
+</form>
+
 
 </body>
 </html>

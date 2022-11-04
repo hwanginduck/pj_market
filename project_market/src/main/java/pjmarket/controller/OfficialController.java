@@ -83,7 +83,7 @@ public class OfficialController {
 		
 		OfficialBoard off = os.off_cont(num); // 상세 정보 구하기
 		
-		String content = off.getOf_content().replace("\n", "<br>");
+		String content = off.getOff_content().replace("\n", "<br>");
 
 		model.addAttribute("board", off);
 		model.addAttribute("content", content);
@@ -110,10 +110,10 @@ public class OfficialController {
 	public String off_updateform(OfficialBoard off, String page, Model model) {
 		int result = 0;
 
-		OfficialBoard old = os.off_cont(off.getOf_num());
+		OfficialBoard old = os.off_cont(off.getOff_num());
 
 		// 비밀번호 비교문
-		if (old.getMaster_pw().equals(off.getMaster_pw())) { // 비밀번호 일치
+		if (old.getOff_pw().equals(off.getOff_pw())) { // 비밀번호 일치
 			result = os.off_updatecont(off); // 글수정
 		} else { // 비밀번호 불일치
 			result = -1;
@@ -137,11 +137,11 @@ public class OfficialController {
 	public String off_delete(OfficialBoard off, String page, Model model) {
 		int result = 0;
 		
-		OfficialBoard old = os.off_cont(off.getOf_num()); // 상세정보구하기
+		OfficialBoard old = os.off_cont(off.getOff_num()); // 상세정보구하기
 
 		// 비밀번호 비교문
-		if (old.getMaster_pw().equals(off.getMaster_pw())) {
-			result = os.off_delete(off.getOf_num()); // 글삭제
+		if (old.getOff_pw().equals(off.getOff_pw())) {
+			result = os.off_delete(off.getOff_num()); // 글삭제
 		} else {
 			result = -1;
 		}
