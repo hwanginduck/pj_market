@@ -37,12 +37,25 @@ public class MemberDaoImpl implements MemberDao {
 		MemberDTO dto = session.selectOne("memberns.id_check", member_id);
 		System.out.println("dto:"+dto);
 		if(dto != null) {
-			re = -1;		// 중복id
+			re = 1;		// 중복id
 		}else {
-			re = 1;
+			re = -1;
 		}
 		System.out.println("re:"+re);
 		return re;
+	}
+
+	// 회원정보 수정	
+	public void UpdateMember(MemberDTO member) throws Exception {
+		// TODO Auto-generated method stub
+		session.update("member_edit", member);
+		
+	}
+
+	// 회원 탈퇴
+	public void DeleteMember(MemberDTO member) throws Exception {
+		// TODO Auto-generated method stub
+		session.update("member_delete", member);
 	}
 	
 

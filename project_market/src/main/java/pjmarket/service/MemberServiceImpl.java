@@ -33,6 +33,20 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.CheckMemberID(member_id);
 	}
+	
+	// 회원정보수정 저장
+	public void UpdateMember(MemberDTO member) throws Exception {
+		// TODO Auto-generated method stub
+		dao.UpdateMember(member);
+	}
+
+
+	public void DeleteMember(MemberDTO member) throws Exception{
+		// TODO Auto-generated method stub
+		dao.DeleteMember(member);
+	}
+
+
 
 
 
