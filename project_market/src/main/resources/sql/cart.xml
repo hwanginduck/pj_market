@@ -22,7 +22,7 @@
 	</insert>
 	
 	<!-- 상품상세 > 장바구니 추가 -->
-	<insert id="insertcart" parameterType="int">
+	<insert id="insertcart" parameterType="cart">
 		insert into cart values(cart_seq.nextval, #{options_num}, #{product_num}, #{member_id}, #{cart_count})
 	</insert>
 	

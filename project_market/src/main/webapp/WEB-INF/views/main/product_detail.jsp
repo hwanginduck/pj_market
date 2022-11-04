@@ -3,6 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../fix/header.jsp"%>
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script>
+
+
+
 <style>
 	select {
 		width: 200px; 
@@ -28,6 +35,7 @@
 		<div class="cart-content">
 			<form name="f" method="post">
 			<input type="hidden" name="product_num" value=${product.product_num }>
+			
 				<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
 				<div class="product-insert-table">
 					<table width="1000px" border="1">
@@ -51,10 +59,10 @@
 						</tr>
 						<tr>
 							<td>
-								<button type="submit" onClick="javascript: form.action='product_to_cart.do'">
+								<button type="submit" onclick="javascript: form.action='product_to_cart.do'">
 								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/cart.png" />
 								</button>
-								<button type="submit" onClick="javascript: form.action='likeinsert.do';">
+								<button type="submit" onClick="javascript: form.action='insertlike.do'">
 								<img class="like-btn" src="${pageContext.request.contextPath}/resources/img/unlikeit.png" />
 								</button>
 							</td>
@@ -73,6 +81,7 @@
 							<td>
 								<select name="options_num">
 									<c:forEach var="ol" items="${optionslist}" varStatus="status" >
+									
 										<option value="${ol.options_num}">${ol.options_name} 
 										<fmt:formatNumber value="${ol.options_price}" pattern="+#,###" /></option>
 									</c:forEach>
