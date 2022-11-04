@@ -880,8 +880,9 @@ $(document).ready(function() {
 				<li><div class="dropdown menu-box">
 						<button class="dropbtn">My Page</button>
 						<div class="dropdown-content">
-							<a href="like_list.do">찜목록</a> <a href="cart_list.do">장바구니</a> <a
-								href="#">내정보수정</a>
+							<a href="listlike.do">찜목록</a> 
+							<a href="listcart.do">장바구니</a> 
+							<a href="#">내정보수정</a>
 						</div>
 					</div></li>
 				<li><div class="dropdown menu-box">

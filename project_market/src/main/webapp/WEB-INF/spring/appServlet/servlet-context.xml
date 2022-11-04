@@ -36,7 +36,9 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/cart_list.do"/>
-			<mapping path="/like_list.do"/>
+			<mapping path="/listlike.do"/>
+			<mapping path="/likeinsert.do"/>
+			<mapping path="/product_to_cart.do"/>
 			<beans:ref bean="loginIntercepter" />
 		</interceptor>
 	</interceptors>

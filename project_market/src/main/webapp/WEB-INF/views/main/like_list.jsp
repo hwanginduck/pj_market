@@ -7,7 +7,7 @@
 <section class="main">
 	<div class="main-img">
 		<div class="like-content">
-			<form enctype="multipart/form-data">
+			<form enctype="multipart/form-data" method="get">
 				<div class="like-table">
 					<table width="800px">
 						<tr>
@@ -30,11 +30,11 @@
 								<td align="left">${like.product_name }</td>
 								<td align="left">${like.options_name }</td>
 								<td>
-									<button class="like-table-btn"
-										onclick="location.href='likedelete.do?likes_num=${like.likes_num}'">
-										<img class="like-btn"
+									<a class="like-table-btn"
+										onClick="location.href='deletelike.do?likes_num=${like.likes_num}'">
+										<img class="like-btn"	
 											src="${pageContext.request.contextPath}/resources/img/likeit.png" />
-									</button>
+									</a>
 								</td>
 							</tr>
 							<tr>
@@ -43,11 +43,11 @@
 								<td align="left"><fmt:formatNumber
 										value='${like.options_price }' pattern='#,###' /></td>
 								<td>
-									<button type="button" class="like-table-btn"
-										onClick="location.href='cart_list.do?likes_num=${like.likes_num}'">
+									<a type="button" class="like-table-btn"
+										onClick="location.href='like_to_cart.do?likes_num=${like.likes_num}'">
 										<img class="like-btn"
 											src="${pageContext.request.contextPath}/resources/img/cart.png" />
-									</button>
+									</a>
 								</td>
 							</tr>
 							<tr>

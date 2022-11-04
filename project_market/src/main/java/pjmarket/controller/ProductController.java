@@ -30,6 +30,13 @@ public class ProductController {
 	@Autowired
 	private OptionsServiceImpl os;
 	
+	//상품등록 폼이동
+	@RequestMapping("insertproductform.do")
+	public String insertProductForm() {
+		return "main/product_insert";
+	}
+	
+	
 	// 상품등록
 	@RequestMapping("insert_product.do")
 	public String insertProduct(@RequestParam("product_img1") MultipartFile mf, Product product, HttpServletRequest request, Model model) throws Exception {
@@ -161,7 +168,7 @@ public class ProductController {
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("productlist", productlist);
 		
-		return "main/productlist";
+		return "main/product_list";
 	}
 	
 	@RequestMapping("productdetail.do")
