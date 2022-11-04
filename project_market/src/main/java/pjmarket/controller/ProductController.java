@@ -188,5 +188,4 @@ public class ProductController {
 		return "main/product_detail";
 	}
 
-	
 }
