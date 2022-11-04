@@ -32,7 +32,7 @@ import pjmarket.service.ReviewService;
 import pjmarket.service.ReviewServiceImpl;
 
 @Controller
-public class MarketController {
+public class MarketController { 
 
 	@Autowired
 	private MemberServiceImpl ms;
