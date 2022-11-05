@@ -12,3 +12,5 @@
 	</div>
 </section>
 <%@ include file="../fix/footer.jsp"%>
+</html>
+

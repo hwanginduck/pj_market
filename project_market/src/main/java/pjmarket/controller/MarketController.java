@@ -48,7 +48,7 @@ public class MarketController {
 	private ReviewService rs;
 
 	// 메인페이지
-	@RequestMapping("mainpage.do")
+	@RequestMapping("mainpage")
 	public String MainPage() {
 		System.out.println("controller");
 		return "main/mainpage";
