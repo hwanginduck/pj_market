@@ -80,9 +80,9 @@ public class OfficialController {
 	@RequestMapping("off_content.do")
 	public String off_cont(int num, String page, Model model) {
 		os.updatecount(num); // 조회수 1증가
-		
+
 		OfficialBoard off = os.off_cont(num); // 상세 정보 구하기
-		
+
 		String content = off.getOff_content().replace("\n", "<br>");
 
 		model.addAttribute("board", off);
@@ -136,7 +136,7 @@ public class OfficialController {
 	@RequestMapping("off_delete.do")
 	public String off_delete(OfficialBoard off, String page, Model model) {
 		int result = 0;
-		
+
 		OfficialBoard old = os.off_cont(off.getOff_num()); // 상세정보구하기
 
 		// 비밀번호 비교문
