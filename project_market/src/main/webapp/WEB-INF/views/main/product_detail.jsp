@@ -9,47 +9,25 @@
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script>
 
 
-
-<style>
-	select {
-		width: 200px; 
-		padding: .8em .5em; 
-		border: 1px solid #999;
-		font-family: inherit;  
-		background: url('arrow.jpg') no-repeat 95% 50%; 
-		border-radius: 0px; 
-		-webkit-appearance: none; 
-		-moz-appearance: none;
-		appearance: none;
-	}
-	
-	select::-ms-expand {
-	    display: none;
-	}
-	
-</style>
-
-
 <section class="main">
-	<div class="main-img">
-		<div class="cart-content">
+	<div class="detail-content">
 			<form name="f" method="post">
 			<input type="hidden" name="product_num" value=${product.product_num }>
 			
 				<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
-				<div class="product-insert-table">
-					<table width="1000px" border="1">
+				<div class="detail-item-box">
+					<table>
 						<tr>
 							<td rowspan="8">
 								<img src="<%=request.getContextPath()%>/resources/upload/${product.product_img}">
 							</td>
 							<td>
-								<input type="text" name="product_name" value="${product.product_name}">
+								<input type="text" readonly name="product_name" value="${product.product_name}">
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="product_sub" value="${product.product_sub}">
+								<input type="text" readonly name="product_sub" value="${product.product_sub}">
 							</td>
 						</tr>
 						<tr>
@@ -69,12 +47,12 @@
 						</tr>
 						<tr>
 							<td>
-								<textarea>${product.product_content}</textarea>
+								<div>${product.product_content}</div>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<input type="text" name="product_price" value="<fmt:formatNumber value="${product.product_price}" pattern="₩#,###" />">
+								<input type="text" readonly name="product_price" value="<fmt:formatNumber value="${product.product_price}" pattern="₩#,###" />">
 							</td>
 						</tr>
 						<tr>
@@ -102,6 +80,20 @@
 				</div>
 			</form>
 		</div>
-	</div>
+		<div class="detail-content">
+			<div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+			</div>
+		</div>
 </section>
 <%@ include file="../fix/footer.jsp"%>

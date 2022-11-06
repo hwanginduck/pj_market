@@ -1,0 +1,15 @@
+/* footer css */
+footer {
+	color: black;
+	width: 100%;
+	opacity: 0.8;
+	background-color: gray;
+}
+
+.corporate {
+	width: 1200px;
+	margin: 0 auto;
+	
+	padding-bottom: 30px;
+	padding-top: 20px;
+}
