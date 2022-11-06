@@ -40,7 +40,7 @@
 
 		<c:if test="${not empty boardlist}">
 			<c:forEach var="bl" items="${boardlist}">
-				<table class="table table-striped" border=1>
+				<table class="table table-striped" border=1> 
 					<tr>
 					
 						<td width="100" align="left">
