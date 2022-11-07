@@ -188,9 +188,10 @@ public class MemberController {
 			session.invalidate();
 			
 			
-			return "/member/member_delete_result";
+			return "member/member_delete_result";
 		}
 	}
+
 	
 	
 	
