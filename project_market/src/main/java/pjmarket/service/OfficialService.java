@@ -6,16 +6,18 @@ import pjmarket.model.OfficialBoard;
 
 public interface OfficialService {
 
-	public int insert(OfficialBoard board);
+	public int insert(OfficialBoard board) ;
 	
-	public int getCount();
+	public int getCount() ;
 	
-	public List<OfficialBoard> getoff_list(int page);
+	public List<OfficialBoard> getoff_list(int page) ;
+	
+	public void updatecount(int off_num) ;
 
-	public void updatecount(int off_num);
+	public OfficialBoard getOfficialBoard(int off_num);
 	
-	public int off_updatecont(OfficialBoard off_num);
+	public int off_update(OfficialBoard off);
 	
-	public int off_delete(int off_num);
+	public int off_delete(int off_num) ;
 
 }

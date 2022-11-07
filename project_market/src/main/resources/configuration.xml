@@ -4,10 +4,7 @@
 
 <configuration>
 
-	<!-- <settings> 
-    <setting name="cacheEnabled" value="false" />
-    <setting name="jdbcTypeForNull" value="NULL" />
-  </settings> -->
+	
 
 <!-- alias 는 별명을 의미한다. Type은 풀패키지경로 -->
 	<typeAliases>

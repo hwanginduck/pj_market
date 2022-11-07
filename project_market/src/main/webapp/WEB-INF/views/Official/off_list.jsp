@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%--     <%@ include file="../fix/header.jsp"%> --%>
+    <%-- <%@ include file="../fix/header.jsp"%> --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<div>
 
 	<a href="off_writeform.do">공지사항 작성</a>
 	<br> 글갯수 : ${listcount }
@@ -34,7 +35,7 @@
 				</td>
 
 				<td>
-				<a href="off_content.do?no=${b.off_num}&page=${page}">
+				<a href="off_content.do?off_num=${b.off_num}&page=${page}">
 						${b.off_subject} </a>
 				</td>
 				
@@ -85,3 +86,4 @@
 				> </a>
 	</c:if>
 	</center>
+</div>

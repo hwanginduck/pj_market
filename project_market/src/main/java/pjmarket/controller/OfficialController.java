@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pjmarket.model.OfficialBoard;
 import pjmarket.service.OfficialServiceImpl;
@@ -26,7 +27,7 @@ public class OfficialController {
 
 	// 공지사항 작성
 	@RequestMapping("off_write.do")
-	public String off_write(OfficialBoard off, Model model) {
+	public String off_write(OfficialBoard off, Model model)  {
 
 		int result = os.insert(off);
 		if (result == 1)
@@ -39,7 +40,7 @@ public class OfficialController {
 
 	// 공지사항 목록
 	@RequestMapping("off_list.do")
-	public String off_list(HttpServletRequest request, Model model) {
+	public String off_list(HttpServletRequest request, Model model)  {
 
 		int page = 1; // 현재 페이지 번호
 		int limit = 10; // 한 화면에 출력할 데이터 갯수
@@ -78,14 +79,13 @@ public class OfficialController {
 
 	// 공지사항 내용
 	@RequestMapping("off_content.do")
-	
-	public String off_content(int off_num, String page, Model model) {
+	public String off_content(int off_num, String page, Model model){
 		os.updatecount(off_num); // 조회수 1증가
-		OfficialBoard off = os.off_cont(off_num); // 상세 정보 구하기
+		OfficialBoard off = os.getOfficialBoard(off_num); // 상세 정보 구하기
 		String content = off.getOff_content().replace("\n", "<br>");
 
-		model.addAttribute("board", off);
-		model.addAttribute("content", content);
+		model.addAttribute("off", off);
+		model.addAttribute("off_content", content);
 		model.addAttribute("page", page);
 
 		return "Official/off_content";
@@ -94,11 +94,11 @@ public class OfficialController {
 
 	// 공지사항 수정 폼
 	@RequestMapping("off_updateform.do")
-	public String off_updateform(int off_num, String page, Model model) {
+	public String off_updateform(int off_num, String page, Model model)  {
 
-		OfficialBoard off = os.off_cont(off_num); // 상세 정보 구하기
+		OfficialBoard off = os.getOfficialBoard(off_num); // 상세 정보 구하기
 
-		model.addAttribute("board", off);
+		model.addAttribute("off", off);
 		model.addAttribute("page", page);
 
 		return "Official/off_updateform";
@@ -106,21 +106,22 @@ public class OfficialController {
 
 	// 공지사항 수정
 	@RequestMapping("off_update.do")
-	public String off_updateform(OfficialBoard off, String page, Model model) {
+	public String off_updateform(OfficialBoard off, String page, Model model)  {
 		int result = 0;
 
-		OfficialBoard old = os.off_cont(off.getOff_num());
+		OfficialBoard old = os.getOfficialBoard(off.getOff_num());	// 상세정보 구하기
 
 		// 비밀번호 비교문
 		if (old.getOff_pw().equals(off.getOff_pw())) { // 비밀번호 일치
-			result = os.off_updatecont(off); // 글수정
+			result = os.off_update(off); // 글수정
 		} else { // 비밀번호 불일치
 			result = -1;
 		}
 
 		model.addAttribute("result", result);
-		model.addAttribute("board", off);
+		model.addAttribute("off_update", off);
 		model.addAttribute("page", page);
+		
 
 		return "Official/off_updateresult";
 	}
@@ -133,10 +134,10 @@ public class OfficialController {
 
 	// 공지사항 삭제
 	@RequestMapping("off_delete.do")
-	public String off_delete(OfficialBoard off, String page, Model model) {
+	public String off_delete(OfficialBoard off, String page, Model model)  {
 		int result = 0;
 		
-		OfficialBoard old = os.off_cont(off.getOff_num()); // 상세정보구하기
+		OfficialBoard old = os.getOfficialBoard(off.getOff_num()); // 상세정보구하기
 
 		// 비밀번호 비교문
 		if (old.getOff_pw().equals(off.getOff_pw())) {
@@ -147,6 +148,6 @@ public class OfficialController {
 		model.addAttribute("result", result);
 		model.addAttribute("page", page);
 
-		return "board/deleteresult";
+		return "Official/deleteresult";
 	}
 }

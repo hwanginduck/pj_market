@@ -868,7 +868,7 @@ $(document).ready(function() {
 					</div>
 				</li>
 				<li><div class="menu-box active">
-						<a href="">Rangking</a>
+						<a href="">공지사항</a>
 					</div></li>
 				<li><div class="menu-box active">
 						<a href="qna_boardlist.do?page=1">Q&A</a>

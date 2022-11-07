@@ -60,7 +60,7 @@
 	</select>
 
 	<!-- 공지사항 수정 -->
-	<update id="off_updatecontent" parameterType="off">
+	<update id="off_updatecontent" parameterType="int">
 		update official set
 		off_name=#{off_name},
 		off_subject=#{off_subject},

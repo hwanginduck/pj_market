@@ -13,6 +13,7 @@
 //	location.href="mainpage.do";
 	location.href="off_list.do";
 //	location.href="off_write.do";
+//	location.href="off_content.do";
 	
 </script>
 
