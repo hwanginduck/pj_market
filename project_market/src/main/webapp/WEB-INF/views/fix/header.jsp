@@ -21,6 +21,15 @@
 <link href="${path}/resources/css/product.css" rel="stylesheet">
 <link href="${path}/resources/css/cart.css" rel="stylesheet">
 <link href="${path}/resources/css/like.css" rel="stylesheet">
+
+<link href="${path}/resources/css/bootstrap.css" rel="stylesheet">
+<link href="${path}/resources/css/bootstrap.css.map" rel="stylesheet">
+<link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="${path}/resources/css/bootstrap-theme.css" rel="stylesheet">
+<link href="${path}/resources/css/bootstrap-theme.css.map" rel="stylesheet">
+<link href="${path}/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+
+
 </head>
 <body>
 <% session = request.getSession(); %>

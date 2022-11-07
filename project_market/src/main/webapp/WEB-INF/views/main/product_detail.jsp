@@ -75,9 +75,8 @@
 		<div>
 			<div class="detail-content">
 
-				<p>여깁니다</p>
-				<ul class="nav nav-tabs nav-justified" >
-					<li class="nav-item"><a class="nav-link active"	onClick="move1( ${product.product_num })">1번</a></li>
+				<ul class="nav nav-tabs nav-justified" > <!-- 부트스트랩 -->
+					<li class="nav-item"><a class="nav-link"		onClick="move1( ${product.product_num })">1번</a></li>
 					<li class="nav-item"><a class="nav-link"  		onClick="move2( ${product.product_num })">2번</a></li>
 					<li class="nav-item"><a class="nav-link" 	    onClick="move()">3번</a></li>
 					<li class="nav-item"><a class="nav-link"		onClick="move()">4번</a></li>
