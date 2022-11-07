@@ -2,15 +2,12 @@ package pjmarket.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import pjmarket.model.Cart;
 import pjmarket.model.CartList;
 import pjmarket.service.CartServiceImpl;
@@ -18,83 +15,86 @@ import pjmarket.service.CartServiceImpl;
 @Controller
 public class CartController {
 
-	@Autowired
-	private CartServiceImpl cs;
+  @Autowired
+  private CartServiceImpl cs;
 
-	// 장바구니로 이동
-	@RequestMapping("listcart.do")
-	public String getListCart(HttpSession session, Model model) throws Exception {
-		String member_id = (String) session.getAttribute("member_id");
-		List<CartList> list = new ArrayList<CartList>();
-		list = cs.getListCart(member_id);
-		model.addAttribute("list", list);
+  @Autowired
+  private LikeController lc;
 
-		return "main/cart_list";
-	}
+  // 장바구니로 이동
+  @RequestMapping("listcart.do")
+  public String getListCart(HttpSession session, Model model) throws Exception {
+    String member_id = (String) session.getAttribute("member_id");
+    List<CartList> list = new ArrayList<CartList>();
+    list = cs.getListCart(member_id);
+    model.addAttribute("list", list);
 
-	// 찜목록 > 장바구니
-	@RequestMapping("like_to_cart.do")
-	public String LikeToCart(int likes_num, HttpSession session, Model model) throws Exception {
-		System.out.println("Like to Cart controller");
-//			int likes_num = Integer.parseInt(request.getParameter("likes_num"));
+    return "main/cart_list";
+  }
 
-		System.out.println("likes_num check : " + likes_num);
-		int result = cs.insertCart(likes_num);
+  // 찜목록 > 장바구니
+  @RequestMapping("like_to_cart.do")
+  public String LikeToCart(int likes_num, HttpSession session, Model model) throws Exception {
+    System.out.println("Like to Cart controller");
+    // int likes_num = Integer.parseInt(request.getParameter("likes_num"));
 
-		LikeController dlike = new LikeController();
-		dlike.deleteLike(likes_num, model);
-		System.out.println("delete like complete");
+    System.out.println("likes_num check : " + likes_num);
+    int result = cs.insertCart(likes_num);
 
-		if (result == 1)
-			System.out.println("insert Cart complete");
-		if (result != 1)
-			System.out.println("insert Cart fail");
+    // LikeController dlike = new LikeController();
+    lc.deleteLike(likes_num, model);
+    System.out.println("delete like complete");
 
-		getListCart(session, model);
-		System.out.println("getListCart complete");
+    if (result == 1)
+      System.out.println("insert Cart complete");
+    if (result != 1)
+      System.out.println("insert Cart fail");
 
-		return "main/cart_list";
-	}
+    getListCart(session, model);
+    System.out.println("getListCart complete");
 
-	// 상품상세 > 장바구니
-	@RequestMapping("product_to_cart.do")
-	public String ProductToCart(Cart cart, HttpServletRequest request, HttpSession session, Model model)
-			throws Exception {
+    return "main/cart_list";
+  }
 
-		String member_id = (String) session.getAttribute("member_id");
+  // 상품상세 > 장바구니
+  @RequestMapping("product_to_cart.do")
+  public String ProductToCart(Cart cart, HttpServletRequest request, HttpSession session,
+      Model model) throws Exception {
 
-		cart.setMember_id(member_id);
+    String member_id = (String) session.getAttribute("member_id");
 
-		int result = cs.insertCart(cart);
+    cart.setMember_id(member_id);
 
-		getListCart(session, model);
+    int result = cs.insertCart(cart);
 
-		if (result == 1) {
-			result = 3;
-		}
+    getListCart(session, model);
 
-		model.addAttribute("result", result);
+    if (result == 1) {
+      result = 3;
+    }
 
-		return "main/cartResult";
-	}
+    model.addAttribute("result", result);
 
-	// 장바구니 삭제
-	@RequestMapping("deletecart.do")
-	public String deleteCart(HttpServletRequest request, Model model) throws Exception {
-		System.out.println("delete Cart controller");
+    return "main/cartResult";
+  }
 
-		int cart_num = Integer.parseInt(request.getParameter("cart_num"));
+  // 장바구니 삭제
+  @RequestMapping("deletecart.do")
+  public String deleteCart(HttpServletRequest request, Model model) throws Exception {
+    System.out.println("delete Cart controller");
 
-		int result = cs.deleteCart(cart_num);
+    int cart_num = Integer.parseInt(request.getParameter("cart_num"));
 
-		if (result == 1) {
-			System.out.println("delete cart complete");
-			result = 2;
-		}
+    int result = cs.deleteCart(cart_num);
 
-		model.addAttribute("result", result);
+    if (result == 1) {
+      System.out.println("delete cart complete");
+      result = 2;
+    }
 
-		return "main/cartResult";
-	}
+    model.addAttribute("result", result);
+
+    return "main/cartResult";
+  }
 
 }

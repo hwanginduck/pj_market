@@ -104,7 +104,7 @@
 				<li><div class="dropdown menu-box">
 						<button class="dropbtn">Manager</button>
 						<div class="dropdown-content">
-							<a href="product_insert.do">상품등록</a>
+							<a href="insertproductform.do">상품등록</a>
 							<a href="cart_list.do">매출현황</a>
 						</div>
 					</div></li>

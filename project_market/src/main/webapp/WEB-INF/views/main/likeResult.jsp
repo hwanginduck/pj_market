@@ -22,3 +22,10 @@
 		location.href="listlike.do";
 	</script>
 </c:if>
+
+<c:if test="${result == 4 }">
+	<script>
+		alert("이미 등록되어 있는 상품입니다.");
+		history.go(-1);
+	</script>
+</c:if>

@@ -30,7 +30,9 @@
 						<div class="like-item-textbox">
 							<div class="like-item-name">
 								${like.product_name}<br>
-								<fmt:formatNumber value='${like.product_price}' pattern='#,### 원' />
+								<fmt:formatNumber value='${like.product_price}' pattern='#,### 원' /><br>
+								${like.options_name}<br>
+								<fmt:formatNumber value='${like.options_price}' pattern='#,### 원' /><br>
 							</div>
 							<div class="like-item-icon">
 								<a class="like-table-btn" onClick="location.href='deletelike.do?likes_num=${like.likes_num}'">
