@@ -29,7 +29,7 @@
 	pageContext.request.contextPath : ${pageContext.request.contextPath } 
 	
 
-	<div class="container" align="center">
+	<div class="container-pj" align="center">
 		<h2 class="text-primary">게시판 목록</h2>
 
 		<c:if test="${empty boardlist}">
@@ -40,7 +40,7 @@
 
 		<c:if test="${not empty boardlist}">
 			<c:forEach var="bl" items="${boardlist}">
-				<table class="table table-striped" border=1> 
+				<table class="table table-striped"> 
 					<tr>
 					
 						<td width="100" align="left">

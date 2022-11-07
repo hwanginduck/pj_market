@@ -6,13 +6,13 @@
 <%@ include file="../fix/header.jsp"%>
 
 <section class="main">
-	<div class="productlist-content">
+	<div class="productlist-content-pj">
 		<c:if test="${empty productlist}">
 			<div>검색된 상품이 없습니다.</div>
 		</c:if>
 		<c:forEach var="pl" items="${productlist}">
-			<div class="item-box">
-				<div class="item-img-box">
+			<div class="item-box-pj">
+				<div class="item-img-box-pj">
 					<a href="productdetail.do?product_num=${pl.product_num}&page=${page}">
 						<img
 							src="<%=request.getContextPath()%>/resources/upload/${pl.product_img}" 

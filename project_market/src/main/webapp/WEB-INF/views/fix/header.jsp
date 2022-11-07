@@ -8,12 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
-<script src="https://kit.fontawesome.com/ab0cffe9ae.js"
-	crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+<script src="https://kit.fontawesome.com/ab0cffe9ae.js"	crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link href="${path}/resources/css/header.css" rel="stylesheet">
@@ -25,22 +28,22 @@
 <body>
 <% session = request.getSession(); %>
 	<header>
-		<div class="header">
-			<div class="logo">
+		<div class="header-pj">
+			<div class="logo-pj">
 				<img
-					src="${pageContext.request.contextPath}/resources/img/gagu_logo1.png" />
+					src="${pageContext.request.contextPath}/resources/img/gagu_logo2.png" />
 			</div>
 
-			<div class="center-box">
-				<div class="input-box">
-					<input id="search-bar" type="text" placeholder=" Search" />
-					<button id="search-button">
+			<div class="center-box-pj">
+				<div class="input-box-pj">
+					<input id="search-bar-pj" type="text" placeholder=" Search" />
+					<button id="search-button-pj">
 						<i class="fa-solid fa-magnifying-glass fa-3x"></i>
 					</button>
 				</div>
 			</div>
-			<div class="login-box">
-				<div class="login">
+			<div class="login-box-pj">
+				<div class="login-pj">
 					<a href="loginform.do">'세션'</a> 
 					<c:if test="${sessionScope.member_id==null}">
 					<a href="member_login_go.do">로그인</a> 
@@ -48,28 +51,26 @@
 					<c:if test="${sessionScope.member_id!=null}">
 					<a href="member_login_go.do">로그아웃</a> 
 					</c:if>
-					
 					<c:if test="${sessionScope.member_id==null}">
 					<a href="member_join.do">회원가입</a>
 					</c:if>
 					<c:if test="${sessionScope.member_id!=null}">
 					<a href="member_edit.do">정보수정</a>
 					</c:if>
-					
 				</div>
 			</div>
 		</div>
-		<div class="navbar">
-			<ul class="menu-bar">
+		<div class="navbar-pj">
+			<ul class="menu-bar-pj">
 				<li>
-					<div class="menu-box">
-						<a href="mainpage.do">Home</a>
+					<div class="menu-box-pj">
+						<a  href="mainpage.do">Home</a>
 					</div>
 				</li>
 				<li>
-					<div class="dropdown menu-box">
-						<button class="dropbtn">Category</button>
-						<div class="dropdown-content">
+					<div class="dropdown-pj menu-box-pj">
+						<button class="dropbtn-pj">Category</button>
+						<div class="dropdown-content-pj">
 							<a href="productlist.do?product_l=홈스마트">홈스마트</a>
 							<a href="productlist.do?product_l=가구">가구</a>
 							<a href="productlist.do?product_l=홈오피스">홈오피스</a> 
@@ -84,26 +85,29 @@
 						</div>
 					</div>
 				</li>
-				<li><div class="menu-box active">
+				<li><div class="menu-box-pj active">
 						<a href="off_list.do">공지사항</a>
 					</div></li>
-				<li><div class="menu-box active">
+					
+				<li><div class="menu-box-pj active">
 						<a href="#">##</a>
 					</div></li>
-				<li><div class="menu-box active">
+				<li><div class="menu-box-pj active">
 						<a href="review_writeform">Review</a>
 					</div></li>
-				<li><div class="dropdown menu-box">
-						<button class="dropbtn">My Page</button>
-						<div class="dropdown-content">
+					
+				<li><div class="dropdown-pj menu-box-pj">
+						<button class="dropbtn-pj">My Page</button>
+						<div class="dropdown-content-pj">
 							<a href="listlike.do">찜목록</a> 
 							<a href="listcart.do">장바구니</a> 
 							<a href="#">내정보수정</a>
 						</div>
 					</div></li>
-				<li><div class="dropdown menu-box">
-						<button class="dropbtn">Manager</button>
-						<div class="dropdown-content">
+					
+				<li><div class="dropdown-pj menu-box-pj">
+						<button class="dropbtn-pj">Manager</button>
+						<div class="dropdown-content-pj">
 							<a href="product_insert.do">상품등록</a>
 							<a href="cart_list.do">매출현황</a>
 						</div>

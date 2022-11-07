@@ -3,13 +3,30 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../fix/header.jsp"%>
 
-<section class="main">
-	<div class="detail-content">
+<script src="${path}/resources/js/product.js"></script>
+<link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
+<script>
+//product상세페이지 [qna 로드]
+$(function qload() {
+	$('#list').load('qna_boardlist.do?product_num='+'${pnum}');
+});
+
+function move1(x) {
+	$('#list').load('qna_boardlist.do');
+}
+
+function move2(y) {
+	$('#list').load('review_boardlist');
+}
+</script>
+
+<section class="main-pj">
+	<div class="detail-content-pj">
 		<form name="f" method="post">
 			<input type="hidden" name="product_num" value=${product.product_num }>
 
 			<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
-			<div class="detail-item-box">
+			<div class="detail-item-box-pj">
 				<table>
 					<tr>
 						<td rowspan="8"><img src="<%=request.getContextPath()%>/resources/upload/${product.product_img}"></td>
@@ -61,36 +78,18 @@
 		</form>
 	</div>
 
-	<div>
-		<div>
-			<div class="detail-content">
+			<div class="detail-content-pj">
+				<div>
+					<ul class="nav nav-tabs nav-justified">
+						<li class="nav-item"><a class="nav-link" onClick="move1( ${product.product_num })">1번</a></li>
+						<li class="nav-item"><a class="nav-link" onClick="move2( ${product.product_num })">2번</a></li>
+						<li class="nav-item"><a class="nav-link" onClick="move()">3번</a></li>
+						<li class="nav-item"><a class="nav-link" onClick="move()">4번</a></li>
+					</ul>
 
-				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item"><a class="nav-link active" onClick="move1( ${product.product_num })">1번</a></li>
-					<li class="nav-item"><a class="nav-link" onClick="move2( ${product.product_num })">2번</a></li>
-					<li class="nav-item"><a class="nav-link" onClick="move()">3번</a></li>
-					<li class="nav-item"><a class="nav-link" onClick="move()">4번</a></li>
-				</ul>
-
-				<div id="list"></div>
+					<div id="list"></div>
+				</div>
 			</div>
-		</div>
 
-	</div>
-	<div class="detail-content">
-		<div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-			<div>qweqweqweqweqweqweqweqwe</div>
-		</div>
-	</div>
 </section>
 <%@ include file="../fix/footer.jsp"%>
