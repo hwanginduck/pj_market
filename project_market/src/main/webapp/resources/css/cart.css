@@ -1,0 +1,88 @@
+
+.cart-table {
+	margin: 0 auto;
+	border: 1px #a39485 solid;
+	font-size: 25px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+	width: 800px;
+	border-collapse: collapse;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+	padding-bottom: 0;
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);;
+}
+
+.cart-right-table {
+	margin: 0 auto;
+	border: 1px #a39485 solid;
+	font-size: 25px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+	width: 500px;
+	border-collapse: collapse;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+	padding-bottom: 0;
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);;
+}
+
+.cart-table>table {
+	text-align: center;
+	margin: auto;
+}
+
+#cart-table-th {
+	font-weight: bold;
+	height: 50px;
+	color: #fff;
+	background: #5FB404;
+}
+
+#cart-table-tr {
+	border-bottom: 1px solid #a39485;
+}
+
+.cart-btn {
+	width: 50px;
+	height: 50px;
+}
+
+.cart-count {
+	font-size: 35px;
+	padding-left: 10px;
+	padding-right: 10px;
+	vertical-align: super;
+}
+
+.cart-table-btn {
+	margin: auto;
+	padding: 5px 5px 5px 5px;
+	width: 50px;
+	height: 50px;
+	/* 기본테두리 없애기 */
+	border: none;
+	/* 클릭시 나오는 테두리 없애기 */
+	outline: none;
+	background-color: transparent;
+}
+
+.buy-button {
+	margin-top: 10px; margin-bottom : 20px; margin : auto;
+	padding: 10px 30px 10px 30px;
+	font-size: 30px;
+	background-color: #ce6d39;
+	color: #ffeee4;
+	border: none;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
+	margin-bottom: 20px;
+	margin: auto;
+}
+
+.cart-checkbox {
+	width: 30px;
+	height: 30px;
+}

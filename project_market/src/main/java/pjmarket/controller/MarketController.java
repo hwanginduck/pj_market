@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MarketController {
 
 	// 메인페이지
-	@RequestMapping("mainpage.do")
+	@RequestMapping("mainpage")
 	public String MainPage() {
 		System.out.println("controller");
 		return "main/mainpage";

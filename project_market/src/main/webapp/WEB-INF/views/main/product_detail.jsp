@@ -9,113 +9,26 @@
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script>
 
 
-
-<style>
-div {
-  border: 1px solid red;
-}
-select {
-	width: 200px;
-	padding: .8em .5em;
-	border: 1px solid #999;
-	font-family: inherit;
-	background: url('arrow.jpg') no-repeat 95% 50%;
-	border-radius: 0px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-select::-ms-expand {
-	display: none;
-}
-
-.nav {
-	display: flex;
-	flex-wrap: wrap;
-	padding-left: 0;
-	margin-bottom: 0;
-	list-style: none
-}
-
-.nav-tabs {
-	border-bottom: 1px solid #dee2e6
-}
-
-.nav-justified .nav-item, .nav-justified>.nav-link {
-	flex-basis: 0;
-	flex-grow: 1;
-	text-align: center
-}
-
-.nav-link {
-	display: block;
-	padding: .5rem 1rem;
-	color: #0d6efd;
-	text-decoration: none;
-	transition: color .15s ease-in-out, background-color .15s ease-in-out,
-		border-color .15s ease-in-out
-}
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-	color: #495057;
-	background-color: #fff;
-	border-color: #dee2e6 #dee2e6 #fff
-}
-
-.container, .container-fluid, .container-lg, .container-md,
-	.container-sm, .container-xl, .container-xxl {
-	width: 100%;
-	padding-right: var(- -bs-gutter-x, .75rem);
-	padding-left: var(- -bs-gutter-x, .75rem);
-	margin-right: auto;
-	margin-left: auto
-}
-
-.mt-3 {
-	margin-top: 1rem !important
-}
-</style>
-
-
-<script type="text/javascript">
-	$(function () {
-		
-		$('#list').load('qna_boardlist.do?product_num='+'${pnum}');
-	});
-	
-	function move1(x) {
-		$('#list').load('qna_boardlist.do');
-	}
-	
-	function move2(y) {
-		$('#list').load('review_boardlist');
-	}
-        
-              
-
-</script> 
-
-
-
-<section class="main">	
-	<div class="main-img">
-		<div class="cart-content">
+<section class="main">
+	<div class="detail-content">
 			<form name="f" method="post">
 			<input type="hidden" name="product_num" value=${product.product_num }>
 			
 				<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
-				<div class="product-insert-table">
-					<table width="1000px" border="1">
+				<div class="detail-item-box">
+					<table>
 						<tr>
 							<td rowspan="8"><img
 								src="<%=request.getContextPath()%>/resources/upload/${product.product_img}">
 							</td>
-							<td><input type="text" name="product_name"
-								value="${product.product_name}"></td>
+							<td>
+								<input type="text" readonly name="product_name" value="${product.product_name}">
+							</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="product_sub"
-								value="${product.product_sub}"></td>
+							<td>
+								<input type="text" readonly name="product_sub" value="${product.product_sub}">
+							</td>
 						</tr>
 						<tr>
 							<td>별점 ★  ${pnum } // ${member_id }</td>
@@ -131,11 +44,13 @@ select::-ms-expand {
 							</td>
 						</tr>
 						<tr>
-							<td><textarea>${product.product_content}</textarea></td>
+							<td>
+								<div>${product.product_content}</div>
+							</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="product_price"
-								value="<fmt:formatNumber value="${product.product_price}" pattern="₩#,###" />">
+							<td>
+								<input type="text" readonly name="product_price" value="<fmt:formatNumber value="${product.product_price}" pattern="₩#,###" />">
 							</td>
 						</tr>
 						<tr>
@@ -163,7 +78,7 @@ select::-ms-expand {
 		</div>
 
 		<div>
-			<div class="container">
+			<div class="detail-content">
 
 				<p>여깁니다</p>
 				<ul class="nav nav-tabs nav-justified" >
@@ -178,5 +93,20 @@ select::-ms-expand {
 		</div>
 
 	</div>
+		<div class="detail-content">
+			<div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+				<div>qweqweqweqweqweqweqweqwe</div>
+			</div>
+		</div>
 </section>
 <%@ include file="../fix/footer.jsp"%>
