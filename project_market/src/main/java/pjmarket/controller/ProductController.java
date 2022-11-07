@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import pjmarket.model.Options;
 import pjmarket.model.Product;
+import pjmarket.model.QnaBoard;
 import pjmarket.service.OptionsServiceImpl;
 import pjmarket.service.ProductServiceImpl;
+import pjmarket.service.QnaServiceImpl;
 
 @Controller
 public class ProductController {
@@ -29,6 +31,9 @@ public class ProductController {
 
 	@Autowired
 	private OptionsServiceImpl os;
+	
+	@Autowired
+	private QnaServiceImpl qs;
 
 	// 상품등록 폼이동
 	@RequestMapping("insertproductform.do")
@@ -172,14 +177,12 @@ public class ProductController {
 	}
 
 	@RequestMapping("productdetail.do")
-	public String getProductDetail(HttpServletRequest request, int product_num, int page, Model model) {
-
-		HttpSession pnum_session = request.getSession();
-		pnum_session.setAttribute("pnum", product_num);
+	public String getProductDetail(QnaBoard qnaboard, int product_num, int page, Model model) {
 
 		Product product = ps.getProductDetail(product_num);
 		List<Options> optionslist = new ArrayList<Options>();
 		optionslist = os.getOptionList(product_num);
+		qnaboard = qs.getBoardList(product_num);
 
 		model.addAttribute("product", product);
 		model.addAttribute("optionslist", optionslist);

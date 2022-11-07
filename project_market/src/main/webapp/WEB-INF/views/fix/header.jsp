@@ -44,7 +44,6 @@
 			</div>
 			<div class="login-box-pj">
 				<div class="login-pj">
-					<a href="loginform.do">'세션'</a> 
 					<c:if test="${sessionScope.member_id==null}">
 					<a href="member_login_go.do">로그인</a> 
 					</c:if>
@@ -111,7 +110,8 @@
 							<a href="product_insert.do">상품등록</a>
 							<a href="cart_list.do">매출현황</a>
 						</div>
-					</div></li>
+					</div>
+					</li>
 			</ul>
 		</div>
 	</header>

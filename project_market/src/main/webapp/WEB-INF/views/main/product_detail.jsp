@@ -7,8 +7,8 @@
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 <script>
 //product상세페이지 [qna 로드]
-$(function qload() {
-	$('#list').load('qna_boardlist.do?product_num='+'${pnum}');
+$(function () {
+	$('#list').load('qna_boardlist.do?product_num='+'${product_num}');
 });
 
 function move1(x) {
