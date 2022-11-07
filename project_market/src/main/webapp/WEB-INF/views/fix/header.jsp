@@ -36,10 +36,10 @@
 
 			<div class="center-box-pj">
 				<div class="input-box-pj">
-					<input id="search-bar-pj" type="text" placeholder=" Search" />
 					<button id="search-button-pj">
 						<i class="fa-solid fa-magnifying-glass fa-3x"></i>
 					</button>
+					<input id="search-bar-pj" type="text" placeholder=" Search" />
 				</div>
 			</div>
 			<div class="login-box-pj">
