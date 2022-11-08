@@ -98,7 +98,7 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%@ page isELIgnored="false"%>
 						<a href="#">##</a>
 					</div></li>
 				<li><div class="menu-box-pj active">
-						<a href="review_writeform">Review</a>
+						<a href="review_boardlist">Review</a>
 					</div></li>
 					
 				<li><div class="dropdown-pj menu-box-pj">
