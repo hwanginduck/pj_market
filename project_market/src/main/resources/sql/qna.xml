@@ -28,8 +28,8 @@
 		(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate, #{qna_group})
 	</insert>
 
-	<select id="qna_count" resultType="int">
-		select count(qna_no) from qna
+	<select id="qna_count" parameterType="int" resultType="int">
+		select count(*) from qna where product_num = #{product_num};
 	</select>
 
 <!-- 	<select id="qna_list" parameterType="int" resultType="qna">
@@ -43,7 +43,7 @@
 	
 	<select id="qna_list" parameterType="int" resultType="qna">
 		  <![CDATA[
-		select * from (select rownum rnum, qna.* from qna order by qna_no desc)
+		select * from (select rownum rnum, qna.* from qna where product_num = #{product_num} order by qna_no desc)
 		where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5) order by qna_group desc, qna_re asc
 		 ]]> 
 	</select>

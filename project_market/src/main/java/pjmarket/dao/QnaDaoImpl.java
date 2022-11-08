@@ -1,5 +1,6 @@
 package pjmarket.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,13 +29,18 @@ public class QnaDaoImpl implements QnaDao {
 	}
 	//게시글 수 조회
 	@Override
-	public int getListCount() {
-		return session.selectOne("qnans.qna_count");
+	public int getListCount(int product_num) {
+		return session.selectOne("qnans.qna_count", product_num);
 	}
+	
 	//게시글리스트조회
 	@Override
-	public List<QnaBoard> getBoardList(int page) {
-		List<QnaBoard> list = session.selectList("qnans.qna_list", page);
+	public List<QnaBoard> getBoardList(int product_num, int page) {
+		HashMap<String, Object> map = new HashMap<String, Object> ();
+		map.put("product_num", product_num);
+		map.put("page", page);
+		
+		List<QnaBoard> list = session.selectList("qnans.qna_list", map);
 		return list ;
 	}
 	//수정폼을위한 1개의 객체정보 조회

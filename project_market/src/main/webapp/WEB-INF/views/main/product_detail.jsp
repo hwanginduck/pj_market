@@ -8,11 +8,12 @@
 <script>
 //product상세페이지 [qna 로드]
 $(function () {
-	$('#list').load('qna_boardlist.do?product_num='+'${product_num}');
+	var product_num = ${product_num}
+	$('#list').load('qna_boardlist.do');
 });
 
-function move1(x) {
-	$('#list').load('qna_boardlist.do');
+function move1(product_num) {
+	$('#list').load('qna_boardlist.do?product_num='+product_num);
 }
 
 function move2(y) {
