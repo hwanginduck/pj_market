@@ -1,21 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="header.jsp"%>
+    <%@ include file="../fix/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/js/board.js"></script>
 	
 <meta charset="UTF-8">
 <title>리뷰 작성 게시판</title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="./js/board.js"></script>
+
 </head>
 <body>
+<section class="main-pj">
+		<div class="detail-content-pj">
 ${member_id }
 ${product_num }
 ${options_num }
  <div class="container" align="center">
-<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰</h3>
+<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">Product Review</h3>
 
 <form action="review_insertresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
@@ -27,14 +31,14 @@ ${options_num }
 		<tr>
 		 <td style="font-weight: bold;" align="center">제목</td>
 	       <td>
-		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="테스트값"  />
+				<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center" />
 			</td>
 		</tr>
 		<!--  --><tr>
 			<td style="font-weight: bold;" align="center"> 상품 별점</td>
 			<td>
 			<div>
-				<select id="review_star" name="review_star" required="required">
+				<select id="review_star" name="review_star">
 					<option value="">선택하세요</option>
 					<option value="0">☆☆☆☆☆</option>
 					<option value="1">★☆☆☆☆</option>
@@ -66,5 +70,9 @@ ${options_num }
 	</table>
 </form>
 </div> 
+</div>
+</section>
 </body>
 </html>
+	
+<%@ include file="../fix/footer.jsp"%>

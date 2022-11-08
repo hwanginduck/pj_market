@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="header.jsp"%>
+	<%@ include file="../fix/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +10,14 @@
 </head>
 <body>
 
-
+<section class="main-pj">
+		<div class="detail-content-pj">
+		
 <div class="container" align="center">
 
 <div class="vf-wide700-card">
-<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">리뷰 상세</h3>
+<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">Review Detail</h3>
 <table class="table table-bordered">
-999999:  ${ review.review_no}
 		<tr>
 			<th>상품코드</th>
 			<td>${review.product_num }</td>
@@ -85,10 +87,12 @@
 				onclick="location='review_boardlist.do'">
 			</td>
 		</tr>
-		<%-- ?review_no=${review.review_no}' --%>
 	</table>
 
 </div>
 </div>
+</div>
+</section>
 </body>
 </html>
+<%@ include file="../fix/footer.jsp"%>
