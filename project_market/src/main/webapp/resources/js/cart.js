@@ -1,23 +1,30 @@
-/* 장바구니 숫자 증가 감소 */
-function count(type, num) {
-		
-	// 결과를 표시할 element
-	const resultElement = document.getElementById('result'+num);
-		
-	// 현재 화면에 표시된 값
-	let number = resultElement.innerText;
-		
-	// 더하기/빼기
-	if (type === 'plus'+num) {
-		number = parseInt(number) + 1;
-	} else if (type === 'minus'+num) {
-		number = parseInt(number) - 1
-		if (number == 0) {
-			alert("1 이하로는 내릴수 없습니다.");
-			number = 1;
+$("#allChecking").click(function() {
+	var chk = $("#allChecking").prop("checked");
+	if (chk) {
+		$(".chkbox").prop("checked", true);
+		itemSum();
+		console.log(chk)
+	} else {
+		$(".chkbox").prop("checked", false);
+		itemSum();
+		console.log(chk)
+	}
+});
+
+
+function itemSum() {
+	var str = "";
+	var sum = 0;
+	var count = $(".chkbox").length;
+	for (var i = 0; i < count; i++) {
+		if ($(".chkbox")[i].checked == true) {
+			sum += parseInt($(".chkbox")[i].value);
 		}
 	}
+	$("#total_sum").html(sum + " 원");
+	$("#amount").val(sum);
+} 
 
-	// 결과 출력
-	resultElement.innerText = number;
-}
+$(".chkbox").click(function () {
+	$("#allChecking").prop("checked", false);
+});

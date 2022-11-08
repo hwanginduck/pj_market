@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pjmarket.model.LikeList;
+import pjmarket.model.Likes;
 
 @Repository
 public class LikeDaoImpl implements LikeDao{
@@ -48,7 +49,17 @@ public class LikeDaoImpl implements LikeDao{
 		map.put("options_num", options_num);
 		map.put("member_id", member_id);
 		
-		int result = sqlSession.insert("likens.insertlike", map);
+		Likes like = new Likes();
+		
+		like = sqlSession.selectOne("likens.selectlike", map);
+		
+		int result = 0;
+		
+		if(like == null) {
+			result = sqlSession.insert("likens.insertlike", map);			
+		}else {
+			result = 4;
+		}
 		
 		return result;
 		

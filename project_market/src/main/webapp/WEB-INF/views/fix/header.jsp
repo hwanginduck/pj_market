@@ -1,38 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false"%>
-	
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ page isELIgnored="false"%>
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700&family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
 
-<script src="https://kit.fontawesome.com/ab0cffe9ae.js"	crossorigin="anonymous"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<c:set var="path" value="${pageContext.request.contextPath }" />
-<link href="${path}/resources/css/header.css" rel="stylesheet">
-<link href="${path}/resources/css/footer.css" rel="stylesheet">
-<link href="${path}/resources/css/product.css" rel="stylesheet">
-<link href="${path}/resources/css/cart.css" rel="stylesheet">
-<link href="${path}/resources/css/like.css" rel="stylesheet">
-</head>
-<body>
-<% session = request.getSession(); %>
-	<header>
-		<div class="header-pj">
-			<div class="logo-pj">
-				<img
-					src="${pageContext.request.contextPath}/resources/img/gagu_logo2.png" />
-			</div>
+    <script
+      src="https://kit.fontawesome.com/ab0cffe9ae.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <c:set var="path" value="${pageContext.request.contextPath }" />
+    <link href="${path}/resources/css/header.css" rel="stylesheet" />
+    <link href="${path}/resources/css/footer.css" rel="stylesheet" />
+    <link href="${path}/resources/css/product.css" rel="stylesheet" />
+    <link href="${path}/resources/css/cart.css" rel="stylesheet" />
+    <link href="${path}/resources/css/like.css" rel="stylesheet" />
+  </head>
+  <body>
+    <% session = request.getSession(); %>
+    <header>
+      <div class="header-pj">
+        <div class="logo-pj">
+          <img
+            src="${pageContext.request.contextPath}/resources/img/gagu_logo2.png"
+          />
+        </div>
 
 			<div class="center-box-pj">
 				<div class="input-box-pj">
@@ -116,7 +122,7 @@
 		</div>
 	</header>
 </body>
-<script src="${path}/resources/js/cart.js"></script>
+
 <script src="${path}/resources/js/product.js"></script>
 <script src="${path}/resources/js/like.js"></script>
 </html>

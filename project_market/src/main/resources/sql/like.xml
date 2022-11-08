@@ -15,10 +15,11 @@
 		delete from likes where likes_num=#{likes_num}
 	</delete>
 	
+	<select id="selectlike" parameterType="map" resultType="likes">
+		select * from likes where member_id = #{member_id} and product_num = #{product_num} and options_num = #{options_num}
+	</select>
+	
 	<insert id="insertlike" parameterType="map">
-		insert into likes values(likes_seq.nextval, #{product_num}, #{member_id}, #{options_num})
+		insert into likes values(likes_seq.nextval, #{product_num}, #{member_id}, #{options_num})				
 	</insert>
-
-	
-	
 </mapper>
