@@ -240,7 +240,7 @@ public class ReviewController {
 			Review review = rs.ReviewDelete(review_no);
 			model.addAttribute("review", review);
 			
-			return "review/review_delete";
+			return "review/review_delete"; 
 		}
  
 		// 리뷰 삭제 성공
