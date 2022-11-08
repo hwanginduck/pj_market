@@ -11,7 +11,7 @@
 		member_date,join_state) values(join_member_memberno_seq.nextval,
 		#{member_id},#{member_pw},#{member_name},
 		#{member_zip1},#{member_addr1},#{member_addr2},
-		#{member_phone},#{member_phone2},#{member_phone3},#{member_email},#{member_domain, jdbcType=VARCHAR},sysdate,1)
+		#{member_phone},#{member_phone2},#{member_phone3},#{member_email},#{member_domain},sysdate,1)
 	</insert>
 	
 	<!-- 로그인 인증 --> 
