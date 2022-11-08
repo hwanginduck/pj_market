@@ -23,6 +23,9 @@ public interface ReviewDao {
 	public Review getMember(int review_no);
 
 	public int Updatereview(Review review);
-	
+
+	public Review ReviewDelete(int review_no);
+
+	public int ReviewDeleteOk(Review review);
 
 }

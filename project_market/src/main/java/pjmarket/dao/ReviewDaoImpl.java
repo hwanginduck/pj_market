@@ -64,6 +64,17 @@ public class ReviewDaoImpl implements ReviewDao {
 		return result;
 	}
 
+	public Review ReviewDelete(int review_no) {
+		Review review = session.selectOne("reviewns.deleteselect", review_no);
+		return review;
+	}
+
+	public int ReviewDeleteOk(Review review) {
+		System.out.println("ReviewDeleteOk");
+		int result = session.update("reviewns.review_delete", review);
+		return result;
+	}
+
 
 
 }

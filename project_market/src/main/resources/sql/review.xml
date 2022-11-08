@@ -64,6 +64,16 @@ select * from review where review_no = #{review_no}
 	review_star=#{review_star},review_content=#{review_content},review_date=sysdate
 	where review_no=#{review_no}
 </update>
+
+<!-- 리뷰 삭제 번호 불러오기 -->
+<select id="deleteselect" parameterType="int" resultType="review">
+select * from review where review_no = #{review_no}
+</select>
+
+<!-- 게시물 삭제 -->
+	<delete id="review_delete" parameterType="int">
+		delete from review where review_no=#{review_no}
+	</delete>
  
  
  <!-- 상품명 구하기 -->

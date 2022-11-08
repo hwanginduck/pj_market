@@ -189,43 +189,52 @@ public class ReviewController {
     // model.addAttribute("review_img", review.getReview_img());
     // model.addAttribute("product", product);
 
-    return "review/review_detail";
-  }
+		return "review/review_detail";
+	}
+		
+		//리뷰 업데이트 폼으로 이동
+		@RequestMapping("review_update.do")
+		public String ReviewUpdate(int review_no, Model model) throws Exception {
+			System.out.println("review_update");
+			Review review = rs.Reviewupdate(review_no);
+			model.addAttribute("review", review);
+			return "review/review_update";
+		}
+		
+		// 리뷰 업데이트 성공 
+		@RequestMapping("review_updateresult")
+		public String Reviewupdateresult(Review review, Model model) throws Exception {
+			System.out.println("review_updateresult");
 
-  // 리뷰 수정 폼
-  // @RequestMapping("review_update")
-  // public String ReviewUpdate(int review_no, String page, Model model) {
-  //
-  // System.out.println("업데이트 입장");
-  // Review review = rs.update(review_no);
-  //
-  // model.addAttribute("review", review);
-  // model.addAttribute("page", page);
-  //
-  // return "review/review_update";
-  // }
+			int result = rs.ReviewUpdateok(review);
+			if(result == 1) System.out.println("수정성공");
+			
+			model.addAttribute("result", result);
+			
+			return "review/review_updateresult";
+		}
 
-  // 리뷰 업데이트 폼으로 이동
-  @RequestMapping("review_update.do")
-  public String ReviewUpdate(int review_no, Model model) throws Exception {
-    System.out.println("review_update");
-    Review review = rs.Reviewupdate(review_no);
-    model.addAttribute("review", review);
-    return "review/review_update";
-  }
+		// 리뷰 삭제 
+		@RequestMapping("review_delete.do")
+		public String reviewdeleteform(int review_no, Model model)throws Exception {
+			System.out.println("review_delete");
+			Review review = rs.ReviewDelete(review_no);
+			model.addAttribute("review", review);
+			
+			return "review/review_delete"; 
+		}
+ 
+		// 리뷰 삭제 성공
+		@RequestMapping("review_deleteresult")
+		public String reviewdelete(Review review, Model model) throws Exception {
+			System.out.println("review_deleteresult");
 
-  // 리뷰 업데이트 성공
-  @RequestMapping("review_updateresult")
-  public String Reviewupdateresult(Review review, Model model) throws Exception {
-    System.out.println("review_updateresult");
-
-    int result = rs.ReviewUpdateok(review);
-    if (result == 1)
-      System.out.println("수정성공");
-
-    model.addAttribute("result", result);
-
-    return "review/review_updateresult";
-  }
+			int result = rs.ReviewDeleteOk(review);
+			if(result == 1) System.out.println("삭제성공");
+			
+			model.addAttribute("result", result);
+			return "review/review_deleteresult";
+		}
+		
 
 }
