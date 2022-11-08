@@ -3,55 +3,59 @@
 <%--     <%@ include file="../fix/header.jsp"%> --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../fix/header.jsp"%>
+
+<section class="main-pj">
+	<div class="detail-content-pj">
+	
+	
 <div>
 
-	<a href="off_writeform.do">공지사항 작성</a>
-	<br> 글갯수 : ${listcount }
-	
+	<a href="off_writeform.do">공지사항 작성</a> <br> 글갯수 : ${listcount }
+
 
 	<title>공지사항 목록</title>
-	
-	
+
+
 	<table border=1 align=center width=700>
-		<caption><h3>공지사항 목록</h3></caption>
+		<caption>
+			<h3>공지사항 목록</h3>
+		</caption>
 		<tr>
 			<th>번호</th>
 
-				<th>제목</th>
+			<th>제목</th>
 
-				<th>작성자</th>
+			<th>작성자</th>
 
-				<th>날짜</th>
+			<th>날짜</th>
 
-				<th>조회수</th>
-			</tr>
+			<th>조회수</th>
+		</tr>
 
-			<!-- 화면 출력 번호 -->
-			<c:set var="num" value="${listcount-(page-1)*10 }" />
-			<c:forEach var="b" items="${off_list}">
-				<tr>
-					<td>${num}<c:set var="num" value="${num-1 }" />
-					</td>
-
-				<td>
-				<a href="off_content.do?off_num=${b.off_num}&page=${page}">
-						${b.off_subject} </a>
+		<!-- 화면 출력 번호 -->
+		<c:set var="num" value="${listcount-(page-1)*10 }" />
+		<c:forEach var="b" items="${off_list}">
+			<tr>
+				<td>${num}<c:set var="num" value="${num-1 }" />
 				</td>
-				
+
+				<td><a href="off_content.do?off_num=${b.off_num}&page=${page}">
+						${b.off_subject} </a></td>
+
 				<td>${b.off_name}</td>
 
-					<td><fmt:formatDate value="${b.off_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				<td><fmt:formatDate value="${b.off_date}"
+						pattern="yyyy-MM-dd HH:mm:ss" /></td>
 
-					<td>${b.off_readcount}</td>
-				</tr>
+				<td>${b.off_readcount}</td>
+			</tr>
 
-			</c:forEach>
+		</c:forEach>
 
-		</table>
-		
-		<!-- 페이지 처리 -->
-		<div class="detail-content-pj">
-		<ul class="pagination">
+	</table>
+
+	<!-- 페이지 처리 -->
 			<c:if test="${listcount > 0 }">
 
 				<!-- 1페이지 이동 -->
@@ -77,11 +81,11 @@
 				</c:if>
 
 				<!-- 마지막 페이지로 이동 -->
-				<a href="off_list.do?page=${pageCount}" style="text-decoration: none"> > </a>
-			</c:if>
+				<a href="off_list.do?page=${pageCount}"
+					style="text-decoration: none"> > </a>
 
-			<!-- 마지막 페이지로 이동 -->
-			<a href="off_list.do?page=${pageCount}" style="text-decoration: none">
-				> </a>
-	</c:if>
-	</center>
+			</c:if>
+		</div>
+	</div>
+	</section>
+	<%@ include file="../fix/footer.jsp"%>

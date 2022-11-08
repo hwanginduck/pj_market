@@ -23,6 +23,7 @@ function move2(y) {
 
 <section class="main-pj">
 	<div class="detail-content-pj">
+	
 		<form name="f" method="post">
 			<input type="hidden" name="product_num" value=${product.product_num }>
 
