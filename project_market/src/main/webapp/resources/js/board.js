@@ -3,7 +3,7 @@ function board_check() {
 		alert("아이디를 입력하세요!");
 		$("#member_id").val("").focus();
 		return false;
-	}
+	} 
 	if ($.trim($("#review_sb").val()) == "") {
 		alert("글제목을 입력하세요!");
 		$("#review_sb").val("").focus();
