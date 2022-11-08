@@ -16,9 +16,9 @@ public interface OfficialDao {
 	  
 	  public OfficialBoard getOfficialBoard(int off_num) ;
 	
-	public int off_delete(int off_num);
+	  public int off_update(OfficialBoard off);
 
-	public int off_update(OfficialBoard off);
+	  public int off_delete(int off_num);
 
 
 }

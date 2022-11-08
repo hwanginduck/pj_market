@@ -106,7 +106,7 @@ public class OfficialController {
 
 	// 공지사항 수정
 	@RequestMapping("off_update.do")
-	public String off_updateform(OfficialBoard off, String page, Model model)  {
+	public String off_update(OfficialBoard off, String page, Model model)  {
 		int result = 0;
 
 		OfficialBoard old = os.getOfficialBoard(off.getOff_num());	// 상세정보 구하기

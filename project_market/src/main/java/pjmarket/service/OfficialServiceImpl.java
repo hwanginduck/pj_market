@@ -33,13 +33,12 @@ public class OfficialServiceImpl implements OfficialService{
 		return dao.getOfficialBoard(off_num);
 	}
 	
-	public int off_delete(int off_num) {			// 공지사항 삭제
-		return dao.off_delete(off_num);
-	}
-
 	public int off_update(OfficialBoard off) {			// 공지사항 수정
 		return dao.off_update(off);
 	}
-
+	
+	public int off_delete(int off_num) {			// 공지사항 삭제
+		return dao.off_delete(off_num);
+	}
 }
 
