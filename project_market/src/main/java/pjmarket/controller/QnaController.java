@@ -21,7 +21,7 @@ public class QnaController {
 
 	// 상품문의게시판
 	@RequestMapping("qna_boardlist.do")
-	public String QnaBoardList(HttpServletRequest request,int product_num, Model model) {
+	public String QnaBoardList(HttpServletRequest request, Model model) {
 
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
 
@@ -31,14 +31,16 @@ public class QnaController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println("?product_num: "+product_num);
+//		System.out.println("?product_num: "+product_num);
 		System.out.println("?page: "+page);
 
 		// 총 리스트 수를 받아옴.
-		int listcount = qs.getListCount(page, product_num);
+//		int listcount = qs.getListCount(page, product_num);
+		int listcount = qs.getListCount(page);
 
 		// 페이지 번호(page)를 DAO클래스에게 전달한다.
-		boardlist = qs.getBoardList(product_num, page); // 리스트를 받아옴.
+//		boardlist = qs.getBoardList(product_num, page); // 리스트를 받아옴.
+		boardlist = qs.getBoardList(page); // 리스트를 받아옴.
 
 		// 총 페이지 수.
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림

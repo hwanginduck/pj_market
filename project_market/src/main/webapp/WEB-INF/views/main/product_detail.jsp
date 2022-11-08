@@ -8,12 +8,12 @@
 <script>
 //product상세페이지 [qna 로드]
 $(function () {
-	var product_num = ${product_num}
 	$('#list').load('qna_boardlist.do');
 });
 
+// 상단 스크립트 매뉴로 페이지 로드함수.
 function move1(product_num) {
-	$('#list').load('qna_boardlist.do?product_num='+product_num);
+	$('#list').load('qna_boardlist.do');
 }
 
 function move2(y) {

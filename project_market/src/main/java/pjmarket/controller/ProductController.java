@@ -179,15 +179,12 @@ public class ProductController {
 	@RequestMapping("productdetail.do")
 	public String getProductDetail(int product_num, int page, Model model) {
 		
-//		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
 		Product product = ps.getProductDetail(product_num);
 		List<Options> optionslist = new ArrayList<Options>();
 		optionslist = os.getOptionList(product_num);
-//		boardlist = qs.getBoardList(product_num, page);
 
 		model.addAttribute("product", product);
 		model.addAttribute("optionslist", optionslist);
-//		model.addAttribute("boardlist", boardlist);
 		model.addAttribute("page", page);
 
 		return "main/product_detail";

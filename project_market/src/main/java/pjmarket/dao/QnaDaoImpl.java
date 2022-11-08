@@ -11,83 +11,89 @@ import pjmarket.model.QnaBoard;
 
 @Repository
 public class QnaDaoImpl implements QnaDao {
-	
+
 	@Autowired
 	private SqlSessionTemplate session;
 
-	//게시판에저장
+	// 게시판에저장
 	@Override
 	public int QnaInsert(QnaBoard qnaboard) {
-		if(qnaboard.getMember_id().equals("admin")) {
+		if (qnaboard.getMember_id().equals("admin")) {
 			int admin_result = session.insert("qnans.qna_admininsert", qnaboard);
 			return admin_result;
-		}
-		else {
+		} else {
 			int user_result = session.insert("qnans.qna_userinsert", qnaboard);
 			return user_result;
 		}
 	}
 
-	/*
-	 * //게시글 수 조회
-	 * 
-	 * @Override public int getListCount(int product_num) { return
-	 * session.selectOne("qnans.qna_count", product_num); }
-	 * 
-	 * //게시글리스트조회
-	 * 
-	 * @Override public List<QnaBoard> getBoardList(int product_num, int page) {
-	 * HashMap<String, Object> map = new HashMap<String, Object> ();
-	 * map.put("product_num", product_num); map.put("page", page);
-	 * 
-	 * List<QnaBoard> list = session.selectList("qnans.qna_list", map); return list
-	 * ; }
-	 */
-	
-	//게시글 수 조회
-		@Override
-		public int getListCount(int page, int product_num) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("page", page);
-			map.put("product_num", product_num);
-			return session.selectOne("qnans.qna_count", map);
-		}
-		//게시글리스트조회
-		@Override
-		public List<QnaBoard> getBoardList(int page, int product_num) {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("page", page);
-			map.put("product_num", product_num);
-			
-			List<QnaBoard> list = session.selectList("qnans.qna_list", map);
-			System.out.println("dao return List: " + list);
-			System.out.println("dao return List.size(): " + list.size());
-			return list ;
-		}
-		
-		
-	//수정폼을위한 1개의 객체정보 조회
+	// 게시글 수 조회
+
+	@Override
+	public int getListCount(int page) {
+		return session.selectOne("qnans.qna_count", page);
+	}
+
+	// 게시글리스트조회
+
+	@Override
+	public List<QnaBoard> getBoardList(int page) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("product_num", product_num);
+		map.put("page", page);
+
+		List<QnaBoard> list = session.selectList("qnans.qna_list", map);
+		return list;
+	}
+
+//	// 게시글 수 조회
+//	@Override
+//	public int getListCount(int page, int product_num) {
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("page", page);
+//		map.put("product_num", product_num);
+//		return session.selectOne("qnans.qna_count", map);
+//	}
+//
+//	// 게시글리스트조회
+//	@Override
+//	public List<QnaBoard> getBoardList(int page, int product_num) {
+//		System.out.println("dao input page: "+page);
+//		System.out.println("dao input product_num: "+product_num);
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("page", page);
+//		map.put("product_num", product_num);
+//
+//		List<QnaBoard> list = session.selectList("qnans.qna_list", map);
+//		System.out.println("dao return List: " + list);
+//		System.out.println("dao return List.size(): " + list.size());
+//		return list;
+//	}
+
+	// 수정폼을위한 1개의 객체정보 조회
 	@Override
 	public QnaBoard getMember(int qna_no) {
 		QnaBoard qboard = session.selectOne("qnans.qna_select", qna_no);
 		return qboard;
 	}
-	//수정 후 1개의 객체정보 업데이트
+
+	// 수정 후 1개의 객체정보 업데이트
 	@Override
 	public int UpdateQna(QnaBoard qnaboard) {
 		int result = session.update("qnans.qna_update", qnaboard);
 		return result;
 	}
+
 	// QNA삭제
 	@Override
 	public int DeleteQna(int qna_re, int qna_group) {
 		int result = -1;
 		if (qna_re == 0) { // 사용자일경우
 			result = session.delete("qnans.qna_userdelete", qna_group);
-		} else {			// 관리자일경우
+		} else { // 관리자일경우
 			result = session.delete("qnans.qna_admindelete", qna_group);
 		}
 		return result;
 	}
-	
+
 }

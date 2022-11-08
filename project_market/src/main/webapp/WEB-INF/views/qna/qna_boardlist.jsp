@@ -15,12 +15,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 <script type="text/javascript">
+
+	// 게시물 삭제 확인
     var fnConfirm = function(qna_re, qna_group) {
         if (confirm('게시글을 삭제합니다.')) {
             location.href="qna_delete.do?qna_re="+qna_re+"&qna_group="+qna_group; 
         }
     }
     
+/* 	// 이전페이지
     function Before(page,prduct_num){
     	$.post(
 				'${path}/qna_boardlist.do?page=${page-1}&product_num=${product_num}',
@@ -29,6 +32,8 @@
 			frm.replytext.value = '';
 		});
     };
+    
+    // 선택페이지
     function SelPage(a,prduct_num){
     	var page =  a;
     	$.post(
@@ -38,6 +43,8 @@
 			frm.replytext.value = '';
 		});
     };
+    
+    // 다음페이지
     function Next(page,prduct_num){
     	$.post(
 				'${path}/qna_boardlist.do?page=${page+1}&product_num=${product_num}',
@@ -45,33 +52,8 @@
 			$('#boardlist').html(data);
 			frm.replytext.value = '';
 		});
-    };
+    }; */
    
-    
-   /*  $(function() {
-		$('#slist').load('${path}/slist/num/${board.num}')
-//		$('#list').load('${path}/list/pageNum/${pageNum}');
-		
-		$('#repInsert').click(function() {
-			if (!frm.replytext.value) {
-				alert('댓글 입력후에 클릭하시오');
-				frm.replytext.focus();
-				return false;
-			}
-			
-			var frmData = $('form').serialize();
-			// var frmData = 'replyer='+frm.replyer.value+'&bno='+
-			//				  frm.bno.value+'&replytext='+frm.replytext.value;				  
-			$.post(
-					'${path}/sInsert',
-					frmData, 
-					function(data) {
-				$('#slist').html(data);
-				frm.replytext.value = '';
-			});
-		});
-	}); */
-    
 </script>
 
 <meta charset="UTF-8">

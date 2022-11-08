@@ -10,9 +10,9 @@ public interface QnaService {
 
 	public int QnaInsert(QnaBoard qnaboard);
 
-	public int getListCount(int page, int product_num);
+	public int getListCount(int page);
 
-	public List<QnaBoard> getBoardList(int product_num, int page);
+	public List<QnaBoard> getBoardList(int page);
 	
 	public QnaBoard QnaUpdate(int qna_no);
 	

@@ -22,13 +22,13 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public int getListCount(int page, int product_num) {
-		return qnadao.getListCount(page, product_num);
+	public int getListCount(int page) {
+		return qnadao.getListCount(page);
 	}
 
 	@Override
-	public List<QnaBoard> getBoardList(int product_num, int page) {
-		return qnadao.getBoardList(product_num, page);
+	public List<QnaBoard> getBoardList(int page) {
+		return qnadao.getBoardList(page);
 	}
 	
 	@Override
