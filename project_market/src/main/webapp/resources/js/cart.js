@@ -34,17 +34,38 @@ $(".chkbox").click(function () {
 
 
 // 숫자변화를 감지해서 가격을 조정해준다
-  $( document ).ready( function() {
-      var a = $( '#a' ).val();
-      var b = $( '#b' ).val();
-      var c = $( '#c' ).val();
+  $( document).ready( function() {
+ 	var e = document.getElementById("forcount").value;
+ 	console.log(e);
+  	var i = 0;
+	do{
+		console.log('체크!!!');
+      var a = $( '#a'+i ).val();
+      var b = $( '#b'+i ).val();
+      var c = $( '#c'+i ).val();
       var abc = (a + b) * c;
-      $( '#abc' ).text( abc );
-    $( '#c' ).on( 'input', function() {
-      var a = $( '#a' ).val();
-      var b = $( '#b' ).val();
-      var c = $( '#c' ).val();
+      $( '#abc'+i ).text( abc );
+      i += 1;
+	}while(i<=e.length);
+	
+
+    });
+
+   $( document).ready( function() {
+	
+	var i = document.getElementsByClassName("quantity");
+	
+	console.log(quantity[0]);
+	console.log(quantity[1]);
+	console.log(quantity[2]);
+	
+    $('#c'+i).on('input',function(){
+      var a = $( '#a'+i ).val();
+      var b = $( '#b'+i ).val();
+      var c = $( '#c'+i ).val();
       var abc = (a + b) * c;
-      $( '#abc' ).text( abc );
-    } );
-  } );
+      $( '#abc'+i ).text( abc );
+   	});
+   	
+});
+ 

@@ -18,8 +18,10 @@
 						</div>
 					</div>
 				</c:if>
+				<c:set var="i" value="0"></c:set>
 				<!-- 반복문 시작 -->
-				<c:forEach var="cart" items="${list}">
+				<c:forEach var="cart" items="${list}" varStatus="status">
+				<input type="hidden" id="forcount" value = '${list}'>
 					<div class="cart-item-pj">
 						<div class="cart-item-img-pj">
 							<div class="detail-image-box-pj">
@@ -33,23 +35,24 @@
 						<div class="cart-item-textbox-pj">
 							<div class="cart-item-name-pj">
 								${cart.product_name}<br>
-								<input type="number" id ="a" value = "${cart.product_price}"/>원<br> 
+								<input type="number" id ="a${status.index}" value = "${cart.product_price}"/>원<br> 
 								${cart.options_name}<br>
-								<input type="number" id ="b" value = "${cart.options_price}"/>원<br> 
+								<input type="number" id ="b${status.index}" value = "${cart.options_price}"/>원<br> 
 							</div>
 							<div class="cart-item-count-pj">
 								<div class="number-input">
 									<button
 										onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-									<input class="quantity" min="1" id="c" name="quantity" class="c"
+									<input class="quantity" min="1" id="c${status.index}" name="quantity"
 										value="${cart.cart_count }" type="number">
+									<input type="hidden" value="${status.index }" id="statuscheck">
 									<button
 										onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
 										class="plus"></button>
 								</div>
 							</div>
 							<div class="cart-item-amount-pj">
-								<span id ="abc"></span>
+								<span id ="abc${status.index}"></span>
 							</div>
 							<div class="cart-item-icon-pj">
 								<button onClick="location.href='deletecart.do?cart_num=${cart.cart_num}'">장바구니 삭제</button>
