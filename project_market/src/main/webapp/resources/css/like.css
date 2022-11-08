@@ -1,13 +1,13 @@
 /* 찜 목록 */
 
-.like-content {
+.like-content-pj {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 30px;
 }
 
-.like-table-btn {
+.like-table-btn-pj {
 	margin: auto;
 	padding: 5px 5px 5px 5px;
 	width: 50px;
@@ -19,54 +19,52 @@
 	background-color: transparent;
 }
 
-.like-btn {
+.like-btn-pj {
 	width: 50px;
 	height: 50px;
 }
 
-.detail-image-box > img {
+.detail-image-box-pj > img {
 	width: 170px;
 	min-width:170px;
 	height: 170px;
 	min-height:170px;
 }
 
-
-/* like 테스트  */
-.like-content-box {
+.like-content-box-pj {
 	width: 1200px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid skyblue;
+	border: 1px solid lightgray;
 	padding: 2px;
 	box-sizing: border-box;
 	border-radius: 6px;
 	/* overflow: hidden; */
 }
 
-.like-header {
+.like-header-pj {
 	width: 100%;
 	height: 50px;
 	display:flex;
 	column-gap: 10px;
 	/* justify-content:center; */
 	align-items: center;
-	background: skyblue;
+	background: lightgray;
 	margin-bottom: 5px;
 	font-size: 20px;
-	color: white;
+	color: black;
 	border-radius: 5px 5px 0 0 ;
 	
 }
 
-#like-check-totalbtn{
+#like-check-totalbtn-pj{
 	padding: 5px;
 	height: 30px;
 }
 
-.like-items {
+.like-items-pj {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -74,19 +72,19 @@
 	align-items: center;
 }
 
-.like-item {
+.like-item-pj {
 	width: 100%;
 	display: flex;
 	border-bottom: 1px solid skyblue;
 	margin-bottom: 10px;
 }
 
-.like-item:last-of-type {
+.like-item-pj:last-of-type {
 	border-bottom: 0;
 	margin-bottom: 0;
 }
 
-.like-item-img {
+.like-item-img-pj {
 	width: 200px;
 	height: 200px;
 	min-width: 200px;
@@ -96,7 +94,7 @@
 	display: inline-block;
 }
 
-.like-item-textbox {
+.like-item-textbox-pj {
 	width: 100%;
 	font-size:25px;
 	display: flex;
@@ -104,11 +102,19 @@
 	align-items: center;
 }
 
-.like-item-name {
+.like-item-name-pj {
 	height: 100px;
 	width: 1000px;
 }
-.like-item-icon {
+.like-item-icon-pj {
 	height: 100px;
 	width: 1000px;
 }
+
+.like-item-icon-pj > button{
+	padding: 10px 10px;
+	height: 50px;
+	width: 200px;
+	margin-bottom: 5px;
+}
+

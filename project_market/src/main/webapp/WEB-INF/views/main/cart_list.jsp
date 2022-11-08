@@ -1,88 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../fix/header.jsp"%>
-<section class="main">
-	<div class="main-img">
-		<div class="cart-content">
-			<form>
-				<div class="cart-table" style="width: 800px; float: left; margin-left: 200px">
-				<table width="800px">
-					<tr>
-						<td id="cart-table-th">
-							<input class="cart-checkbox" type="checkbox">
-						</td>
-						<th colspan="4" id="cart-table-th">${member_id }'s Shopping Cart</th>
-					</tr>
-					<c:if test="${empty list}">
-							<tr>
-								<td colspan="5">데이터가 없습니다</td>
-							</tr>
-						</c:if>
-					
-					<!-- 반복문 시작 -->
-					<c:forEach var="cart" items="${list}" varStatus="status">
-					<tr>
-						<td rowspan="3">
-							<input class="cart-checkbox" type="checkbox">
-						</td>
-					</tr>
-					<tr>
-						<td rowspan="2" height="150px" width="150px">
-							<img src="<%=request.getContextPath()%>/resources/upload/${cart.product_img}" height="200px" width="200px">
-						</td>
-						<td align="left">${cart.product_name }</td>
-						<td align="left">${cart.options_name }</td>
-						<td>
-							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/plus.png" 
-								name = plus${status.index} onclick='count("plus${status.index}","${status.index}")' />
-							<span class="cart-count"id='result${status.index}'>${cart.cart_count }</span>
-							<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus.png"
-								name= minus${status.index} onclick='count("minus${status.index}","${status.index}")' />
-						</td>
-					</tr>
-					<tr >
-						<td align="left">
-						<fmt:formatNumber value="${cart.product_price }" pattern="#,###" />
-						</td>
-						<td align="left">
-						<fmt:formatNumber value="${cart.options_price }" pattern="#,###" />
-						</td>
-						<td>
-							<a class="cart-table-btn" onClick="location.href='deletecart.do?cart_num=${cart.cart_num}'">
-								<img class="cart-btn" src="${pageContext.request.contextPath}/resources/img/minus_cart.png" />
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td id="cart-table-tr" colspan="4">
-					</tr>
-					
-					</c:forEach>
-					<!-- 반복문 끝 -->	
-				
-				</table>
-				</div>
-				<div style="float:left; margin-left: 100px;">
-					<div class="cart-right-table">
-						<table width="500px">
-							<tr>
-								<th id="cart-table-th">${member_id }'s Receipt</th>
-							</tr>
-							<tr>
-								<td>
-									<button type="button" class="buy-button">구매하기</button>
-								</td>
-							</tr>
-					
-								
-					</table>
+<section>
+	<div>
+		<div class="cart-content-box-pj">
+			<div class="cart-header-pj">
+				<input type="checkbox" name="allChecking" id="allChecking" /> 전체선택
+			</div>
+			<div class="cart-items-pj">
+				<c:if test="${empty list}">
+					<div class="cart-item-pj">
+						<div class="cart-item-textbox-pj">
+							<div>찜등록된 상품이 없습니다.</div>
+						</div>
 					</div>
+				</c:if>
+				<!-- 반복문 시작 -->
+				<c:forEach var="cart" items="${list}">
+					<div class="cart-item-pj">
+						<div class="cart-item-img-pj">
+							<div class="detail-image-box-pj">
+								<div>
+									<input type="checkbox" onClick="itemSum()"
+                                     class="chkbox" value="${(cart.product_price + cart.options_price) * cart.cart_count}"/>
+								</div>
+								<img src="<%=request.getContextPath()%>/resources/upload/${cart.product_img}">
+							</div>
+						</div>
+						<div class="cart-item-textbox-pj">
+							<div class="cart-item-name-pj">
+								${cart.product_name}<br>
+								<fmt:formatNumber pattern="###,###,###" value="${cart.product_price}" />원<br> 
+								${cart.options_name}<br>
+								<fmt:formatNumber pattern="###,###,###" value="${cart.options_price}" />원<br>
+							</div>
+							<div class="cart-item-count-pj">
+								<div class="number-input">
+									<button
+										onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+									<input class="quantity" min="1" name="quantity" class="c"
+										value="${cart.cart_count }" type="number">
+									<button
+										onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+										class="plus"></button>
+								</div>
+							</div>
+							<div class="cart-item-amount-pj">
+								<fmt:formatNumber pattern="###,###,###" 
+								value="${(cart.product_price+cart.options_price)*cart.cart_count}" />원
+							</div>
+							<div class="cart-item-icon-pj">
+								<button onClick="location.href='deletecart.do?cart_num=${cart.cart_num}'">장바구니 삭제</button>
+								<button onClick="location.href=''">구매하기</button>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+				<!-- 반복문 끝 -->
+			</div>
+				<div class="cart-footer-pj">
+					<div class="cart-total-amount-pj" id="total_sum" > 0 원</div>
+					<button class="cart-total-buy-pj" onClick="location.href=''">구매하기</button>
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 <%@ include file="../fix/footer.jsp"%>
+

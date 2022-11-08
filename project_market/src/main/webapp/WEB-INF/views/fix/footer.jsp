@@ -20,4 +20,5 @@
 	
 	
 </body>
+  <script src="${path}/resources/js/cart.js"></script>
 </html>

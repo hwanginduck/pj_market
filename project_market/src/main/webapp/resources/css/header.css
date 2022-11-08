@@ -226,6 +226,7 @@ button {
 /* 메인 css */
 section {
   width: 1200px;
+  min-height: 1000px;
   margin: 0 auto;
   margin-bottom: 30px;
 }
