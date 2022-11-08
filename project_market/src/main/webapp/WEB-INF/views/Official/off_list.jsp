@@ -1,22 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%--     <%@ include file="../fix/header.jsp"%> --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<div>
 
-<%@ include file="../fix/header.jsp"%>
+	<a href="off_writeform.do">공지사항 작성</a>
+	<br> 글갯수 : ${listcount }
+	
 
-<section class="main-pj">
-	<div class="detail-content-pj">
-
-		
-
-
-		<title>공지사항 목록</title>
-
-
-		<table border=1 align=center width=700>
-			<caption>공지사항 목록</caption>
-			<tr>
-				<th>번호</th>
+	<title>공지사항 목록</title>
+	
+	
+	<table border=1 align=center width=700>
+		<caption><h3>공지사항 목록</h3></caption>
+		<tr>
+			<th>번호</th>
 
 				<th>제목</th>
 
@@ -34,9 +33,12 @@
 					<td>${num}<c:set var="num" value="${num-1 }" />
 					</td>
 
-					<td><a href="off_content.do?no=${b.off_num}&page=${page}"> ${b.off_subject} </a></td>
-
-					<td>${b.off_name}</td>
+				<td>
+				<a href="off_content.do?off_num=${b.off_num}&page=${page}">
+						${b.off_subject} </a>
+				</td>
+				
+				<td>${b.off_name}</td>
 
 					<td><fmt:formatDate value="${b.off_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 
@@ -77,13 +79,9 @@
 				<!-- 마지막 페이지로 이동 -->
 				<a href="off_list.do?page=${pageCount}" style="text-decoration: none"> > </a>
 			</c:if>
-		</ul>
-		</div>
-		
-		
-		
-<a href="off_writeform.do">공지사항 작성</a> <br> 글갯수 : ${listcount }
-	</div>
-</section>
 
-<%@ include file="../fix/footer.jsp"%>
+			<!-- 마지막 페이지로 이동 -->
+			<a href="off_list.do?page=${pageCount}" style="text-decoration: none">
+				> </a>
+	</c:if>
+	</center>

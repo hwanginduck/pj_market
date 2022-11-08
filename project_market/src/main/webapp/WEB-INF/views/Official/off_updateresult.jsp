@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <c:if test="${result ==1}"/>
 	<script>
 alert("글수정 성공");
-	location.href="off_list?page=${page}";		// 목록페이지
+	location.href="off_list.do?page=${page}";		// 목록페이지
 //	location.href="boardcontent.do?no=${board.no}&page=${page}";	//상세 페이지
 	</script>
 	

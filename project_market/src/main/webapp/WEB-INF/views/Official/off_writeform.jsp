@@ -10,7 +10,7 @@
 
 <form method=post action="off_write.do">
 <table border=1 width=400 align=center>
-	<caption><h3>공지사항</h3></caption>
+	<caption><h3>공지사항 작성</h3></caption>
 	
 	<tr><th>작성자명</th>
 		<td><input type=text name="off_name" required="required"></td>

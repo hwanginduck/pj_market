@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상세페이지</title>
 </head>
 <body>
 <table border=1 width=400 align=center>
@@ -33,7 +33,6 @@
 		<td>내용</td>
 		<td>
 			<pre>${off.off_content}</pre>
-			${off_content }
 		</td>
 	</tr>
 	<tr>
@@ -42,10 +41,10 @@
 			onClick = "location.href='off_list.do?page=${page}'">
 				
 			<input type = "button" value ="수정"
-			onClick = "location.href='off_updateform.do?no=${off.off_num}&page=${page}'">
+			onClick = "location.href='off_updateform.do?off_num=${off.off_num}&page=${page}'">
 				
 			<input type = "button" value ="삭제"
-			onClick = "location.href='off_deleteform.do?no=${off.off_num}&page=${page}'">
+			onClick = "location.href='off_deleteform.do?off_num=${off.off_num}&page=${page}'">
 			
 		</td>	
 	</tr>

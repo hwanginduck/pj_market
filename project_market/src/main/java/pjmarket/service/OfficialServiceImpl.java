@@ -13,11 +13,11 @@ public class OfficialServiceImpl implements OfficialService{
 	@Autowired
 	private OfficialDao dao;
 
-	public int insert(OfficialBoard off) {
+	public int insert(OfficialBoard off)  {
 		return dao.insert(off);
 	}
 
-	public int getCount() {
+	public int getCount()  {
 		return dao.getCount();
 	}
 
@@ -25,21 +25,20 @@ public class OfficialServiceImpl implements OfficialService{
 		return dao.getoff_list(page);
 	}
 	
-	public void updatecount(int num) {					// 조회수
-		dao.updatecount(num);
+	public void updatecount(int off_num)  {					// 조회수
+		 dao.updatecount(off_num);
 	}
 	
-	public OfficialBoard off_cont(int num) {
-		return dao.off_cont(num);
+	public OfficialBoard getOfficialBoard(int off_num)  {		// 공지사항 수정
+		return dao.getOfficialBoard(off_num);
 	}
 	
-	public int off_updatecont(OfficialBoard off) {		// 공지사항 수정
-		return dao.off_updatecont(off);
+	public int off_update(OfficialBoard off) {			// 공지사항 수정
+		return dao.off_update(off);
 	}
-
-	public int off_delete(int of_num) {
-		return dao.off_delete(of_num);
+	
+	public int off_delete(int off_num) {			// 공지사항 삭제
+		return dao.off_delete(off_num);
 	}
-
 }
 

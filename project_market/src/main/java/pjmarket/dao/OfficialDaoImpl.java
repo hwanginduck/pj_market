@@ -3,7 +3,6 @@ package pjmarket.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +14,11 @@ public class OfficialDaoImpl implements OfficialDao {
 	@Autowired
 	public SqlSession session;
 
-	public int insert(OfficialBoard off) {
+	public int insert(OfficialBoard off)  {
 		return session.insert("off_insert", off);
 	}
 
-	public int getCount() {
+	public int getCount()  {
 		return session.selectOne("off_count");
 	}
 
@@ -27,20 +26,20 @@ public class OfficialDaoImpl implements OfficialDao {
 		return session.selectList("off_list", page);
 	}
 
-	public void updatecount(int num) {
-		session.update("off_hit", num);
+	public void updatecount(int off_num)  {
+		 session.update("off_hit", off_num);
+	}
+	
+	public OfficialBoard getOfficialBoard(int off_num) {
+		return session.selectOne("off_content", off_num);
+	}
+	
+	public int off_update(OfficialBoard off) {
+			return session.update("off_update", off);
 	}
 
-	public OfficialBoard off_cont(int num) {
-		return session.selectOne("off_content", num);
-	}
-
-	public int off_updatecont(OfficialBoard off) {
-		return session.selectOne("off_updatecont", off);
-	}
-
-	public int off_delete(int of_num) {
-		return session.selectOne("off_delete", of_num);
+	public int off_delete(int off_num)  {
+		return session.delete("off_delete", off_num);
 	}
 
 }
