@@ -7,7 +7,6 @@ import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import pjmarket.model.Options;
 import pjmarket.model.Product;
-import pjmarket.model.QnaBoard;
 import pjmarket.service.OptionsServiceImpl;
 import pjmarket.service.ProductServiceImpl;
-import pjmarket.service.QnaServiceImpl;
 
 @Controller
 public class ProductController {
@@ -32,9 +29,6 @@ public class ProductController {
 	@Autowired
 	private OptionsServiceImpl os;
 	
-	@Autowired
-	private QnaServiceImpl qs;
-
 	// 상품등록 폼이동
 	@RequestMapping("insertproductform.do")
 	public String insertProductForm() {

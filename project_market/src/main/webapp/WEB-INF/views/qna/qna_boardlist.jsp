@@ -23,11 +23,11 @@
         }
     }
     
-/* 	// 이전페이지
+ 	// 이전페이지
     function Before(page,prduct_num){
     	$.post(
-				'${path}/qna_boardlist.do?page=${page-1}&product_num=${product_num}',
-				function(data) {
+			'${path}/qna_boardlist.do?page=${page-1}&product_num=${product_num}',
+			function(data) {
 			$('#boardlist').html(data);
 			frm.replytext.value = '';
 		});
@@ -52,7 +52,35 @@
 			$('#boardlist').html(data);
 			frm.replytext.value = '';
 		});
-    }; */
+    }; 
+    
+    
+    // AJAX글쓰기
+    function BoardInsert(){
+    	var product_num = $("#product_num").val();
+    	var qna_re = $("#qna_re").val();
+    	var qna_group = $("#qna_group").val();
+    	var qna_content = $("#qna_content").val();
+    	
+    	$.ajax({
+    		url : "qna_boardinsert.do",
+    		type : "post",
+    		data : {
+    			"product_num" : product_num,
+    			"qna_re" : qna_re,
+    			"qna_group": qna_group,
+    			"qna_content": qna_content
+    		},
+    		success : function(data) {
+    			if(data==1){
+    				alert("입력성공")
+    			}
+    	     },
+    		error : function() {
+    			alert("error");
+    		}
+    	});
+    }
    
 </script>
 
@@ -65,9 +93,10 @@
 	<c:set var ="admin_user" value ="admin" />
 	<c:out value ="${session_id }" />
 	
+	
 
 	<div align="center" id="boardlist" >
-		<h2 class="text-primary">게시판 목록</h2>
+		<h2 class="text-primary">게시판 목록 </h2>
 
 		<c:if test="${empty boardlist}">
 			<tr>
@@ -164,24 +193,38 @@
 		</ul>
 		
 			<!-- 문의글 작성 폼태그 -->
-		<form method="post" action="qna_boardinsert.do">
+			
+		<!-- <form method="post" action="qna_boardinsert.do"> -->
+		<form method="post" onClick="return BoardInsert()">
 		<table class="table table-striped">
+		
+		
+			<input type="hidden" name="member_id" id="member_id" size="14" value="${member_id }" /> <br>
+			<input type="hidden" name="product_num" id="product_num" size="14" value="${product_num }"  /> <br>
+			
+			<c:if test="${member_id eq 'admin' }">  <input type="hidden" name="qna_re" id="qna_re" value="1" ></c:if>
+			<c:if test="${member_id ne 'admin' }">	<input type="hidden" name="qna_re" id="qna_re" value="0" ></c:if>
+			
+			<c:if test="${member_id eq 'admin' }">  <input type="hidden" name="qna_group" id="qna_group" size="14" value="${qna_no }" /></c:if>
+			<c:if test="${member_id ne 'admin' }">  <input type="hidden" name="qna_group" id="qna_group" size="14" value="0" /></c:if>
+			
+			
 		<tr>
-			<td>질문선택	</td>
 			<td>상품명	</td>
+			<td>상품코드	</td>
 			<td>아이디	</td>
-			<td>4	</td>
+			<td>	</td>
 			
 		</tr>
 		<tr>
-			<td>ex)배송	</td>
-			<td>ex)id	</td>
-			<td>ex)16	</td>
-			<td>14	</td>
+			<td>(상품명) ${product_name } </td>
+			<td>(상품코드) ${product_num }	</td>
+			<td>(아이디) ${member_id }	</td>
+			<td>	</td>
 		</tr>
 			<th colspan=5><pre><textarea rows="3" cols="50" name="qna_content" style="display: block;margin: 4px 79px 0 10px;"></textarea></pre></th>
 		</table>
-			<input type="button" value="확인" class="btn btn-info"/>
+			<input type="submit" value="확인" class="btn btn-info"/>
 		</form>
 		
 		<%-- <div align="center">

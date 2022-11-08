@@ -10,11 +10,11 @@
 		 $("#member_pw").val("").focus();
 		 return false;
 	 }
-	 if($.trim($("#member_pw2").val())==""){
+/*	 if($.trim($("#member_pw2").val())==""){
 		 alert("비밀번호를 확인하세요.");
 		 $("#member_pw2").val("").focus();
 		 return false;
-	 }
+	 }*/
 	 if($.trim($("#member_pwd").val()) != $.trim($("#member_pwd2").val())){
 		 //!=같지않다 연산. 비번이 다를 경우
 		 alert("비밀번호가 다릅니다.");

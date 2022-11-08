@@ -21,7 +21,7 @@ public class QnaController {
 
 	// 상품문의게시판
 	@RequestMapping("qna_boardlist.do")
-	public String QnaBoardList(HttpServletRequest request, Model model) {
+	public String QnaBoardList(HttpServletRequest request,int product_num, String product_name, Model model) {
 
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
 
@@ -31,16 +31,14 @@ public class QnaController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-//		System.out.println("?product_num: "+product_num);
+		System.out.println("?product_num: "+product_num);
 		System.out.println("?page: "+page);
 
 		// 총 리스트 수를 받아옴.
-//		int listcount = qs.getListCount(page, product_num);
-		int listcount = qs.getListCount(page);
+		int listcount = qs.getListCount(product_num);
 
 		// 페이지 번호(page)를 DAO클래스에게 전달한다.
-//		boardlist = qs.getBoardList(product_num, page); // 리스트를 받아옴.
-		boardlist = qs.getBoardList(page); // 리스트를 받아옴.
+		boardlist = qs.getBoardList(product_num, page); // 리스트를 받아옴.
 
 		// 총 페이지 수.
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
@@ -53,6 +51,8 @@ public class QnaController {
 		if (endpage > startpage + 10 - 1)
 			endpage = startpage + 10 - 1;
 
+		model.addAttribute("product_num", product_num);
+		model.addAttribute("product_name", product_name);
 		model.addAttribute("page", page);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
@@ -90,9 +90,11 @@ public class QnaController {
 	@RequestMapping("qna_boardinsert.do")
 	public String QnaInsert(QnaBoard qnaboard, Model model) throws Exception {
 		System.out.println("qna_boardinsert.do");
+		System.out.println("되나?"+qnaboard.getProduct_num());
 		int result = qs.QnaInsert(qnaboard);
 		if (result == 1)
 			model.addAttribute("result", result);
+			model.addAttribute("qnaboard", qnaboard);
 //			return "qna/qna_insertok";
 		return "redirect:/qna_boardlist.do";
 	}

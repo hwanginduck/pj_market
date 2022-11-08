@@ -8,7 +8,7 @@
 <script>
 //product상세페이지 [qna 로드]
 $(function () {
-	$('#list').load('qna_boardlist.do');
+	$('#list').load('qna_boardlist.do?product_num=${product.product_num}&product_name=${product.product_name}');
 });
 
 // 상단 스크립트 매뉴로 페이지 로드함수.

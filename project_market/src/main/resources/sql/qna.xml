@@ -17,17 +17,21 @@
 
 	<insert id="qna_userinsert" parameterType="qna">
 		insert into qna
-		(qna_no, member_id, product_num, qna_re, qna_content, qna_date, qna_group)
+		(qna_no, member_id, product_num, qna_re, qna_content, qna_date,
+		qna_group)
 		values
-		(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate, qna_seq.nextval)
+		(qna_seq.nextval, #{member_id}, #{product_num},
+		#{qna_re}, #{qna_content}, sysdate, qna_seq.nextval)
 	</insert>
-	
-	
+
+
 	<insert id="qna_admininsert" parameterType="qna">
 		insert into qna
-		(qna_no, member_id, product_num, qna_re, qna_content, qna_date, qna_group)
+		(qna_no, member_id, product_num, qna_re, qna_content, qna_date,
+		qna_group)
 		values
-		(qna_seq.nextval, #{member_id}, #{product_num}, #{qna_re}, #{qna_content}, sysdate, #{qna_group})
+		(qna_seq.nextval, #{member_id}, #{product_num},
+		#{qna_re}, #{qna_content}, sysdate, #{qna_group})
 	</insert>
 
 
@@ -35,41 +39,44 @@
 		select count(qna_no) from qna where product_num = #{product_num}
 	</select> -->
 
-	<select id="qna_count" resultType="int">
-	select count(qna_no) from qna
-	</select>	
-	
-<!-- 	<select id="qna_list" parameterType="HashMap" resultType="qna">
+	 <select id="qna_count" resultType="int">
+	  select count(qna_no) from	qna where product_num = #{product_num} 
+	 </select> 
+
+	<select id="qna_list" parameterType="HashMap" resultType="qna">
 		  <![CDATA[
 		select * from (select rownum rnum, qna.* from qna where product_num = #{product_num} order by qna_no desc)
 		where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5) order by qna_group desc, qna_re asc
-		 ]]> 
-	</select> -->
-	
-	<select id="qna_list" parameterType="HashMap" resultType="qna">
+		 ]]>
+	</select>
+
+<!-- 	<select id="qna_list" parameterType="HashMap" resultType="qna">
 		  <![CDATA[
 		select * from (select rownum rnum, qna.* from qna order by qna_no desc)
 		where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5) order by qna_group desc, qna_re asc
-		 ]]> 
-	</select>
-	
-	
+		 ]]>
+	</select> -->
+
+
 	<select id="qna_select" resultType="qna">
-		select * from qna where qna_no = #{qna_no}
+		select * from qna where
+		qna_no = #{qna_no}
 	</select>
-	
-	
+
+
 	<update id="qna_update" parameterType="qna">
-		update qna set qna_content = #{qna_content} where qna_no = #{qna_no} 
+		update qna set qna_content
+		= #{qna_content} where qna_no = #{qna_no}
 	</update>
-	
+
 	<delete id="qna_userdelete">
 		delete qna where qna_group = #{qna_group}
 	</delete>
-	
-	
+
+
 	<delete id="qna_admindelete">
-		delete qna where qna_re = 1 and qna_group = #{qna_group}
+		delete qna where qna_re = 1 and qna_group =
+		#{qna_group}
 	</delete>
 
 

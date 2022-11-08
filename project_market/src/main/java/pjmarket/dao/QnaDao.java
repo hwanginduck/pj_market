@@ -8,9 +8,9 @@ public interface QnaDao {
 	
 	public int QnaInsert(QnaBoard qnaboard) throws Exception;
 	
-	public int getListCount(int page);
+	public int getListCount(int product_num);
 	
-	public List<QnaBoard> getBoardList(int page);
+	public List<QnaBoard> getBoardList(int product_num, int page);
 	
 	public QnaBoard getMember(int qna_no);
 	
