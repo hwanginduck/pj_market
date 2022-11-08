@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -20,5 +21,15 @@
 	
 	
 </body>
-  <script src="${path}/resources/js/cart.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+
+
+<!-- cart관련 -->
+<script src="${path}/resources/js/cart.js"></script>
+  
+<!-- Mebmer관련 -->
+<script src="${path}/resources/js/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="${path}/resources/js/member.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </html>

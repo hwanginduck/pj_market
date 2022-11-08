@@ -74,7 +74,7 @@ function post_check(){
 /* 아이디 중복 체크*/
 function id_check(){
 	$("#checkid").hide();//idcheck span 아이디 영역을 숨긴다.
-	var memid=$("#member_id").val();
+	var member_id=$("#member_id").val();
 	
 	//1.입력글자 길이 체크
 	if($.trim($("#member_id").val()).length < 4){
@@ -94,7 +94,7 @@ function id_check(){
 		return false;
 	};
 	//입력아이디 유효성 검사
-	if(!(validate_userid(memid))){
+	if(!(validate_userid(member_id))){
 		var newtext='<font color="red">아이디는 영문소문자,숫자,_ 조합만 가능합니다.</font>';
 		$("#checkid").text('');//문자 초기화
 		$("#checkid").show();//span 아이디 영역을 보이게 한다.
@@ -107,8 +107,8 @@ function id_check(){
 	//아이디 중복확인
     $.ajax({
         type:"POST",
-        url:"/member_idcheck.do",
-        data: {"memid":memid},        
+        url:"member_idcheck.do",
+        data: {"member_id":member_id},        
         success: function (data) { 
 
       	  if(data==1){	//중복 ID
@@ -129,7 +129,7 @@ function id_check(){
         }
         ,
     	  error:function(e){
-    		  alert("data error"+e);
+    		  alert("data error: "+member_id);
     	  }
       });//$.ajax	
 };

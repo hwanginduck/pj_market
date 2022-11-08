@@ -79,8 +79,8 @@ public class MemberController {
 	}
 
 	// ID중복검사
-	@RequestMapping(value = "/member_idcheck.do", method = RequestMethod.POST)
-	public String Member_Idcheck(@RequestParam("memid") String member_id, Model model) throws Exception {
+	@RequestMapping("member_idcheck.do")
+	public String Member_Idcheck(String member_id, Model model) throws Exception {
 		System.out.println("아이디 중복체크하러 id 넘어옴");
 		System.out.println("id:" + member_id);
 
