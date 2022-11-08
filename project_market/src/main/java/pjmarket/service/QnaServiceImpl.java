@@ -22,8 +22,8 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public int getListCount(int product_num) {
-		return qnadao.getListCount(product_num);
+	public int getListCount(int page, int product_num) {
+		return qnadao.getListCount(page, product_num);
 	}
 
 	@Override

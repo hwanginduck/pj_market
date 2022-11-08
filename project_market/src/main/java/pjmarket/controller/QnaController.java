@@ -31,11 +31,11 @@ public class QnaController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println("product_num: "+product_num);
-		System.out.println("page: "+page);
+		System.out.println("?product_num: "+product_num);
+		System.out.println("?page: "+page);
 
 		// 총 리스트 수를 받아옴.
-		int listcount = qs.getListCount(product_num);
+		int listcount = qs.getListCount(page, product_num);
 
 		// 페이지 번호(page)를 DAO클래스에게 전달한다.
 		boardlist = qs.getBoardList(product_num, page); // 리스트를 받아옴.
@@ -57,6 +57,7 @@ public class QnaController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
+		System.out.println("boardlist: "+boardlist.size());
 		System.out.println(listcount);
 
 		return "qna/qna_boardlist";
