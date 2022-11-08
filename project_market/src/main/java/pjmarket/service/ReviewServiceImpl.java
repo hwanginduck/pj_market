@@ -65,6 +65,17 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewdao.Updatereview(review);
 	}
 
+	public Review ReviewDelete(int review_no) {
+		// TODO Auto-generated method stub
+		return reviewdao.ReviewDelete(review_no);
+	}
+
+	public int ReviewDeleteOk(Review review) {
+		// TODO Auto-generated method stub
+		System.out.println("ReviewDeleteOk");
+		return reviewdao.ReviewDeleteOk(review);
+	}
+
 	
 	
 

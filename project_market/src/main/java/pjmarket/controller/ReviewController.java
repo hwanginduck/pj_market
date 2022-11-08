@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import pjmarket.model.OfficialBoard;
 import pjmarket.model.Review;
 import pjmarket.service.CartServiceImpl;
 import pjmarket.service.LikeServiceImpl;
@@ -209,19 +210,6 @@ public class ReviewController {
 
 		return "review/review_detail";
 	}
-	
-	// 리뷰 수정 폼
-//		@RequestMapping("review_update")
-//		public String ReviewUpdate(int review_no, String page, Model model) {
-//			
-//			System.out.println("업데이트 입장");
-//			Review review = rs.update(review_no);
-//
-//			model.addAttribute("review", review);
-//			model.addAttribute("page", page);
-//
-//			return "review/review_update";
-//		}
 		
 		//리뷰 업데이트 폼으로 이동
 		@RequestMapping("review_update.do")
@@ -244,5 +232,28 @@ public class ReviewController {
 			
 			return "review/review_updateresult";
 		}
+
+		// 리뷰 삭제 
+		@RequestMapping("review_delete.do")
+		public String reviewdeleteform(int review_no, Model model)throws Exception {
+			System.out.println("review_delete");
+			Review review = rs.ReviewDelete(review_no);
+			model.addAttribute("review", review);
+			
+			return "review/review_delete";
+		}
+
+		// 리뷰 삭제 성공
+		@RequestMapping("review_deleteresult")
+		public String reviewdelete(Review review, Model model) throws Exception {
+			System.out.println("review_deleteresult");
+
+			int result = rs.ReviewDeleteOk(review);
+			if(result == 1) System.out.println("삭제성공");
+			
+			model.addAttribute("result", result);
+			return "review/review_deleteresult";
+		}
+		
 
 }
