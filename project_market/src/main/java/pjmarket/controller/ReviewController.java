@@ -242,7 +242,7 @@ public class ReviewController {
 			
 			return "review/review_delete";
 		}
-
+ 
 		// 리뷰 삭제 성공
 		@RequestMapping("review_deleteresult")
 		public String reviewdelete(Review review, Model model) throws Exception {
