@@ -33,15 +33,15 @@
 						<div class="cart-item-textbox-pj">
 							<div class="cart-item-name-pj">
 								${cart.product_name}<br>
-								<fmt:formatNumber pattern="###,###,###" value="${cart.product_price}" />원<br> 
+								<input type="number" id ="a" value = "${cart.product_price}"/>원<br> 
 								${cart.options_name}<br>
-								<fmt:formatNumber pattern="###,###,###" value="${cart.options_price}" />원<br>
+								<input type="number" id ="b" value = "${cart.options_price}"/>원<br> 
 							</div>
 							<div class="cart-item-count-pj">
 								<div class="number-input">
 									<button
 										onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-									<input class="quantity" min="1" name="quantity" class="c"
+									<input class="quantity" min="1" id="c" name="quantity" class="c"
 										value="${cart.cart_count }" type="number">
 									<button
 										onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
@@ -49,8 +49,7 @@
 								</div>
 							</div>
 							<div class="cart-item-amount-pj">
-								<fmt:formatNumber pattern="###,###,###" 
-								value="${(cart.product_price+cart.options_price)*cart.cart_count}" />원
+								<span id ="abc"></span>
 							</div>
 							<div class="cart-item-icon-pj">
 								<button onClick="location.href='deletecart.do?cart_num=${cart.cart_num}'">장바구니 삭제</button>
