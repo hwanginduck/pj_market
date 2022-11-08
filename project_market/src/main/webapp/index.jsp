@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<script>
+<script> 
 
 	location.href="mainpage.do"; 
 
