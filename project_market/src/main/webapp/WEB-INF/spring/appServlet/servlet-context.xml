@@ -23,6 +23,7 @@
 	<resources mapping="/sass/**" location="/sass/" />
 	<resources mapping="/Source/**" location="/Source/" /> 
 
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -47,5 +48,6 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10000000"/>	
 	</beans:bean>
+	
 
 </beans:beans>
