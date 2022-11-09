@@ -42,8 +42,8 @@ public class QnaServiceImpl implements QnaService{
 	}
 	
 	@Override
-	public int QnaDelete(int qna_re, int qna_group) {
-		return qnadao.DeleteQna(qna_re, qna_group);
+	public int QnaDelete(QnaBoard qnaboard) {
+		return qnadao.DeleteQna(qnaboard);
 	}
 
 }

@@ -16,5 +16,5 @@ public interface QnaDao {
 	
 	public int UpdateQna(QnaBoard qnaboard);
 	
-	public int DeleteQna(int qna_re, int qna_group);
+	public int DeleteQna(QnaBoard qnaboard);
 }

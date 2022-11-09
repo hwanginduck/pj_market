@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -44,36 +44,19 @@
 			})
 		// click이벤트 종료
 		
-		$('#delButton').click(function() {
-			var qnaboard = $('#detailfrm').serialize();
-			var product_num = '${product_num}'
-			$.ajax({
-				type : "POST",
-				url : 'qna_delete.do',
-				data : { qnaboard,
-					product_num
-				},
-				success : function(data) {
-					alert('해치웠나?');
-					
-				},
-				error : function(data){
-					alert('응아니야');
-				}
-			});
-			
-		});
+	
 		
 	})
     
     
     
 	// 게시물 삭제 확인
- /*    var fnConfirm = function(qna_re, qna_group) {
+    var delbtn = function(qna_re, qna_group) {
         if (confirm('게시글을 삭제합니다.')) {
             location.href="qna_delete.do?qna_re="+qna_re+"&qna_group="+qna_group; 
         }
-    } */
+    }
+
 	
 	
     
@@ -117,12 +100,12 @@
 </head>
 <body>
 	<!-- 관리자유무에 따라 답변 버튼 활성화, 접속자에 따라 자신이 작성한 글 수정가능 -->
-	<c:set var ="session_id" value="${member_id }"/>
-	<c:set var ="admin_user" value ="admin" />
-	
+	<c:set var="session_id" value="${member_id }" />
+	<c:set var="admin_user" value="admin" />
 
-	<div align="center" id="boardlist" >
-		<h2 class="text-primary">게시판 목록 </h2>
+
+	<div align="center" id="boardlist">
+		<h2 class="text-primary">게시판 목록</h2>
 
 		<c:if test="${empty boardlist}">
 			<tr>
@@ -131,63 +114,54 @@
 		</c:if>
 
 		<c:if test="${not empty boardlist}">
-			<form id="detaifrm" name="detailfrm">
 			<c:forEach var="bl" items="${boardlist}">
+
 				<table class="table table-striped">
 					<tr>
-						<td width="100" align="left">
-						<c:if test="${bl.member_id ne 'admin' }">	<img src="${pageContext.request.contextPath}/resources/img/q.JPG"> </c:if>
-						</td>
+						<td width="100" align="left"><c:if test="${bl.member_id ne 'admin' }">
+								<img src="${pageContext.request.contextPath}/resources/img/q.JPG">
+							</c:if></td>
 						<td width="250" align="left">사용자아이디</td>
 						<td width="250" align="left">상품명</td>
 						<td width="250" align="left">작성일</td>
 						<td width="100" align="left">
-						<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" onClick="fnConfirm(${bl.qna_re }, ${bl.qna_group })" value="삭제"> --%>
-						<c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제">
+						<c:if test="${session_id  eq bl.member_id }"> <input type="button" onClick="delbtn(${bl.qna_re }, ${bl.qna_group })" value="삭제">
+								<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제"> --%>
 						</c:if>
 						</td>
 					</tr>
 					<tr>
-						<td><c:if test="${bl.qna_re eq 1 }"><img src="${pageContext.request.contextPath}/resources/img/a.JPG"></c:if></td>
+						<td><c:if test="${bl.qna_re eq 1 }">
+								<img src="${pageContext.request.contextPath}/resources/img/a.JPG">
+							</c:if></td>
 
 						<!-- ----------------------- ID 마스킹처리하는 구간 ----------------------- -->
-						
-						<td>
-							<c:set var="name" value="${bl.member_id}" />
-							<c:set var="admin" value="${'관리자' }" />
-							<c:set var="length" value="${fn:length(name) }" />
-							<c:set var="first" value="${fn:substring(name, 0, 3) }" />
-							<c:set var="last" value="${fn:substring(name, 4, totalLength) }" />
 
-							<c:if test="${!empty name and name ne 'admin'}">
+						<td><c:set var="name" value="${bl.member_id}" /> <c:set var="admin" value="${'관리자' }" /> <c:set var="length" value="${fn:length(name) }" /> <c:set var="first" value="${fn:substring(name, 0, 3) }" /> <c:set var="last" value="${fn:substring(name, 4, totalLength) }" /> <c:if test="${!empty name and name ne 'admin'}">
 								<c:out value="${first}" />
 								<c:forEach var="count" begin="4" end="${fn:length(name) }" step="1">*</c:forEach>
-							</c:if>
-							
-							<c:if test="${!empty name and name eq 'admin'}">
+							</c:if> <c:if test="${!empty name and name eq 'admin'}">
 								<c:out value="${admin}" />
-							</c:if>
-						</td>
+							</c:if></td>
 
 						<!-- ----------------------- ID 마스킹처리하는 END ----------------------- -->
 
 						<td>${product_name }</td>
-						<td><fmt:formatDate value="${bl.qna_date}"
-							pattern="yyyy-MM-dd HH:mm"/></td>
-						<td>
-							<c:if test="${session_id  eq bl.member_id }">	<input type="button" onClick="location.href='qna_updateform.do?qna_no=${bl.qna_no }'" value="수정"> </c:if>
-							<c:if test="${session_id  eq admin_user }">	 	<input type="button" onClick="location.href='qna_writeform.do?qna_no=${bl.qna_no }&product_num=${bl.product_num}&qna_group=${bl.qna_group}'" value="답변" ></c:if>
-							
-						</td>
+						<td><fmt:formatDate value="${bl.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+						<td><c:if test="${session_id  eq bl.member_id }">
+								<input type="button" onClick="location.href='qna_updateform.do?qna_no=${bl.qna_no }'" value="수정">
+							</c:if> <c:if test="${session_id  eq admin_user }">
+								<input type="button" onClick="location.href='qna_writeform.do?qna_no=${bl.qna_no }&product_num=${bl.product_num}&qna_group=${bl.qna_group}'" value="답변">
+							</c:if></td>
 					</tr>
-					
-					<th colspan=5><pre style="width:1200px;"> ${bl.qna_content } </pre></th>
+
+					<th colspan=5><pre style="width: 1200px;"> ${bl.qna_content } </pre></th>
 				</table>
+
 			</c:forEach>
-			</form>
 		</c:if>
-		
-	
+
+
 		<!-- 테이블리스트끝 -->
 
 		<ul class="pagination">
@@ -196,7 +170,7 @@
 			</c:if>
 
 			<c:if test="${page > 1 }">
-<%-- 				<li><a href="qna_boardlist.do?page=${page-1}&product_num=${product_num }">이전</a></li> --%>
+				<%-- 				<li><a href="qna_boardlist.do?page=${page-1}&product_num=${product_num }">이전</a></li> --%>
 				<li><a onClick="Before(${page},${product_num })">이전</a></li>
 			</c:if>
 
@@ -214,46 +188,52 @@
 				<li><a>다음</a></li>
 			</c:if>
 			<c:if test="${page < maxpage }">
-<%-- 				<li><a href="qna_boardlist.do?page=${page+1}&product_num=${product_num }">다음</a></li> --%>
+				<%-- 				<li><a href="qna_boardlist.do?page=${page+1}&product_num=${product_num }">다음</a></li> --%>
 				<li><a onClick="Next(${page},${product_num })">다음</a></li>
 			</c:if>
 
 		</ul>
-		
-			<!-- 문의글 작성 폼태그 -->
-			
+
+		<!-- 문의글 작성 폼태그 -->
+
 		<!-- <form method="post" action="qna_boardinsert.do"> -->
-		<form name="frm" id="frm">
-		<table class="table table-striped">
-			<input type="hidden" name="member_id" id="member_id" size="14" value="${member_id }" /> <br>
-			<input type="hidden" name="product_num" id="product_num" size="14" value="${product_num }"  /> <br>
-			
-			<c:if test="${member_id eq 'admin' }">  <input type="hidden" name="qna_re" id="qna_re" value="1" ></c:if>
-			<c:if test="${member_id ne 'admin' }">	<input type="hidden" name="qna_re" id="qna_re" value="0" ></c:if>
-			
-			<c:if test="${member_id eq 'admin' }">  <input type="hidden" name="qna_group" id="qna_group" size="14" value="${qna_no }" /></c:if>
-			<c:if test="${member_id ne 'admin' }">  <input type="hidden" name="qna_group" id="qna_group" size="14" value="0" /></c:if>
-		<tr>
-			<td>상품명	</td>
-			<td>상품코드	</td>
-			<td>아이디	</td>
-			<td>	</td>
-		</tr>
-		<tr>
-			<td>(상품명) ${product_name } </td>
-			<td>(상품코드) ${product_num }	</td>
-			<td>(아이디) ${member_id }	</td>
-			<td>	</td>
-		</tr>
-			<th colspan=5><pre><textarea rows="3" cols="50" name="qna_content" style="display: block;margin: 4px 79px 0 10px;"></textarea></pre></th>
-		</table>
-			<input type="button" value="확인" id="reInsert" class="btn btn-info"/>
+		<form id="frm" name="frm">
+			<table class="table table-striped">
+				<input type="hidden" name="member_id" id="member_id" size="14" value="${member_id }" />
+				<input type="hidden" name="product_num" id="product_num" size="14" value="${product_num }" />
+
+				<c:if test="${member_id eq 'admin' }">
+					<input type="hidden" name="qna_re" id="qna_re" value="1">
+				</c:if>
+				<c:if test="${member_id ne 'admin' }">
+					<input type="hidden" name="qna_re" id="qna_re" value="0">
+				</c:if>
+
+				<c:if test="${member_id eq 'admin' }">
+					<input type="hidden" name="qna_group" id="qna_group" size="14" value="${qna_no }" />
+				</c:if>
+				<c:if test="${member_id ne 'admin' }">
+					<input type="hidden" name="qna_group" id="qna_group" size="14" value="0" />
+				</c:if>
+				<tr>
+					<td>상품명</td>
+					<td>상품코드</td>
+					<td>아이디</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>(상품명) ${product_name }</td>
+					<td>(상품코드) ${product_num }</td>
+					<td>(아이디) ${member_id }</td>
+					<td></td>
+				</tr>
+				<th colspan=5><pre>
+						<textarea rows="3" cols="50" name="qna_content" style="display: block; margin: 4px 79px 0 10px;"></textarea>
+					</pre></th>
+			</table>
+			<input type="button" value="확인인" id="reInsert" class="btn btn-info" />
 		</form>
-		
-		<%-- <div align="center">
-			<a href="qna_writeform.do?product_num=${product_num  }" class="btn btn-info">문의글 작성</a>
-		</div> --%>
 	</div>
-	
+
 </body>
 </html>
