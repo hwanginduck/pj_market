@@ -1,18 +1,24 @@
 package pjmarket.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import pjmarket.model.Review;
 import pjmarket.service.ReviewServiceImpl;
 
@@ -46,71 +52,133 @@ public class ReviewController {
 
 	// 리뷰 게시판 작성 성공 이미지 불러오기
 	@RequestMapping("review_insertresult")
-	public String ReviewInsert(Review review, Model model, @RequestParam("review_img1") MultipartFile mf,
-			HttpServletRequest request) throws Exception {
+	public String ReviewInsert(Review review, Model model, @RequestParam("review_img1") 
+	List<MultipartFile> multiFileList , HttpServletRequest request) throws Exception {
 
-		String filename = mf.getOriginalFilename();
-		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
-
-		String path = request.getRealPath("/resources/upload/");
-		System.out.println("mf=" + mf);
-		System.out.println("filename=" + filename);
-		System.out.println("size=" + size);
-		System.out.println("Path=" + path);
-
-		int result = 0;
-
-		String file[] = new String[2];
-
-		String newfilename = "";
-
-		if (filename != "") { // 첨부파일이 전송된 경우
-
-			// 파일 중복문제 해결
-			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-			System.out.println("extension:" + extension);
-
-			UUID uuid = UUID.randomUUID();
-
-			newfilename = uuid.toString() + extension;
-			System.out.println("newfilename:" + newfilename);
-
-			StringTokenizer st = new StringTokenizer(filename, ".");
-			file[0] = st.nextToken();
-			file[1] = st.nextToken();
-
-			if (size > 2000000) {
-				result = 2;
-				model.addAttribute("result", result);
-
-				return "review/review_insertresult";
-
-			} else if (!file[1].equals("jpg") && !file[1].equals("jpeg") && !file[1].equals("gif")
-					&& !file[1].equals("png")) {
-
-				result = 3;
-				model.addAttribute("result", result);
-
-				return "review/review_insertresult";
+			
+			// 받아온것 출력 확인
+			System.out.println("multiFileList : " + multiFileList);
+			
+			// path 가져오기
+			String path = request.getRealPath("/resources/upload/");
+			String root = path + "\\" + "uploadFiles";
+			
+			File fileCheck = new File(root);
+			
+			if(!fileCheck.exists()) fileCheck.mkdirs();
+			
+			
+			String filename = "";
+			
+			List<Map<String, String>> fileList = new ArrayList<>();
+			
+			for(int i = 0; i < multiFileList.size(); i++) {
+				String originFile = multiFileList.get(i).getOriginalFilename();
+				String ext = originFile.substring(originFile.lastIndexOf("."));
+				String changeFile = UUID.randomUUID().toString() + ext;
+				
+				
+				filename += changeFile +",";
+				
+				Map<String, String> map = new HashMap<>();
+				map.put("originFile", originFile);
+				map.put("changeFile", changeFile);
+				
+				fileList.add(map);
 			}
-
-		}
-		if (size > 0) { // 첨부파일이 전송된 경우
-
-			mf.transferTo(new File(path + "/" + newfilename));
-
-		}
-
-		System.out.println("리뷰 글 작성 성공");
-
-		review.setReview_img(newfilename);
-
-		result = rs.ReviewInsert(review);
-
-		model.addAttribute("result", result);
-
-		return "review/review_insertresult";
+			
+			// 파일업로드
+			try {
+				for(int i = 0; i < multiFileList.size(); i++) {
+					File uploadFile = new File(root + "\\" + fileList.get(i).get("changeFile"));
+					multiFileList.get(i).transferTo(uploadFile);
+				}
+				
+				System.out.println("다중 파일 업로드 성공!");
+				
+			} catch (IllegalStateException | IOException e) {
+				System.out.println("다중 파일 업로드 실패 ");
+				// 만약 업로드 실패하면 파일 삭제
+				for(int i = 0; i < multiFileList.size(); i++) {
+					new File(root + "\\" + fileList.get(i).get("changeFile")).delete();
+				}
+				
+				e.printStackTrace();
+				
+			}
+			
+			System.out.println("리뷰 글 작성 성공");
+			
+			review.setReview_img(filename);
+			int result = rs.ReviewInsert(review);
+			model.addAttribute("result", result);
+			
+			return "review/review_insertresult";
 	}
+			
+			
+//		String filename = mf.getOriginalFilename();
+//		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
+//
+//		String path = request.getRealPath("/resources/upload/");
+//		System.out.println("mf=" + mf);
+//		System.out.println("filename=" + filename);
+//		System.out.println("size=" + size);
+//		System.out.println("Path=" + path);
+//
+//		int result = 0;
+//
+//		String file[] = new String[2];
+//
+//		String newfilename = "";
+//
+//		if (filename != "") { // 첨부파일이 전송된 경우
+//
+//			// 파일 중복문제 해결
+//			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+//			System.out.println("extension:" + extension);
+//
+//			UUID uuid = UUID.randomUUID();
+//
+//			newfilename = uuid.toString() + extension;
+//			System.out.println("newfilename:" + newfilename);
+//
+//			StringTokenizer st = new StringTokenizer(filename, ".");
+//			file[0] = st.nextToken();
+//			file[1] = st.nextToken();
+//
+//			if (size > 2000000) {
+//				result = 2;
+//				model.addAttribute("result", result);
+//
+//				return "review/review_insertresult";
+//
+//			} else if (!file[1].equals("jpg") && !file[1].equals("jpeg") && !file[1].equals("gif")
+//					&& !file[1].equals("png")) {
+//
+//				result = 3;
+//				model.addAttribute("result", result);
+//
+//				return "review/review_insertresult";
+//			}
+//
+//		}
+//		if (size > 0) { // 첨부파일이 전송된 경우
+//
+//			mf.transferTo(new File(path + "/" + newfilename));
+//
+//		}
+//
+//		System.out.println("리뷰 글 작성 성공");
+//
+//		review.setReview_img(newfilename);
+//
+//		result = rs.ReviewInsert(review);
+//
+//		model.addAttribute("result", result);
+//
+//		return "review/review_insertresult";
+//	}
 
 	// 리뷰 게시판 목록
 	@RequestMapping("review_boardlist")

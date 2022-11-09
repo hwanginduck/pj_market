@@ -58,7 +58,8 @@ ${options_num }
 		 <tr>
      <td style="font-weight: bold;" align="center">리뷰 사진</td>
      <td>
-      <input type="file" name="review_img1" />
+		<input type="file" name="review_img1" multiple> <br>
+<!--       <input type="file" name="review_img1" /> -->
      </td>
     </tr>
 		<tr>

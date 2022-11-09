@@ -51,21 +51,9 @@
 		<tr>
 			<th>리뷰 사진 </th>
 			<td colspan="5">
-								<img src="<%=request.getContextPath()%>/resources/upload/${review.review_img}" width="100%">
+				<img src="<%=request.getContextPath()%>/resources/upload/${review.review_img}" width="100%">
 							</td>
 		</tr>
-			
-			<%-- 	<c:if test="${empty review_img}">
-       				&nbsp;
-       			</c:if>
-				<c:if test="${!empty review_img}">
-					<img src="/project_market/upload/${review.review_img}">
-					<img src="D:/sts-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/project_market/upload/${review.review_img}">
-		  		<IMG src="${path}/resources/upload/${review_img}"/>
-					<IMG src="<%=request.getContextPath() %>/upload/${review_img}">
-					<IMG src="/project_market/upload/${review_img}">
-				</c:if> --%>
-			
 		
 		<tr>
 		 	<th>내용 </th>
