@@ -27,7 +27,7 @@
     			return false;
     		}
     	// #reInsert 종료
-    		var frmData = $('form').serialize();
+    		var frmData = $('#frmList').serialize();
     		/* var frmData = 	'member_id=' + frm.member_id.value +
     						'&product_num' + frm.product_num.value +
     						'&qna_re' + frm.qna_re.value +
@@ -48,14 +48,20 @@
 		
 	})
     
+    var delbtn = function() {
+    	var frmData = $('form').serialize();
+        if (confirm('게시글을 삭제합니다.')) {
+           console.log(frmData);
+        }
+    }
     
     
 	// 게시물 삭제 확인
-    var delbtn = function(qna_re, qna_group) {
-        if (confirm('게시글을 삭제합니다.')) {
-            location.href="qna_delete.do?qna_re="+qna_re+"&qna_group="+qna_group; 
-        }
-    }
+//     var delbtn = function(qna_re, qna_group) {
+//         if (confirm('게시글을 삭제합니다.')) {
+//             location.href="qna_delete.do?qna_re="+qna_re+"&qna_group="+qna_group; 
+//         }
+//     }
 
 	
 	
@@ -115,7 +121,7 @@
 
 		<c:if test="${not empty boardlist}">
 			<c:forEach var="bl" items="${boardlist}">
-
+			<form id="frmList" name="frmList">
 				<table class="table table-striped">
 					<tr>
 						<td width="100" align="left"><c:if test="${bl.member_id ne 'admin' }">
@@ -125,7 +131,7 @@
 						<td width="250" align="left">상품명</td>
 						<td width="250" align="left">작성일</td>
 						<td width="100" align="left">
-						<c:if test="${session_id  eq bl.member_id }"> <input type="button" onClick="delbtn(${bl.qna_re }, ${bl.qna_group })" value="삭제">
+						<c:if test="${session_id  eq bl.member_id }"> <input type="button" onClick="delbtn()" value="삭제">
 								<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제"> --%>
 						</c:if>
 						</td>
@@ -157,7 +163,7 @@
 
 					<th colspan=5><pre style="width: 1200px;"> ${bl.qna_content } </pre></th>
 				</table>
-
+			</form>
 			</c:forEach>
 		</c:if>
 
