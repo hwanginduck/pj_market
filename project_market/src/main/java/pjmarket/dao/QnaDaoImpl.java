@@ -86,8 +86,10 @@ public class QnaDaoImpl implements QnaDao {
 
 	// QNA삭제
 	@Override
-	public int DeleteQna(int qna_re, int qna_group) {
+	public int DeleteQna(QnaBoard qnaboard) {
 		int result = -1;
+		int qna_re = qnaboard.getQna_re();
+		int qna_group = qnaboard.getQna_group();
 		if (qna_re == 0) { // 사용자일경우
 			result = session.delete("qnans.qna_userdelete", qna_group);
 		} else { // 관리자일경우
