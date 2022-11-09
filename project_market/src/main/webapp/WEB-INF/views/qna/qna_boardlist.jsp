@@ -9,19 +9,73 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/resources/css/tb.css" rel="stylesheet">
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script src="${path}/resources/js/product.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 <script type="text/javascript">
 
+    // AJAX글쓰기
+    $(function() {
+    	$('#reInsert').click(function() {
+    		if(!frm.qna_content.value){
+    			alert('등록할 내용이 없슴. 내용을 입력하셈');
+    			frm.qna_content.focus();
+    			return false;
+    		}
+    	// #reInsert 종료
+    		var frmData = $('form').serialize();
+    		/* var frmData = 	'member_id=' + frm.member_id.value +
+    						'&product_num' + frm.product_num.value +
+    						'&qna_re' + frm.qna_re.value +
+    						'&qna_group' + frm.qna_group.value +
+    						'&qna_content' + frm.qna_content.value; */
+			$.post('qna_boardinsert.do',
+					frmData,
+					function (data) {
+						$('#boardlist').html(data);
+						frm.qna_content.value=''; // 입력후 댓글입력창 초기화
+					});
+    			// post Ajax종료
+    	$('#boardlist').load('qna_boardlist.do?product_num=${product_num}&product_name=${product_name}')
+			})
+		// click이벤트 종료
+		
+		$('#delButton').click(function() {
+			var qnaboard = $('#detailfrm').serialize();
+			var product_num = '${product_num}'
+			$.ajax({
+				type : "POST",
+				url : 'qna_delete.do',
+				data : { qnaboard,
+					product_num
+				},
+				success : function(data) {
+					alert('해치웠나?');
+					
+				},
+				error : function(data){
+					alert('응아니야');
+				}
+			});
+			
+		});
+		
+	})
+    
+    
+    
 	// 게시물 삭제 확인
-    var fnConfirm = function(qna_re, qna_group) {
+ /*    var fnConfirm = function(qna_re, qna_group) {
         if (confirm('게시글을 삭제합니다.')) {
             location.href="qna_delete.do?qna_re="+qna_re+"&qna_group="+qna_group; 
         }
-    }
+    } */
+	
+	
     
  	// 이전페이지
     function Before(page,prduct_num){
@@ -52,35 +106,9 @@
 			$('#boardlist').html(data);
 			frm.replytext.value = '';
 		});
-    }; 
+    };  
     
     
-    // AJAX글쓰기
-    function BoardInsert(){
-    	var product_num = $("#product_num").val();
-    	var qna_re = $("#qna_re").val();
-    	var qna_group = $("#qna_group").val();
-    	var qna_content = $("#qna_content").val();
-    	
-    	$.ajax({
-    		url : "qna_boardinsert.do",
-    		type : "post",
-    		data : {
-    			"product_num" : product_num,
-    			"qna_re" : qna_re,
-    			"qna_group": qna_group,
-    			"qna_content": qna_content
-    		},
-    		success : function(data) {
-    			if(data==1){
-    				alert("입력성공")
-    			}
-    	     },
-    		error : function() {
-    			alert("error");
-    		}
-    	});
-    }
    
 </script>
 
@@ -88,11 +116,9 @@
 <title>Q&A BoardPage</title>
 </head>
 <body>
-	
+	<!-- 관리자유무에 따라 답변 버튼 활성화, 접속자에 따라 자신이 작성한 글 수정가능 -->
 	<c:set var ="session_id" value="${member_id }"/>
 	<c:set var ="admin_user" value ="admin" />
-	<c:out value ="${session_id }" />
-	
 	
 
 	<div align="center" id="boardlist" >
@@ -105,6 +131,7 @@
 		</c:if>
 
 		<c:if test="${not empty boardlist}">
+			<form id="detaifrm" name="detailfrm">
 			<c:forEach var="bl" items="${boardlist}">
 				<table class="table table-striped">
 					<tr>
@@ -115,7 +142,8 @@
 						<td width="250" align="left">상품명</td>
 						<td width="250" align="left">작성일</td>
 						<td width="100" align="left">
-						<c:if test="${session_id  eq bl.member_id }"> <input type="button" onClick="fnConfirm(${bl.qna_re }, ${bl.qna_group })" value="삭제">
+						<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" onClick="fnConfirm(${bl.qna_re }, ${bl.qna_group })" value="삭제"> --%>
+						<c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제">
 						</c:if>
 						</td>
 					</tr>
@@ -143,7 +171,7 @@
 
 						<!-- ----------------------- ID 마스킹처리하는 END ----------------------- -->
 
-						<td>${bl.product_num }</td>
+						<td>${product_name }</td>
 						<td><fmt:formatDate value="${bl.qna_date}"
 							pattern="yyyy-MM-dd HH:mm"/></td>
 						<td>
@@ -156,7 +184,7 @@
 					<th colspan=5><pre style="width:1200px;"> ${bl.qna_content } </pre></th>
 				</table>
 			</c:forEach>
-		
+			</form>
 		</c:if>
 		
 	
@@ -195,10 +223,8 @@
 			<!-- 문의글 작성 폼태그 -->
 			
 		<!-- <form method="post" action="qna_boardinsert.do"> -->
-		<form method="post" onClick="return BoardInsert()">
+		<form name="frm" id="frm">
 		<table class="table table-striped">
-		
-		
 			<input type="hidden" name="member_id" id="member_id" size="14" value="${member_id }" /> <br>
 			<input type="hidden" name="product_num" id="product_num" size="14" value="${product_num }"  /> <br>
 			
@@ -207,14 +233,11 @@
 			
 			<c:if test="${member_id eq 'admin' }">  <input type="hidden" name="qna_group" id="qna_group" size="14" value="${qna_no }" /></c:if>
 			<c:if test="${member_id ne 'admin' }">  <input type="hidden" name="qna_group" id="qna_group" size="14" value="0" /></c:if>
-			
-			
 		<tr>
 			<td>상품명	</td>
 			<td>상품코드	</td>
 			<td>아이디	</td>
 			<td>	</td>
-			
 		</tr>
 		<tr>
 			<td>(상품명) ${product_name } </td>
@@ -224,12 +247,13 @@
 		</tr>
 			<th colspan=5><pre><textarea rows="3" cols="50" name="qna_content" style="display: block;margin: 4px 79px 0 10px;"></textarea></pre></th>
 		</table>
-			<input type="submit" value="확인" class="btn btn-info"/>
+			<input type="button" value="확인" id="reInsert" class="btn btn-info"/>
 		</form>
 		
 		<%-- <div align="center">
 			<a href="qna_writeform.do?product_num=${product_num  }" class="btn btn-info">문의글 작성</a>
 		</div> --%>
 	</div>
+	
 </body>
 </html>

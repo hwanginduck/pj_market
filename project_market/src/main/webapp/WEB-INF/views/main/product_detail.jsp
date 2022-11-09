@@ -6,7 +6,8 @@
 <script src="${path}/resources/js/product.js"></script>
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 <script>
-//product상세페이지 [qna 로드]
+
+//product_detail 페이지로딩될때 최초로 qna_boardlist 페이지를 로드해옴.
 $(function () {
 	$('#list').load('qna_boardlist.do?product_num=${product.product_num}&product_name=${product.product_name}');
 });
@@ -38,7 +39,7 @@ function move2(y) {
 						<td><input type="text" readonly name="product_sub" value="${product.product_sub}"></td>
 					</tr>
 					<tr>
-						<td>별점 ★ ${pnum } // ${member_id }</td>
+						<td>별점 ★ </td>
 					</tr>
 					<tr>
 						<td>
