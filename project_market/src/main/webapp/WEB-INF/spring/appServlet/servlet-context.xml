@@ -16,10 +16,10 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	
  	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/js/**" location="/resources/js/" />
     <resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/fonts/**" location="/fonts/" />
 	<resources mapping="/imges/**" location="/img/" />
-	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/sass/**" location="/sass/" />
 	<resources mapping="/Source/**" location="/Source/" /> 
 

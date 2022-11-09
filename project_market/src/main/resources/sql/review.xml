@@ -81,8 +81,6 @@ select * from review where review_no = #{review_no}
 select * from product where p_no = #{p_no}
 </select> -->
 
-
-
 	
 	
 </mapper>
