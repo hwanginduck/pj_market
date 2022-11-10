@@ -27,7 +27,7 @@
     			return false;
     		}
     	// #reInsert 종료
-    		var frmData = $('#frmList').serialize();
+    		var frmData = $('form').serialize();
     		/* var frmData = 	'member_id=' + frm.member_id.value +
     						'&product_num' + frm.product_num.value +
     						'&qna_re' + frm.qna_re.value +
@@ -48,12 +48,12 @@
 		
 	})
     
-    var delbtn = function() {
-    	var frmData = $('form').serialize();
-        if (confirm('게시글을 삭제합니다.')) {
-           console.log(frmData);
-        }
-    }
+//     var delbtn = function() {
+//     	var frmData = $('form').serialize();
+//         if (confirm('게시글을 삭제합니다.')) {
+//            console.log(frmData);
+//         }
+//     }
     
     
 	// 게시물 삭제 확인

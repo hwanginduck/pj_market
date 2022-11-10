@@ -21,7 +21,7 @@ public class QnaController {
 
 	// 상품문의게시판
 	@RequestMapping("qna_boardlist.do")
-	public String QnaBoardList(HttpServletRequest request,int product_num, String product_name, Model model) {
+	public String QnaBoardList(HttpServletRequest request, QnaBoard qnaboard, String product_name, Model model) {
 
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
 
@@ -31,8 +31,9 @@ public class QnaController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println("?product_num: "+product_num);
-		System.out.println("?page: "+page);
+		int product_num = qnaboard.getProduct_num();
+		System.out.println("?product_num: " + product_num);
+		System.out.println("?page: " + page);
 
 		// 총 리스트 수를 받아옴.
 		int listcount = qs.getListCount(product_num);
@@ -59,7 +60,7 @@ public class QnaController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
-		System.out.println("boardlist: "+boardlist.size());
+		System.out.println("boardlist: " + boardlist.size());
 		System.out.println(listcount);
 
 		return "qna/qna_boardlist";
@@ -89,18 +90,11 @@ public class QnaController {
 	// QNA테이블 게시판글작성 메소드
 	@RequestMapping("qna_boardinsert.do")
 	public String QnaInsert(QnaBoard qnaboard, Model model) throws Exception {
-		System.out.println("qna_boardinsert.do");
-		System.out.println("되나?"+qnaboard.getMember_id());
-		System.out.println("되나?"+qnaboard.getProduct_num());
-		System.out.println("되나?"+qnaboard.getQna_content());
-		System.out.println("되나?"+qnaboard.getQna_group());
-		System.out.println("되나?"+qnaboard.getQna_re());
-		int result = qs.QnaInsert(qnaboard);
-		if (result == 1)
-			model.addAttribute("result", result);
-			model.addAttribute("qnaboard", qnaboard);
-//			return "qna/qna_insertok";
-		return "redirect:/qna_boardlist.do";
+		System.out.println("----------qna_boardinsert.do----------");
+		qs.QnaInsert(qnaboard);
+		int product_num = qnaboard.getProduct_num();
+		model.addAttribute("qnaboard", qnaboard);
+		return "redirect:/qna_boardlist.do?product_num="+product_num;
 	}
 
 	// QNA 업데이트 폼으로 이동 , 기존 작성내용들을 가지고감
