@@ -43,17 +43,62 @@
     	$('#boardlist').load('qna_boardlist.do?product_num=${product_num}')
 			})
 		// click이벤트 종료
-		
-	
-		
 	})
-    
-//     var delbtn = function() {
-//     	var frmData = $('form').serialize();
+ </script>
+ 
+ <script>   
+ 
+ 	function delbtn (btn){
+//  		alert(btn); // 0번인덱스
+	var btnval = document.getElementById(btn).value; // 130? qna_no 랑 같은 값을 가짐
+//  		alert(btnval);
+ 		var frmData = $('#'+btnval).serialize();
+//  		alert(frmData);
+        	  if (confirm('게시글을 삭제합니다.')) {
+	             $.ajax({
+    			      	   url : "qna_delete.do",
+          	   				type : "POST",
+          	   				data : 
+          		   			frmData,
+          		   			success : function(data) {
+          			   		$('#boardlist').html(data);
+          			   		alert("삭제완료");
+          		   },
+          	   error : function(e) {
+          		   alert("오류");
+          	   }
+             })
+          }
+ 	}
+      
+//       		var delbtn = function(btnno) {
+// //     	 	var btnno = document.getElementById(btnno).value;
+//       		var btnno = Number(document.getElementById(btnno).value);
+//       			alert(btnno);
+      
+//     var delbtn = function(qna_re, qna_group) {
+//     	var frmData = $('').serialize();
+//     	var wow = '#'
+//     	var wow2 = 
+//     	alert(wow);
 //         if (confirm('게시글을 삭제합니다.')) {
-//            console.log(frmData);
+        	
+//            $.ajax({
+//         	   url : "qna_delete.do",
+//         	   type : "POST",
+//         	   data : 
+//         		   frmData,
+//         		   success : function(data) {
+//         			   $('#boardlist').html(data);
+//         			   alert("삭제완료");
+//         		   },
+        	   
+//         	   error : function(e) {
+//         		   alert("오류");
+//         	   }
+//            })
 //         }
-//     }
+//     };
     
     
 	// 게시물 삭제 확인
@@ -119,8 +164,11 @@
 		</c:if>
 
 		<c:if test="${not empty boardlist}">
-			<c:forEach var="bl" items="${boardlist}">
-			<form id="frmList" name="frmList">
+			<c:forEach var="bl" items="${boardlist}" varStatus="status">
+			<form id="${bl.qna_no }" name="${bl.qna_no }">
+				<input type="hidden" id="qna_group" 	name="qna_group" value="${bl.qna_group }" />
+				<input type="hidden" id="qna_re"		name="qna_re" 	value="${bl.qna_re }" />
+				<input type="hidden" id="product_num" 	name="product_num" value="${product.product_num }">
 				<table class="table table-striped">
 					<tr>
 						<td width="100" align="left"><c:if test="${bl.member_id ne 'admin' }">
@@ -130,7 +178,7 @@
 						<td width="250" align="left">상품명</td>
 						<td width="250" align="left">작성일</td>
 						<td width="100" align="left">
-						<c:if test="${session_id  eq bl.member_id }"> <input type="button" onClick="delbtn()" value="삭제">
+						<c:if test="${session_id  eq bl.member_id }"> <button type="button" id="${status.index }" onClick="delbtn(${status.index })" value="${bl.qna_no }" >삭제</button>
 								<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제"> --%>
 						</c:if>
 						</td>

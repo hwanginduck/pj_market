@@ -122,10 +122,20 @@ public class QnaController {
 	@RequestMapping("qna_delete.do")
 	public String QnaDelete(QnaBoard qnaboard, Model model) throws Exception {
 		System.out.println("----------qna_delete.do----------");
+		int product_num = qnaboard.getProduct_num();
 		int result = qs.QnaDelete(qnaboard);
-		if (result == 1)
-			System.out.println("--글삭제성공--");
-		return "redirect:/qna_boardlist.do";
+		if (result == 1) System.out.println("--글삭제성공--");
+		System.out.println("qnaboard.getQna_no(): "+qnaboard.getQna_no());
+		System.out.println("qnaboard.getMember_id(): "+qnaboard.getMember_id());
+		System.out.println("qnaboard.getProduct_num(): "+qnaboard.getProduct_num());
+		System.out.println("qnaboard.getQna_re(): "+qnaboard.getQna_re());
+		System.out.println("qnaboard.getQna_content(): "+qnaboard.getQna_content());
+		System.out.println("qnaboard.getQna_group(): "+qnaboard.getQna_group());
+		System.out.println("qnaboard.getProduct_num(): "+qnaboard.getProduct_num());
+		model.addAttribute("qnaboard", qnaboard);
+		model.addAttribute("result", result);
+//		return "redirect:/qna_boardlist.do";
+		return "redirect:/qna_boardlist.do?product_num=" + product_num;
 	}
 
 }

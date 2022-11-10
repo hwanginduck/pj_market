@@ -29,14 +29,12 @@ public class QnaDaoImpl implements QnaDao {
 	}
 
 	// 게시글 수 조회
-
 	@Override
 	public int getListCount(int product_num) {
 		return session.selectOne("qnans.qna_count",product_num);
 	}
 
 	// 게시글리스트조회
-
 	@Override
 	public List<QnaBoard> getBoardList(int product_num, int page) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -46,30 +44,6 @@ public class QnaDaoImpl implements QnaDao {
 		List<QnaBoard> list = session.selectList("qnans.qna_list", map);
 		return list;
 	}
-
-//	// 게시글 수 조회
-//	@Override
-//	public int getListCount(int page, int product_num) {
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("page", page);
-//		map.put("product_num", product_num);
-//		return session.selectOne("qnans.qna_count", map);
-//	}
-//
-//	// 게시글리스트조회
-//	@Override
-//	public List<QnaBoard> getBoardList(int page, int product_num) {
-//		System.out.println("dao input page: "+page);
-//		System.out.println("dao input product_num: "+product_num);
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("page", page);
-//		map.put("product_num", product_num);
-//
-//		List<QnaBoard> list = session.selectList("qnans.qna_list", map);
-//		System.out.println("dao return List: " + list);
-//		System.out.println("dao return List.size(): " + list.size());
-//		return list;
-//	}
 
 	// 수정폼을위한 1개의 객체정보 조회
 	@Override
@@ -90,6 +64,7 @@ public class QnaDaoImpl implements QnaDao {
 		int result = -1;
 		int qna_re = qnaboard.getQna_re();
 		int qna_group = qnaboard.getQna_group();
+		
 		if (qna_re == 0) { // 사용자일경우
 			result = session.delete("qnans.qna_userdelete", qna_group);
 		} else { // 관리자일경우
@@ -98,6 +73,7 @@ public class QnaDaoImpl implements QnaDao {
 		return result;
 	}
 	
+	// product_detail 페이지에서 로드된 qna_boardlist에서 작동하는메소드
 	@Override 
 	public Product getProduct(int product_num) {
 		return session.selectOne("qnans.product_select", product_num );

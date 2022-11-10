@@ -15,7 +15,7 @@
 
 	$(function () {
 	var product_num = '${product.product_num}'
-	alert("product_detail.jsp 리턴될때 검수용 alert \n"+"product_num: "+ product_num);
+// 	alert("product_detail.jsp 리턴될때 검수용 alert \n"+"product_num: "+ product_num);
 		$('#list').load('qna_boardlist.do?product_num=' + product_num);
 	});
 
