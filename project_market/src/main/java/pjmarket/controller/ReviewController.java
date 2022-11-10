@@ -67,8 +67,7 @@ public class ReviewController {
 			File fileCheck = new File(root);
 			
 			if(!fileCheck.exists()) fileCheck.mkdirs();
-			
-			
+						
 			String filename = "";
 			
 			List<Map<String, String>> fileList = new ArrayList<>();
@@ -124,7 +123,7 @@ public class ReviewController {
 		List<Review> boardlist = new ArrayList<Review>();
 
 		int page = 1;
-		int limit = 5;
+		int limit = 5; 
 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -200,23 +199,30 @@ public class ReviewController {
 	public String Reviewupdateresult(Review review, Model model, @RequestParam("review_img1")
 			List<MultipartFile> multiFileList , HttpServletRequest request) throws Exception {
 				
-		// 받아온것 출력 확인
+				// 받아온것 출력 확인
 				System.out.println("multiFileList : " + multiFileList);
+				int review_no = review.getReview_no();
+				Review review1 = this.rs.Reviewupdate(review_no);		
 				
 				// path 가져오기
 				String path = request.getRealPath("/resources/upload/");
 				String root = path + "\\" + "uploadFiles";
 				System.out.println("root:"+ root);
+				System.out.println(multiFileList.size());
+				
 				int size = (int) multiFileList.size(); // 첨부파일의 크기 (단위:Byte)
 				System.out.println("size=" + size);
 				
-				File fileCheck = new File(root);
 				
+				
+				File fileCheck = new File(root);
 				if(!fileCheck.exists()) fileCheck.mkdirs();
 				
 				
 				String filename = "";
 				
+				if (size > 1 ) {  // 첨부 파일이 수정되면
+					System.out.println("?");
 				List<Map<String, String>> fileList = new ArrayList<>();
 				
 				for(int i = 0; i < multiFileList.size(); i++) {
@@ -251,21 +257,15 @@ public class ReviewController {
 					}
 					
 					e.printStackTrace();
+				}
+				review.setReview_img(filename);			
 					
+				} 
+				
+				
+				else { 					// 첨부파일이 수정되지 않으면
+					review.setReview_img(review1.getReview_img());
 				}
-				
-				
-//				Review review1 = ReviewServiceImpl.ReviewUpdateok(review_no);		
-				
-				if (size > 0 ) { 			// 첨부 파일이 수정되면
-					review.setReview_img(filename);			
-				} else { 					// 첨부파일이 수정되지 않으면
-					review.setReview_img(review.getReview_img());
-				}
-				
-				
-//				review.setReview_img(filename);
-				
 				System.out.println("review_updateresult");
 				
 				int result = rs.ReviewUpdateok(review);
