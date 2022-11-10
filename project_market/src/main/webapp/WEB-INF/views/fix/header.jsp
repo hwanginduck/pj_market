@@ -7,21 +7,12 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%@ page isELIgnored="false"%>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700&family=Ubuntu:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 
-    <script
-      src="https://kit.fontawesome.com/ab0cffe9ae.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/ab0cffe9ae.js" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <c:set var="path" value="${pageContext.request.contextPath }" />
     <link href="${path}/resources/css/header.css" rel="stylesheet" />
@@ -90,34 +81,41 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%@ page isELIgnored="false"%>
 						</div>
 					</div>
 				</li>
-				<li><div class="menu-box-pj active">
+				<li>
+					<div class="menu-box-pj active">
 						<a href="off_list.do">공지사항</a>
-					</div></li>
-					
-				<li><div class="menu-box-pj active">
+					</div>
+				</li>	
+				<li>
+					<div class="menu-box-pj active">
 						<a href="#">##</a>
-					</div></li>
-				<li><div class="menu-box-pj active">
+					</div>
+				</li>
+				<li>
+					<div class="menu-box-pj active">
 						<a href="review_boardlist">Review</a>
-					</div></li>
-					
-				<li><div class="dropdown-pj menu-box-pj">
+					</div>
+				</li>	
+				<li>
+					<div class="dropdown-pj menu-box-pj">
 						<button class="dropbtn-pj">My Page</button>
 						<div class="dropdown-content-pj">
 							<a href="listlike.do">찜목록</a> 
 							<a href="listcart.do">장바구니</a> 
 							<a href="#">내정보수정</a>
 						</div>
-					</div></li>
-					
-				<li><div class="dropdown-pj menu-box-pj">
+					</div>
+				</li>	
+				<li>
+					<div class="dropdown-pj menu-box-pj">
 						<button class="dropbtn-pj">Manager</button>
 						<div class="dropdown-content-pj">
-							<a href="product_insert.do">상품등록</a>
+							<a href="insertproductform.do">상품등록</a>
+							<a href="searchproductform.do">상품수정</a>
 							<a href="cart_list.do">매출현황</a>
 						</div>
 					</div>
-					</li>
+				</li>
 			</ul>
 		</div>
 	</header>

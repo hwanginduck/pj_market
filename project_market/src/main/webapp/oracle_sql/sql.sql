@@ -602,4 +602,11 @@ select options_num from options;
 select product_num from product;
 select member_id from member;
 
+
+select last_number as product_num from user_sequences where sequence_name = 'PRODUCT_SEQ'
+
+select * from product
+
+select product_seq.currval from dual
+
 		

@@ -4,96 +4,94 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../fix/header.jsp"%>
-<section class="main">
-	<div class="main-img">
-		<div class="cart-content">
-			<form name="f" method="post" action="insert_product.do"
-				onsubmit="return check()" enctype="multipart/form-data">
-				<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
-				<div class="product-insert-table">
-					<table width="1000px">
-						<tr>
-							<td rowspan="6" colspan="2">
-								<div class="image-box">
-								<div id="image_container"></div>
-								</div>
-							</td>
-							<th id="product-insert-table-th">상품명</th>
-							<td><input type="text" name="product_name" id="product-insert-bar" /></td>
-						</tr>
-						<tr>
-							<th id="product-insert-table-th">대분류</th>
-							<td><select onchange="categoryChange(this)" class="pl" name="product_l">
-									<option>=대분류선택=</option>
-									<option value="홈스마트">홈스마트</option>
-									<option value="가구">가구</option>
-									<option value="홈오피스">홈오피스</option>
-									<option value="침대매트리스">침대매트리스</option>
-									<option value="어린이GaGu">어린이 GaGu</option>
-									<option value="조명">조명</option>
-									<option value="수납정리">수납/정리</option>
-									<option value="주방용품">주방용품</option>
-									<option value="주방가구">주방가구</option>
-									<option value="욕실">욕실</option>
-									<option value="텍스타일">텍스타일</option>
-							</select></td>
-						</tr>
-						<tr>
-							<th id="product-insert-table-th">중분류</th>
-
-							<td><select id="good" class="pl" name="product_m">
-									<option>=중분류=</option>
-							</select></td>
-						</tr>
-
-						<tr>
-							<th id="product-insert-table-th">가격</th>
-							<td><input type="text" id="product-insert-bar" name="product_price"/></td>
-						</tr>
-
-						<tr>
-							<th id="product-insert-table-th">상품내용</th>
-							<td><textarea  id="product-insert-textarea" name="product_content"></textarea></td>
-						</tr>
-
-						<tr>
-							<th id="product-insert-table-th">상품보조설명</th>
-							<td><input type="text" id="product-insert-bar" name="product_sub"/></td>
-						</tr>
-						<tr>
-							<th id="product-insert-table-th">상품 사진</th>
-							<td><input type="file" id="image" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /></td>
-							<th id="product-insert-table-th">재고수량</th>
-							<td><input type="text" id="product-insert-bar" name="product_stock"/></td>
-						</tr>
-					</table>
-			
-				
-					<table id = "option_space">
-						<tr>
-							<!-- <th rowspan="2" style="padding: 30px 30px;">옵션</th> -->
-							<th>옵션이름</th>
-							<th>변동가격</th>
-							<th>할인율(%)</th>
-							<th rowspan="2">
-								<input type="button" value="+" id="option_plus"
-								style="margin: 10px 10px; padding: 0px 20px; font-size: 50px; border-radius: 10px; background-color: #5FB404; color: white;" />
-							</th>
-						</tr>
-						<tr>
-							<td><input type="text" id="option-insert-bar" name="options_name1"/></td>
-							<td><input type="text" id="option-insert-bar"name="options_price1"/></td>
-							<td><input type="text" id="option-insert-bar"name="options_sale1"/></td>
-						</tr>
-					</table>
-					<table>
-						<tr>
-							<td colspan="4"><input type="submit" value="상품등록" class="insert-product-btn"></td>
-						</tr>
-					</table>
+<section>
+	<form name="f" method="post" action="insert_product.do" enctype="multipart/form-data">
+		<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
+		<div class="product-insert-form-pj">
+			<div class="product-header-pj">상품등록</div>
+			<div class="product-name-box-pj">
+				<div class="product-column-pj">상품명</div>
+				<div class="product-insert-pj">
+					<input type="text" name="product_name" id="product-insert-bar" />
 				</div>
-			</form>
+			</div>
+			<div class="product-name-box-pj">
+				<div class="product-column-pj">대분류</div>
+				<div class="product-insert-pj">
+					<select onchange="categoryChange(this)" class="pl" name="product_l">
+						<option>=대분류선택=</option>
+						<option value="홈스마트">홈스마트</option>
+						<option value="가구">가구</option>
+						<option value="홈오피스">홈오피스</option>
+						<option value="침대매트리스">침대매트리스</option>
+						<option value="어린이GaGu">어린이 GaGu</option>
+						<option value="조명">조명</option>
+						<option value="수납정리">수납/정리</option>
+						<option value="주방용품">주방용품</option>
+						<option value="주방가구">주방가구</option>
+						<option value="욕실">욕실</option>
+						<option value="텍스타일">텍스타일</option>
+					</select>
+				</div>
+			</div>
+			<div class="product-name-box-pj">
+				<div class="product-column-pj">중분류</div>
+				<div class="product-insert-pj">
+					<select id="good" class="pl" name="product_m">
+						<option>=중분류=</option>
+					</select>
+				</div>
+			</div>
+			<div class="product-name-box-pj">
+				<div class="product-column-pj">가격</div>
+				<div class="product-insert-pj">
+					<input type="text" id="product-insert-bar" name="product_price" />
+				</div>
+			</div>
+			<div class="product-content-name-box-pj">
+				<div class="product-content-column-pj">상품내용</div>
+				<div class="product-content-insert-pj">
+					<textarea name="product_content"></textarea>
+				</div>
+			</div>
+			<div class="product-name-box-pj">
+				<div class="product-column-pj">상품 요약</div>
+				<div class="product-insert-pj">
+					<input type="text" id="product-insert-bar" name="product_sub" />
+				</div>
+			</div>
+			<div class="product-name-box-pj">
+				<div class="product-column-pj">재고 수량</div>
+				<div class="product-insert-pj">
+					<input type="text" id="product-insert-bar" name="product_stock" />
+				</div>
+			</div>
+			<div class="product-name-box-pj">
+				<div class="product-column-pj">상품 사진</div>
+				<div class="product-insert-pj">
+					<input type="file" id="image" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /> 
+				</div>
+			</div>				
+			<div id="image_container"></div>
+			<div class="product-option-name-box-pj">
+				<div class="product-options-box">
+					<button type="button" id="option_plus">추가하기</button>
+				</div>
+				<div class="product-options-box">옵션 이름</div>
+				<div class="product-options-box">변동 가격</div>
+				<div class="product-options-box">할인율(%)</div>
+			</div>
+			<div class="product-name-box-pj">
+				<div class="product-options-box"></div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name1" /></div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price1" /> </div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale1" /> </div>
+			</div>
+			<div id="option_space"></div>
+			<div class="product-footer-pj">
+				<button type="submit">상품 등록</button>
+			</div>
 		</div>
-	</div>
+	</form>
 </section>
 <%@ include file="../fix/footer.jsp"%>

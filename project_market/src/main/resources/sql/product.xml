@@ -6,10 +6,13 @@
 
 	<!-- 게시판 목록 (member_id를 전달 받아 join하여 조회) -->
 	<!-- 	id= dao 에서 호출할 이름 parameterType = dao로 돌려줄 타입 resultType = 어떻게 받을지 하는 타입 configurateion에서 참조-->
-    <insert id="product_insert" parameterType="product">
+    <insert id="product_insert" parameterType="product" keyProperty="product_num">
      insert into product values(product_seq.nextval, #{product_l},#{product_m},
      #{product_name},#{product_price},#{product_content},
      #{product_sub},#{product_img},#{product_stock})
+     	<selectKey order="AFTER" keyColumn="product_num" keyProperty="product_num" resultType="int">
+     		select last_number-1 as product_num from user_sequences where sequence_name = 'PRODUCT_SEQ'
+     	</selectKey>
     </insert>
     
     <!-- 해당 카테고리 총 상품 수 -->
@@ -24,9 +27,18 @@
 	   	where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10) and product_l = #{product_l}
 		]]>
     </select>
-    
-       <!-- 상품디테일 -->
+
+    <!-- 상품디테일 -->
 	<select id="product_detail" resultType="product">
 		select * from product where product_num = #{product_num}
+	</select>
+	
+	<!-- 상품수정시 리스트 검색 -->
+	<select id="product_search" resultType="product">
+		select * from product where product_name like '%' || #{product_name} || '%'
+	</select>
+	<!-- 검색한 상품 갯수 -->
+	<select id="search_count" resultType="int">
+		select count(product_num) from product where product_name like '%' || #{product_name} || '%'
 	</select>
 </mapper>

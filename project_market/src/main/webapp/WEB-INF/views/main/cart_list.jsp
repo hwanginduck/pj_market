@@ -18,7 +18,6 @@
 						</div>
 					</div>
 				</c:if>
-				<c:set var="i" value="0"></c:set>
 				<!-- 반복문 시작 -->
 				<c:forEach var="cart" items="${list}" varStatus="status">
 				<input type="hidden" id="forcount" value = '${list}'>
@@ -35,24 +34,23 @@
 						<div class="cart-item-textbox-pj">
 							<div class="cart-item-name-pj">
 								${cart.product_name}<br>
-								<input type="number" id ="a${status.index}" value = "${cart.product_price}"/>원<br> 
+								<input type="number" id ="product_price${status.index}" value = "${cart.product_price}"/>원<br> 
 								${cart.options_name}<br>
-								<input type="number" id ="b${status.index}" value = "${cart.options_price}"/>원<br> 
+								<input type="number" id ="options_price${status.index}" value = "${cart.options_price}"/>원<br> 
 							</div>
 							<div class="cart-item-count-pj">
 								<div class="number-input">
 									<button
 										onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-									<input class="quantity" min="1" id="c${status.index}" name="quantity"
+									<input class="quantity" min="1" id="product_count${status.index}" name="quantity"
 										value="${cart.cart_count }" type="number">
-									<input type="hidden" value="${status.index }" id="statuscheck">
 									<button
 										onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
 										class="plus"></button>
 								</div>
 							</div>
 							<div class="cart-item-amount-pj">
-								<span id ="abc${status.index}"></span>
+								<input id ="total${status.index}">원
 							</div>
 							<div class="cart-item-icon-pj">
 								<button onClick="location.href='deletecart.do?cart_num=${cart.cart_num}'">장바구니 삭제</button>
@@ -64,7 +62,7 @@
 				<!-- 반복문 끝 -->
 			</div>
 				<div class="cart-footer-pj">
-					<div class="cart-total-amount-pj" id="total_sum" > 0 원</div>
+					<div class="cart-total-amount-pj" class="total_sum" id="total_sum" > 0 원</div>
 					<button class="cart-total-buy-pj" onClick="location.href=''">구매하기</button>
 				</div>
 			</div>
