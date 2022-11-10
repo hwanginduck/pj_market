@@ -88,4 +88,10 @@
 
 
 
+
+	<select id="test_controller" resultType="qna">
+	select * from qna where qna_no = 116
+	</select>
+
+
 </mapper>

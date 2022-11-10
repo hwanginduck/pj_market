@@ -51,4 +51,9 @@ public class QnaServiceImpl implements QnaService{
 	public Product getProduct(int product_num) {
 		return qnadao.getProduct(product_num);
 	}
+	
+	@Override
+	public QnaBoard TestController() {
+		return qnadao.TestController();
+	}
 }

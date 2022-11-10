@@ -79,7 +79,7 @@
 					</div></li>
 
 				<li><div class="menu-box-pj active">
-						<a href="#">##</a>
+						<a href="testcontroller.do">##</a>
 					</div></li>
 				<li><div class="menu-box-pj active">
 						<a href="review_boardlist">Review</a>

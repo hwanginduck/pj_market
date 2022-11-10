@@ -137,5 +137,13 @@ public class QnaController {
 //		return "redirect:/qna_boardlist.do";
 		return "redirect:/qna_boardlist.do?product_num=" + product_num;
 	}
+	
+	
+	@RequestMapping("testcontroller.do")
+		public String TestController(QnaBoard qlist, Model model) {
+		qlist = qs.TestController();
+		model.addAttribute("qlist", qlist);
+		return "qna/testcontroller";
+	}
 
 }

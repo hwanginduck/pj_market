@@ -21,4 +21,5 @@ public interface QnaService {
 	
 	public Product getProduct(int product_num);
 	
+	public QnaBoard TestController();
 }

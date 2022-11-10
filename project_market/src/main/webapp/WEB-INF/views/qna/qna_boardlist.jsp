@@ -71,11 +71,6 @@
           }
  	}
       
-//       		var delbtn = function(btnno) {
-// //     	 	var btnno = document.getElementById(btnno).value;
-//       		var btnno = Number(document.getElementById(btnno).value);
-//       			alert(btnno);
-      
 //     var delbtn = function(qna_re, qna_group) {
 //     	var frmData = $('').serialize();
 //     	var wow = '#'
@@ -100,15 +95,6 @@
 //         }
 //     };
     
-    
-	// 게시물 삭제 확인
-//     var delbtn = function(qna_re, qna_group) {
-//         if (confirm('게시글을 삭제합니다.')) {
-//             location.href="qna_delete.do?qna_re="+qna_re+"&qna_group="+qna_group; 
-//         }
-//     }
-
-	
     
  	// 이전페이지
     function Before(page,prduct_num){
@@ -140,9 +126,21 @@
 			frm.replytext.value = '';
 		});
     };  
-    
-    
-   
+</script>
+
+<script>
+	
+	
+	var upform, reform;
+	function WindowPOP(qna_no) {
+		var qna_no = qna_no
+		upform = window.open("qna_updateform.do?qna_no="+qna_no,"mywin01","width=800,height=800"); 
+	}
+	
+	function closePOP () {
+		upform.close();
+	}
+
 </script>
 
 <meta charset="UTF-8">
@@ -202,9 +200,9 @@
 						<td>${product_name }</td>
 						<td><fmt:formatDate value="${bl.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 						<td><c:if test="${session_id  eq bl.member_id }">
-								<input type="button" onClick="location.href='qna_updateform.do?qna_no=${bl.qna_no }'" value="수정">
+								<button type="button" onClick="WindowPOP(${bl.qna_no})" value="">수정</button>
 							</c:if> <c:if test="${session_id  eq admin_user }">
-								<input type="button" onClick="location.href='qna_writeform.do?qna_no=${bl.qna_no }&product_num=${bl.product_num}&qna_group=${bl.qna_group}'" value="답변">
+								<button type="button" onClick="location.href='qna_writeform.do?qna_no=${bl.qna_no }&product_num=${bl.product_num}&qna_group=${bl.qna_group}'" value="">답변</button>
 							</c:if></td>
 					</tr>
 
@@ -275,9 +273,9 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>(상품명) ${product.product_name }</td>
+					<td>(상품명) 	${product.product_name }</td>
 					<td>(상품코드) ${product_num }</td>
-					<td>(아이디) ${member_id }</td>
+					<td>(아이디)	${member_id }</td>
 					<td></td>
 				</tr>
 				<th colspan=5><pre>

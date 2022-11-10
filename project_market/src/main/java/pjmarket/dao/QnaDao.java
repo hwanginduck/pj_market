@@ -20,4 +20,6 @@ public interface QnaDao {
 	public int DeleteQna(QnaBoard qnaboard);
 	
 	public Product getProduct(int product_num);
+	
+	public QnaBoard TestController();
 }

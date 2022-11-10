@@ -79,4 +79,8 @@ public class QnaDaoImpl implements QnaDao {
 		return session.selectOne("qnans.product_select", product_num );
 	}
 
+	@Override
+	public QnaBoard TestController() {
+		return session.selectOne("qnans.test_controller");
+	}
 }
