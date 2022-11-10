@@ -51,8 +51,11 @@
 		<tr>
 			<th>리뷰 사진 </th>
 			<td colspan="5">
-				<img src="<%=request.getContextPath()%>/resources/upload/${review.review_img}" width="100%">
-							</td>
+			
+				<c:forEach var="img" items="${review_img }">
+					<img src="./resources/upload/uploadFiles/${img}" width="100%"><br>
+				</c:forEach>				
+			</td>
 		</tr>
 		
 		<tr>

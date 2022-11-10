@@ -62,6 +62,7 @@ public class ReviewController {
 			// path 가져오기
 			String path = request.getRealPath("/resources/upload/");
 			String root = path + "\\" + "uploadFiles";
+			System.out.println("root:"+ root);
 			
 			File fileCheck = new File(root);
 			
@@ -219,7 +220,7 @@ public class ReviewController {
 
 	// 리뷰 상세
 	@RequestMapping("review_detail")
-	public String reviewDetail(@RequestParam("review_no") int review_no, Model model, Review review) throws Exception {
+	public String reviewDetail(@RequestParam("review_no") int review_no, Model model) throws Exception {
 
 		// @RequestParam("p_no") int p_no
 
@@ -232,15 +233,17 @@ public class ReviewController {
 		// Product product = rs.getProductName(p_no);
 
 		// 리뷰 내용 구해오기
-		review = rs.select(review_no);
+		Review review = rs.select(review_no);
 		System.out.println("리뷰 상세 내용: " + review);
 		System.out.println("리뷰이미지:" + review.getReview_img());
+		
+		String review_img[] = review.getReview_img().split(",");		
 
 		String content = review.getReview_content().replace("\n", "<br>");
 
 		model.addAttribute("review", review);
 		model.addAttribute("content", content);
-		// model.addAttribute("review_img", review.getReview_img());
+		model.addAttribute("review_img", review_img);
 		// model.addAttribute("product", product);
 
 		return "review/review_detail";
