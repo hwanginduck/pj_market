@@ -8,11 +8,6 @@
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/js/board.js"></script>
     
-    <script>
-    	$(document).ready(function(){    		
-    		$("#review_star option[value=${review.review_star}]").attr("selected", true);    		
-    	});
-    </script>
     
 <meta charset="UTF-8">
 <title>리뷰 수정 게시판</title>
@@ -38,22 +33,6 @@ ${options_num }
 		 <td style="font-weight: bold;" align="center">제목</td>
 	       <td>
 		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="${review.review_sb }"  />
-			</td>
-		</tr>
-		<!--  --><tr>
-			<td style="font-weight: bold;" align="center"> 상품 별점</td>
-			<td>
-			<div>
-				<select id="review_star" name="review_star" required="required">
-					<option value="">선택하세요</option>
-					<option value="0">☆☆☆☆☆</option>
-					<option value="1">★☆☆☆☆</option>
-					<option value="2">★★☆☆☆</option>
-					<option value="3">★★★☆☆</option>
-					<option value="4">★★★★☆</option>
-					<option value="5">★★★★★</option>
-				</select>	
-			</div>
 			</td>
 		</tr>
 		<tr>
