@@ -53,7 +53,7 @@
 			<td colspan="5">
 			
 				<c:forEach var="img" items="${review_img }">
-					<img src="./resources/upload/uploadFiles/${img}" width="100%"><br>
+					<img src="./resources/upload/uploadFiles/${img}" width="80%"><br>
 				</c:forEach>				
 			</td>
 		</tr>

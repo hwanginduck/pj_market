@@ -261,73 +261,140 @@ public class ReviewController {
 
 	// 리뷰 업데이트 성공
 	@RequestMapping("review_updateresult")
-	public String Reviewupdateresult(Review review, Model model, @RequestParam("review_img1") MultipartFile mf,
-			HttpServletRequest request) throws Exception {
-
-		String filename = mf.getOriginalFilename();
-		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
-
-		String path = request.getRealPath("/resources/upload/");
-		System.out.println("mf=" + mf);
-		System.out.println("filename=" + filename);
-		System.out.println("size=" + size);
-		System.out.println("Path=" + path);
-
-		int result = 0;
-
-		String file[] = new String[2];
-
-		String newfilename = "";
-
-		if (filename != "") { // 첨부파일이 전송된 경우
-
-			// 파일 중복문제 해결
-			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-			System.out.println("extension:" + extension);
-
-			UUID uuid = UUID.randomUUID();
-
-			newfilename = uuid.toString() + extension;
-			System.out.println("newfilename:" + newfilename);
-
-			StringTokenizer st = new StringTokenizer(filename, ".");
-			file[0] = st.nextToken();
-			file[1] = st.nextToken();
-
-			if (size > 2000000) {
-				result = 2;
+	public String Reviewupdateresult(Review review, Model model, @RequestParam("review_img1")
+			List<MultipartFile> multiFileList , HttpServletRequest request) throws Exception {
+		
+		
+				
+				// 받아온것 출력 확인
+				System.out.println("multiFileList : " + multiFileList);
+				
+				// path 가져오기
+				String path = request.getRealPath("/resources/upload/");
+				String root = path + "\\" + "uploadFiles";
+				System.out.println("root:"+ root);
+				
+				File fileCheck = new File(root);
+				
+				if(!fileCheck.exists()) fileCheck.mkdirs();
+				
+				
+				String filename = "";
+				
+				List<Map<String, String>> fileList = new ArrayList<>();
+				
+				for(int i = 0; i < multiFileList.size(); i++) {
+					String originFile = multiFileList.get(i).getOriginalFilename(); // 오리지널 파일이름
+					String ext = originFile.substring(originFile.lastIndexOf(".")); // 확장자
+					String changeFile = UUID.randomUUID().toString() + ext;			// 체인지 파일이름
+					
+					 
+					filename += changeFile +",";
+					
+					Map<String, String> map = new HashMap<>();
+					map.put("originFile", originFile);
+					map.put("changeFile", changeFile);
+					
+					fileList.add(map);
+				}
+				
+				// 파일업로드 .. Multifilelist에서 filelist로바꿈
+				try {
+					for(int i = 0; i < multiFileList.size(); i++) {
+						File uploadFile = new File(root + "\\" + fileList.get(i).get("changeFile"));
+						multiFileList.get(i).transferTo(uploadFile);
+					}
+					
+					System.out.println("다중 파일 업로드 성공!");
+					
+				} catch (IllegalStateException | IOException e) {
+					System.out.println("다중 파일 업로드 실패 ");
+					// 만약 업로드 실패하면 파일 삭제
+					for(int i = 0; i < multiFileList.size(); i++) {
+						new File(root + "\\" + fileList.get(i).get("changeFile")).delete();
+					}
+					
+					e.printStackTrace();
+					
+				}
+				
+				
+				review.setReview_img(filename);
+				
+				System.out.println("review_updateresult");
+				
+				int result = rs.ReviewUpdateok(review);
+				
+				if (result == 1)
+					System.out.println("수정성공");
+				
 				model.addAttribute("result", result);
-
 				return "review/review_updateresult";
-
-			} else if (!file[1].equals("jpg") && !file[1].equals("jpeg") && !file[1].equals("gif")
-					&& !file[1].equals("png")) {
-
-				result = 3;
-				model.addAttribute("result", result);
-
-				return "review/review_updateresult";
-			}
-
-		}
-			if (size > 0) { // 첨부파일이 전송된 경우
-	
-				mf.transferTo(new File(path + "/" + newfilename));
-	
-			}
-	
-			review.setReview_img(newfilename);
-	
-			System.out.println("review_updateresult");
-	
-			result = rs.ReviewUpdateok(review);
-	
-			if (result == 1)
-				System.out.println("수정성공");
-	
-			model.addAttribute("result", result);
-	
-			return "review/review_updateresult";
+		
+//		String filename = mf.getOriginalFilename();
+//		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
+//
+//		String path = request.getRealPath("/resources/upload/");
+//		System.out.println("mf=" + mf);
+//		System.out.println("filename=" + filename);
+//		System.out.println("size=" + size);
+//		System.out.println("Path=" + path);
+//
+//		int result = 0;
+//
+//		String file[] = new String[2];
+//
+//		String newfilename = "";
+//
+//		if (filename != "") { // 첨부파일이 전송된 경우
+//
+//			// 파일 중복문제 해결
+//			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+//			System.out.println("extension:" + extension);
+//
+//			UUID uuid = UUID.randomUUID();
+//
+//			newfilename = uuid.toString() + extension;
+//			System.out.println("newfilename:" + newfilename);
+//
+//			StringTokenizer st = new StringTokenizer(filename, ".");
+//			file[0] = st.nextToken();
+//			file[1] = st.nextToken();
+//
+//			if (size > 2000000) {
+//				result = 2;
+//				model.addAttribute("result", result);
+//
+//				return "review/review_updateresult";
+//
+//			} else if (!file[1].equals("jpg") && !file[1].equals("jpeg") && !file[1].equals("gif")
+//					&& !file[1].equals("png")) {
+//
+//				result = 3;
+//				model.addAttribute("result", result);
+//
+//				return "review/review_updateresult";
+//			}
+//
+//		}
+//			if (size > 0) { // 첨부파일이 전송된 경우
+//	
+//				mf.transferTo(new File(path + "/" + newfilename));
+//	
+//			}
+//	
+//			review.setReview_img(newfilename);
+//	
+//			System.out.println("review_updateresult");
+//	
+//			result = rs.ReviewUpdateok(review);
+//	
+//			if (result == 1)
+//				System.out.println("수정성공");
+//	
+//			model.addAttribute("result", result);
+//	
+//			return "review/review_updateresult";
 	}
 
 	// 리뷰 삭제
