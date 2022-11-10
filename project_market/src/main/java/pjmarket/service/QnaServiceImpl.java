@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import pjmarket.dao.QnaDao;
 import pjmarket.dao.QnaDaoImpl;
+import pjmarket.model.Product;
 import pjmarket.model.QnaBoard;
 
 @Service
@@ -45,5 +46,9 @@ public class QnaServiceImpl implements QnaService{
 	public int QnaDelete(QnaBoard qnaboard) {
 		return qnadao.DeleteQna(qnaboard);
 	}
-
+	
+	@Override
+	public Product getProduct(int product_num) {
+		return qnadao.getProduct(product_num);
+	}
 }

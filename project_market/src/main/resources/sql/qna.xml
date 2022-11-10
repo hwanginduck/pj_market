@@ -78,6 +78,12 @@
 		delete qna where qna_re = 1 and qna_group =
 		#{qna_group}
 	</delete>
+	
+	
+	<select id="product_select" resultType="product">
+		select * from product where
+		product_num = #{product_num}
+	</select>
 
 
 

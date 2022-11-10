@@ -8,13 +8,21 @@
 <script>
 
 //product_detail 페이지로딩될때 최초로 qna_boardlist 페이지를 로드해옴.
-$(function () {
-	$('#list').load('qna_boardlist.do?product_num=${product.product_num}&product_name=${product.product_name}');
-});
+
+// $(function () {
+// 	$('#list').load('qna_boardlist.do?product_num=${product.product_num}&product_name=${product.product_name}');
+// });
+
+	$(function () {
+	var product_num = '${product.product_num}'
+	alert("product_detail.jsp 리턴될때 검수용 alert \n"+"product_num: "+ product_num);
+		$('#list').load('qna_boardlist.do?product_num=' + product_num);
+	});
+
 
 // 상단 스크립트 매뉴로 페이지 로드함수.
 function move1(product_num) {
-	$('#list').load('qna_boardlist.do');
+	$('#list').load('qna_boardlist.do?product_num='+product_num);
 }
 
 function move2(y) {

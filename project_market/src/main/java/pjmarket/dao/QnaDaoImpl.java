@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pjmarket.model.Product;
 import pjmarket.model.QnaBoard;
 
 @Repository
@@ -73,8 +74,7 @@ public class QnaDaoImpl implements QnaDao {
 	// 수정폼을위한 1개의 객체정보 조회
 	@Override
 	public QnaBoard getMember(int qna_no) {
-		QnaBoard qboard = session.selectOne("qnans.qna_select", qna_no);
-		return qboard;
+		return session.selectOne("qnans.qna_select", qna_no);
 	}
 
 	// 수정 후 1개의 객체정보 업데이트
@@ -96,6 +96,11 @@ public class QnaDaoImpl implements QnaDao {
 			result = session.delete("qnans.qna_admindelete", qna_group);
 		}
 		return result;
+	}
+	
+	@Override 
+	public Product getProduct(int product_num) {
+		return session.selectOne("qnans.product_select", product_num );
 	}
 
 }

@@ -40,7 +40,7 @@
 						frm.qna_content.value=''; // 입력후 댓글입력창 초기화
 					});
     			// post Ajax종료
-    	$('#boardlist').load('qna_boardlist.do?product_num=${product_num}&product_name=${product_name}')
+    	$('#boardlist').load('qna_boardlist.do?product_num=${product_num}')
 			})
 		// click이벤트 종료
 		
@@ -63,7 +63,6 @@
 //         }
 //     }
 
-	
 	
     
  	// 이전페이지
@@ -228,7 +227,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>(상품명) ${product_name }</td>
+					<td>(상품명) ${product.product_name }</td>
 					<td>(상품코드) ${product_num }</td>
 					<td>(아이디) ${member_id }</td>
 					<td></td>

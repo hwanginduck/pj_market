@@ -2,6 +2,7 @@ package pjmarket.service;
 
 import java.util.List;
 
+import pjmarket.model.Product;
 import pjmarket.model.QnaBoard;
 
 public interface QnaService {
@@ -17,5 +18,7 @@ public interface QnaService {
 	public int QnaUpdateok(QnaBoard qnaboard);
 	
 	public int QnaDelete(QnaBoard qnaboard);
+	
+	public Product getProduct(int product_num);
 	
 }

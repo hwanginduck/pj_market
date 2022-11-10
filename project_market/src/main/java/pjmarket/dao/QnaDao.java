@@ -2,6 +2,7 @@ package pjmarket.dao;
 
 import java.util.List;
 
+import pjmarket.model.Product;
 import pjmarket.model.QnaBoard;
 
 public interface QnaDao {
@@ -17,4 +18,6 @@ public interface QnaDao {
 	public int UpdateQna(QnaBoard qnaboard);
 	
 	public int DeleteQna(QnaBoard qnaboard);
+	
+	public Product getProduct(int product_num);
 }
