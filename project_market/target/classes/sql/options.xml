@@ -14,4 +14,8 @@
 		select * from options where product_num = #{product_num}
     </select>
     
+    <select id="options_count" parameterType="int" resultType="int">
+    	select count(options_num) from options where product_num = #{product_num}
+    </select>
+    
 </mapper>

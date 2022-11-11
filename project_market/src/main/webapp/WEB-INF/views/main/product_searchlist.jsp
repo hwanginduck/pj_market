@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@ include file="../fix/header.jsp"%>
+
 <section>
 	<div class="product-searchlist-box-pj">
 		<div class="product-searchlist-header-pj">
-			검색결과 : ${count} 개 항목 검색<button onClick="history.go(-1)">뒤로가기</button>
+			검색결과 : ${count} 개 항목 검색
 		</div>
 		<div class="product-searchlist-contentbox-pj">
 			<div class="product-search-column-pj">
@@ -56,5 +56,5 @@
 		</div>
 	</div>
 </section>
-<%@ include file="../fix/footer.jsp"%>
+
 

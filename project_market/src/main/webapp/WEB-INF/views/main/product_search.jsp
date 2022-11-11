@@ -1,17 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../fix/header.jsp"%>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+$( document).ready( function(val) {
+	
+	$('#search-bar').on('change',function(){
+
+		var product_name = document.getElementById("search-bar").value;
+		
+		$('#list').load('search_product.do?product_name='+product_name);
+
+	
+	});
+
+});
+
+</script>
 <section>
-	<form method="post" action="search_product.do">
+<!-- 	<form method="post" action=""> -->
 		<div class="product-search-form-pj">
 			<div class="product-search-header-pj">수정할 품목 명을 입력하세요.</div>
 			<div class="product-search-bar-pj">
-				<input type="search" name="product_name">
+				<input type="text" id="search-bar" name="product_name">
 			</div>
+		<div id="list"></div>
 		</div>
-	</form>
+	<!-- </form> -->
 </section>
 <%@ include file="../fix/footer.jsp"%>

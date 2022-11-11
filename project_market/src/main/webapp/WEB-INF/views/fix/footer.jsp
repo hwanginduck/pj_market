@@ -23,9 +23,9 @@
 </body>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 
-
+<script src="${path}/resources/js/product.js"></script>
 <!-- cart관련 -->
-<script src="${path}/resources/js/cart.js"></script>
+
   
 <!-- Mebmer관련 -->
 <script src="${path}/resources/js/jquery.js"></script>

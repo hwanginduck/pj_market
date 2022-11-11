@@ -40,4 +40,9 @@ public class OptionsDaoImpl implements OptionsDao {
     return list;
   }
 
+  @Override
+  public int countOpions(int product_num) {
+    return sqlSession.selectOne("optionsns.options_count", product_num);
+  }
+
 }

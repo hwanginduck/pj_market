@@ -25,4 +25,9 @@ public class OptionsServiceImpl implements OptionsService {
     return odao.getOptionList(product_num);
   }
 
+  @Override
+  public int countOpions(int product_num) {
+    return odao.countOpions(product_num);
+  }
+
 }

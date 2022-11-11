@@ -69,4 +69,4 @@
 		</div>
 	</section>
 <%@ include file="../fix/footer.jsp"%>
-
+<script src="${path}/resources/js/cart.js"></script>

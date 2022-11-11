@@ -258,3 +258,194 @@
 	align-items: center;
 	padding-top: 18px;
 }
+
+/* 제품 상세 페이지 */
+.product-detail-box-pj{
+	width: 1200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid lightgray;
+	padding: 2px;
+	box-sizing: border-box;
+	border-radius: 6px;
+	flex-flow: wrap;
+}
+.product-datail-img-pj{
+	width: 690px;
+	height: 700px;
+	display: inline-block;
+	position: relative;
+}
+.product-detail-imageContainer-pj {
+  
+}
+#slideShow{
+  width: 690px;
+  height: 690px;
+  position: relative;
+  margin: auto;
+  overflow: hidden;   
+  /*리스트 형식으로 이미지를 일렬로 
+  정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
+  hidden으로 숨겨줘야됨*/
+}
+.product-detail-imageContainer-pj >ul{
+	padding: 0;
+}
+.product-detail-imageContainer-pj >ul >li{
+  list-style-type: none;
+}
+.product-detail-imageContainer-pj > ul > li > img {
+  	min-width: 700px;
+  	width: 700px;
+	height: 700px;
+  	background-size: cover;
+  	background-position: center center
+}
+
+.slides{
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: left 0.5s ease-out;
+  width: auto; 
+  /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+}
+
+.slides li:first-child{
+	margin-left: 00px;
+}
+
+.slides li:not(:last-child){
+  float: left;
+  margin-right: 0px;
+}
+
+.slides li{
+  float: left;
+}
+
+.controller span{
+  position:absolute;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 20px;
+  top: 50%;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+/* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller span:hover{
+  background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev{
+  left: 10px;
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 
+이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover{
+  transform: translateX(-10px);
+}
+
+.next{
+  right: 10px;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 
+이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover{
+  transform: translateX(10px);
+}
+
+
+
+.product-datail-text-pj{
+	width: 500px;
+	height: 700px;
+	display: inline-block;
+	margin-left: 2px;
+	border-left: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+.product-detail-content-pj{
+	width: 100%;
+}
+.product-detail-content-pj > img{
+	min-width: 1190px;
+	margin: auto;
+}
+.product-detail-category-pj{
+	width: 100%;
+	height: 70px;
+	font-size: 30px;
+	padding-left: 5px;
+	color:gray;
+	padding-top: 20px;
+}
+.product-detail-name-pj{
+	width: 100%;
+	height: 100px;
+	font-size: 40px;
+}
+.product-detail-star-pj{
+	width: 100%;
+	height: 30px;
+	border-bottom : 1px solid gray;
+	font-size: 20px;
+	padding: 0 0 0 10px;
+}
+.product-detail-price-pj{
+	width: 100%;
+	height: 80px;
+	font-size: 40px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+.product-detail-option-pj{
+	width: 100%;
+	height: 100px;
+	padding: 5px 0 0 10px;
+}
+.product-detail-option-pj > select, option{
+	width:300px;
+	height:80px;
+	font-size: 30px;
+}
+.product-detail-sub-pj{
+	width: 100%;
+	height: 100px;
+	padding: 5px 0 0 10px;
+}
+.product-detail-clc-pj{
+	width: 100%;
+	height: 100px;
+}
+.product-detail-clc-pj > button{
+	display: inline;
+	height: 80px;
+	width: 150px;
+	font-size: 20px;
+	padding: 0;
+}
+.product-detail-clc-pj > input{
+	width: 100px;
+	height: 80px;
+	font-size: 30px;
+}
+.product-detail-buy-pj{
+	width: 100%;
+	height: 100px;
+}
+.product-detail-buy-pj > button{
+	width: 200px;
+	height: 80px;
+	font-size: 30px;
+	margin: auto;
+}
