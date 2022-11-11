@@ -5,6 +5,11 @@
 
 <script src="${path}/resources/js/product.js"></script>
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 
 //product_detail 페이지로딩될때 최초로 qna_boardlist 페이지를 로드해옴.
@@ -16,7 +21,10 @@
 	$(function () {
 	var product_num = '${product.product_num}'
 // 	alert("product_detail.jsp 리턴될때 검수용 alert \n"+"product_num: "+ product_num);
-		$('#list').load('qna_boardlist.do?product_num=' + product_num);
+	
+		$('#p_index').load('p_index.do');
+		$('#qnalist').load('qna_boardlist.do?product_num=' + product_num);
+		$('#reviewlist').load('review_boardlist');
 	});
 
 
@@ -88,17 +96,20 @@ function move2(y) {
 			</div>
 		</form>
 	</div>
+	<hr>
 
 			<div class="detail-content-pj">
 				<div>
-					<ul class="nav nav-tabs nav-justified">
-						<li class="nav-item"><a class="nav-link" onClick="move1( ${product.product_num })">1번</a></li>
-						<li class="nav-item"><a class="nav-link" onClick="move2( ${product.product_num })">2번</a></li>
-						<li class="nav-item"><a class="nav-link" onClick="move()">3번</a></li>
-						<li class="nav-item"><a class="nav-link" onClick="move()">4번</a></li>
-					</ul>
+					 <ul class="nav nav-tabs nav-justified">
+						<li class="nav-item"><a href="#" class="nav-link" style="text-decoration: none;">상품상세</a></li>
+						<li class="nav-item"><a href="#reviewlist"  class="nav-link" style="text-decoration: none;">리뷰</a></li>
+						<li class="nav-item"><a href="#qnalist"  class="nav-link" style="text-decoration: none;">상품문의</a></li>
+						<li class="nav-item"><a href="#p_index"  class="nav-link" style="text-decoration: none;">배송/교환/반품안내</a></li>
+					</ul> 
 
-					<div id="list"></div>
+					<div  id="reviewlist"></div>
+					<div  id="qnalist"></div>
+					<div  id="p_index"></div>
 				</div>
 			</div>
 

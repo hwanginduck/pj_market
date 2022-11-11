@@ -33,6 +33,11 @@ public class MarketController {
 
 		return "main/mainpage";
 	}
+	
+	@RequestMapping("p_index.do")
+	public String ProductIndexPage() {
+		return "main/p_index";
+	}
 
 	// --------------------------- 각 컨트롤러 클래스 옮겨둠 ---------------------------
 	// Merge 할때 계속 Conflict 발생함.
