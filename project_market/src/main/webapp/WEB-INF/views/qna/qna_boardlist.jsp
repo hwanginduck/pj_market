@@ -68,31 +68,6 @@
           }
  	}
       
-//     var delbtn = function(qna_re, qna_group) {
-//     	var frmData = $('').serialize();
-//     	var wow = '#'
-//     	var wow2 = 
-//     	alert(wow);
-//         if (confirm('게시글을 삭제합니다.')) {
-        	
-//            $.ajax({
-//         	   url : "qna_delete.do",
-//         	   type : "POST",
-//         	   data : 
-//         		   frmData,
-//         		   success : function(data) {
-//         			   $('#boardlist').html(data);
-//         			   alert("삭제완료");
-//         		   },
-        	   
-//         	   error : function(e) {
-//         		   alert("오류");
-//         	   }
-//            })
-//         }
-//     };
-    
-    
  	// 이전페이지
     function Before(page,prduct_num){
     	$.post(

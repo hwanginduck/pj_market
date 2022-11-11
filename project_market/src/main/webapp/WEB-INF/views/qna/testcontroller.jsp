@@ -65,3 +65,89 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+ $(function() {
+    	$('#reInsert').click(function() {
+    		if(!frm.qna_content.value){
+    			alert('등록할 내용이 없슴. 내용을 입력하셈');
+    			frm.qna_content.focus();
+    			return false;
+    		}
+    	
+    		var frmData = $('form').serialize();
+    		/* var frmData = 'member_id=' + frm.member_id.value +
+    						'&product_num' + frm.product_num.value +
+    						'&qna_re' + frm.qna_re.value +
+    						'&qna_group' + frm.qna_group.value +
+    						'&qna_content' + frm.qna_content.value; */
+			$.post('qna_boardinsert.do',
+					frmData,
+					function (data) {
+						$('#boardlist').html(data);
+						frm.qna_content.value=''; // 입력후 댓글입력창 초기화
+					});
+    			// post Ajax종료
+    	$('#boardlist').load('qna_boardlist.do?product_num=${product_num}')
+			})
+		// click이벤트 종료
+	})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

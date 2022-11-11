@@ -112,8 +112,10 @@ public class QnaController {
 	@RequestMapping("qna_update.ok")
 	public String QnaUpdateok(QnaBoard qnaboard, Model model) throws Exception {
 		System.out.println("qna_update.ok 컨트롤러");
-		System.out.println("5_Qna_content: " + qnaboard.getQna_content());
-
+		System.out.println(qnaboard.getQna_no());
+		System.out.println(qnaboard.getProduct_num());
+		System.err.println(qnaboard.getQna_content());
+		
 		int result = qs.QnaUpdateok(qnaboard);
 		if (result == 1) {
 			System.out.println("수정성공");
