@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cartns">
+
+	<!-- 게시판 목록 (member_id를 전달 받아 join하여 조회) -->
+	<!-- 	id= dao 에서 받아올 이름 parameterType = dao로 돌려줄 타입 resultType = 어떻게 줄지 하는 타입 configurateion에서 참조-->
+	<select id="cart_list" parameterType="list" resultType="cartlist">
+		select c.cart_num, p.product_img, p.product_name, c.cart_count, p.product_price, o.options_name, o.options_price, p.product_num
+		from product p join cart c on p.product_num = c.product_num join options o on c.options_num = o.options_num where c.member_id = #{member_id}
+	</select>
+	<!-- 장바구니 추가 전 확인용 select -->
+	<select id="selectlikecheck" parameterType="int" resultType="likes">
+		select * from likes where likes_num = #{likes_num}
+	</select>		
+	<!-- 장바구니 추가 전 확인용 select -->
+	<select id="selectcartcheck" parameterType="likes" resultType="cart">
+		select * from cart where member_id = #{member_id} and product_num = #{product_num} and options_num = #{options_num}
+	</select>	
+	
+	
+	
+	<!-- 찜 > 장바구니 추가 -->
+	<insert id="cart_insert" parameterType="likes">
+		 insert into cart (cart_num, options_num, product_num, member_id, cart_count)
+		 	values(cart_seq.nextval, #{options_num}, #{product_num}, #{member_id}, 1)
+	</insert>
+	
+	<update id="cart_update" parameterType="cart">
+			update cart set cart_count = cart_count + 1 where member_id = #{member_id} and product_num = #{product_num} and options_num=#{options_num}
+	</update>
+	
+	
+	<!-- 상품상세 > 장바구니 추가 -->
+	<insert id="insertcart" parameterType="cart">
+		insert into cart values(cart_seq.nextval, #{options_num}, #{product_num}, #{member_id}, #{cart_count})
+	</insert>
+	
+	
+	<delete id="cart_delete" parameterType="int">
+		delete from cart where cart_num=#{cart_num}
+	</delete>
+</mapper>

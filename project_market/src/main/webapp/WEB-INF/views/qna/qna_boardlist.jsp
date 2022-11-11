@@ -28,7 +28,7 @@
     		}
     	// #reInsert 종료
     		var frmData = $('form').serialize();
-    		/* var frmData = 	'member_id=' + frm.member_id.value +
+    		/* var frmData = 'member_id=' + frm.member_id.value +
     						'&product_num' + frm.product_num.value +
     						'&qna_re' + frm.qna_re.value +
     						'&qna_group' + frm.qna_group.value +
@@ -49,11 +49,8 @@
  <script>   
  
  	function delbtn (btn){
-//  		alert(btn); // 0번인덱스
 	var btnval = document.getElementById(btn).value; // 130? qna_no 랑 같은 값을 가짐
-//  		alert(btnval);
  		var frmData = $('#'+btnval).serialize();
-//  		alert(frmData);
         	  if (confirm('게시글을 삭제합니다.')) {
 	             $.ajax({
     			      	   url : "qna_delete.do",
@@ -128,13 +125,11 @@
     };  
 </script>
 
-<script>
-	
+<script> // 팝업창으로 댓글 수정하기
 	
 	var upform, reform;
-	function WindowPOP(qna_no) {
-		var qna_no = qna_no
-		upform = window.open("qna_updateform.do?qna_no="+qna_no,"mywin01","width=800,height=800"); 
+	function WindowPOP(qna_no, product_num) {
+		upform = window.open("qna_updateform.do?qna_no="+qna_no+"&product_num="+product_num , 'mywin01', 'width=1250, height=300'); 
 	}
 	
 	function closePOP () {
@@ -150,7 +145,9 @@
 	<!-- 관리자유무에 따라 답변 버튼 활성화, 접속자에 따라 자신이 작성한 글 수정가능 -->
 	<c:set var="session_id" value="${member_id }" />
 	<c:set var="admin_user" value="admin" />
-
+	
+<section class="main-pj">
+	<div class="detail-content-pj">
 
 	<div align="center" id="boardlist">
 		<h2 class="text-primary">게시판 목록</h2>
@@ -200,7 +197,7 @@
 						<td>${product_name }</td>
 						<td><fmt:formatDate value="${bl.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 						<td><c:if test="${session_id  eq bl.member_id }">
-								<button type="button" onClick="WindowPOP(${bl.qna_no})" value="">수정</button>
+								<button type="button" onClick="WindowPOP(${bl.qna_no},${product.product_num })" value="">수정</button>
 							</c:if> <c:if test="${session_id  eq admin_user }">
 								<button type="button" onClick="location.href='qna_writeform.do?qna_no=${bl.qna_no }&product_num=${bl.product_num}&qna_group=${bl.qna_group}'" value="">답변</button>
 							</c:if></td>
@@ -278,13 +275,16 @@
 					<td>(아이디)	${member_id }</td>
 					<td></td>
 				</tr>
-				<th colspan=5><pre>
+				<th colspan=5>
+					<pre>
 						<textarea rows="3" cols="50" name="qna_content" style="display: block; margin: 4px 79px 0 10px;"></textarea>
 					</pre></th>
 			</table>
-			<input type="button" value="확인인" id="reInsert" class="btn btn-info" />
+			<input type="button" value="확인" id="reInsert" class="btn btn-info" />
 		</form>
 	</div>
+	</div>
+	</section>
 
 </body>
 </html>

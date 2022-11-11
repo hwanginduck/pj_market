@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pjmarket.model.Product;
 import pjmarket.model.QnaBoard;
@@ -22,7 +25,7 @@ public class QnaController {
 
 	// 상품문의게시판
 	@RequestMapping("qna_boardlist.do")
-	public String QnaBoardList(HttpServletRequest request, QnaBoard qnaboard,Product product, Model model) {
+	public String QnaBoardList(HttpServletRequest request, QnaBoard qnaboard, Product product, Model model) {
 		System.out.println("----------qna_boardlist.do----------");
 		List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
 
@@ -95,10 +98,13 @@ public class QnaController {
 
 	// QNA 업데이트 폼으로 이동 , 기존 작성내용들을 가지고감
 	@RequestMapping("qna_updateform.do")
-	public String QnaUpdate(int qna_no, Model model) throws Exception {
+	public String QnaUpdate(QnaBoard qna, Product product, Model model) throws Exception {
 		System.out.println("qna_updateform.do 컨트롤러");
-		QnaBoard qnaboard = qs.QnaUpdate(qna_no);
-		model.addAttribute("qnaboard", qnaboard);
+		qna = qs.QnaUpdate(qna.getQna_no());
+		product = qs.getProduct(qna.getProduct_num());
+		
+		model.addAttribute("qna", qna);
+		model.addAttribute("product", product);
 		return "qna/qna_updateform";
 	}
 
@@ -106,10 +112,6 @@ public class QnaController {
 	@RequestMapping("qna_update.ok")
 	public String QnaUpdateok(QnaBoard qnaboard, Model model) throws Exception {
 		System.out.println("qna_update.ok 컨트롤러");
-		System.out.println("1_Qna_no: " + qnaboard.getQna_no());
-		System.out.println("2_Member_id: " + qnaboard.getMember_id());
-		System.out.println("3_Product_num: " + qnaboard.getProduct_num());
-		System.out.println("4_Qna_re: " + qnaboard.getQna_re());
 		System.out.println("5_Qna_content: " + qnaboard.getQna_content());
 
 		int result = qs.QnaUpdateok(qnaboard);
@@ -139,11 +141,24 @@ public class QnaController {
 	}
 	
 	
+	
+	
+	// ------------------------------ 테스트 컨트롤러 프로젝트랑 관련없는 실험내용임 ------------------------------
 	@RequestMapping("testcontroller.do")
 		public String TestController(QnaBoard qlist, Model model) {
 		qlist = qs.TestController();
 		model.addAttribute("qlist", qlist);
 		return "qna/testcontroller";
 	}
+	
+	@RequestMapping("ok.do")
+	@ResponseBody
+	public String Ok(QnaBoard qnaboard, Model model) {
+		System.out.println("ok.do controller");
+		ObjectMapper mapper = new ObjectMapper();
+		
+		return null;
+	}
+	
 
 }

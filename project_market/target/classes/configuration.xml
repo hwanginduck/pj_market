@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	
+
+<!-- alias 는 별명을 의미한다. Type은 풀패키지경로 -->
+	<typeAliases>
+		
+		<typeAlias alias="likelist" type="pjmarket.model.LikeList" />
+		<typeAlias alias="likes" type="pjmarket.model.Likes" />
+		<typeAlias alias="cartlist" type="pjmarket.model.CartList" />
+		<typeAlias alias="cart" type="pjmarket.model.Cart" />
+		<typeAlias alias="product" type="pjmarket.model.Product" />
+		<typeAlias alias="member" type="pjmarket.model.MemberDTO" />
+		<typeAlias alias="qna" type="pjmarket.model.QnaBoard" />
+		<typeAlias alias="review" type="pjmarket.model.Review" />
+		<typeAlias alias="off" type="pjmarket.model.OfficialBoard" />	
+		<typeAlias alias="options" type="pjmarket.model.Options" />
+	</typeAliases>	
+	
+	
+	<!-- 
+	<mappers>
+		<mapper resource="sql/market.xml" />
+		<mapper resource="sql/qna.xml" />
+	</mappers>  -->	
+	
+</configuration>
