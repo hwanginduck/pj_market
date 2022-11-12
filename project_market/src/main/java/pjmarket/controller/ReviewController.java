@@ -1,6 +1,8 @@
 package pjmarket.controller;
 
 import java.io.File
+
+
 ;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import pjmarket.model.Product;
 import pjmarket.model.Review;
 import pjmarket.service.ReviewServiceImpl;
 
@@ -30,22 +33,22 @@ public class ReviewController {
 
 	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")
-	public String ReviewWriteForm(Model model, String member_id, HttpSession session) throws Exception {
+	public String ReviewWriteForm(Model model, String member_id,HttpSession session) throws Exception {
 
-		// @RequestParam("product_num") int product_num,
-		// @RequestParam("options_num") int options_num
+//       @RequestParam("product_num") int product_num,
+//		 @RequestParam("options_num") int options_num ,
 
 		// session 에서 아이디 구해오기
 		member_id = (String) session.getAttribute("member_id");
 		System.out.println("아이디 : " + member_id);
 
 		// 상품코드 구해오기
-		// Product product = rs.getProductNum(product_num);
-		//
+//		 Product product = rs.getProductNum(product_num);
 
-		// model.addAttribute("product", product);
-		// model.addAttribute("member_id", member_id);
-		// model.addAttribute("options_num", options_num);
+		 
+//		 model.addAttribute("product_num", product_num);
+		 model.addAttribute("member_id", member_id);
+//		 model.addAttribute("options_num", options_num);
 
 		return "review/review_writeform";
 	}
@@ -118,7 +121,8 @@ public class ReviewController {
 
 	// 리뷰 게시판 목록
 	@RequestMapping("review_boardlist")
-	public String ReviewBoardList(Model model, HttpServletRequest request) throws Exception {
+	public String ReviewBoardList(Review review,Model model,Product product, 
+			HttpServletRequest request) throws Exception {
 
 		List<Review> boardlist = new ArrayList<Review>();
 
@@ -128,10 +132,12 @@ public class ReviewController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-
-		int listcount = rs.getListCount();
-
-		boardlist = rs.getBoardList(page);
+		
+		int product_num = review.getProduct_num();
+		int listcount = rs.getListCount(product_num);
+		boardlist = rs.getBoardList(product_num, page);
+		product = rs.getProductNum(product_num);
+		System.out.println("ehlskdy");
 
 		int maxpage = (int) ((double) listcount / limit + 0.95);
 		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
@@ -140,6 +146,8 @@ public class ReviewController {
 		if (endpage > startpage + 10 - 1)
 			endpage = startpage + 10 - 1;
 
+		model.addAttribute("product_num", product_num);
+		model.addAttribute("product", product);
 		model.addAttribute("page", page);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
@@ -147,6 +155,7 @@ public class ReviewController {
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
 
+		System.out.println("product_num :" + product_num);
 		System.out.println(listcount);
 		System.out.println("boardlistsize :" + boardlist.size());
 

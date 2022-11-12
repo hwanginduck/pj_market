@@ -9,9 +9,9 @@ public interface ReviewService {
 
 	public int ReviewInsert(Review review) throws Exception;
 
-	public int getListCount() throws Exception;
+	public int getListCount(int product_num) throws Exception;
 
-	public List<Review> getBoardList(int page) throws Exception;
+	public List<Review> getBoardList(int page,int product_num) throws Exception;
 
 	public Product getProductNum(int product_num) throws Exception;
 
@@ -26,5 +26,7 @@ public interface ReviewService {
 	public Review ReviewDelete(int review_no);
 
 	public int ReviewDeleteOk(Review review);
+
+
 
 }

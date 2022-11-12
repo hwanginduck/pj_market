@@ -33,7 +33,7 @@ values
 </select>
 
 <!-- 리뷰 목록-->
-<select id="review_boardlist" parameterType="int" resultType="review">
+<select id="review_boardlist" parameterType="hashmap" resultType="review">
   			<![CDATA[
 		select * from (select rownum rnum, review.* from review order by review_no desc)
 		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
@@ -72,11 +72,11 @@ select * from review where review_no = #{review_no}
 		delete from review where review_no=#{review_no}
 	</delete>
  
- 
- <!-- 상품명 구하기 -->
-<!-- <select id="getProductName" parameterType="int" resultType="product">
-select * from product where p_no = #{p_no}
-</select> -->
+<!--상품 코드 가져오기 -->
+<select id="product_select" resultType="product">
+		select * from product where
+		product_num = #{product_num}
+	</select>
 
 	
 	

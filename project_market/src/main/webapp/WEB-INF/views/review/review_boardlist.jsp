@@ -48,13 +48,6 @@
 								<td style="font-family: Tahoma; font-size: 10pt;">
 									<div align="left">
 
-										<%-- <c:if test="${b.board_re_lev != 0}"> 
-						<c:forEach var="k" begin="1" end="${b.board_re_lev}">
-							&nbsp;&nbsp;			
-						</c:forEach>
-						<img src="./images/AnswerLine.gif">	
-					</c:if>		 --%>
-
 										<!-- 제목 출력 부분 -->
 										<a
 											href="review_detail.do?review_no=${b.review_no}&page=${page}&state=cont">

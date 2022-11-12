@@ -1,6 +1,7 @@
 
 package pjmarket.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,7 +19,7 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	// 상품 코드 가져오기
 	public Product getProductNum(int product_num) throws Exception {
-		return session.selectOne("review.getProductNum", product_num);
+		return session.selectOne("reviewns.product_select", product_num);
 	}
 
 	// 게시판에저장 //
@@ -30,14 +31,18 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int getListCount() {
+	public int getListCount(int product_num) {
 
-		return session.selectOne("reviewns.review_count");
+		return session.selectOne("reviewns.review_count",product_num);
 	}
 
 	@Override
-	public List<Review> getBoardList(int page) {
-		List<Review> list = session.selectList("reviewns.review_boardlist", page);
+	public List<Review> getBoardList(int page, int product_num) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("page", page);
+		map.put("product_num", product_num);
+		
+		List<Review> list = session.selectList("reviewns.review_boardlist",map);
 		return list;
 	}
 
@@ -70,5 +75,8 @@ public class ReviewDaoImpl implements ReviewDao {
 		int result = session.update("reviewns.review_delete", review);
 		return result;
 	}
+
+
+
 
 }
