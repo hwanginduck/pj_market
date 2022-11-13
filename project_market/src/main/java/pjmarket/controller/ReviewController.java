@@ -67,12 +67,16 @@ public class ReviewController {
 			String root = path + "\\" + "uploadFiles";
 			System.out.println("root:"+ root);
 			
+			int size = (int) multiFileList.size(); // 첨부파일의 크기 (단위:Byte)
+			System.out.println("size=" + size);
+			
 			File fileCheck = new File(root);
 			
 			if(!fileCheck.exists()) fileCheck.mkdirs();
 						
 			String filename = "";
 			
+			if (size > 1 ) {
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
 			for(int i = 0; i < multiFileList.size(); i++) {
@@ -109,10 +113,14 @@ public class ReviewController {
 				e.printStackTrace();
 				
 			}
+			review.setReview_img(filename);
+			}
+			else { 					// 첨부파일이 수정되지 않으면
+				review.setReview_img(review.getReview_img());
+			}
 			
 			System.out.println("리뷰 글 작성 성공");
 			
-			review.setReview_img(filename);
 			int result = rs.ReviewInsert(review);
 			model.addAttribute("result", result);
 			
