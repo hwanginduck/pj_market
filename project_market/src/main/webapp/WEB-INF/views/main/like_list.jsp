@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ include file="../fix/header.jsp"%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+
 <section>
 	<div>
 		<div class="like-content-box-pj">
@@ -23,7 +26,21 @@
 					<div class="like-item-pj">
 						<div class="like-item-img-pj">
 							<div class="detail-image-box-pj">
-								<div><input type='checkbox' name='likeitem'/></div>
+								<div>
+									<input type='checkbox' name='likeitem'/>
+								</div>
+								<div class="swiper mySwiper">
+								<div class="swiper-wrapper">
+								<c:forEach var="imglist" items="${fn:split(like.product_img,',')}" begin="0">
+								<div 
+									class="swiper-slide" 
+									style="background-image: url('<%=request.getContextPath()%>/resources/upload/${imglist}');"
+								>
+								</div>
+								</c:forEach>
+								</div>
+								</div>
+								
 								<img src="<%=request.getContextPath()%>/resources/upload/${like.product_img}">	
 							</div>
 						</div>
@@ -35,7 +52,7 @@
 								<fmt:formatNumber value='${like.options_price}' pattern='#,### 원' /><br>
 							</div>
 							<div class="like-item-icon-pj">
-								<button onClick="location.href='deletelike.do?likes_num=${like.likes_num}'">
+								<button type="button" onClick="location.href='deletelike.do?likes_num=${like.likes_num}'">
 									찜 취소하기
 								</button>
 								<button onClick="location.href='like_to_cart.do?likes_num=${like.likes_num}'">
@@ -50,3 +67,17 @@
 	</div>
 </section>
 <%@ include file="../fix/footer.jsp"%>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+      });
+    </script>

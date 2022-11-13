@@ -2,25 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <%@ include file="../fix/header.jsp"%>
 <section>
-	<form name="f" method="post" action="insert_product.do" enctype="multipart/form-data">
+	<form name="f" method="post" action="update_product.do" enctype="multipart/form-data">
 		<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
 		<div class="product-insert-form-pj">
-			<div class="product-header-pj">상품등록</div>
+			<div class="product-header-pj">상품수정</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품명</div>
 				<div class="product-insert-pj">
-					<input type="text" name="product_name" id="product-insert-bar" />
+					<input type="text" name="product_name" id="product-insert-bar" value="${product.product_name }"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">대분류</div>
 				<div class="product-insert-pj">
 					<select onchange="categoryChange(this)" class="pl" name="product_l">
-						<option>=대분류선택=</option>
+						<option value="${product.product_l }">${product.product_l }</option>
 						<option value="홈스마트">홈스마트</option>
 						<option value="가구">가구</option>
 						<option value="홈오피스">홈오피스</option>
@@ -39,58 +38,64 @@
 				<div class="product-column-pj">중분류</div>
 				<div class="product-insert-pj">
 					<select id="good" class="pl" name="product_m">
-						<option>=중분류=</option>
+						<option value="${product.product_m }">${product.product_m }</option>
 					</select>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">가격</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_price" />
+					<input type="text" id="product-insert-bar" name="product_price" value="${product.product_price }"/>
 				</div>
 			</div>
 			<div class="product-content-name-box-pj">
 				<div class="product-content-column-pj">상품내용</div>
 				<div class="product-content-insert-pj">
-					<input multiple type="file" name="product_content1">
+					<textarea name="product_content">${product.product_content }</textarea>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품 요약</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_sub" />
+					<input type="text" id="product-insert-bar" name="product_sub" value="${product.product_sub }"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">재고 수량</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_stock" />
+					<input type="text" id="product-insert-bar" name="product_stock" value="${product.product_stock }"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품 사진</div>
 				<div class="product-insert-pj">
-					<input multiple type="file" id="product_img" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /> 
+					<input type="file" id="image" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /> 
 				</div>
 			</div>				
-			<div id="image_container"></div>
+			<div id="image_container">
+				<img src="<%=request.getContextPath()%>/resources/upload/${product.product_img}">
+			</div>
 			<div class="product-option-name-box-pj">
 				<div class="product-options-box">
-					<button type="button" id="option_plus">추가하기</button>
+					<button type="button" id="update_option_plus">추가하기</button>
 				</div>
 				<div class="product-options-box">옵션 이름</div>
 				<div class="product-options-box">변동 가격</div>
 				<div class="product-options-box">할인율(%)</div>
 			</div>
-			<div class="product-name-box-pj">
-				<div class="product-options-box"></div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name1" /></div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price1" /> </div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale1" /> </div>
+			<input type="hidden" id="product-update-options" value="${optionscount}">
+			<c:forEach var="options" items="${optionslist}" varStatus="status">
+			<div class="product-name-box-pj" id='optionsbox${status.index }'>
+				<div class="product-options-box"><button type="button" name="option_minus${status.index}" onClick='options_delete(${status.index})' value='${status.index }'>삭제하기</button></div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name${status.index }" value="${options.options_name }"/></div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price${status.index }" value="${options.options_price }"/> </div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale${status.index }" value="${options.options_sale }"/> </div>
 			</div>
+			</c:forEach>
+			
 			<div id="option_space"></div>
 			<div class="product-footer-pj">
-				<button type="submit">상품 등록</button>
+				<button type="submit">상품 수정</button>
 			</div>
 		</div>
 	</form>

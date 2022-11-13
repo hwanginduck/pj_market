@@ -4,35 +4,32 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<title></title>
-<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Gothic:wght@400;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 
-<script src="https://kit.fontawesome.com/ab0cffe9ae.js" crossorigin="anonymous"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<c:set var="path" value="${pageContext.request.contextPath }" />
-<link href="${path}/resources/css/header.css" rel="stylesheet" />
-<link href="${path}/resources/css/footer.css" rel="stylesheet" />
-<link href="${path}/resources/css/product.css" rel="stylesheet" />
-<link href="${path}/resources/css/cart.css" rel="stylesheet" />
-<link href="${path}/resources/css/like.css" rel="stylesheet" />
-</head>
-<body>
-	<%
-		session = request.getSession();
-	%>
-	<header>
-		<div class="header-pj">
-			<div class="logo-pj">
-				<img src="${pageContext.request.contextPath}/resources/img/gagu_logo2.png" />
-			</div>
+    <script src="https://kit.fontawesome.com/ab0cffe9ae.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <c:set var="path" value="${pageContext.request.contextPath }" />
+    <link href="${path}/resources/css/header.css" rel="stylesheet" />
+    <link href="${path}/resources/css/footer.css" rel="stylesheet" />
+    <link href="${path}/resources/css/product.css" rel="stylesheet" />
+    <link href="${path}/resources/css/cart.css" rel="stylesheet" />
+    <link href="${path}/resources/css/like.css" rel="stylesheet" />
+  </head>
+  <body>
+    <% session = request.getSession(); %>
+    <header>
+      <div class="header-pj">
+        <div class="logo-pj">
+          <img
+            src="${pageContext.request.contextPath}/resources/img/gagu_logo2.png"
+          />
+        </div>
 
 			<div class="center-box-pj">
 				<div class="input-box-pj">
@@ -74,7 +71,8 @@
 						</div>
 					</div>
 				</li>
-				<li><div class="menu-box-pj active">
+				<li>
+					<div class="menu-box-pj active">
 						<a href="off_list.do">공지사항</a>
 					</div></li>
 
@@ -95,14 +93,15 @@
 				<li><div class="dropdown-pj menu-box-pj">
 						<button class="dropbtn-pj">Manager</button>
 						<div class="dropdown-content-pj">
-							<a href="product_insert.do">상품등록</a> <a href="cart_list.do">매출현황</a>
+							<a href="insertproductform.do">상품등록</a>
+							<a href="searchproductform.do">상품수정</a>
+							<a href="cart_list.do">매출현황</a>
 						</div>
-					</div></li>
+					</div>
+				</li>
 			</ul>
 		</div>
 	</header>
 </body>
 
-<script src="${path}/resources/js/product.js"></script>
-<script src="${path}/resources/js/like.js"></script>
 </html>

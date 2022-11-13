@@ -82,12 +82,21 @@ function setThumbnail(event) {
 $(document).ready(function() {
 	var i=2; // 변수설정은 함수의 바깥에 설정!
   $("#option_plus").click(function() {
-    
-    $("#option_space").append("<tr><td><input type='text' id='option-insert-bar' name='options_name"+i+"' /></td><td><input type='text' id='option-insert-bar' name='options_price"+i+"'/></td><td><input type='text' id='option-insert-bar'name='options_sale"+i+"'/></td></tr>");
-    
-    
+    $("#option_space").append("<div class='product-name-box-pj'><div class='product-options-box'></div><div class='product-options-box'><input type='text' name='options_name"+i+"' /></div><div class='product-options-box'><input type='text' name='options_price"+i+"' /> </div><div class='product-options-box'><input type='text' name='options_sale"+i+"' /></div></div>");
     i++; // 함수 내 하단에 증가문 설정
-    
-
   });
 });
+
+// 상품 수정 폼에서 옵션 갯수 추가
+$(document).ready(function() {	
+	var i = Number(document.getElementById("product-update-options").value);
+  $("#update_option_plus").click(function() {
+    $("#option_space").append("<div class='product-name-box-pj' id='optionsbox"+i+"'><div class='product-options-box'><button type='button' name='option_minus"+i+"' onClick='options_delete("+i+")' value='"+i+"'>삭제하기</button></div><div class='product-options-box'><input type='text' name='options_name"+i+"' /></div><div class='product-options-box'><input type='text' name='options_price"+i+"' /> </div><div class='product-options-box'><input type='text' name='options_sale"+i+"' /></div></div>");
+    i++; // 함수 내 하단에 증가문 설정
+  });
+});
+
+function options_delete(num) {
+	$("#optionsbox"+num).remove();
+};
+

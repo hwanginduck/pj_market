@@ -7,7 +7,8 @@ select*from member;
 insert into product values(product_seq.nextval,'대분류컬럼','중분류컬럼','소분류컬럼','상품명',50000,'색상컬럼','상품내용컬럼','상품내용서브','이미지공간',10);
 insert into product values(product_seq.nextval,'대분류','중분류','소분류','폭신폭신 의자',50000,'우드','말랑말랑 푹신푹신 의자','아주 폭신폭신','jpg',10);
 insert into product values(product_seq.nextval,'대분류','중분류','소분류','딱딱 의자',50000,'페브릭', '페브릭인데 딱딱한 의자','아주 딱딱','그림',10);
-select*from product;
+select*from product where product_l = '가구';
+delete product where product_num = 50;
 --options 테이블
 insert into options values(options_seq.nextval,1,'옵션이름',5000,10);
 insert into options values(options_seq.nextval,1,'가죽변경',5000,10);
@@ -602,4 +603,16 @@ select options_num from options;
 select product_num from product;
 select member_id from member;
 
-		
+
+select last_number as product_num from user_sequences where sequence_name = 'PRODUCT_SEQ'
+
+select * from product
+
+select product_seq.currval from dual
+
+delete product where product_name='전구' and product_price=12312
+
+ select * from (select rownum rnum, product_num, product_l, product_m, product_name, product_price,
+		product_content, product_sub, product_img, product_stock from (select * from product order by product_num desc) where product_l = '가구')
+	   	where rnum >= ((1-1) * 12+1)  and rnum <= (1 * 12)
+

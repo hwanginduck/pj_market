@@ -6,12 +6,16 @@
 
 	<!-- 게시판 목록 (member_id를 전달 받아 join하여 조회) -->
 	<!-- 	id= dao 에서 호출할 이름 parameterType = dao로 돌려줄 타입 resultType = 어떻게 받을지 하는 타입 configurateion에서 참조-->
-    <insert id="insert_options" parameterType="int">
-     insert into options values(options_seq.nextval, (select Max(product_num) from product), #{options_name}, #{options_price}, #{options_sale})
+    <insert id="insert_options" parameterType="map">
+     insert into options values(options_seq.nextval, #{product_num}, #{options_name}, #{options_price}, #{options_sale})
     </insert>
     
     <select id="options_list" parameterType="list" resultType="options">
 		select * from options where product_num = #{product_num}
+    </select>
+    
+    <select id="options_count" parameterType="int" resultType="int">
+    	select count(options_num) from options where product_num = #{product_num}
     </select>
     
 </mapper>
