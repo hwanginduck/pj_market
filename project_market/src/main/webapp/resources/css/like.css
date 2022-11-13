@@ -23,6 +23,14 @@
 	height: 50px;
 }
 
+.swiper-slide{
+	width: 290px;	
+	height: 290px;
+	background-repeat:no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
 .detail-image-box-pj>img {
 	width: 170px;
 	min-width: 170px;
