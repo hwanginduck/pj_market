@@ -25,41 +25,45 @@ function move2(y) {
 <section>
 <form name="f" method="post">
 	<div class="product-detail-box-pj">
-	
-		<div class="product-datail-img-pj">
-		    <div class="product-detail-imageContainer-pj" id="slideShow">
-		    <ul class="slides">
-				<c:forEach var="img" items="${product_imgArr}" begin="1">
-					<li><img src="<%=request.getContextPath()%>/resources/upload/${img}"></li>
-				</c:forEach>
-			</ul>
-			<p class="controller">      
-    		 <span class="prev">&lang;</span>  
-     		 <span class="next">&rang;</span>
-    		</p>
-			</div> 
-		</div>
-		<div class="product-datail-text-pj">
-			<input type="hidden" name="product_num" value=${product.product_num }>
-			<div class="product-detail-category-pj">${product.product_l} > ${product.product_m}</div>
-			<div class="product-detail-name-pj"> ${product.product_name } </div>
-			<div class="product-detail-star-pj"> ★★★★★(100)  </div>
-			<div class="product-detail-price-pj">
-				<fmt:formatNumber value="${product.product_price}" pattern="###,###,###원" />
-			</div>
-			<div class="product-detail-option-pj">
-				<select name="options_num">
-					<c:forEach var="ol" items="${optionslist}" varStatus="status">
-						<option value="${ol.options_num}">${ol.options_name}
-							<fmt:formatNumber value="${ol.options_price}" pattern="+#,###" />
-						</option>
+		<div class="product-datail-inner-box-pj">
+			<div class="product-datail-img-pj">
+			    <div class="product-detail-imageContainer-pj" id="slideShow">
+			    <ul class="slides">
+					<c:forEach var="img" items="${product_imgArr}" begin="1">
+						<li><img src="<%=request.getContextPath()%>/resources/upload/${img}"></li>
 					</c:forEach>
-				</select>
+				</ul>
+				<p class="controller">      
+	    		 <span class="prev">&lang;</span>  
+	     		 <span class="next">&rang;</span>
+	    		</p>
+				</div> 
 			</div>
-			<div class="product-detail-sub-pj">
-			 	${product.product_sub}
-			 </div>
-			<div class="product-detail-clc-pj">
+			<div class="product-datail-text-pj">
+				<input type="hidden" name="product_num" value=${product.product_num }>
+				<div class="product-detail-first-box-pj">
+					<div class="product-detail-category-pj">${product.product_l} > ${product.product_m}</div>
+					<div class="product-detail-name-pj"> ${product.product_name } </div>
+					<div class="product-detail-star-pj"> ★★★★★(100)  </div>
+				</div>
+				<div class="product-detail-second-box-pj">
+					<div class="product-detail-price-pj">
+						<fmt:formatNumber value="${product.product_price}" pattern="###,###,###원" />
+					</div>
+					<div class="product-detail-option-pj">
+						<select name="options_num">
+							<c:forEach var="ol" items="${optionslist}" varStatus="status">
+								<option value="${ol.options_num}">${ol.options_name}
+									<fmt:formatNumber value="${ol.options_price}" pattern="+#,###" />
+								</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="product-detail-sub-pj">
+					 	${product.product_sub}
+					 </div>
+				 </div>
+				<div class="product-detail-clc-pj">
 					<input type="number" min="1" value="1">
 					<button type="submit" onclick="javascript: form.action='product_to_cart.do'">
 						장바구니 추가
@@ -67,9 +71,10 @@ function move2(y) {
 					<button type="submit" onClick="javascript: form.action='insertlike.do'">
 						찜 추가
 					</button>
-			</div>
-			<div class="product-detail-buy-pj">
-					<button type="submit">구매하기</button>
+				</div>
+				<div class="product-detail-buy-pj">
+						<button type="submit">구매하기</button>
+				</div>
 			</div>
 		</div>
 		<div class="product-detail-content-pj">

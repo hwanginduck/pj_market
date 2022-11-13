@@ -121,6 +121,4 @@ uri="http://java.sun.com/jsp/jstl/core" %> <%@ page isELIgnored="false"%>
 	</header>
 </body>
 
-<script src="${path}/resources/js/product.js"></script>
-<script src="${path}/resources/js/like.js"></script>
 </html>

@@ -20,11 +20,11 @@
 		select count(product_num) from product where product_l = #{product_l}
 	</select>
     
-    <select id="product_list" parameterType="list" resultType="product">
+    <select id="product_list" parameterType="map" resultType="product">
 	 <![CDATA[
 		select * from (select rownum rnum, product_num, product_l, product_m, product_name, product_price,
-		product_content, product_sub, product_img, product_stock from (select * from product order by product_num desc))
-	   	where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10) and product_l = #{product_l}
+		product_content, product_sub, product_img, product_stock from (select * from product order by product_num desc) where product_l = #{product_l})
+	   	where rnum >= ((#{page}-1) * 12+1)  and rnum <= (#{page} * 12) 
 		]]>
     </select>
 

@@ -41,11 +41,12 @@
 							<div class="cart-item-count-pj">
 								<div class="number-input">
 									<button
-										onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+										class="minus">
+										</button>
 									<input class="quantity" min="1" id="product_count${status.index}" name="quantity"
 										value="${cart.cart_count }" type="number">
 									<button
-										onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+										
 										class="plus"></button>
 								</div>
 							</div>

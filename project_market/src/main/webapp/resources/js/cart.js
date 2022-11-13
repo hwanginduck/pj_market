@@ -46,9 +46,9 @@ $(".chkbox").click(function () {
 
 // count 바뀌면 합계 재계산
 
-$( document).ready( function() {
+$(document).ready( function() {
 	
-	$('.quantity').on('input',function(){
+	$('.quantity').on('change',function(){
 
 		var e = document.getElementById("forcount").value;
 
@@ -85,7 +85,23 @@ function itemSum() {
 			console.log($("#total"+i).value);
 		}
 	}
+	
+	sum = sum.toLocaleString();
+	
 	$("#total_sum").html(sum + " 원");
 	$('#total_sum').attr('value',sum);
 	$("#amount").val(sum);
 } 
+
+
+$('.plus').on('click',function(e){
+	var input = $(e.target).closest('.number-input').find('input');
+	input[0]['stepUp']();
+	input.trigger('change');
+});
+
+$('.minus').on('click',function(e){
+	var input = $(e.target).closest('.number-input').find('input');
+	input[0]['stepDown']();
+	input.trigger('change');
+});

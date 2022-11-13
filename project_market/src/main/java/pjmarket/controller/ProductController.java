@@ -207,7 +207,7 @@ public class ProductController {
     List<Product> productlist = new ArrayList<Product>();
 
     int page = 1;
-    int limit = 16; // 한 화면에 출력할 레코드수
+    int limit = 12; // 한 화면에 출력할 레코드수
 
     if (request.getParameter("page") != null) {
       page = Integer.parseInt(request.getParameter("page"));
@@ -225,7 +225,7 @@ public class ProductController {
     int maxpage = (int) ((double) listcount / limit + 0.95); // 0.95를 더해서 올림
                                                              // 처리.
     // 현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
-    int startpage = (((int) ((double) page / 16 + 0.9)) - 1) * 16 + 1;
+    int startpage = (((int) ((double) page / 12 + 0.95)) - 1) * 16 + 1;
     // 현재 페이지에 보여줄 마지막 페이지 수.(10, 20, 30 등...)
     int endpage = maxpage;
 
@@ -233,6 +233,7 @@ public class ProductController {
       endpage = startpage + 16 - 1;
 
     model.addAttribute("page", page);
+    model.addAttribute("product_l", product_l);
     model.addAttribute("startpage", startpage);
     model.addAttribute("endpage", endpage);
     model.addAttribute("maxpage", maxpage);

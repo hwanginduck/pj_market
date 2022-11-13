@@ -35,7 +35,7 @@
 								<fmt:formatNumber value='${like.options_price}' pattern='#,### 원' /><br>
 							</div>
 							<div class="like-item-icon-pj">
-								<button onClick="location.href='deletelike.do?likes_num=${like.likes_num}'">
+								<button type="button" onClick="location.href='deletelike.do?likes_num=${like.likes_num}'">
 									찜 취소하기
 								</button>
 								<button onClick="location.href='like_to_cart.do?likes_num=${like.likes_num}'">
