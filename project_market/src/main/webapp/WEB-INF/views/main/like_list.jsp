@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<%@ include file="../fix/header.jsp"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+
+<%@ include file="../fix/header.jsp" %>
 
 <section>
 	<div>
@@ -26,22 +26,20 @@
 					<div class="like-item-pj">
 						<div class="like-item-img-pj">
 							<div class="detail-image-box-pj">
-								<div>
+								<div class="likelist-checkbox-pj">
 									<input type='checkbox' name='likeitem'/>
 								</div>
 								<div class="swiper mySwiper">
-								<div class="swiper-wrapper">
-								<c:forEach var="imglist" items="${fn:split(like.product_img,',')}" begin="0">
-								<div 
-									class="swiper-slide" 
-									style="background-image: url('<%=request.getContextPath()%>/resources/upload/${imglist}');"
-								>
+									<div class="swiper-wrapper">
+										<c:forEach var="imglist" items="${fn:split(like.product_img,',')}" begin="0">
+											<div 
+											class="swiper-slide" 
+											style="background-image: url('<%=request.getContextPath()%>/resources/upload/${imglist}');"
+											>
+											</div>
+										</c:forEach>
+									</div>
 								</div>
-								</c:forEach>
-								</div>
-								</div>
-								
-								<img src="<%=request.getContextPath()%>/resources/upload/${like.product_img}">	
 							</div>
 						</div>
 						<div class="like-item-textbox-pj">

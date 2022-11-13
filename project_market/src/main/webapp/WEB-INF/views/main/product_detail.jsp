@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../fix/header.jsp"%>
 
-<script src="${path}/resources/js/product.js"></script>
+
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 <script>
 //product상세페이지 [qna 로드]
