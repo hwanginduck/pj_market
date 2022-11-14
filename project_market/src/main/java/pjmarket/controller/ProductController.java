@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import pjmarket.model.Options;
 import pjmarket.model.Product;
 import pjmarket.service.OptionsServiceImpl;
 import pjmarket.service.ProductServiceImpl;
+import pjmarket.service.QnaServiceImpl;
 
 @Controller
 public class ProductController {
@@ -263,7 +267,6 @@ public class ProductController {
 
     List<Options> optionslist = new ArrayList<Options>();
     optionslist = os.getOptionList(product_num);
-    // boardlist = qs.getBoardList(product_num, page);
 
     model.addAttribute("product", product);
     model.addAttribute("optionslist", optionslist);

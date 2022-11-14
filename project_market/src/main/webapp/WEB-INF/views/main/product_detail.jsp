@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../fix/header.jsp"%>
 
-<script src="${path}/resources/js/product.js"></script>
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,24 +18,21 @@
 // 	$('#list').load('qna_boardlist.do?product_num=${product.product_num}&product_name=${product.product_name}');
 // });
 
-	$(function () {
-	var product_num = '${product.product_num}'
-// 	alert("product_detail.jsp 리턴될때 검수용 alert \n"+"product_num: "+ product_num);
+// $(function () {
+// 	var product_num = '${product.product_num}'
 	
-		$('#p_index').load('p_index.do');
-		$('#qnalist').load('qna_boardlist.do?product_num=' + product_num);
-		$('#reviewlist').load('review_boardlist');
-	});
+// 		$('#reviewlist').load('review_boardlist');
+// 		$('#qnalist').load('qna_boardlist.do?product_num=' + product_num);
+// 		$('#p_index').load('p_index.do');
+// 	});
+// // 상단 스크립트 매뉴로 페이지 로드함수.
+// function move1(product_num) {
+// 	$('#list').load('qna_boardlist.do?product_num='+product_num);
+// }
 
-
-// 상단 스크립트 매뉴로 페이지 로드함수.
-function move1(product_num) {
-	$('#list').load('qna_boardlist.do?product_num='+product_num);
-}
-
-function move2(y) {
-	$('#list').load('review_boardlist');
-}
+// function move2(y) {
+// 	$('#list').load('review_boardlist');
+// }
 </script>
 
 <section>
@@ -104,18 +100,6 @@ function move2(y) {
 
 		<input type="hidden" name="product_num" value=${product.product_num }>
 		
-	<div class="detail-content-pj">
-		<div>
-			<ul class="nav nav-tabs nav-justified">
-				<li class="nav-item"><a class="nav-link"
-					onClick="move1( ${product.product_num })">1번</a></li>
-				<li class="nav-item"><a class="nav-link"
-					onClick="move2( ${product.product_num })">2번</a></li>
-				<li class="nav-item"><a class="nav-link" onClick="move()">3번</a></li>
-				<li class="nav-item"><a class="nav-link" onClick="move()">4번</a></li>
-			</ul>
-	<hr>
-
 			<div class="detail-content-pj">
 				<div>
 					 <ul class="nav nav-tabs nav-justified">
@@ -135,5 +119,21 @@ function move2(y) {
 
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <script src="${path}/resources/js/product_detail.js"></script>
+<script>
+$(function () {
+	var product_num = '${product.product_num}'
+	
+		$('#reviewlist').load('review_boardlist');
+		$('#qnalist').load('qna_boardlist.do?product_num=' + product_num);
+		$('#p_index').load('p_index.do');
+	});
+// 상단 스크립트 매뉴로 페이지 로드함수.
+function move1(product_num) {
+	$('#list').load('qna_boardlist.do?product_num='+product_num);
+}
 
+function move2(y) {
+	$('#list').load('review_boardlist');
+}
+</script>
 <%@ include file="../fix/footer.jsp" %>
