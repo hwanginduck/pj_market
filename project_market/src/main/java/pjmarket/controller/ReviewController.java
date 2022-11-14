@@ -71,12 +71,13 @@ public class ReviewController {
 
 	// 리뷰 게시판 작성 성공 이미지 업로드
 	@RequestMapping("review_insertresult")
-	public String ReviewInsert(Review review, Model model, @RequestParam("review_img1") 
+	public String ReviewInsert(Review review, Model model,int product_num, @RequestParam("review_img1") 
 	List<MultipartFile> multiFileList , HttpServletRequest request) throws Exception {
 
 			
 			// 받아온것 출력 확인
 			System.out.println("multiFileList : " + multiFileList);
+			Product product = ps.getProductDetail(product_num);
 			
 			// path 가져오기
 			String path = request.getRealPath("/resources/upload/");
@@ -139,6 +140,7 @@ public class ReviewController {
 			
 			int result = rs.ReviewInsert(review);
 			model.addAttribute("result", result);
+			model.addAttribute("product", product);
 			
 			return "review/review_insertresult";
 	}

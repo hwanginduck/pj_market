@@ -15,18 +15,14 @@
 <body>
 <section class="main-pj">
 		<div class="detail-content-pj">
-${member_id }
-${product_num }
-${options_num }
  <div class="container" align="center">
 <h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰 수정</h3>
 
 <form action="review_deleteresult" method="post" onsubmit="return board_check()" >
 			<input type="hidden" name="member_id" value=${member_id }> 
-			<input type="hidden" name="product_num" value="12"> 
-			<input type="hidden" name="options_num" value="7"> 
+		    <%--<input type="hidden" name="product_num" value="${product_num }"> --%>
+			<%--<input type="hidden" name="options_num" value="${options_num }"> --%> 
 			<input type="hidden" name="review_no" value="${review.review_no}"> 
-    
 
 	<table class="table table-striped">
 		<tr>
@@ -37,7 +33,7 @@ ${options_num }
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align: center;">
-				<input type="submit" class="btn btn-success" value="리뷰 삭제하기">
+				<input type="submit" class="btn btn-success" value="리뷰 삭제하기" onclick="location='review_boardlist.do?&review.review_no=${review.review_no}'" >
 				<input type="reset" class="btn btn-outline-success"  value="취소" onclick="history.go(-1)">
 			</td>
 		</tr>
