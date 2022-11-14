@@ -21,6 +21,14 @@
 		<tr>
 			<th>상품코드</th>
 			<td>${review.product_num }</td>
+		<tr>
+			<td style="font-weight: bold;" align="center">상품코드</td>
+			<td>${product_num }</td>
+		</tr>
+		<tr>
+			<td style="font-weight: bold;" align="center">옵션코드</td>
+			<td>${options_num }</td>
+		</tr>
 			<th>별 점</th>
 			<td>
 				<c:if test="${review.review_star == 0}">☆☆☆☆☆</c:if>

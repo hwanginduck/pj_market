@@ -30,7 +30,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> getBoardList(int page,int product_num) {
+	public List<Review> getBoardList(int page, int product_num) {
+		System.out.println("services page: " +page);
 		return reviewdao.getBoardList(page,product_num);
 	}
 

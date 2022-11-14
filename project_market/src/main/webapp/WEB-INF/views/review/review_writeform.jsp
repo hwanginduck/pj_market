@@ -15,17 +15,14 @@
 <body>
 <section class="main-pj">
 		<div class="detail-content-pj">
-${member_id }
-${product_num }
-${options_num }
- <div class="container" align="center">
+<div class="container" align="center">
 <h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">Product Review</h3>
 
 <form action="review_insertresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
-		<%-- 	<input type="hidden" name="product_num" value="${Prouduct.product_num }">  --%>
+		    <input type="hidden" name="product_num" value="${product_num }">
+			<input type="hidden" name="options_num" value="${options_num }"> 
 		<%-- 	<input type="hidden" name="product_name" value="${Prouduct.product_name }">  --%>
-			<input type="hidden" name="options_num" value="7"> 
     
 
 	<table class="table table-striped">
@@ -35,7 +32,15 @@ ${options_num }
 				<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center" />
 			</td>
 		</tr>
-		<!--  --><tr>
+		<tr>
+			<td style="font-weight: bold;" align="center">상품코드</td>
+			<td>${product_num }</td>
+		</tr>
+		<tr>
+			<td style="font-weight: bold;" align="center">옵션코드</td>
+			<td>${options_num }</td>
+		</tr>
+		<tr>
 			<td style="font-weight: bold;" align="center"> 상품 별점</td>
 			<td>
 			<div>

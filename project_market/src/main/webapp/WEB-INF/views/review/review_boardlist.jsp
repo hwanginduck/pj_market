@@ -16,6 +16,8 @@
 			<div class="container" align="center">
 				<h2 class="text-primary">List of Review Boards</h2>
 				총갯수 : ${listcount } <br>
+			<input type="hidden" name="member_id" value=${member_id }> 
+		    <input type="hidden" name="product_num" value="${product_num }">
 				<table class="table table-striped">
 					<tr>
 						<td>Review No</td>

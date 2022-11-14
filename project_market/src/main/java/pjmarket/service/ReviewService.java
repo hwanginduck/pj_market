@@ -11,7 +11,7 @@ public interface ReviewService {
 
 	public int getListCount(int product_num) throws Exception;
 
-	public List<Review> getBoardList(int page,int product_num) throws Exception;
+	public List<Review> getBoardList(int page, int product_num) throws Exception;
 
 	public Product getProductNum(int product_num) throws Exception;
 

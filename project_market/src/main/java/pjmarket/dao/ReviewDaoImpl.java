@@ -39,10 +39,14 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public List<Review> getBoardList(int page, int product_num) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		System.out.println("page: "+ page);
+		System.out.println("product_num: "+product_num);
 		map.put("page", page);
 		map.put("product_num", product_num);
 		
 		List<Review> list = session.selectList("reviewns.review_boardlist",map);
+		System.out.println(list.size());
+		
 		return list;
 	}
 

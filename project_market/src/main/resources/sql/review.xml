@@ -77,6 +77,11 @@ select * from review where review_no = #{review_no}
 		select * from product where
 		product_num = #{product_num}
 	</select>
+<!--옵션 코드 가져오기 -->
+<select id="options_select" resultType="options">
+		select * from options where
+		options_num = #{options_num}
+	</select>
 
 	
 	
