@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="header.jsp"%>
+    <%@ include file="../fix/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,16 +18,15 @@
 <title>리뷰 수정 게시판</title>
 </head>
 <body>
-${member_id }
-${product_num }
-${options_num }
+<section class="main-pj">
+		<div class="detail-content-pj">
  <div class="container" align="center">
 <h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰 수정</h3>
 
 <form action="review_updateresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
-			<input type="hidden" name="product_num" value="12"> 
-			<input type="hidden" name="options_num" value="7"> 
+			<input type="hidden" name="product_num" value="${product_num }"> 
+			<input type="hidden" name="options_num" value="${options_num }"> 
 			<input type="hidden" name="review_no" value="${review.review_no}"> 
     
 
@@ -37,7 +37,15 @@ ${options_num }
 		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="${review.review_sb }"  />
 			</td>
 		</tr>
-		<!--  --><tr>
+			<tr>
+			<td style="font-weight: bold;" align="center">상품코드</td>
+			<td>${product_num }</td>
+		</tr>
+		<tr>
+			<td style="font-weight: bold;" align="center">옵션코드</td>
+			<td>${options_num }</td>
+		</tr>
+		<tr>
 			<td style="font-weight: bold;" align="center"> 상품 별점</td>
 			<td>
 			<div>
@@ -61,7 +69,7 @@ ${options_num }
 		 <tr>
      <td style="font-weight: bold;" align="center">리뷰 사진</td>
      <td>
-      	<input type="file" name="review_img1" />
+      	<input type="file" name="review_img1" multiple>
      	 ${review.review_img }
      </td>
     </tr>
@@ -74,5 +82,8 @@ ${options_num }
 	</table>
 </form>
 </div> 
+</div>
+</section>
 </body>
 </html>
+<%@ include file="../fix/footer.jsp"%>

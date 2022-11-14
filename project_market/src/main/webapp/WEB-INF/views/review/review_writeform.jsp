@@ -1,40 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="header.jsp"%>
+    <%@ include file="../fix/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/js/board.js"></script>
 	
 <meta charset="UTF-8">
 <title>리뷰 작성 게시판</title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="./js/board.js"></script>
+
 </head>
 <body>
-${member_id }
-${product_num }
-${options_num }
- <div class="container" align="center">
-<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰</h3>
+<section class="main-pj">
+		<div class="detail-content-pj">
+<div class="container" align="center">
+<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">Product Review</h3>
 
 <form action="review_insertresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
-			<input type="hidden" name="product_num" value="12"> 
-			<input type="hidden" name="options_num" value="7"> 
+		    <input type="hidden" name="product_num" value="${product_num }">
+			<input type="hidden" name="options_num" value="${options_num }"> 
+		<%-- 	<input type="hidden" name="product_name" value="${Prouduct.product_name }">  --%>
     
 
 	<table class="table table-striped">
 		<tr>
 		 <td style="font-weight: bold;" align="center">제목</td>
 	       <td>
-		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="테스트값"  />
+				<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center" />
 			</td>
 		</tr>
-		<!--  --><tr>
+		<tr>
+			<td style="font-weight: bold;" align="center">상품코드</td>
+			<td>${product_num }</td>
+		</tr>
+		<tr>
+			<td style="font-weight: bold;" align="center">옵션코드</td>
+			<td>${options_num }</td>
+		</tr>
+		<tr>
 			<td style="font-weight: bold;" align="center"> 상품 별점</td>
 			<td>
 			<div>
-				<select id="review_star" name="review_star" required="required">
+				<select id="review_star" name="review_star">
 					<option value="">선택하세요</option>
 					<option value="0">☆☆☆☆☆</option>
 					<option value="1">★☆☆☆☆</option>
@@ -54,7 +64,7 @@ ${options_num }
 		 <tr>
      <td style="font-weight: bold;" align="center">리뷰 사진</td>
      <td>
-      <input type="file" name="review_img1" />
+		<input type="file" name="review_img1" multiple> <br>
      </td>
     </tr>
 		<tr>
@@ -66,5 +76,9 @@ ${options_num }
 	</table>
 </form>
 </div> 
+</div>
+</section>
 </body>
 </html>
+	
+<%@ include file="../fix/footer.jsp"%>

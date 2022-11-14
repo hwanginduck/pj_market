@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>Index</title>
 </head>
-<body>
+<body> 
 
-<script>
+<script> 
 
 	location.href="mainpage.do"; 
 

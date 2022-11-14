@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="header.jsp"%>
+	<%@ include file="../fix/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +10,25 @@
 </head>
 <body>
 
-
+<section class="main-pj">
+		<div class="detail-content-pj">
+		
 <div class="container" align="center">
 
 <div class="vf-wide700-card">
-<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">리뷰 상세</h3>
+<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">Review Detail</h3>
 <table class="table table-bordered">
-999999:  ${ review.review_no}
 		<tr>
 			<th>상품코드</th>
 			<td>${review.product_num }</td>
+		<tr>
+			<td style="font-weight: bold;" align="center">상품코드</td>
+			<td>${product_num }</td>
+		</tr>
+		<tr>
+			<td style="font-weight: bold;" align="center">옵션코드</td>
+			<td>${options_num }</td>
+		</tr>
 			<th>별 점</th>
 			<td>
 				<c:if test="${review.review_star == 0}">☆☆☆☆☆</c:if>
@@ -49,21 +59,12 @@
 		<tr>
 			<th>리뷰 사진 </th>
 			<td colspan="5">
-								<img src="<%=request.getContextPath()%>/resources/upload/${review.review_img}" width="100%">
-							</td>
+			
+				<c:forEach var="img" items="${review_img }">
+					<img src="./resources/upload/uploadFiles/${img}" width="80%"><br>
+				</c:forEach>				
+			</td>
 		</tr>
-			
-			<%-- 	<c:if test="${empty review_img}">
-       				&nbsp;
-       			</c:if>
-				<c:if test="${!empty review_img}">
-					<img src="/project_market/upload/${review.review_img}">
-					<img src="D:/sts-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/project_market/upload/${review.review_img}">
-		  		<IMG src="${path}/resources/upload/${review_img}"/>
-					<IMG src="<%=request.getContextPath() %>/upload/${review_img}">
-					<IMG src="/project_market/upload/${review_img}">
-				</c:if> --%>
-			
 		
 		<tr>
 		 	<th>내용 </th>
@@ -85,10 +86,12 @@
 				onclick="location='review_boardlist.do'">
 			</td>
 		</tr>
-		<%-- ?review_no=${review.review_no}' --%>
 	</table>
 
 </div>
 </div>
+</div>
+</section>
 </body>
 </html>
+<%@ include file="../fix/footer.jsp"%>
