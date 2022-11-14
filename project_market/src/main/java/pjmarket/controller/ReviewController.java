@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pjmarket.model.Options;
 import pjmarket.model.Product;
 import pjmarket.model.Review;
+import pjmarket.service.ProductServiceImpl;
 import pjmarket.service.ReviewServiceImpl;
 
 @Controller
@@ -31,6 +32,10 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewServiceImpl rs;
+	
+	@Autowired
+	private ProductServiceImpl ps;
+	
 
 	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")
@@ -42,7 +47,7 @@ public class ReviewController {
 		// session 에서 아이디 구해오기
 		member_id = (String) session.getAttribute("member_id");
 		System.out.println("아이디 : " + member_id);
-
+ 
 		// 상품명
 //		product = rs.getProductName(product_num);
 		// 상품코드 구해오기
@@ -81,7 +86,7 @@ public class ReviewController {
 						
 			String filename = "";
 			
-			if (size > 1 ) {
+			if (size > 0 ) {
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
 			for(int i = 0; i < multiFileList.size(); i++) {
@@ -119,9 +124,8 @@ public class ReviewController {
 				
 			}
 			review.setReview_img(filename);
-			}
 			
-			else { 					// 첨부파일이 수정되지 않으면
+			}else { 					// 첨부파일이 수정되지 않으면
 				review.setReview_img(review.getReview_img());
 			}
 			
@@ -147,8 +151,8 @@ public class ReviewController {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		int product_num = review.getProduct_num();
-		int options_num = review.getOptions_num();
+		int product_num = product.getProduct_num();
+		int options_num = options.getOptions_num();
 		int listcount = rs.getListCount(product_num);
 		System.out.println("controller page: "+page);
 		boardlist = rs.getBoardList(page, product_num);
@@ -181,16 +185,17 @@ public class ReviewController {
 	}
 
 	// 리뷰 상세
-	@RequestMapping("review_detail")
-	public String reviewDetail(@RequestParam("review_no") int review_no,Product product, Model model) throws Exception {
+	@RequestMapping("review_detail.do")
+	public String reviewDetail(@RequestParam("review_no") int review_no, int product_num, Model model) throws Exception {
 
 		// @RequestParam("p_no") int p_no
 		// 조회수 증가
 		int result = rs.updateHit(review_no);
 		System.out.println("조회수 증가 결과: " + result);
-
+		
 		// 상품명
-		// Product product = rs.getProductName(p_no);
+		Product product = ps.getProductDetail(product_num);
+		System.out.println("product:" + product);
 
 		// 리뷰 내용 구해오기
 		Review review = rs.select(review_no);

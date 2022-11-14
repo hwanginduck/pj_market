@@ -132,8 +132,8 @@ function move1(product_num) {
 	$('#list').load('qna_boardlist.do?product_num='+product_num);
 }
 
-function move2(y) {
-	$('#list').load('review_boardlist');
+function move2(product_num) {
+	$('#list').load('review_boardlist?product_num='+product_num);
 }
 </script>
 <%@ include file="../fix/footer.jsp" %>
