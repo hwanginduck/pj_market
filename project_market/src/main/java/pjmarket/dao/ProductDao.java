@@ -21,4 +21,6 @@ public interface ProductDao {
 
   Integer selectProductStarCount(int product_num) throws Exception;
 
+  int updateProduct(Product product) throws Exception;
+
 }

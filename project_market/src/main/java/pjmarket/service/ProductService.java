@@ -22,4 +22,6 @@ public interface ProductService {
 
   Integer selectProductStarCount(int product_num) throws Exception;
 
+  int updateProduct(Product product) throws Exception;
+
 }

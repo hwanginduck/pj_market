@@ -7,6 +7,7 @@
 <%@ include file="../fix/header.jsp"%>
 <section>
 	<form name="f" method="post" action="update_product.do" enctype="multipart/form-data">
+		<input type="hidden" name="product_num" value="${product.product_num}">
 		<!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
 		<div class="product-insert-form-pj">
 			<div class="product-header-pj">상품수정</div>
@@ -52,7 +53,7 @@
 			<div class="product-content-name-box-pj">
 				<div class="product-content-column-pj">상품내용</div>
 				<div class="product-content-insert-pj">
-					<textarea name="product_content">${product.product_content }</textarea>
+					<input multiple type="file" name="product_content1">
 				</div>
 			</div>
 			<div class="product-name-box-pj">
@@ -70,7 +71,7 @@
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품 사진</div>
 				<div class="product-insert-pj">
-					<input type="file" id="image" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /> 
+					<input multiple type="file" id="product_img" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /> 
 				</div>
 			</div>				
 			<div id="image_container">
@@ -88,6 +89,7 @@
 			<c:forEach var="options" items="${optionslist}" varStatus="status">
 			<div class="product-name-box-pj" id='optionsbox${status.index }'>
 				<div class="product-options-box"><button type="button" name="option_minus${status.index}" onClick='options_delete(${status.index})' value='${status.index }'>삭제하기</button></div>
+												 <input type="hidden" name="options_num${status.index}" value="${options.options_num}" />
 				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name${status.index }" value="${options.options_name }"/></div>
 				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price${status.index }" value="${options.options_price }"/> </div>
 				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale${status.index }" value="${options.options_sale }"/> </div>

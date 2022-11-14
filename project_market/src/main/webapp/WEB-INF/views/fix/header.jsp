@@ -59,7 +59,9 @@
 			<ul class="menu-bar-pj">
 				<li>
 					<div class="menu-box-pj">
-						<a href="mainpage.do">Home</a>
+						<!-- <a href="mainpage.do"> -->
+						<button class="dropbtn-pj" onclick="location.href='mainpage.do'">Home</button>
+						<!-- </a> -->
 					</div>
 				</li>
 				<li>
@@ -72,14 +74,14 @@
 				</li>
 				<li>
 					<div class="menu-box-pj active">
-						<a href="off_list.do">공지사항</a>
+						<button class="dropbtn-pj" onclick="location.href='off_list.do'">공지사항</button>
 					</div></li>
 
 				<li><div class="menu-box-pj active">
-						<a href="testcontroller.do">##</a>
+						<button class="dropbtn-pj" onclick="location.href='testcontroller.do'">##</button>
 					</div></li>
 				<li><div class="menu-box-pj active">
-						<a href="review_boardlist">Review</a>
+						<button class="dropbtn-pj" onclick="location.href='review_boardlist'">Review</button>
 					</div></li>
 
 				<li><div class="dropdown-pj menu-box-pj">

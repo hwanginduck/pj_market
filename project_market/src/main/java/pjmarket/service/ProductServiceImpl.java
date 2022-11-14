@@ -66,4 +66,10 @@ public class ProductServiceImpl implements ProductService {
     System.out.println("select product star count service");
     return productdao.selectProductStarCount(product_num);
   }
+
+  @Override
+  public int updateProduct(Product product) throws Exception {
+    System.out.println("updated product service");
+    return productdao.updateProduct(product);
+  }
 }

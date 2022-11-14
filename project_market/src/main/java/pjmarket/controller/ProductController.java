@@ -318,90 +318,262 @@ public class ProductController {
 
   // 상품 업데이트
   @RequestMapping("update_product.do")
-  public String updateProduct(@RequestParam("product_img1") MultipartFile mf, Product product,
+  public String updateProduct(@RequestParam("product_img1") List<MultipartFile> mtlist,
+      @RequestParam("product_content1") List<MultipartFile> mtlist2, Product product,
       HttpServletRequest request, Model model) throws Exception {
 
-    String filename = mf.getOriginalFilename();
-    int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
-
     String path = request.getRealPath("/resources/upload/");
-    System.out.println("mf=" + mf);
-    System.out.println("filename=" + filename); // filename="Koala.jpg"
-    System.out.println("size=" + size);
-    System.out.println("Path=" + path);
-    int result = 0;
 
-    String file[] = new String[2];
+    String imgsave_name = "";
 
-    String newfilename = "";
+    for (int i = 0; i < mtlist.size(); i++) {
 
-    if (filename != "") { // 첨부파일이 전송된 경우
+      String filename = mtlist.get(i).getOriginalFilename();
 
-      // 파일 중복문제 해결
-      String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-      System.out.println("extension:" + extension);
+      int size = (int) mtlist.get(i).getSize(); // 첨부파일의 크기 (단위:Byte)
 
-      UUID uuid = UUID.randomUUID();
+      System.out.println("filename=" + filename); // filename="Koala.jpg"
+      System.out.println("size=" + size);
+      System.out.println("Path=" + path);
+      int result = 0;
 
-      newfilename = uuid.toString() + extension;
-      System.out.println("newfilename:" + newfilename);
+      String file[] = new String[2];
 
-      StringTokenizer st = new StringTokenizer(filename, ".");
-      file[0] = st.nextToken(); // 파일명 Koala
-      file[1] = st.nextToken(); // 확장자 jpg
+      String newfilename = "";
 
-      if (size > 200000) { // 100KB
-        result = 2;
-        model.addAttribute("result", result);
+      if (filename != "") { // 첨부파일이 전송된 경우
 
-        return "main/uploadResult";
+        // 파일 중복문제 해결
+        String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+        System.out.println("extension:" + extension);
 
-      } else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+        UUID uuid = UUID.randomUUID();
 
-        result = 3;
-        model.addAttribute("result", result);
+        newfilename = uuid.toString() + extension;
+        System.out.println("newfilename:" + newfilename);
 
-        return "main/uploadResult";
+        StringTokenizer st = new StringTokenizer(filename, ".");
+        file[0] = st.nextToken(); // 파일명 Koala
+        file[1] = st.nextToken(); // 확장자 jpg
+
+        if (size > 200000) { // 100KB
+          result = 2;
+          model.addAttribute("result", result);
+
+          return "main/uploadResult";
+
+        } else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+
+          result = 3;
+          model.addAttribute("result", result);
+
+          return "main/uploadResult";
+        }
+
+      }
+      if (size > 0) { // 첨부파일이 전송된 경우
+
+        mtlist.get(i).transferTo(new File(path + "/" + newfilename));
+
+        imgsave_name += "," + newfilename;
+        product.setProduct_img(imgsave_name);
+
+      } else {
+
+        product.setProduct_img(product.getProduct_img());
+
+
       }
 
     }
-    if (size > 0) { // 첨부파일이 전송된 경우
 
-      mf.transferTo(new File(path + "/" + newfilename));
+    String contentsave_name = "";
 
+    for (int i = 0; i < mtlist2.size(); i++) {
+
+      String filename = mtlist2.get(i).getOriginalFilename();
+
+      int size = (int) mtlist2.get(i).getSize(); // 첨부파일의 크기 (단위:Byte)
+
+      System.out.println("filename=" + filename); // filename="Koala.jpg"
+      System.out.println("size=" + size);
+      System.out.println("Path=" + path);
+      int result = 0;
+
+      String file[] = new String[2];
+
+      String newfilename = "";
+
+      if (filename != "") { // 첨부파일이 전송된 경우
+
+        // 파일 중복문제 해결
+        String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+        System.out.println("extension:" + extension);
+
+        UUID uuid = UUID.randomUUID();
+
+        newfilename = uuid.toString() + extension;
+        System.out.println("newfilename:" + newfilename);
+
+        StringTokenizer st = new StringTokenizer(filename, ".");
+        file[0] = st.nextToken(); // 파일명 Koala
+        file[1] = st.nextToken(); // 확장자 jpg
+
+        if (size > 500000) { // 100KB
+          result = 2;
+          model.addAttribute("result", result);
+
+          return "main/uploadResult";
+
+        } else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+
+          result = 3;
+          model.addAttribute("result", result);
+
+          return "main/uploadResult";
+        }
+
+      }
+      if (size > 0) { // 첨부파일이 전송된 경우
+
+        mtlist2.get(i).transferTo(new File(path + "/" + newfilename));
+
+        contentsave_name += "," + newfilename;
+        System.out.println("content save name :" + contentsave_name);
+        product.setProduct_content(contentsave_name);
+
+      } else {
+
+        product.setProduct_content(product.getProduct_content());
+
+      }
     }
 
-    product.setProduct_img(newfilename);
-
-    // product를 등록하고 num을 반환 받아 옵션 등록 할때 사용
-    result = ps.insertProduct(product);
+    int result = ps.updateProduct(product);
 
     int product_num = product.getProduct_num();
     System.out.println("product_num 확인" + product_num);
 
-    int i = 1;
+    List<Options> originOl = os.getOptionList(product_num);
+
+    int originOC = originOl.size();
+
+    System.out.println("origin Options Count :" + originOC);
+
+    List newOptions = new ArrayList<>();
+
+    int i = 0;
 
     while (request.getParameter("options_name" + i) != null) {
 
       String options_name = (String) request.getParameter("options_name" + i);
-      int options_price = Integer.parseInt(request.getParameter("options_price" + i));
-      int options_sale = Integer.parseInt(request.getParameter("options_sale" + i));
-
-      System.out.println(i + "번째 옵션 등록 시작");
-
-      result = os.insertOptions(options_name, options_price, options_sale, product_num);
-
-      if (result == 1) {
-        System.out.println(i + "번째 옵션 등록 완료");
-      } else {
-        System.out.println(i + "번째 옵션 등록 실패");
-      }
+      newOptions.add(options_name);
 
       i++;
+    }
+
+    int newOptionsCount = newOptions.size();
+
+    System.out.println("new options count : " + newOptionsCount);
+
+    if (newOptionsCount > originOC) {
+      for (i = 0; i < newOptionsCount; i++) {
+        if (i < originOC) {
+          int options_num = Integer.parseInt(request.getParameter("options_num" + i));
+          String options_name = (String) request.getParameter("options_name" + i);
+          int options_price = Integer.parseInt(request.getParameter("options_price" + i));
+          int options_sale = Integer.parseInt(request.getParameter("options_sale" + i));
+
+          System.out.println(i + "번째 옵션 업데이트 시작");
+
+          result =
+              os.updateOptions(options_num, options_name, options_price, options_sale, product_num);
+
+          if (result == 1) {
+            System.out.println(i + "번째 옵션 업데이트 완료");
+          } else {
+            System.out.println(i + "번째 옵션 업데이트 실패");
+          }
+        } else if (i >= originOC) {
+          String options_name = (String) request.getParameter("options_name" + i);
+          int options_price = Integer.parseInt(request.getParameter("options_price" + i));
+          int options_sale = Integer.parseInt(request.getParameter("options_sale" + i));
+
+          System.out.println(i + "번째 옵션 등록 시작");
+
+          result = os.insertOptions(options_name, options_price, options_sale, product_num);
+
+          if (result == 1) {
+            System.out.println(i + "번째 옵션 등록 완료");
+          } else {
+            System.out.println(i + "번째 옵션 등록 실패");
+          }
+        }
+
+      }
+
+    } else if (originOC > newOptionsCount) {
+      for (i = 0; i < originOC; i++) {
+        if (i < newOptionsCount) {
+          int options_num = Integer.parseInt(request.getParameter("options_num" + i));
+          String options_name = (String) request.getParameter("options_name" + i);
+          int options_price = Integer.parseInt(request.getParameter("options_price" + i));
+          int options_sale = Integer.parseInt(request.getParameter("options_sale" + i));
+
+          System.out.println(i + "번째 옵션 업데이트 시작");
+
+          result =
+              os.updateOptions(options_num, options_name, options_price, options_sale, product_num);
+
+          if (result == 1) {
+            System.out.println(i + "번째 옵션 업데이트 완료");
+          } else {
+            System.out.println(i + "번째 옵션 업데이트 실패");
+          }
+        } else {
+          String options_name = (String) request.getParameter("options_name" + i);
+          int options_price = Integer.parseInt(request.getParameter("options_price" + i));
+          int options_sale = Integer.parseInt(request.getParameter("options_sale" + i));
+
+          System.out.println(i + "번째 옵션 등록 시작");
+
+          result = os.insertOptions(options_name, options_price, options_sale, product_num);
+
+          if (result == 1) {
+            System.out.println(i + "번째 옵션 등록 완료");
+          } else {
+            System.out.println(i + "번째 옵션 등록 실패");
+          }
+        }
+
+      }
+
+    } else if (originOC == newOptionsCount) {
+      for (i = 0; i < originOC; i++) {
+        if (i <= newOptionsCount) {
+          int options_num = Integer.parseInt(request.getParameter("options_num" + i));
+          String options_name = (String) request.getParameter("options_name" + i);
+          int options_price = Integer.parseInt(request.getParameter("options_price" + i));
+          int options_sale = Integer.parseInt(request.getParameter("options_sale" + i));
+
+          System.out.println(i + "번째 옵션 업데이트 시작");
+
+          result =
+              os.updateOptions(options_num, options_name, options_price, options_sale, product_num);
+
+          if (result == 1) {
+            System.out.println(i + "번째 옵션 업데이트 완료");
+          } else {
+            System.out.println(i + "번째 옵션 업데이트 실패");
+          }
+        }
+
+      }
     }
 
     model.addAttribute("result", result);
 
     return "main/uploadResult";
   }
+
 }
