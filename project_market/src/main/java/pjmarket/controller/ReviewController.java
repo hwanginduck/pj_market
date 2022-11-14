@@ -47,7 +47,7 @@ public class ReviewController {
 		// session 에서 아이디 구해오기
 		member_id = (String) session.getAttribute("member_id");
 		System.out.println("아이디 : " + member_id);
-
+ 
 		// 상품명
 //		product = rs.getProductName(product_num);
 		// 상품코드 구해오기
