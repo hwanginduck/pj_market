@@ -486,7 +486,7 @@ select * from REVIEW;
 CREATE TABLE review (
 	review_no NUMBER NOT NULL, /* 글번호 */
 	review_sb VARCHAR2(30), /* 글제목 */
-	member_id VARCHAR2(30), /* 아이디 */
+	member_id VARCHAR2(30) not null, /* 아이디 */
 	product_num NUMBER, /* 상품코드 */
 	options_num NUMBER, /* 옵션코드 */
 	review_star NUMBER, /* 별점 */

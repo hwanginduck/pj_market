@@ -25,8 +25,8 @@
 
 <form action="review_updateresult" method="post" onsubmit="return board_check()" enctype="multipart/form-data" >
 			<input type="hidden" name="member_id" value=${member_id }> 
-			<input type="hidden" name="product_num" value="${product_num }"> 
-			<input type="hidden" name="options_num" value="${options_num }"> 
+		    <input type="hidden" name="product_num" value="${product_num }">
+	<%-- 		<input type="hidden" name="options_num" value="${options_num }">  --%> 
 			<input type="hidden" name="review_no" value="${review.review_no}"> 
     
 
@@ -37,14 +37,14 @@
 		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="${review.review_sb }"  />
 			</td>
 		</tr>
-			<tr>
-			<td style="font-weight: bold;" align="center">상품코드</td>
-			<td>${product_num }</td>
-		</tr>
 		<tr>
+			<td style="font-weight: bold;" align="center">상품명</td>
+			<td>${product.product_name }</td>
+		</tr>
+		<%-- <tr>
 			<td style="font-weight: bold;" align="center">옵션코드</td>
 			<td>${options_num }</td>
-		</tr>
+		</tr> --%>
 		<tr>
 			<td style="font-weight: bold;" align="center"> 상품 별점</td>
 			<td>

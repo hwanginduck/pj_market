@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pjmarket.model.Options;
 import pjmarket.model.Product;
 import pjmarket.model.Review;
+import pjmarket.service.OptionsServiceImpl;
 import pjmarket.service.ProductServiceImpl;
 import pjmarket.service.ReviewServiceImpl;
 
@@ -36,10 +38,14 @@ public class ReviewController {
 	@Autowired
 	private ProductServiceImpl ps;
 	
+	@Autowired
+	private OptionsServiceImpl os;
+	
 
 	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")
-	public String ReviewWriteForm(Review review,Model model, String member_id,  Product product,HttpSession session) throws Exception {
+	public String ReviewWriteForm(Review review,Model model, String member_id,@RequestParam("product_num") int product_num,
+		 HttpSession session) throws Exception {
 
 //       @RequestParam("product_num") int product_num,
 //		 @RequestParam("options_num") int options_num ,
@@ -49,15 +55,15 @@ public class ReviewController {
 		System.out.println("아이디 : " + member_id);
  
 		// 상품명
-//		product = rs.getProductName(product_num);
+        Product product = ps.getProductDetail(product_num);
 		// 상품코드 구해오기
-		int product_num = review.getProduct_num();
-		int options_num = review.getOptions_num();
+//		int product_num = review.getProduct_num();
+//		int options_num = review.getOptions_num();
 		 
-		 model.addAttribute("product_num", product_num);
-		 model.addAttribute("options_num", options_num);
+         model.addAttribute("product", product);
 		 model.addAttribute("member_id", member_id);
-		 model.addAttribute("product", product);
+		 model.addAttribute("product_num", product_num);
+//		 model.addAttribute("options_num", options_num);
 //		 model.addAttribute("product_name", product_name);
 
 		return "review/review_writeform";
@@ -139,12 +145,12 @@ public class ReviewController {
 
 	// 리뷰 게시판 목록
 	@RequestMapping("review_boardlist")
-	public String ReviewBoardList(Review review,Model model,Product product,Options options,
+	public String ReviewBoardList(Review review,Model model,Product product,
 			HttpServletRequest request) throws Exception {
 
 		List<Review> boardlist = new ArrayList<Review>();
 
-		int page = 1;
+		int page = 1; 
 		int limit = 5; 
 
 		if (request.getParameter("page") != null) {
@@ -152,7 +158,7 @@ public class ReviewController {
 		}
 		
 		int product_num = product.getProduct_num();
-		int options_num = options.getOptions_num();
+//		int options_num = options.getOptions_num();
 		int listcount = rs.getListCount(product_num);
 		System.out.println("controller page: "+page);
 		boardlist = rs.getBoardList(page, product_num);
@@ -167,9 +173,9 @@ public class ReviewController {
 			endpage = startpage + 10 - 1;
 
 		model.addAttribute("product_num", product_num);
-		model.addAttribute("options_num", options_num);
 		model.addAttribute("product", product);
-		model.addAttribute("options", options);
+//		model.addAttribute("options_num", options_num);
+//		model.addAttribute("options", options);
 		model.addAttribute("page", page);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
@@ -186,9 +192,9 @@ public class ReviewController {
 
 	// 리뷰 상세
 	@RequestMapping("review_detail.do")
-	public String reviewDetail(@RequestParam("review_no") int review_no, int product_num, Model model) throws Exception {
+	public String reviewDetail(@RequestParam("review_no") int review_no, 
+			int product_num ,Model model) throws Exception {
 
-		// @RequestParam("p_no") int p_no
 		// 조회수 증가
 		int result = rs.updateHit(review_no);
 		System.out.println("조회수 증가 결과: " + result);
@@ -196,31 +202,44 @@ public class ReviewController {
 		// 상품명
 		Product product = ps.getProductDetail(product_num);
 		System.out.println("product:" + product);
+		
+		// 옵션명
+//		Options options = os.insertOptions(options_name);
+//		System.out.println("options:" + options);
 
 		// 리뷰 내용 구해오기
 		Review review = rs.select(review_no);
 		System.out.println("리뷰 상세 내용: " + review);
 		System.out.println("리뷰이미지:" + review.getReview_img());
-		
-		String review_img[] = review.getReview_img().split(",");		
-
 		String content = review.getReview_content().replace("\n", "<br>");
+		
+//		String review_img[] = review.getReview_img().split(",");	
+		
+		if(review.getReview_img() != null) {
+			String review_img1 = review.getReview_img();		
+			String[] review_img = review_img1.split("/");
+			model.addAttribute("review_img", review_img1);
+		}
 
 		model.addAttribute("review", review);
 		model.addAttribute("content", content);
-		model.addAttribute("review_img", review_img);
 		model.addAttribute("product", product);
+//		model.addAttribute("options", options);
 
 		return "review/review_detail";
 	}
 
 	// 리뷰 업데이트 폼으로 이동
 	@RequestMapping("review_update.do")
-	public String ReviewUpdate(int review_no, Model model) throws Exception {
+	public String ReviewUpdate(int review_no, int product_num, Model model) throws Exception {
 
 		System.out.println("review_update");
 		Review review = rs.Reviewupdate(review_no);
+		
+	    Product product= ps.getProductDetail(product_num);
 		model.addAttribute("review", review);
+		model.addAttribute("product_num", product_num);
+		model.addAttribute("product", product);
 		return "review/review_update";
 	}
 
@@ -313,6 +332,7 @@ public class ReviewController {
 		System.out.println("review_delete");
 		Review review = rs.ReviewDelete(review_no);
 		model.addAttribute("review", review);
+		
 
 		return "review/review_delete";
 	}
