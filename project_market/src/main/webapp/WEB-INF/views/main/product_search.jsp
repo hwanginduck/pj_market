@@ -3,7 +3,8 @@
 
 <%@ include file="../fix/header.jsp"%>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link href="${path}/resources/css/product.css" rel="stylesheet" />
 <script>
 $( document).ready( function(val) {
 	

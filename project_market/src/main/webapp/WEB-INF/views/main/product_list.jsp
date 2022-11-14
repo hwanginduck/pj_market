@@ -6,7 +6,8 @@
 
 <%@ include file="../fix/header.jsp"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
-
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link href="${path}/resources/css/product.css" rel="stylesheet" />
 <section class="main">
 <div class="productlist-pj">
 		<div class="productlist-header-pj">

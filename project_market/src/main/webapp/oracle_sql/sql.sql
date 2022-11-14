@@ -616,3 +616,4 @@ delete product where product_name='전구' and product_price=12312
 		product_content, product_sub, product_img, product_stock from (select * from product order by product_num desc) where product_l = '가구')
 	   	where rnum >= ((1-1) * 12+1)  and rnum <= (1 * 12)
 
+select AVG(NVL(review_star,0)) from review where product_num = 165

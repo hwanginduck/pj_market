@@ -17,4 +17,9 @@ public interface ProductService {
   List<Product> searchProduct(String product_name) throws Exception;
 
   int searchCount(String product_name) throws Exception;
+
+  Integer selectProductStar(int product_num) throws Exception;
+
+  Integer selectProductStarCount(int product_num) throws Exception;
+
 }

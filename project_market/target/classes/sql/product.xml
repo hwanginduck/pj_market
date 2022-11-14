@@ -41,4 +41,14 @@
 	<select id="search_count" resultType="int">
 		select count(product_num) from product where product_name like '%' || #{product_name} || '%'
 	</select>
+	
+	<select id="select_product_star" resultType="Integer">
+		select AVG(NVL(review_star,0)) from review where product_num = #{product_num}
+	</select>
+	
+	
+	<select id="select_product_star_count" resultType="Integer">
+		select count(review_no) from review where product_num = #{product_num}
+	</select>
+	
 </mapper>

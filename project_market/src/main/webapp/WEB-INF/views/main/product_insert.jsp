@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link href="${path}/resources/css/product.css" rel="stylesheet" />
 <%@ include file="../fix/header.jsp"%>
 <section>
 	<form name="f" method="post" action="insert_product.do" enctype="multipart/form-data">

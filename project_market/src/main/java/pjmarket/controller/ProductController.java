@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import pjmarket.model.Options;
 import pjmarket.model.Product;
 import pjmarket.service.OptionsServiceImpl;
@@ -252,6 +249,10 @@ public class ProductController {
     // List<QnaBoard> boardlist = new ArrayList<QnaBoard>();
     Product product = ps.getProductDetail(product_num);
 
+    Integer product_star = ps.selectProductStar(product_num);
+
+    Integer product_starcount = ps.selectProductStarCount(product_num);
+
     // 상품 이미지랑 내용 이미지 파싱하여 분류
     String product_content = product.getProduct_content();
     System.out.println(product_content);
@@ -273,6 +274,9 @@ public class ProductController {
     model.addAttribute("product_contentArr", product_contentArr);
     model.addAttribute("product_imgArr", product_imgArr);
     model.addAttribute("page", page);
+    model.addAttribute("product_star", product_star);
+    model.addAttribute("product_starcount", product_starcount);
+
 
     return "main/product_detail";
   }

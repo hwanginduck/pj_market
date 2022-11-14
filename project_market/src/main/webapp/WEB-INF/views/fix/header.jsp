@@ -17,9 +17,8 @@
     <c:set var="path" value="${pageContext.request.contextPath }" />
     <link href="${path}/resources/css/header.css" rel="stylesheet" />
     <link href="${path}/resources/css/footer.css" rel="stylesheet" />
-    <link href="${path}/resources/css/product.css" rel="stylesheet" />
-    <link href="${path}/resources/css/cart.css" rel="stylesheet" />
-    <link href="${path}/resources/css/like.css" rel="stylesheet" />
+    
+    
   </head>
   <body>
     <% session = request.getSession(); %>
