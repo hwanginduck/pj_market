@@ -245,13 +245,14 @@ public class ReviewController {
 
 	// 리뷰 업데이트 성공 이미지 업로드 수정
 	@RequestMapping("review_updateresult")
-	public String Reviewupdateresult(Review review, Model model, @RequestParam("review_img1")
+	public String Reviewupdateresult(Review review, Model model,int product_num, @RequestParam("review_img1")
 			List<MultipartFile> multiFileList , HttpServletRequest request) throws Exception {
 				
 				// 받아온것 출력 확인
 				System.out.println("multiFileList : " + multiFileList);
 				int review_no = review.getReview_no();
-				Review review1 = this.rs.Reviewupdate(review_no);		
+				Review review1 = this.rs.Reviewupdate(review_no);	
+				Product product= ps.getProductDetail(product_num);
 				
 				// path 가져오기
 				String path = request.getRealPath("/resources/upload/");
@@ -323,6 +324,7 @@ public class ReviewController {
 					System.out.println("수정성공");
 				
 				model.addAttribute("result", result);
+				model.addAttribute("product", product);
 				return "review/review_updateresult";
 	}
 
