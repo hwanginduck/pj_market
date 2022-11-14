@@ -22,20 +22,26 @@
 	width: 50px;
 	height: 50px;
 }
+.likelist-checkbox-pj{
+	width: 30px;
+	height: 100%;
+}
+
 
 .swiper-slide{
-	width: 290px;	
-	height: 290px;
+	width: 200px;	
+	height: 200px;
 	background-repeat:no-repeat;
 	background-size: contain;
 	background-position: center;
 }
 
-.detail-image-box-pj>img {
-	width: 170px;
-	min-width: 170px;
-	height: 170px;
-	min-height: 170px;
+.detail-image-box-pj {
+	width: 250px;
+	min-width: 250px;
+	height: 200px;
+	min-height: 200px;
+	display: flex;
 }
 
 .like-content-box-pj {
