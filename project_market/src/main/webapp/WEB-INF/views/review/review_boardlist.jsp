@@ -11,19 +11,19 @@
 
 	<section class="main-pj">
 		<div class="detail-content-pj">
-
-			<div class="container" align="center">
-				<h2 class="text-primary">List of Review Boards</h2>
-				총갯수 : ${listcount } <br>
+		
+		<div class="container" align="center">
+			<h2 class="text-primary">List of Review Boards</h2>
+				총 리뷰 갯수 : ${listcount } <br>
 			<input type="hidden" name="member_id" value=${member_id }> 
 		    <input type="hidden" name="product_num" value="${product_num }">
 				<table class="table table-striped">
 					<tr>
-						<td>Review No</td>
-						<td>Subject</td>
-						<td>ID</td>
-						<td>Date</td>
-						<td>views</td>
+						<td align="center">Review No</td>
+						<td align="center">Subject</td>
+						<td align="center">ID</td>
+						<td align="center">Date</td>
+						<td align="center">views</td>
 					</tr>
 					<c:if test="${empty boardlist}">
 						<tr>
@@ -47,13 +47,17 @@
 								</td>
 
 								<td style="font-family: Tahoma; font-size: 10pt;">
-									<div align="left">
+									<div align="center">
 
 										<!-- 제목 출력 부분 -->
-										<a
-											href="review_detail.do?review_no=${b.review_no}&page=${page}&product_num=${product_num}">
+				<a href="review_detail.do?review_no=${b.review_no}&page=${page}&product_num=${product_num}">
 											${b.review_sb} </a>
-									</div>
+											<br>
+						<input type="button" class="btn btn-outline-success" value="수정"
+						onclick="location='review_update.do?review_no=${b.review_no}&product_num=${product_num}'">
+						<input type="button" class="btn btn-outline-success" value="삭제"
+						onclick="location='review_delete.do?review_no=${b.review_no}'">
+			</div>
 								</td>
 
 								<td style="font-family: Tahoma; font-size: 10pt;">
