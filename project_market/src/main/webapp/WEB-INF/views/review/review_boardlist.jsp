@@ -52,7 +52,7 @@
 
 										<!-- 제목 출력 부분 -->
 										<a
-											href="review_detail.do?review_no=${b.review_no}&page=${page}&state=cont">
+											href="review_detail.do?review_no=${b.review_no}&page=${page}&product_num=${product_num}">
 											${b.review_sb} </a>
 									</div>
 								</td>
@@ -105,7 +105,7 @@
 				</ul>
 
 				<div align="center">
-					<a href="${path}/review_writeform" class="btn btn-info">리뷰 글 작성</a>
+					<a href="${path}/review_writeform?product_num=${product_num}" class="btn btn-info">리뷰 글 작성</a>
 				</div>
 			</div>
 		</div>

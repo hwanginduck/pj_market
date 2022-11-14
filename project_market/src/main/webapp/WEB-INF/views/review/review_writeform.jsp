@@ -37,7 +37,7 @@
 			<td>${product_num }</td>
 		</tr>
 		<tr>
-			<td style="font-weight: bold;" align="center">옵션코드</td>
+			<td style="font-weight: bold;" align="center">옵션</td>
 			<td>${options_num }</td>
 		</tr>
 		<tr>
