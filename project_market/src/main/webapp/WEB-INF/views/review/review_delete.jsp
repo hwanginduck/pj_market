@@ -10,13 +10,13 @@
     
     
 <meta charset="UTF-8">
-<title>리뷰 수정 게시판</title>
+<title>리뷰 삭제 게시판</title>
 </head>
 <body>
 <section class="main-pj">
 		<div class="detail-content-pj">
  <div class="container" align="center">
-<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰 수정</h3>
+<h3 style="font-weight: bold; margin: 30px 0px 30px 0px;">상품 리뷰 삭제</h3>
 
 <form action="review_deleteresult" method="post" onsubmit="return board_check()" >
 			<input type="hidden" name="member_id" value=${member_id }> 
