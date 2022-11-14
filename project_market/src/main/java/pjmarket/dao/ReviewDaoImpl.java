@@ -33,7 +33,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int getListCount(int product_num) {
 
-		return session.selectOne("reviewns.review_count",product_num);
+		return session.selectOne("reviewns.review_count", product_num);
 	}
 
 	@Override

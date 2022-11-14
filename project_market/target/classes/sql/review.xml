@@ -28,14 +28,14 @@ values
 <!-- 상품 리뷰 갯수 -->
 <select id="review_count" resultType="int">
 
-		select count(review_no) from review
+		select count(review_no) from review where product_num = #{product_num}
 		
 </select>
 
 <!-- 리뷰 목록-->
 <select id="review_boardlist" parameterType="hashmap" resultType="review">
   			<![CDATA[
-		select * from (select rownum rnum, review.* from review order by review_no desc)
+		select * from (select rownum rnum, review.* from review where product_num = ${product_num} order by review_no desc)
 		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
 			 ]]> 
 </select> 

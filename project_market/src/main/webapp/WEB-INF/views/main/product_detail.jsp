@@ -2,38 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../fix/header.jsp"%>
 
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-
-//product_detail 페이지로딩될때 최초로 qna_boardlist 페이지를 로드해옴.
-
-// $(function () {
-// 	$('#list').load('qna_boardlist.do?product_num=${product.product_num}&product_name=${product.product_name}');
-// });
-
-// $(function () {
-// 	var product_num = '${product.product_num}'
-	
-// 		$('#reviewlist').load('review_boardlist');
-// 		$('#qnalist').load('qna_boardlist.do?product_num=' + product_num);
-// 		$('#p_index').load('p_index.do');
-// 	});
-// // 상단 스크립트 매뉴로 페이지 로드함수.
-// function move1(product_num) {
-// 	$('#list').load('qna_boardlist.do?product_num='+product_num);
-// }
-
-// function move2(y) {
-// 	$('#list').load('review_boardlist');
-// }
-</script>
+<%@ include file="../fix/header.jsp"%>
 
 <section>
 <form name="f" method="post">
@@ -123,17 +98,9 @@
 $(function () {
 	var product_num = '${product.product_num}'
 	
-		$('#reviewlist').load('review_boardlist');
+		$('#reviewlist').load('review_boardlist?product_num='+product_num);
 		$('#qnalist').load('qna_boardlist.do?product_num=' + product_num);
 		$('#p_index').load('p_index.do');
 	});
-// 상단 스크립트 매뉴로 페이지 로드함수.
-function move1(product_num) {
-	$('#list').load('qna_boardlist.do?product_num='+product_num);
-}
-
-function move2(product_num) {
-	$('#list').load('review_boardlist?product_num='+product_num);
-}
 </script>
 <%@ include file="../fix/footer.jsp" %>
