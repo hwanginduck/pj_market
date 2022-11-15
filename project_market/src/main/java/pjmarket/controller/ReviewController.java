@@ -56,6 +56,7 @@ public class ReviewController {
  
 		// 상품명
         Product product = ps.getProductDetail(product_num);
+       //옵션명
         List<Options> options = os.getOptionList(product_num);
         String options_name = options.get(0).getOptions_name();
         
@@ -181,8 +182,6 @@ public class ReviewController {
 
 		model.addAttribute("product_num", product_num);
 		model.addAttribute("product", product);
-//		model.addAttribute("options_num", options_num);
-//		model.addAttribute("options", options);
 		model.addAttribute("page", page);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
@@ -211,27 +210,32 @@ public class ReviewController {
 		System.out.println("product:" + product);
 		
 		// 옵션명
-//		Options options = os.insertOptions(options_name);
-//		System.out.println("options:" + options);
+		List<Options> options = os.getOptionList(product_num);
+		String options_name = options.get(0).getOptions_name();
+		System.out.println("option_name:" + options.get(0).getOptions_name());
 
 		// 리뷰 내용 구해오기
 		Review review = rs.select(review_no);
 		System.out.println("리뷰 상세 내용: " + review);
 		System.out.println("리뷰이미지:" + review.getReview_img());
-		String content = review.getReview_content().replace("\n", "<br>");
 		
-//		String review_img[] = review.getReview_img().split(",");	
+//     	String review_img[] = review.getReview_img().split(",");	
+     	String content = review.getReview_content().replace("\n", "<br>");
 		
 		if(review.getReview_img() != null) {
 			String review_img1 = review.getReview_img();		
-			String[] review_img = review_img1.split("/");
-			model.addAttribute("review_img", review_img1);
+			String[] review_img = review_img1.split(",");
+			model.addAttribute("review_img", review_img); 
+		}else {
+			review.setReview_img(review.getReview_img());
 		}
 
 		model.addAttribute("review", review);
+//		model.addAttribute("review_img", review_img);
 		model.addAttribute("content", content);
 		model.addAttribute("product", product);
-//		model.addAttribute("options", options);
+		model.addAttribute("options", options);
+		model.addAttribute("options_name", options_name);
 
 		return "review/review_detail";
 	}
@@ -240,14 +244,22 @@ public class ReviewController {
 	@RequestMapping("review_update.do")
 	public String ReviewUpdate(int review_no, int product_num, Model model) throws Exception {
 
-		System.out.println("review_update");
-		Review review = rs.Reviewupdate(review_no);
+		 System.out.println("review_update");
+		 Review review = rs.Reviewupdate(review_no);
 		
-	    Product product= ps.getProductDetail(product_num);
-		model.addAttribute("review", review);
-		model.addAttribute("product_num", product_num);
-		model.addAttribute("product", product);
-		return "review/review_update";
+		 // 상품명
+	     Product product= ps.getProductDetail(product_num);
+	     // 옵션명
+		 List<Options> options = os.getOptionList(product_num);
+		 String options_name = options.get(0).getOptions_name();
+		 System.out.println("option_name:" + options.get(0).getOptions_name());
+	 		
+		 model.addAttribute("review", review);
+		 model.addAttribute("product_num", product_num);
+		 model.addAttribute("product", product);
+		 model.addAttribute("options", options);
+		 model.addAttribute("options_name", options_name);
+		 return "review/review_update";
 	}
 
 	// 리뷰 업데이트 성공 이미지 업로드 수정
@@ -322,6 +334,7 @@ public class ReviewController {
 				
 				else { 					// 첨부파일이 수정되지 않으면
 					review.setReview_img(review1.getReview_img());
+					System.out.println("이거들감");
 				}
 				System.out.println("review_updateresult");
 				

@@ -21,8 +21,8 @@
 		<tr>
 			<th>상품명</th>
 			<td style="font-weight: bold;" align="center"> ${product.product_name }</td>
-			<%-- <th>옵션명</th>
-			<td style="font-weight: bold;" align="center">${options_name }</td> --%>
+			<th>옵션명</th>
+			<td style="font-weight: bold;" align="center">${options_name }</td>
 		</tr>
 		<tr>
 			<th>별 점</th>
