@@ -100,6 +100,7 @@ public class ReviewController {
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
 			for(int i = 0; i < multiFileList.size(); i++) {
+				
 				String originFile = multiFileList.get(i).getOriginalFilename();
 				String ext = originFile.substring(originFile.lastIndexOf("."));
 				String changeFile = UUID.randomUUID().toString() + ext;

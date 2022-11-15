@@ -22,6 +22,7 @@
 					<tr>
 						<td align="center">Review No</td>
 						<td align="center">Subject</td>
+						<td align="center">STAR</td>
 						<td align="center">ID</td>
 						<td align="center">Date</td>
 						<td align="center">views</td>
@@ -51,7 +52,7 @@
 									<div align="center">
 
 						<!-- 제목 출력 부분 -->
-				<a href="review_detail.do?review_no=${b.review_no}&page=${page}&product_num=${product_num}">
+					 <a href="review_detail.do?review_no=${b.review_no}&page=${page}&product_num=${product_num}">
 											${b.review_sb} </a>
 											<br>
 					 <c:if test="${session_id  eq b.member_id }">
@@ -62,11 +63,15 @@
 						<input type="button" class="btn btn-outline-success" value="삭제"
 						onclick="location='review_delete.do?review_no=${b.review_no}'">
 							</c:if> 
-					 <%-- <c:if test="${session_id  eq b.member_id }"> 
-					 <button type="button" id="${status.index }" 
-				      onClick="delbtn(${status.index })" class="btn btn-outline-success" value="${b.review_no}" >삭제</button>
-						    </c:if> --%>
 			</div>
+								</td>
+								<td>
+									<c:if test="${b.review_star == 0}">☆☆☆☆☆</c:if>
+									<c:if test="${b.review_star == 1}">★☆☆☆☆</c:if>
+									<c:if test="${b.review_star == 2}">★★☆☆☆</c:if>
+									<c:if test="${b.review_star == 3}">★★★☆☆</c:if>
+									<c:if test="${b.review_star == 4}">★★★★☆</c:if>
+									<c:if test="${b.review_star == 5}">★★★★★</c:if>
 								</td>
 
 								<td style="font-family: Tahoma; font-size: 10pt;">
@@ -88,8 +93,8 @@
 						</c:forEach>
 						<!-- 반복문 끝 -->
 					</c:if>
-				</table>
-		<ul class="pagination">
+</table> 
+          <ul class="pagination">
 				<c:if test="${page <=1 }">
 					<li><a>이전 </a></li>
 				</c:if>
@@ -99,12 +104,12 @@
 				</c:if>
 	
 				<c:forEach var="a" begin="${startpage}" end="${endpage}">
-					<c:if test="${a == page }">
+				<c:if test="${a == page }">
 						<li><a>${a}</a></li>
-					</c:if>
-					<c:if test="${a != page }">
-						<li><a onClick="SelPage(${a },${product_num })">${a}</a></li>
-					</c:if>
+				</c:if>
+				<c:if test="${a != page }">
+					<li><a onClick="SelPage(${a },${product_num })">${a}</a></li>
+				</c:if>
 				</c:forEach>
 	
 				<c:if test="${page >= maxpage }">
@@ -128,27 +133,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script>
-
-/* function delbtn (btn){
-	var btnval = document.getElementById(btn).value;
- 		var frmData = $('#'+btnval).serialize();
-        	  if (confirm('게시글을 삭제합니다.')) {
-	             $.ajax({
-    			      	   url : "review_delete.do",
-          	   				type : "POST",
-          	   				data : 
-          		   			frmData,
-          		   			success : function(data) {
-          			   		$('#reviewlist').html(data);
-          			   		alert("삭제완료");
-          		   },
-          	   error : function(e) {
-          		   alert("오류");
-          	   }
-             })
-          }
- 	} */
- 	
 // 이전페이지
     function Before(page,prduct_num){
     	$.post(
