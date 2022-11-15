@@ -69,7 +69,7 @@
 		<tr>
 			<td colspan="2" style="text-align: center;">
 				<input type="submit" class="btn btn-success" value="리뷰 등록"
-				onclick="location='review_boardlist.do?&product_num=${product.product_num}'">
+				onclick="location='review_boardlist?&product_num=${product.product_num}'">
 				<input type="reset" class="btn btn-outline-success"  value="취소" onclick="history.go(-1)">
 			</td>
 		</tr>

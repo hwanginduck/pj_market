@@ -58,10 +58,14 @@
 						<input type="button" class="btn btn-outline-success" value="수정"
 						onclick="location='review_update.do?review_no=${b.review_no}&product_num=${product_num}'">
 							</c:if> 
-			    	 <c:if test="${session_id  eq b.member_id }">
+			         <c:if test="${session_id  eq b.member_id }">
 						<input type="button" class="btn btn-outline-success" value="삭제"
 						onclick="location='review_delete.do?review_no=${b.review_no}'">
 							</c:if> 
+					 <%-- <c:if test="${session_id  eq b.member_id }"> 
+					 <button type="button" id="${status.index }" 
+				      onClick="delbtn(${status.index })" class="btn btn-outline-success" value="${b.review_no}" >삭제</button>
+						    </c:if> --%>
 			</div>
 								</td>
 
@@ -124,13 +128,33 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script>
+
+/* function delbtn (btn){
+	var btnval = document.getElementById(btn).value;
+ 		var frmData = $('#'+btnval).serialize();
+        	  if (confirm('게시글을 삭제합니다.')) {
+	             $.ajax({
+    			      	   url : "review_delete.do",
+          	   				type : "POST",
+          	   				data : 
+          		   			frmData,
+          		   			success : function(data) {
+          			   		$('#reviewlist').html(data);
+          			   		alert("삭제완료");
+          		   },
+          	   error : function(e) {
+          		   alert("오류");
+          	   }
+             })
+          }
+ 	} */
+ 	
 // 이전페이지
     function Before(page,prduct_num){
     	$.post(
 			'${path}/review_boardlist?page=${page-1}&product_num=${product_num}',
 			function(data) {
 			$('#reviewlist').html(data);
-			frm.replytext.value = '';
 		});
     };
     
@@ -141,7 +165,6 @@
 				'${path}/review_boardlist?page='+page+'&product_num=${product_num}',
 				function(data) {
 			$('#reviewlist').html(data);
-			frm.replytext.value = '';
 		});
     };
     
@@ -151,7 +174,6 @@
 				'${path}/review_boardlist?page=${page+1}&product_num=${product_num}',
 				function(data) {
 			$('#reviewlist').html(data);
-			frm.replytext.value = '';
 		});
     };  
     

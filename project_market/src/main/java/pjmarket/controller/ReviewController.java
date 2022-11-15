@@ -54,7 +54,8 @@ public class ReviewController {
  
 		// 상품명
         Product product = ps.getProductDetail(product_num);
-       //옵션명
+        
+        //옵션명
         List<Options> options = os.getOptionList(product_num);
         String options_name = options.get(0).getOptions_name();
         
@@ -94,8 +95,8 @@ public class ReviewController {
 			if(!fileCheck.exists()) fileCheck.mkdirs();
 						
 			String filename = "";
-			
-			if (size != 1 ) {
+				
+			if(multiFileList.size() > 0 && !multiFileList.get(0).getOriginalFilename().equals("")) {
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
 			for(int i = 0; i < multiFileList.size(); i++) {
@@ -226,11 +227,11 @@ public class ReviewController {
 //		}
 
 		model.addAttribute("review", review);
-//		model.addAttribute("review_img", review_img);
 		model.addAttribute("content", content);
 		model.addAttribute("product", product);
 		model.addAttribute("options", options);
 		model.addAttribute("options_name", options_name);
+//		model.addAttribute("review_img", review_img);
 
 		return "review/review_detail";
 	}
@@ -285,9 +286,9 @@ public class ReviewController {
 				
 				String filename = "";
 				
-				if (size > 1 ) {  // 첨부 파일이 수정되면
-					System.out.println("?");
-				List<Map<String, String>> fileList = new ArrayList<>();
+				if(multiFileList.size() > 0 && !multiFileList.get(0).getOriginalFilename().equals("")) {
+					System.out.println("ehlskdy");
+					List<Map<String, String>> fileList = new ArrayList<>();
 				
 				for(int i = 0; i < multiFileList.size(); i++) {
 					String originFile = multiFileList.get(i).getOriginalFilename(); // 오리지널 파일이름
@@ -323,13 +324,9 @@ public class ReviewController {
 					e.printStackTrace();
 				}
 				review.setReview_img(filename);			
+				}else{ 					// 첨부파일이 수정되지 않으면
 					
-				} 
-				
-				
-				else { 					// 첨부파일이 수정되지 않으면
-					review.setReview_img(review1.getReview_img());
-					System.out.println("이거들감");
+				review.setReview_img(review1.getReview_img());
 				}
 				System.out.println("review_updateresult");
 				
@@ -345,12 +342,10 @@ public class ReviewController {
 
 	// 리뷰 삭제
 	@RequestMapping("review_delete.do")
-	public String reviewdeleteform(int review_no, Model model) throws Exception {
+	public String reviewdeleteform(int review_no,Model model) throws Exception {
 		System.out.println("review_delete");
 		Review review = rs.ReviewDelete(review_no);
 		model.addAttribute("review", review);
-		
-
 		return "review/review_delete";
 	}
 
@@ -363,6 +358,7 @@ public class ReviewController {
 		if (result == 1)
 			System.out.println("삭제성공");
 
+		model.addAttribute("review", review);
 		model.addAttribute("result", result);
 		return "review/review_deleteresult";
 	}

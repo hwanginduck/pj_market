@@ -16,7 +16,7 @@
 <c:if test="${result == 1 }">
 	<script>
 		alert("리뷰가 삭제 되었습니다!");
-		location.href = "review_boardlist.do?&review.review_no=${review.review_no}";
+		location.href = "review_boardlist.do?&review_no=${review.review_no}";
 	</script>
 </c:if>
 

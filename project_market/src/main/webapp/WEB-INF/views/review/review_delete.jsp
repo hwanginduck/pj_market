@@ -20,8 +20,6 @@
 
 <form action="review_deleteresult" method="post" onsubmit="return board_check()" >
 			<input type="hidden" name="member_id" value=${member_id }> 
-		    <%--<input type="hidden" name="product_num" value="${product_num }"> --%>
-			<%--<input type="hidden" name="options_num" value="${options_num }"> --%> 
 			<input type="hidden" name="review_no" value="${review.review_no}"> 
 
 	<table class="table table-striped">
@@ -29,6 +27,12 @@
 		 <td style="font-weight: bold;" align="center">제목</td>
 	       <td>
 		<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center"  value="${review.review_sb }"  />
+			</td>
+		</tr>
+		<tr>
+		 <td style="font-weight: bold;" align="center">아이디</td>
+	       <td>
+		<input name="member_id" id="member_id" size="14" class="input_box"  align="center"  value="${member_id }"  />
 			</td>
 		</tr>
 		<tr>
