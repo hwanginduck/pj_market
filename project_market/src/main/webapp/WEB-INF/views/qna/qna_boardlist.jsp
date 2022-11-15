@@ -10,11 +10,7 @@
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="${path}/resources/css/tb.css" rel="stylesheet">
 
-<script src="${path}/resources/js/product.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 <script type="text/javascript">
 
@@ -103,6 +99,7 @@
 <script> // 팝업창으로 댓글 수정하기
 	
 	var upform, reform;
+	
 	function WindowPOP(qna_no, product_num) {
 		upform = window.open("qna_updateform.do?qna_no="+qna_no+"&product_num="+product_num , 'mywin01', 'width=1250, height=300'); 
 	}
@@ -120,6 +117,9 @@
 	<!-- 관리자유무에 따라 답변 버튼 활성화, 접속자에 따라 자신이 작성한 글 수정가능 -->
 	<c:set var="session_id" value="${member_id }" />
 	<c:set var="admin_user" value="admin" />
+	session_id : ${session_id } <br>
+	admin_user : ${admin_user } <br>
+<%-- 	<c:if test=${session_id eq admin_user }>같음</c:if> --%>
 	
 <section class="main-pj">
 	<div class="detail-content-pj">
@@ -148,7 +148,7 @@
 						<td width="250" align="left">상품명</td>
 						<td width="250" align="left">작성일</td>
 						<td width="100" align="left">
-						<c:if test="${session_id  eq bl.member_id }"> <button type="button" id="${status.index }" onClick="delbtn(${status.index })" value="${bl.qna_no }" >삭제</button>
+						<c:if test="${session_id  eq bl.member_id }"> <button type="button" id="${status.index }" onClick="delbtn(${status.index })" class="btn btn-info" value="${bl.qna_no }" >삭제</button>
 								<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제"> --%>
 						</c:if>
 						</td>
@@ -169,16 +169,21 @@
 
 						<!-- ----------------------- ID 마스킹처리하는 END ----------------------- -->
 
-						<td>${product_name }</td>
+						<td>${product.product_name }</td>
 						<td><fmt:formatDate value="${bl.qna_date}" pattern="yyyy-MM-dd HH:mm" /></td>
-						<td><c:if test="${session_id  eq bl.member_id }">
-								<button type="button" onClick="WindowPOP(${bl.qna_no},${product.product_num })" value="">수정</button>
-							</c:if> <c:if test="${session_id  eq admin_user }">
-								<button type="button" onClick="location.href='qna_writeform.do?qna_no=${bl.qna_no }&product_num=${bl.product_num}&qna_group=${bl.qna_group}'" value="">답변</button>
-							</c:if></td>
+						<td>
+
+								<!-- 세션 아이디랑, 작성자 아이디랑 같을경우 수정버튼 활성화 -->						
+							<c:if test="${session_id  eq bl.member_id }">
+								<button type="button" onClick="WindowPOP(${bl.qna_no},${product.product_num })" class="btn btn-info" value="">수정</button>
+							</c:if> 
+							<c:if test="${member_id eq 'admin'and bl.qna_re ne 1 }">
+								<button type="button" onClick="WindowPOP(${bl.qna_no},${product.product_num })" class="btn btn-info" value="">답변</button>
+							</c:if>
+						</td>
 					</tr>
 
-					<th colspan=5><pre style="width: 1200px;"> ${bl.qna_content } </pre></th>
+					<th colspan=10><pre style="width: 1200px;"> ${bl.qna_content } </pre></th>
 				</table>
 			</form>
 			</c:forEach>
@@ -252,7 +257,7 @@
 				</tr>
 				<th colspan=5>
 					<pre>
-						<textarea rows="3" cols="50" name="qna_content" style="display: block; margin: 4px 79px 0 10px;"></textarea>
+						<textarea rows="4" cols="153" name="qna_content" style="display: block; margin: 3px 3px 0 10px; border: none; outline: none; resize: none;"></textarea>
 					</pre></th>
 			</table>
 			<input type="button" value="확인" id="reInsert" class="btn btn-info" />

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class QnaController {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		int product_num = qnaboard.getProduct_num();
-		
+
 		int listcount = qs.getListCount(product_num); // 해당 제품에대한 게시글수: 관련게시글에대한 페이징작업용
 		boardlist = qs.getBoardList(product_num, page); // 리스트를 받아옴.
 		product = qs.getProduct(product_num);
@@ -58,10 +59,6 @@ public class QnaController {
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
 		model.addAttribute("product", product);
-		System.out.println("product_num :" + product_num);
-		System.out.println("boardlist.size(): " + boardlist.size());
-		System.out.println("listcout: " + listcount);
-
 		return "qna/qna_boardlist";
 	}
 
@@ -98,14 +95,20 @@ public class QnaController {
 
 	// QNA 업데이트 폼으로 이동 , 기존 작성내용들을 가지고감
 	@RequestMapping("qna_updateform.do")
-	public String QnaUpdate(QnaBoard qna, Product product, Model model) throws Exception {
+	public String QnaUpdate(HttpServletRequest requset, QnaBoard qna, Product product, Model model) throws Exception {
 		System.out.println("qna_updateform.do 컨트롤러");
+
+//		HttpSession session = requset.getSession();
+//		String member_id = (String) session.getAttribute("member_id");
+//		System.out.println(member_id);
+
 		qna = qs.QnaUpdate(qna.getQna_no());
 		product = qs.getProduct(qna.getProduct_num());
-		
+
 		model.addAttribute("qna", qna);
 		model.addAttribute("product", product);
 		return "qna/qna_updateform";
+
 	}
 
 	// QNA수정된글 DB에 저장하는 메소드
@@ -115,7 +118,7 @@ public class QnaController {
 		System.out.println(qnaboard.getQna_no());
 		System.out.println(qnaboard.getProduct_num());
 		System.err.println(qnaboard.getQna_content());
-		
+
 		int result = qs.QnaUpdateok(qnaboard);
 		if (result == 1) {
 			System.out.println("수정성공");
@@ -128,39 +131,29 @@ public class QnaController {
 		System.out.println("----------qna_delete.do----------");
 		int product_num = qnaboard.getProduct_num();
 		int result = qs.QnaDelete(qnaboard);
-		if (result == 1) System.out.println("--글삭제성공--");
-		System.out.println("qnaboard.getQna_no(): "+qnaboard.getQna_no());
-		System.out.println("qnaboard.getMember_id(): "+qnaboard.getMember_id());
-		System.out.println("qnaboard.getProduct_num(): "+qnaboard.getProduct_num());
-		System.out.println("qnaboard.getQna_re(): "+qnaboard.getQna_re());
-		System.out.println("qnaboard.getQna_content(): "+qnaboard.getQna_content());
-		System.out.println("qnaboard.getQna_group(): "+qnaboard.getQna_group());
-		System.out.println("qnaboard.getProduct_num(): "+qnaboard.getProduct_num());
+		if (result == 1)
+			System.out.println("--글삭제성공--");
 		model.addAttribute("qnaboard", qnaboard);
 		model.addAttribute("result", result);
-//		return "redirect:/qna_boardlist.do";
 		return "redirect:/qna_boardlist.do?product_num=" + product_num;
 	}
-	
-	
-	
-	
-	// ------------------------------ 테스트 컨트롤러 프로젝트랑 관련없는 실험내용임 ------------------------------
+
+	// ------------------------------ 테스트 컨트롤러 프로젝트랑 관련없는 실험내용임
+	// ------------------------------
 	@RequestMapping("testcontroller.do")
-		public String TestController(QnaBoard qlist, Model model) {
+	public String TestController(QnaBoard qlist, Model model) {
 		qlist = qs.TestController();
 		model.addAttribute("qlist", qlist);
 		return "qna/testcontroller";
 	}
-	
+
 	@RequestMapping("ok.do")
 	@ResponseBody
 	public String Ok(QnaBoard qnaboard, Model model) {
 		System.out.println("ok.do controller");
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		return null;
 	}
-	
 
 }

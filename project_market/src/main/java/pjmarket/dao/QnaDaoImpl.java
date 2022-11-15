@@ -38,6 +38,8 @@ public class QnaDaoImpl implements QnaDao {
 	@Override
 	public List<QnaBoard> getBoardList(int product_num, int page) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		System.out.println("List product_num"+product_num);
+		System.out.println("List page"+page);
 		map.put("product_num", product_num);
 		map.put("page", page);
 

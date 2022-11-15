@@ -35,27 +35,33 @@
 	</insert>
 
 
-<!-- 	<select id="qna_count" parameterType="HashMap" resultType="int">
-		select count(qna_no) from qna where product_num = #{product_num}
-	</select> -->
+	<!-- <select id="qna_count" parameterType="HashMap" resultType="int"> select 
+		count(qna_no) from qna where product_num = #{product_num} </select> -->
 
-	 <select id="qna_count" resultType="int">
-	  select count(qna_no) from	qna where product_num = #{product_num} 
-	 </select> 
+	<select id="qna_count" resultType="int">
+		select count(qna_no) from qna where product_num = #{product_num}
+	</select>
+
+	<!-- <select id="qna_list" parameterType="HashMap" resultType="qna"> -->
+	<!-- <![CDATA[ -->
+	<!-- select * from (select rownum rnum, qna.* from qna where product_num 
+		= #{product_num} order by qna_no desc) -->
+	<!-- where rnum >= ((#{page}-1) * 5+1) and rnum <= (#{page} * 5) order by 
+		qna_group desc, qna_re asc -->
+	<!-- ]]> -->
+	<!-- </select> -->
 
 	<select id="qna_list" parameterType="HashMap" resultType="qna">
-		  <![CDATA[
-		select * from (select rownum rnum, qna.* from qna where product_num = #{product_num} order by qna_no desc)
+		<![CDATA[
+		select*from  (select rownum rnum, qna.* from (select*from qna where product_num = #{product_num} order by qna_group desc, qna_re asc) qna )
 		where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5) order by qna_group desc, qna_re asc
 		 ]]>
 	</select>
 
-<!-- 	<select id="qna_list" parameterType="HashMap" resultType="qna">
-		  <![CDATA[
-		select * from (select rownum rnum, qna.* from qna order by qna_no desc)
-		where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5) order by qna_group desc, qna_re asc
-		 ]]>
-	</select> -->
+	<!-- <select id="qna_list" parameterType="HashMap" resultType="qna"> <![CDATA[ 
+		select * from (select rownum rnum, qna.* from qna order by qna_no desc) where 
+		rnum >= ((#{page}-1) * 5+1) and rnum <= (#{page} * 5) order by qna_group 
+		desc, qna_re asc ]]> </select> -->
 
 
 	<select id="qna_select" resultType="qna">
@@ -78,10 +84,11 @@
 		delete qna where qna_re = 1 and qna_group =
 		#{qna_group}
 	</delete>
-	
-	
+
+
 	<select id="product_select" resultType="product">
-		select * from product where
+		select * from product
+		where
 		product_num = #{product_num}
 	</select>
 
@@ -90,7 +97,7 @@
 
 
 	<select id="test_controller" resultType="qna">
-	select * from qna where qna_no = 116
+		select * from qna where qna_no = 116
 	</select>
 
 
