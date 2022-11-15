@@ -125,8 +125,9 @@
 	<div class="detail-content-pj">
 
 	<div align="center" id="boardlist">
-		<h2 class="text-primary">게시판 목록</h2>
-
+		<div style="background-color: teal;">
+		<h2 class="">상품문의</h2>
+		</div>
 		<c:if test="${empty boardlist}">
 			<tr>
 				<td colspan="5">데이터가 없습니다</td>
@@ -139,15 +140,15 @@
 				<input type="hidden" id="qna_group" 	name="qna_group" value="${bl.qna_group }" />
 				<input type="hidden" id="qna_re"		name="qna_re" 	value="${bl.qna_re }" />
 				<input type="hidden" id="product_num" 	name="product_num" value="${product.product_num }">
-				<table class="table table-striped">
+				<table class="table table-striped" style="size: auto; border-radius: 8px;">
 					<tr>
-						<td width="100" align="left"><c:if test="${bl.member_id ne 'admin' }">
+						<td width="" align="left"><c:if test="${bl.member_id ne 'admin' }">
 								<img src="${pageContext.request.contextPath}/resources/img/q.JPG">
 							</c:if></td>
-						<td width="250" align="left">사용자아이디</td>
-						<td width="250" align="left">상품명</td>
-						<td width="250" align="left">작성일</td>
-						<td width="100" align="left">
+						<td style="width: 220px" align="left">사용자아이디</td>
+						<td style="width: 220px" align="left">상품명</td>
+						<td style="width: 220px" align="left">작성일</td>
+						<td style="width: 220px" align="left">
 						<c:if test="${session_id  eq bl.member_id }"> <button type="button" id="${status.index }" onClick="delbtn(${status.index })" class="btn btn-info" value="${bl.qna_no }" >삭제</button>
 								<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제"> --%>
 						</c:if>
@@ -183,7 +184,7 @@
 						</td>
 					</tr>
 
-					<th colspan=10><pre style="width: 1200px;"> ${bl.qna_content } </pre></th>
+					<th colspan=5><pre style="width: 1160px;"> ${bl.qna_content } </pre></th>
 				</table>
 			</form>
 			</c:forEach>
@@ -198,7 +199,6 @@
 			</c:if>
 
 			<c:if test="${page > 1 }">
-				<%-- 				<li><a href="qna_boardlist.do?page=${page-1}&product_num=${product_num }">이전</a></li> --%>
 				<li><a onClick="Before(${page},${product_num })">이전</a></li>
 			</c:if>
 
@@ -207,7 +207,6 @@
 					<li><a>${a}</a></li>
 				</c:if>
 				<c:if test="${a != page }">
-					<%-- <li><a href="qna_boardlist.do?page=${a}&product_num=${product_num }">${a}</a></li> --%>
 					<li><a onClick="SelPage(${a },${product_num })">${a}</a></li>
 				</c:if>
 			</c:forEach>
@@ -216,8 +215,7 @@
 				<li><a>다음</a></li>
 			</c:if>
 			<c:if test="${page < maxpage }">
-				<%-- 				<li><a href="qna_boardlist.do?page=${page+1}&product_num=${product_num }">다음</a></li> --%>
-				<li><a onClick="Next(${page},${product_num })">다음</a></li>
+					<li><a onClick="Next(${page},${product_num })">다음</a></li>
 			</c:if>
 
 		</ul>
@@ -225,10 +223,11 @@
 		<!-- 문의글 작성 폼태그 -->
 
 		<!-- <form method="post" action="qna_boardinsert.do"> -->
+		<div style="overflow: auto;">
 		<form id="frm" name="frm">
-			<table class="table table-striped">
-				<input type="hidden" name="member_id" id="member_id" size="14" value="${member_id }" />
-				<input type="hidden" name="product_num" id="product_num" size="14" value="${product_num }" />
+			<table class="table table-striped" style="size: auto;">
+				<input type="hidden" name="member_id" id="member_id"  value="${member_id }" />
+				<input type="hidden" name="product_num" id="product_num" value="${product_num }" />
 
 				<c:if test="${member_id eq 'admin' }">
 					<input type="hidden" name="qna_re" id="qna_re" value="1">
@@ -238,16 +237,16 @@
 				</c:if>
 
 				<c:if test="${member_id eq 'admin' }">
-					<input type="hidden" name="qna_group" id="qna_group" size="14" value="${qna_no }" />
+					<input type="hidden" name="qna_group" id="qna_group"  value="${qna_no }" />
 				</c:if>
 				<c:if test="${member_id ne 'admin' }">
-					<input type="hidden" name="qna_group" id="qna_group" size="14" value="0" />
+					<input type="hidden" name="qna_group" id="qna_group"  value="0" />
 				</c:if>
 				<tr>
-					<td>상품명</td>
-					<td>상품코드</td>
-					<td>아이디</td>
-					<td></td>
+					<td style="width: 220px">상품명</td>
+					<td style="width: 220px">상품코드</td>
+					<td style="width: 220px">아이디</td>
+					<td style="width: 220px"></td>
 				</tr>
 				<tr>
 					<td>(상품명) 	${product.product_name }</td>
@@ -262,6 +261,7 @@
 			</table>
 			<input type="button" value="확인" id="reInsert" class="btn btn-info" />
 		</form>
+		</div>
 	</div>
 	</div>
 	</section>

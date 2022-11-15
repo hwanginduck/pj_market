@@ -6,7 +6,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
 <%@ include file="../fix/header.jsp"%>
 
 <section>
@@ -77,7 +76,7 @@
 			<div class="detail-content-pj" >
 				<div>
 					<div >
-					 <ul class="nav nav-tabs nav-justified sticky-top">
+					 <ul class="nav nav-tabs nav-justified sticky-top" style="background-color: white;">
 						<li class="nav-item"><a href="#productresource" class="nav-link" style="text-decoration: none;">상품상세</a></li>
 						<li class="nav-item"><a href="#reviewlist"  class="nav-link" style="text-decoration: none;">리뷰</a></li>
 						<li class="nav-item"><a href="#qnalist"  class="nav-link" style="text-decoration: none;">상품문의</a></li>
@@ -103,4 +102,11 @@ $(function () {
 		$('#p_index').load('p_index.do');
 	});
 </script>
+
+<script>
+var target = document.getElementById("productresource");
+
+console.log(target);
+</script>
+
 <%@ include file="../fix/footer.jsp" %>
