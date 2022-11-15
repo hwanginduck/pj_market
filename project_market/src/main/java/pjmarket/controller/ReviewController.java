@@ -56,7 +56,11 @@ public class ReviewController {
  
 		// 상품명
         Product product = ps.getProductDetail(product_num);
-//        Options options = os.getOptionList(options_num);
+        List<Options> options = os.getOptionList(product_num);
+        String options_name = options.get(0).getOptions_name();
+        
+        System.out.println("option_name:" + options.get(0).getOptions_name());
+       
 		// 상품코드 구해오기
 //		int product_num = review.getProduct_num();
 //		int options_num = review.getOptions_num();
@@ -64,8 +68,10 @@ public class ReviewController {
          model.addAttribute("product", product);
 		 model.addAttribute("member_id", member_id);
 		 model.addAttribute("product_num", product_num);
+		 model.addAttribute("options", options);
+		 model.addAttribute("options_name", options_name);
 //		 model.addAttribute("options_num", options_num);
-//		 model.addAttribute("options", options);
+		 
 		return "review/review_writeform";
 	}
 
@@ -93,7 +99,7 @@ public class ReviewController {
 						
 			String filename = "";
 			
-			if (size > 0 ) {
+			if (size != 1 ) {
 			List<Map<String, String>> fileList = new ArrayList<>();
 			
 			for(int i = 0; i < multiFileList.size(); i++) {
@@ -165,7 +171,6 @@ public class ReviewController {
 		System.out.println("controller page: "+page);
 		boardlist = rs.getBoardList(page, product_num);
 		product = rs.getProductNum(product_num);
-		System.out.println("ehlskdy");
 
 		int maxpage = (int) ((double) listcount / limit + 0.95);
 		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
