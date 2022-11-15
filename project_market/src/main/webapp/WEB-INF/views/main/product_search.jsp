@@ -7,8 +7,9 @@
 <link href="${path}/resources/css/product.css" rel="stylesheet" />
 <script>
 $( document).ready( function(val) {
+	$('#list').load('search_product.do?product_name= ');
 	
-	$('#search-bar').on('change',function(){
+	$('#search-bar').on('input',function(){
 
 		var product_name = document.getElementById("search-bar").value;
 		
@@ -27,8 +28,9 @@ $( document).ready( function(val) {
 			<div class="product-search-bar-pj">
 				<input type="text" id="search-bar" name="product_name">
 			</div>
-		<div id="list"></div>
 		</div>
+
+		<div class="productsearch-list-load-pj" id="list"></div>
 	<!-- </form> -->
 </section>
 <%@ include file="../fix/footer.jsp"%>

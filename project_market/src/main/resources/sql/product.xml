@@ -56,4 +56,12 @@
 		product_price = #{product_price}, product_content = #{product_content}, product_sub = #{product_sub},
 		product_img = #{product_img}, product_stock = #{product_stock} where product_num = #{product_num}
 	</update>
+	
+	<select id="main_list" resultType="product">
+	<![CDATA[
+		select * from (select rownum rnum, product_num, product_l, product_m, product_name, product_price,
+		product_content, product_sub, product_img, product_stock from (select * from product order by product_num desc))
+	   	where rnum >= 1  and rnum <= 10 
+	]]>
+	</select>
 </mapper>

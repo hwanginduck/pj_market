@@ -90,4 +90,11 @@ public class ProductDaoImpl implements ProductDao {
     int result = sqlSession.update("productns.update_product", product);
     return result;
   }
+
+  @Override
+  public List<Product> getProductlist() throws Exception {
+    System.out.println("get Productlist dao");
+    List<Product> mainlist = sqlSession.selectList("productns.main_list");
+    return mainlist;
+  }
 }

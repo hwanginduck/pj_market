@@ -76,7 +76,7 @@ public class ProductController {
         file[0] = st.nextToken(); // 파일명 Koala
         file[1] = st.nextToken(); // 확장자 jpg
 
-        if (size > 200000) { // 100KB
+        if (size > 10000000) { // 100KB
           result = 2;
           model.addAttribute("result", result);
 
@@ -137,7 +137,7 @@ public class ProductController {
         file[0] = st.nextToken(); // 파일명 Koala
         file[1] = st.nextToken(); // 확장자 jpg
 
-        if (size > 500000) { // 100KB
+        if (size > 10000000) { // 100KB
           result = 2;
           model.addAttribute("result", result);
 
@@ -356,7 +356,7 @@ public class ProductController {
         file[0] = st.nextToken(); // 파일명 Koala
         file[1] = st.nextToken(); // 확장자 jpg
 
-        if (size > 200000) { // 100KB
+        if (size > 10000000) { // 100KB
           result = 2;
           model.addAttribute("result", result);
 
@@ -419,7 +419,7 @@ public class ProductController {
         file[0] = st.nextToken(); // 파일명 Koala
         file[1] = st.nextToken(); // 확장자 jpg
 
-        if (size > 500000) { // 100KB
+        if (size > 10000000) { // 100KB
           result = 2;
           model.addAttribute("result", result);
 

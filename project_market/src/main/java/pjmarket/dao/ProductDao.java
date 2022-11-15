@@ -23,4 +23,7 @@ public interface ProductDao {
 
   int updateProduct(Product product) throws Exception;
 
+  List<Product> getProductlist() throws Exception;
+
+
 }

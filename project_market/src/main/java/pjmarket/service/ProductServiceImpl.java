@@ -72,4 +72,10 @@ public class ProductServiceImpl implements ProductService {
     System.out.println("updated product service");
     return productdao.updateProduct(product);
   }
+
+  @Override
+  public List<Product> getProductlist() throws Exception {
+    System.out.println("get product list");
+    return productdao.getProductlist();
+  }
 }
