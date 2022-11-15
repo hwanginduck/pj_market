@@ -32,10 +32,9 @@
 				<c:if test="${review.review_star == 2}">★★☆☆☆</c:if>
 				<c:if test="${review.review_star == 3}">★★★☆☆</c:if>
 				<c:if test="${review.review_star == 4}">★★★★☆</c:if>
-				<c:if test="${review.review_star== 5}">★★★★★</c:if>
+				<c:if test="${review.review_star == 5}">★★★★★</c:if>
 			</td>
 		</tr>
-		
 		<tr>
 			<th style="font-weight: bold;" align="center">조회수</th>
 			<td >${review.r_hit }</td>
@@ -44,10 +43,6 @@
 				<fmt:formatDate value="${review.review_date }" pattern="yyyy-MM-dd"/>
 			</td>
 		</tr>
-		<tr>
-			
-		</tr>
-		
 		<tr>
 			<th style="font-weight: bold;" align="center">제목</th>
 			<td colspan="3">${review.review_sb }</td>

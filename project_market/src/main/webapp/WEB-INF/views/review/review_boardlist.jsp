@@ -4,14 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
-
 <meta charset="UTF-8">
 <title>리뷰 목록</title>
 </head>
 <body>
+<c:set var="session_id" value="${member_id }" />
+session_id : ${session_id } <br>
 
 	<section class="main-pj">
 		<div class="detail-content-pj">
@@ -57,16 +55,15 @@
 				<a href="review_detail.do?review_no=${b.review_no}&page=${page}&product_num=${product_num}">
 											${b.review_sb} </a>
 											<br>
-											<%-- <c:if test="${session_id  eq bl.member_id }">
-								<button type="button" onClick="WindowPOP(${b.review_no},${product.product_num })" class="btn btn-info" value="">수정</button>
-							</c:if> 
-							<c:if test="${member_id eq 'admin'and bl.qna_re ne 1 }">
-								<button type="button" onClick="WindowPOP(${b.review_no},${product.product_num })" class="btn btn-info" value="">삭제</button>
-							</c:if> --%>
+					 <c:if test="${session_id  eq b.member_id }">
 						<input type="button" class="btn btn-outline-success" value="수정"
 						onclick="location='review_update.do?review_no=${b.review_no}&product_num=${product_num}'">
+							</c:if> 
+			    	<%--  <c:if test="${member_id eq 'admin'and b.review_no ne 1 }"> --%>
+			    	 <c:if test="${session_id  eq b.member_id }">
 						<input type="button" class="btn btn-outline-success" value="삭제"
 						onclick="location='review_delete.do?review_no=${b.review_no}'">
+							</c:if> 
 			</div>
 								</td>
 
@@ -116,33 +113,6 @@
 				</c:if>
 	
 			</ul>
-			<%-- 	<ul class="pagination">
-					<c:if test="${page <=1 }">
-						<li><a>이전&nbsp;</a></li>
-					</c:if>
-
-					<c:if test="${page > 1 }">
-						<li><a href="review_boardlist.do?page=${page-1}">이전</a>&nbsp;</li>
-					</c:if>
-
-					<c:forEach var="a" begin="${startpage}" end="${endpage}">
-						<c:if test="${a == page }">
-							<li><a>${a}</a></li>
-						</c:if>
-						<c:if test="${a != page }">
-							<li><a href="review_boardlist.do?page=${a}">${a}</a>&nbsp;</li>
-						</c:if>
-					</c:forEach>
-
-					<c:if test="${page >= maxpage }">
-						<li><a>다음</a></li>
-					</c:if>
-					<c:if test="${page < maxpage }">
-						<li><a href="review_boardlist.do?page=${page+1}">다음</a></li>
-					</c:if>
-
-				</ul> --%>
-
 
 				<div align="center">
 					<a href="${path}/review_writeform?product_num=${product_num}" class="btn btn-info">리뷰 글 작성</a>
