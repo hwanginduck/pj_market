@@ -11,7 +11,7 @@
 
 <section>
 <form name="f" method="post">
-	<div class="product-detail-box-pj">
+	<div class="product-detail-box-pj"  id="productresource">
 		<div class="product-datail-inner-box-pj">
 			<div class="product-datail-img-pj">
 			    <div class="product-detail-imageContainer-pj" id="slideShow">
@@ -74,18 +74,19 @@
 
 		<input type="hidden" name="product_num" value=${product.product_num }>
 		
-			<div class="detail-content-pj">
+			<div class="detail-content-pj" >
 				<div>
-					 <ul class="nav nav-tabs nav-justified">
-						<li class="nav-item"><a href="#" class="nav-link" style="text-decoration: none;">상품상세</a></li>
+					<div >
+					 <ul class="nav nav-tabs nav-justified sticky-top">
+						<li class="nav-item"><a href="#productresource" class="nav-link" style="text-decoration: none;">상품상세</a></li>
 						<li class="nav-item"><a href="#reviewlist"  class="nav-link" style="text-decoration: none;">리뷰</a></li>
 						<li class="nav-item"><a href="#qnalist"  class="nav-link" style="text-decoration: none;">상품문의</a></li>
 						<li class="nav-item"><a href="#p_index"  class="nav-link" style="text-decoration: none;">배송/교환/반품안내</a></li>
 					</ul> 
-
 					<div  id="reviewlist"></div>
 					<div  id="qnalist"></div>
 					<div  id="p_index"></div>
+					</div>
 				</div>
 			</div>
 

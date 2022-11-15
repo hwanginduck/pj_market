@@ -13,7 +13,6 @@
 <body>
 
 <img src="${pageContext.request.contextPath}/resources/img/index1.jpg" />
-<img src="${pageContext.request.contextPath}/resources/img/index2.jpg" />
 	
 </body>
 </html>
