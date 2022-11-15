@@ -44,8 +44,8 @@ public class ReviewController {
 
 	// 리뷰 쓰는 폼으로 이동
 	@RequestMapping("review_writeform")
-	public String ReviewWriteForm(Review review,Model model, String member_id,@RequestParam("product_num") int product_num,
-		 HttpSession session) throws Exception {
+	public String ReviewWriteForm(Review review,Model model, String member_id,
+	@RequestParam("product_num") int product_num, HttpSession session) throws Exception {
 
 //       @RequestParam("product_num") int product_num,
 //		 @RequestParam("options_num") int options_num ,
@@ -56,6 +56,7 @@ public class ReviewController {
  
 		// 상품명
         Product product = ps.getProductDetail(product_num);
+//        Options options = os.getOptionList(options_num);
 		// 상품코드 구해오기
 //		int product_num = review.getProduct_num();
 //		int options_num = review.getOptions_num();
@@ -64,14 +65,13 @@ public class ReviewController {
 		 model.addAttribute("member_id", member_id);
 		 model.addAttribute("product_num", product_num);
 //		 model.addAttribute("options_num", options_num);
-//		 model.addAttribute("product_name", product_name);
-
+//		 model.addAttribute("options", options);
 		return "review/review_writeform";
 	}
 
 	// 리뷰 게시판 작성 성공 이미지 업로드
 	@RequestMapping("review_insertresult")
-	public String ReviewInsert(Review review, Model model,int product_num, @RequestParam("review_img1") 
+	public String ReviewInsert(Review review, Model model,int product_num,@RequestParam("review_img1") 
 	List<MultipartFile> multiFileList , HttpServletRequest request) throws Exception {
 
 			
