@@ -67,11 +67,11 @@
 								</td>
 								<td>
 									<c:if test="${b.review_star == 0}">☆☆☆☆☆</c:if>
-									<c:if test="${b.review_star == 1}">★☆☆☆☆</c:if>
-									<c:if test="${b.review_star == 2}">★★☆☆☆</c:if>
-									<c:if test="${b.review_star == 3}">★★★☆☆</c:if>
-									<c:if test="${b.review_star == 4}">★★★★☆</c:if>
-									<c:if test="${b.review_star == 5}">★★★★★</c:if>
+									<c:if test="${b.review_star == 1}">⭐</c:if>
+									<c:if test="${b.review_star == 2}">⭐⭐</c:if>
+									<c:if test="${b.review_star == 3}">⭐⭐⭐</c:if>
+									<c:if test="${b.review_star == 4}">⭐⭐⭐⭐</c:if>
+									<c:if test="${b.review_star == 5}">⭐⭐⭐⭐⭐</c:if>
 								</td>
 
 								<td style="font-family: Tahoma; font-size: 10pt;">

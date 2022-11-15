@@ -28,14 +28,12 @@
 			<th>별 점</th>
 			<td>
 				<c:if test="${review.review_star == 0}">☆☆☆☆☆</c:if>
-				<c:if test="${review.review_star == 1}">★☆☆☆☆</c:if>
-				<c:if test="${review.review_star == 2}">★★☆☆☆</c:if>
-				<c:if test="${review.review_star == 3}">★★★☆☆</c:if>
-				<c:if test="${review.review_star == 4}">★★★★☆</c:if>
-				<c:if test="${review.review_star == 5}">★★★★★</c:if>
+				<c:if test="${review.review_star == 1}">⭐</c:if>
+				<c:if test="${review.review_star == 2}">⭐⭐</c:if>
+				<c:if test="${review.review_star == 3}">⭐⭐⭐</c:if>
+				<c:if test="${review.review_star == 4}">⭐⭐⭐⭐</c:if>
+				<c:if test="${review.review_star == 5}">⭐⭐⭐⭐⭐</c:if>
 			</td>
-		</tr>
-		<tr>
 			<th style="font-weight: bold;" align="center">조회수</th>
 			<td >${review.r_hit }</td>
 			<th style="font-weight: bold;" align="center">작성일</th>
@@ -49,7 +47,7 @@
 		</tr>
 		<tr>
 			<th style="font-weight: bold;" align="center">리뷰 사진 </th>
-			<td colspan="5">
+			<td colspan="5" align="center">
 			
 				<c:forEach var="img" items="${review_img }">
 					<img src="./resources/upload/uploadFiles/${img}" width="80%"><br>

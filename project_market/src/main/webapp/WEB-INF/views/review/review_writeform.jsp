@@ -46,11 +46,11 @@
 				<select id="review_star" name="review_star">
 					<option value="">선택하세요</option>
 					<option value="0">☆☆☆☆☆</option>
-					<option value="1">★☆☆☆☆</option>
-					<option value="2">★★☆☆☆</option>
-					<option value="3">★★★☆☆</option>
-					<option value="4">★★★★☆</option>
-					<option value="5">★★★★★</option>
+					<option value="1">⭐</option>
+					<option value="2">⭐⭐</option>
+					<option value="3">⭐⭐⭐</option>
+					<option value="4">⭐⭐⭐⭐</option>
+					<option value="5">⭐⭐⭐⭐⭐</option>
 				</select>	
 			</div>
 			</td>
