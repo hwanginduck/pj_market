@@ -47,8 +47,6 @@ public class ReviewController {
 	public String ReviewWriteForm(Review review,Model model, String member_id,
 	@RequestParam("product_num") int product_num, HttpSession session) throws Exception {
 
-//       @RequestParam("product_num") int product_num,
-//		 @RequestParam("options_num") int options_num ,
 
 		// session 에서 아이디 구해오기
 		member_id = (String) session.getAttribute("member_id");
@@ -62,33 +60,30 @@ public class ReviewController {
         
         System.out.println("option_name:" + options.get(0).getOptions_name());
        
-		// 상품코드 구해오기
-//		int product_num = review.getProduct_num();
-//		int options_num = review.getOptions_num();
 		 
          model.addAttribute("product", product);
 		 model.addAttribute("member_id", member_id);
 		 model.addAttribute("product_num", product_num);
 		 model.addAttribute("options", options);
 		 model.addAttribute("options_name", options_name);
-//		 model.addAttribute("options_num", options_num);
 		 
 		return "review/review_writeform";
 	}
 
 	// 리뷰 게시판 작성 성공 이미지 업로드
 	@RequestMapping("review_insertresult")
-	public String ReviewInsert(Review review, Model model,int product_num,@RequestParam("review_img1") 
+	public String ReviewInsert(Review review, Model model,int product_num,@RequestParam("review_img1")
 	List<MultipartFile> multiFileList , HttpServletRequest request) throws Exception {
 
-			
+
 			// 받아온것 출력 확인
 			System.out.println("multiFileList : " + multiFileList);
+			
 			Product product = ps.getProductDetail(product_num);
 			
 			// path 가져오기
 			String path = request.getRealPath("/resources/upload/");
-			String root = path + "\\" + "uploadFiles";
+			String root = path +  "uploadFiles";
 			System.out.println("root:"+ root);
 			
 			int size = (int) multiFileList.size(); // 첨부파일의 크기 (단위:Byte)
@@ -131,7 +126,7 @@ public class ReviewController {
 				System.out.println("다중 파일 업로드 실패 ");
 				// 만약 업로드 실패하면 파일 삭제
 				for(int i = 0; i < multiFileList.size(); i++) {
-					new File(root + "\\" + fileList.get(i).get("changeFile")).delete();
+					new File(root + fileList.get(i).get("changeFile")).delete();
 				}
 				
 				e.printStackTrace();
@@ -167,7 +162,6 @@ public class ReviewController {
 		}
 		
 		int product_num = product.getProduct_num();
-//		int options_num = options.getOptions_num();
 		int listcount = rs.getListCount(product_num);
 		System.out.println("controller page: "+page);
 		boardlist = rs.getBoardList(page, product_num);
@@ -226,9 +220,10 @@ public class ReviewController {
 			String review_img1 = review.getReview_img();		
 			String[] review_img = review_img1.split(",");
 			model.addAttribute("review_img", review_img); 
-		}else {
-			review.setReview_img(review.getReview_img());
 		}
+//		else {
+//			review.setReview_img(review.getReview_img());
+//		}
 
 		model.addAttribute("review", review);
 //		model.addAttribute("review_img", review_img);

@@ -9,7 +9,6 @@
 </head>
 <body>
 <c:set var="session_id" value="${member_id }" />
-session_id : ${session_id } <br>
 
 	<section class="main-pj">
 		<div class="detail-content-pj">
@@ -59,7 +58,6 @@ session_id : ${session_id } <br>
 						<input type="button" class="btn btn-outline-success" value="수정"
 						onclick="location='review_update.do?review_no=${b.review_no}&product_num=${product_num}'">
 							</c:if> 
-			    	<%--  <c:if test="${member_id eq 'admin'and b.review_no ne 1 }"> --%>
 			    	 <c:if test="${session_id  eq b.member_id }">
 						<input type="button" class="btn btn-outline-success" value="삭제"
 						onclick="location='review_delete.do?review_no=${b.review_no}'">
