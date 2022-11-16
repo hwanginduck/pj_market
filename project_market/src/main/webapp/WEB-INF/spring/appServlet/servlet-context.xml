@@ -37,10 +37,16 @@
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/cart_list.do"/>
 			<mapping path="/listlike.do"/>
-			<mapping path="/likeinsert.do"/>
+			<mapping path="/insertlike.do"/>
+			<mapping path="/listcart.do"/>
+			<mapping path="/like_to_cart.do"/>
 			<mapping path="/product_to_cart.do"/>
+			<mapping path="/qna_writeform.do"/>
+			<mapping path="/review_writeform"/>
+			<mapping path="/off_writeform.do"/>
+			<mapping path="/insertproductform.do"/>
+			<mapping path="/search_product.do"/>
 			<beans:ref bean="loginIntercepter" />
 		</interceptor>
 	</interceptors>

@@ -22,7 +22,7 @@ public class LoginIntercepter extends HandlerInterceptorAdapter{
 		//세션에 저장된 member_id 값이 null 이거나 비었다면 loginform.do 요청을 보낸다
 		if (member_id == null || member_id.equals(""))  {		
 		System.out.println("session에 로그인 값이 없어 로그인 페이지로 이동");
-		response.sendRedirect("loginform.do");	// 세션이 없으면 로그인 폼으로 이동
+		response.sendRedirect("member_login_go.do");	// 세션이 없으면 로그인 폼으로 이동
 		return false;
 		}
 	return true;

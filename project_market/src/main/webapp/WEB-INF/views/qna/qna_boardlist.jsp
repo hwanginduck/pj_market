@@ -152,10 +152,13 @@
 					<td align="center">${member_id }</td>
 					<td></td>
 				</tr>
+			<c:if test="${!empty member_id}" >
 				<th colspan=5>
 					<pre>
 						<textarea rows="4" cols="153" name="qna_content" style="display: block; margin: 3px 3px 0 10px; border: none; outline: none; resize: none;"></textarea>
-					</pre></th>
+					</pre>
+				</th>
+			</c:if>
 			</table>
 			<input type="button" value="확인" id="reInsert" class="btn btn-info" />
 		</form>
