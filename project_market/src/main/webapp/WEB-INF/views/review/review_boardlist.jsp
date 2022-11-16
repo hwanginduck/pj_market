@@ -20,12 +20,12 @@
 		    <input type="hidden" name="product_num" value="${product_num }">
 				<table class="table table-striped">
 					<tr>
-						<td align="center">Review No</td>
-						<td align="center">Subject</td>
-						<td align="center">STAR</td>
-						<td align="center">ID</td>
-						<td align="center">Date</td>
-						<td align="center">views</td>
+						<td align="center">글번호</td>
+						<td align="center">제목</td>
+						<td align="center">별점</td>
+						<td align="center">아이디</td>
+						<td align="center">작성일</td>
+						<td align="center">조회수</td>
 					</tr>
 					<c:if test="${empty boardlist}">
 						<tr>
@@ -39,7 +39,6 @@
 
 						<!-- 반복문 시작 -->
 						<c:forEach var="b" items="${boardlist}">
-
 							<tr align="center" valign="middle" bordercolor="#333333"
 								onmouseover="this.style.backgroundColor='F8F8F8'"
 								onmouseout="this.style.backgroundColor=''">
@@ -61,7 +60,7 @@
 							</c:if> 
 			         <c:if test="${session_id  eq b.member_id }">
 						<input type="button" class="btn btn-outline-success" value="삭제"
-						onclick="location='review_delete.do?review_no=${b.review_no}'">
+						onclick="location='review_delete.do?product_num='+${product_num }+'&review_no=${b.review_no}'">
 							</c:if> 
 			</div>
 								</td>

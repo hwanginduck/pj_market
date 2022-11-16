@@ -143,10 +143,10 @@ public class ReviewController {
 			System.out.println("리뷰 글 작성 성공");
 			
 			int result = rs.ReviewInsert(review);
-			model.addAttribute("result", result);
 			model.addAttribute("product", product);
 			
-			return "review/review_insertresult";
+			return "redirect:/productdetail.do?product_num="+product_num+"&page=1";
+			
 	}
 
 	// 리뷰 게시판 목록
@@ -184,7 +184,8 @@ public class ReviewController {
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("boardlist", boardlist);
-
+		
+		System.out.println(boardlist.get(2).getReview_img());
 		System.out.println("product_num :" + product_num);
 		System.out.println(listcount);
 		System.out.println("boardlistsize :" + boardlist.size());
@@ -343,16 +344,18 @@ public class ReviewController {
 
 	// 리뷰 삭제
 	@RequestMapping("review_delete.do")
-	public String reviewdeleteform(int review_no,Model model) throws Exception {
+	public String reviewdeleteform(int review_no, int product_num, Model model) throws Exception {
 		System.out.println("review_delete");
 		Review review = rs.ReviewDelete(review_no);
+		
 		model.addAttribute("review", review);
+		model.addAttribute("product_num", product_num);
 		return "review/review_delete";
 	}
 
 	// 리뷰 삭제 성공
 	@RequestMapping("review_deleteresult")
-	public String reviewdelete(Review review, Model model) throws Exception {
+	public String reviewdelete(Review review,int product_num,  Model model) throws Exception {
 		System.out.println("review_deleteresult");
 
 		int result = rs.ReviewDeleteOk(review);
@@ -361,7 +364,9 @@ public class ReviewController {
 
 		model.addAttribute("review", review);
 		model.addAttribute("result", result);
-		return "review/review_deleteresult";
+		model.addAttribute("product_num", product_num);
+		return "redirect:/productdetail.do?product_num="+product_num+"&page=1";
+//		return "main/mainpage";
 	}
 
 }

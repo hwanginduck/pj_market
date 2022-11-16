@@ -66,7 +66,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="4" style="text-align: center;">
+			<td colspan="6" style="text-align: center;">
 				 <input type="button" class="btn btn-outline-success" value="수정"
 				onclick="location='review_update.do?review_no=${review.review_no}&product_num=${product.product_num}'">
 				 <input type="button" class="btn btn-outline-success" value="삭제"
