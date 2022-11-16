@@ -25,9 +25,7 @@
     <header>
       <div class="header-pj">
         <div class="logo-pj">
-          <img
-            src="${pageContext.request.contextPath}/resources/img/gagu_logo2.png"
-          />
+          <img src="${pageContext.request.contextPath}/resources/img/gagu_logo2.png" onClick="location.href='mainpage.do'" style="cursor: pointer;"/>
         </div>
 
 			<div class="center-box-pj">
@@ -60,13 +58,13 @@
 				<li>
 					<div class="menu-box-pj">
 						<!-- <a href="mainpage.do"> -->
-						<button class="dropbtn-pj" onclick="location.href='mainpage.do'">Home</button>
+						<button class="dropbtn-pj" onclick="location.href='mainpage.do'">메인으로</button>
 						<!-- </a> -->
 					</div>
 				</li>
 				<li>
 					<div class="dropdown-pj menu-box-pj">
-						<button class="dropbtn-pj">Category</button>
+						<button class="dropbtn-pj">카테고리</button>
 						<div class="dropdown-content-pj">
 							<a href="productlist.do?product_l=홈스마트">홈스마트</a> <a href="productlist.do?product_l=가구">가구</a> <a href="productlist.do?product_l=홈오피스">홈오피스</a> <a href="productlist.do?product_l=침대매트리스">침대/매트리스</a> <a href="productlist.do?product_l=어린이GaGu">어린이GaGu</a> <a href="productlist.do?product_l=조명">조명</a> <a href="productlist.do?product_l=수납정리">수납/정리</a> <a href="productlist.do?product_l=주방용품">주방용품</a> <a href="productlist.do?product_l=주방가구">주방가구</a> <a href="productlist.do?product_l=욕실">욕실</a> <a href="productlist.do?product_l=텍스타일">텍스타일</a>
 						</div>
@@ -77,22 +75,16 @@
 						<button class="dropbtn-pj" onclick="location.href='off_list.do'">공지사항</button>
 					</div></li>
 
-				<li><div class="menu-box-pj active">
-						<button class="dropbtn-pj" onclick="location.href='testcontroller.do'">##</button>
-					</div></li>
-				<li><div class="menu-box-pj active">
-						<button class="dropbtn-pj" onclick="location.href='review_boardlist'">Review</button>
-					</div></li>
-
 				<li><div class="dropdown-pj menu-box-pj">
-						<button class="dropbtn-pj">My Page</button>
+						<button class="dropbtn-pj">내페이지</button>
 						<div class="dropdown-content-pj">
 							<a href="listlike.do">찜목록</a> <a href="listcart.do">장바구니</a> <a href="#">내정보수정</a>
 						</div>
 					</div></li>
 
+			<c:if test="${member_id eq 'admin'}">
 				<li><div class="dropdown-pj menu-box-pj">
-						<button class="dropbtn-pj">Manager</button>
+						<button class="dropbtn-pj">상품관리</button>
 						<div class="dropdown-content-pj">
 							<a href="insertproductform.do">상품등록</a>
 							<a href="searchproductform.do">상품수정</a>
@@ -100,6 +92,7 @@
 						</div>
 					</div>
 				</li>
+				</c:if>
 			</ul>
 		</div>
 	</header>

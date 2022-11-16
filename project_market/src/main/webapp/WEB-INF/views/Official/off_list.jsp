@@ -87,7 +87,9 @@
 		</div>
 		</div>
 		<div class="offlist-footer-pj">
+			<c:if test="${member_id eq 'admin' }">
 			<button type="button" onclick="location.href='off_writeform.do'">공지사항 작성</button>
+			</c:if>
 		</div>
 		</div>
 		</div>

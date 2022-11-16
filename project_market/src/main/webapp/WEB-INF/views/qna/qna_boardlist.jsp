@@ -6,11 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
-<script src="${path}/resources/js/jquery.js"></script>
-<script src="${path}/resources/js/bootstrap.min..js"></script>
+
 
 
 
@@ -21,9 +19,6 @@
 	<!-- 관리자유무에 따라 답변 버튼 활성화, 접속자에 따라 자신이 작성한 글 수정가능 -->
 	<c:set var="session_id" value="${member_id }" />
 	<c:set var="admin_user" value="admin" />
-	session_id : ${session_id } <br>
-	admin_user : ${admin_user } <br>
-<%-- 	<c:if test=${session_id eq admin_user }>같음</c:if> --%>
 	
 <section class="main-pj">
 	<div class="detail-content-pj">
@@ -54,7 +49,6 @@
 						<td style="width: 220px" align="left">작성일</td>
 						<td style="width: 220px" align="left">
 						<c:if test="${session_id  eq bl.member_id }"> <button type="button" id="${status.index }" onClick="delbtn(${status.index })" class="btn btn-info" value="${bl.qna_no }" >삭제</button>
-								<%-- <c:if test="${session_id  eq bl.member_id }"> <input type="button" id="delButton" value="삭제"> --%>
 						</c:if>
 						</td>
 					</tr>
@@ -147,15 +141,15 @@
 					<input type="hidden" name="qna_group" id="qna_group"  value="0" />
 				</c:if>
 				<tr>
-					<td style="width: 220px">상품명</td>
-					<td style="width: 220px">상품코드</td>
-					<td style="width: 220px">아이디</td>
+					<td style="width: 220px" align="center">상품명</td>
+					<td style="width: 220px"></td>
+					<td style="width: 220px" align="center">아이디</td>
 					<td style="width: 220px"></td>
 				</tr>
 				<tr>
-					<td>(상품명) 	${product.product_name }</td>
-					<td>(상품코드) ${product_num }</td>
-					<td>(아이디)	${member_id }</td>
+					<td align="center">${product.product_name }</td>
+					<td></td>
+					<td align="center">${member_id }</td>
 					<td></td>
 				</tr>
 				<th colspan=5>
@@ -269,4 +263,8 @@
 	}
 
 </script>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="${path}/resources/js/jquery.js"></script>
+<script src="${path}/resources/js/bootstrap.min..js"></script>
 </html>
