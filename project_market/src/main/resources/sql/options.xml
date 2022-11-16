@@ -18,4 +18,9 @@
     	select count(options_num) from options where product_num = #{product_num}
     </select>
     
+    <update id="update_options" parameterType="map">
+    	update options set options_name = #{options_name}, options_price = #{options_price},
+    	options_sale = #{options_sale}, product_num = #{product_num} where options_num = #{options_num}
+    </update>
+    
 </mapper>

@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link href="${path}/resources/css/product.css" rel="stylesheet" />
 <%@ include file="../fix/header.jsp"%>
 <section>
 	<form name="f" method="post" action="insert_product.do" enctype="multipart/form-data">
@@ -13,7 +14,7 @@
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품명</div>
 				<div class="product-insert-pj">
-					<input type="text" name="product_name" id="product-insert-bar" />
+					<input type="text" name="product_name" id="product-insert-bar" required="required" />
 				</div>
 			</div>
 			<div class="product-name-box-pj">
@@ -46,31 +47,31 @@
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">가격</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_price" />
+					<input type="text" id="product-insert-bar" name="product_price" required="required"/>
 				</div>
 			</div>
 			<div class="product-content-name-box-pj">
 				<div class="product-content-column-pj">상품내용</div>
 				<div class="product-content-insert-pj">
-					<input multiple type="file" name="product_content1">
+					<input multiple type="file" name="product_content1" required="required">
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품 요약</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_sub" />
+					<input type="text" id="product-insert-bar" name="product_sub" required="required"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">재고 수량</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_stock" />
+					<input type="text" id="product-insert-bar" name="product_stock" required="required"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품 사진</div>
 				<div class="product-insert-pj">
-					<input multiple type="file" id="product_img" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /> 
+					<input multiple type="file" id="product_img" name="product_img1" accept="image/*" onchange="setThumbnail(event);" required="required"/> 
 				</div>
 			</div>				
 			<div id="image_container"></div>
@@ -84,9 +85,9 @@
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-options-box"></div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name1" /></div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price1" /> </div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale1" /> </div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name1" required="required" /></div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price1" required="required"/> </div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale1" required="required"/> </div>
 			</div>
 			<div id="option_space"></div>
 			<div class="product-footer-pj">

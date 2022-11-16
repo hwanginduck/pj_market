@@ -36,6 +36,9 @@ $(".chkbox").click(function () {
       pc = Number(pc);
       
       var total = (pp + op) * pc;
+      
+      total = total.toLocaleString();
+      
       $( '#total'+i ).text( total );
       $('#total'+i).attr('value',total);
      
@@ -64,7 +67,12 @@ $(document).ready( function() {
 			op = Number(op);
 			pc = Number(pc);
       
+      		
+      
 			var total = (pp + op) * pc;
+			
+			total = total.toLocaleString();
+			
 			$('#total'+i ).text( total );
 			$('#total'+i).attr('value',total);
      
@@ -81,8 +89,8 @@ function itemSum() {
 	var count = $(".chkbox").length;
 	for (var i = 0; i < count; i++) {
 		if ($(".chkbox")[i].checked == true) {
-			sum += Number($("#total"+i).val());
-			console.log($("#total"+i).value);
+			sum += Number($("#total"+i).val().replace(/\,/g,""));
+			console.log(sum);
 		}
 	}
 	
@@ -105,3 +113,14 @@ $('.minus').on('click',function(e){
 	input[0]['stepDown']();
 	input.trigger('change');
 });
+
+
+var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+      });

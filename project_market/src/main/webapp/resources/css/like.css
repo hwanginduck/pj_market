@@ -54,6 +54,7 @@
 	padding: 2px;
 	box-sizing: border-box;
 	border-radius: 6px;
+	background-color: white;
 	/* overflow: hidden; */
 }
 
@@ -87,7 +88,7 @@
 .like-item-pj {
 	width: 100%;
 	display: flex;
-	border-bottom: 1px solid skyblue;
+	border-bottom: 1px solid lightgray;
 	margin-bottom: 10px;
 }
 
@@ -107,22 +108,39 @@
 }
 
 .like-item-textbox-pj {
-	width: 100%;
+	width:100%;
 	font-size: 25px;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 10px;
+	background-color: white;
 }
 
 .like-item-name-pj {
-	height: 100px;
-	width: 100%;
+	height: 200px;
+	width: 800px;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+.likelist-name-pj{
+	font-size: 30px;
+}
+.likelist-option-pj{
+	padding-top:10px;
+	font-size: 25px;
+	color: gray;
+}
+.likelist-option-price-pj{
+	font-size: 25px;
+	color: gray;
+	
 }
 
 .like-item-icon-pj {
 	height: 100px;
 	width: 100%;
-	    display: flex;
+	display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-right: 20px;

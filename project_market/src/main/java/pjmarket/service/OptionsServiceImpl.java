@@ -30,4 +30,11 @@ public class OptionsServiceImpl implements OptionsService {
     return odao.countOpions(product_num);
   }
 
+  @Override
+  public int updateOptions(int options_num, String options_name, int options_price,
+      int options_sale, int product_num) {
+    System.out.println("options update service");
+    return odao.updateOptions(options_num, options_name, options_price, options_sale, product_num);
+  }
+
 }

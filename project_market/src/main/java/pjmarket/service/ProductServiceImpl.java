@@ -55,4 +55,27 @@ public class ProductServiceImpl implements ProductService {
     return productdao.searchCount(product_name);
   }
 
+  @Override
+  public Integer selectProductStar(int product_num) throws Exception {
+    System.out.println("select product star service");
+    return productdao.selectProductStar(product_num);
+  }
+
+  @Override
+  public Integer selectProductStarCount(int product_num) throws Exception {
+    System.out.println("select product star count service");
+    return productdao.selectProductStarCount(product_num);
+  }
+
+  @Override
+  public int updateProduct(Product product) throws Exception {
+    System.out.println("updated product service");
+    return productdao.updateProduct(product);
+  }
+
+  @Override
+  public List<Product> getProductlist() throws Exception {
+    System.out.println("get product list");
+    return productdao.getProductlist();
+  }
 }

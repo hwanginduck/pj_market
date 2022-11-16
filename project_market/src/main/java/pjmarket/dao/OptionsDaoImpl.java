@@ -45,4 +45,22 @@ public class OptionsDaoImpl implements OptionsDao {
     return sqlSession.selectOne("optionsns.options_count", product_num);
   }
 
+  @Override
+  public int updateOptions(int options_num, String options_name, int options_price,
+      int options_sale, int product_num) {
+    System.out.println("update options dao");
+
+    HashMap<String, Object> map = new HashMap<String, Object>();
+
+    map.put("options_num", options_num);
+    map.put("options_name", options_name);
+    map.put("options_price", options_price);
+    map.put("options_sale", options_sale);
+    map.put("product_num", product_num);
+
+    int result = sqlSession.update("optionsns.update_options", map);
+
+    return result;
+  }
+
 }

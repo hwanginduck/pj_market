@@ -60,10 +60,10 @@
 	</select>
 
 	<!-- 공지사항 수정 -->
-	<update id="off_update" parameterType="int">
+	<update id="off_update" parameterType="off">
 		update official set
 		off_name=#{off_name},
-		off_pw=#{off_pw}
+		off_pw=#{off_pw},
 		off_subject=#{off_subject},
 		off_content=#{off_content},
 		off_date=sysdate

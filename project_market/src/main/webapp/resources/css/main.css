@@ -1,0 +1,354 @@
+html, body {
+	position: relative;
+	height: 100%;
+}
+
+body {
+	background: #eee;
+}
+
+.swiper {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	cursor: pointer;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-wrapper {
+	column-gap: 30px;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.category-link-pj {
+	font-size: 40px;
+	margin-bottom: 50px;
+}
+
+.newlist-pj {
+	font-size: 40px;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+.newlist-box-pj {
+	width: 100%;
+	height: auto;
+	display: grid;
+	grid-template-columns: repeat(6, 185px);
+	grid-template-rows: repeat(15, 150px);
+	gap: 20px;
+	justify-items: stretch;
+}
+
+.newlist-img-box {
+	height: 380px;
+	width: 380px;
+	border: 1px solid black;
+	box-sizing: border-box;
+}
+
+.box0-pj {
+	grid-column: 1/span 6;
+	grid-row: 1/span 3;
+	border-radius: 20px;
+	padding-top: 300px;
+	padding-right: 30px;
+	font-size: 30px;
+	padding-left: 900px;
+	cursor: pointer;
+}
+
+.box0-pj:hover>.newlist-text-box-pj0 {
+	display: block;
+	position: absolute;
+}
+
+.box1-pj {
+	grid-column: 1/span 2;
+	grid-row: 4/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box1-pj:hover>.newlist-text-box-pj1 {
+	display: block;
+	position: absolute;
+}
+
+.box2-pj {
+	grid-column: 3/span 2;
+	grid-row: 4/span 3;
+	border-radius: 20px;
+	padding-top: 350px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box2-pj:hover>.newlist-text-box-pj2 {
+	display: block;
+	position: absolute;
+}
+
+.box3-pj {
+	grid-column: 5/span 2;
+	grid-row: 4/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box3-pj:hover>.newlist-text-box-pj3 {
+	display: block;
+	position: absolute;
+}
+
+.box4-pj {
+	grid-column: 1/span 2;
+	grid-row: 8/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box4-pj:hover>.newlist-text-box-pj4 {
+	display: block;
+	position: absolute;
+}
+
+.box5-pj {
+	grid-column: 3/span 2;
+	grid-row: 7/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box5-pj:hover>.newlist-text-box-pj5 {
+	display: block;
+	position: absolute;
+}
+
+.box6-pj {
+	grid-column: 5/span 2;
+	grid-row: 8/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box6-pj:hover>.newlist-text-box-pj6 {
+	display: block;
+	position: absolute;
+}
+
+.box7-pj {
+	grid-column: 1/span 2;
+	grid-row: 12/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box7-pj:hover>.newlist-text-box-pj7 {
+	display: block;
+	position: absolute;
+}
+
+.box8-pj {
+	grid-column: 3/span 2;
+	grid-row: 11/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box8-pj:hover>.newlist-text-box-pj8 {
+	display: block;
+	position: absolute;
+}
+
+.box9-pj {
+	grid-column: 5/span 2;
+	grid-row: 12/span 4;
+	border-radius: 20px;
+	padding-top: 500px;
+	padding-left: 150px;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.box9-pj:hover>.newlist-text-box-pj9 {
+	display: block;
+	position: absolute;
+}
+
+.newlist-text-box-pj0 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj1 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj2 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj3 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj4 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj5 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj6 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj7 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj8 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-box-pj9 {
+	display: none;
+	background-color: white;
+	width: 200px;
+	height: 90px;
+	padding-top: 30px;
+	padding-left: 10px;
+	position: absolute;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.newlist-text-name-pj {
+	font-size: 15px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.newlist-text-price-pj {
+	font-size: 20px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.newlist-text-sub-pj {
+	font-size: 10px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

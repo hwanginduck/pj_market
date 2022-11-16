@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
-
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link href="${path}/resources/css/like.css" rel="stylesheet" />
 <%@ include file="../fix/header.jsp" %>
 
 <section>
@@ -24,7 +25,7 @@
 				</c:if>
 				<c:forEach var="like" items="${likelist}">
 					<div class="like-item-pj">
-						<div class="like-item-img-pj">
+						<div class="like-item-textbox-pj">
 							<div class="detail-image-box-pj">
 								<div class="likelist-checkbox-pj">
 									<input type='checkbox' name='likeitem'/>
@@ -41,13 +42,13 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="like-item-textbox-pj">
+						
+	
 							<div class="like-item-name-pj">
-								${like.product_name}<br>
-								<fmt:formatNumber value='${like.product_price}' pattern='#,### 원' /><br>
-								${like.options_name}<br>
-								<fmt:formatNumber value='${like.options_price}' pattern='#,### 원' /><br>
+								<div class="likelist-name-pj">${like.product_name}</div>
+								<div class="likelist-name-pj"><fmt:formatNumber value='${like.product_price}' pattern='#,### 원' /></div>
+								<div class="likelist-option-pj">${like.options_name}</div>
+								<div class="likelist-option-price-pj"><fmt:formatNumber value='${like.options_price}' pattern='#,### 원' /></div>
 							</div>
 							<div class="like-item-icon-pj">
 								<button type="button" onClick="location.href='deletelike.do?likes_num=${like.likes_num}'">
@@ -65,17 +66,9 @@
 	</div>
 </section>
 <%@ include file="../fix/footer.jsp"%>
+
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Initialize Swiper -->
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-          },
-      });
-    </script>
+<script src="${path}/resources/js/like.js"></script>
+
+

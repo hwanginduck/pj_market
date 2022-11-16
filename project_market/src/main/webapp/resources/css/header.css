@@ -6,6 +6,7 @@ body {
   height: 100%;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: 600;
+  background: #eee;
 }
 /* 전체로 안먹는 것들은 별도로 지정하여 폰트 적용 */
 input,
@@ -226,7 +227,8 @@ button {
 /* 메인 css */
 section {
   width: 1200px;
-  min-height: 1000px;
+  height:auto;
+  min-height:700px;
   margin: 0 auto;
   margin-bottom: 30px;
 }

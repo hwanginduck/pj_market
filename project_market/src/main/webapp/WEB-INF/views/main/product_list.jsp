@@ -6,7 +6,8 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 <%@ include file="../fix/header.jsp"%>
-
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link href="${path}/resources/css/product.css" rel="stylesheet" />
 <section class="main">
 <div class="productlist-pj">
 		<div class="productlist-header-pj">
@@ -33,7 +34,7 @@
 					<div class="productlist-name-pj">
 						${pl.product_name}
 					</div>
-					<div>${pl.product_sub}</div>
+					<div class="productlist-sub-pj">${pl.product_sub}</div>
 					<div class="productlist-price-pj">
 						<fmt:formatNumber value="${pl.product_price}" pattern="₩#,###" />
 					</div>

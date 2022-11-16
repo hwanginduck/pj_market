@@ -69,4 +69,32 @@ public class ProductDaoImpl implements ProductDao {
     return count;
   }
 
+  @Override
+  public Integer selectProductStar(int product_num) throws Exception {
+    System.out.println("select product star dao");
+    Integer product_star = sqlSession.selectOne("productns.select_product_star", product_num);
+    return product_star;
+  }
+
+  @Override
+  public Integer selectProductStarCount(int product_num) throws Exception {
+    System.out.println("select product star count dao");
+    Integer product_starcount =
+        sqlSession.selectOne("productns.select_product_star_count", product_num);
+    return product_starcount;
+  }
+
+  @Override
+  public int updateProduct(Product product) throws Exception {
+    System.out.println("update product dao");
+    int result = sqlSession.update("productns.update_product", product);
+    return result;
+  }
+
+  @Override
+  public List<Product> getProductlist() throws Exception {
+    System.out.println("get Productlist dao");
+    List<Product> mainlist = sqlSession.selectList("productns.main_list");
+    return mainlist;
+  }
 }
