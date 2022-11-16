@@ -28,7 +28,7 @@
 		<tr>
 		 <td style="font-weight: bold;" align="center">제목</td>
 	       <td>
-				<input name="review_sb" id="review_sb" size="14" class="input_box"  align="center" />
+				<input style="width: 1050px;" name="review_sb" id="review_sb" size="14" class="input_box"  align="center" />
 			</td>
 		</tr>
 		<tr>
@@ -57,8 +57,7 @@
 		</tr>
 		<tr>
 			 <td style="font-weight: bold;" align="center" colspan="2">
-				<textarea id="review_content" name="review_content" rows="10" cols="50" placeholder="※리뷰 내용은 필수 작성 항목입니다※">
-				</textarea></td>
+				<textarea style="width: 1120px;  resize:none;" id="review_content" name="review_content" rows="10" cols="50" placeholder="※리뷰 내용은 필수 작성 항목입니다※"></textarea></td>
 		</tr> 
 		 <tr>
      <td style="font-weight: bold;" align="center">리뷰 사진</td>

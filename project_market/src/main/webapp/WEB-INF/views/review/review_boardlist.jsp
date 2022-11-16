@@ -1,98 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>리뷰 목록</title>
-</head>
-<body>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<link href="${path}/resources/css/review.css" rel="stylesheet" />
 <c:set var="session_id" value="${member_id }" />
-
-	<section class="main-pj">
-		<div class="detail-content-pj">
-		
-		<div class="reviewlist" align="center">
-			<h2 class="text-primary">List of Review Boards</h2>
-				총 리뷰 수 : ${listcount } <br>
-			<input type="hidden" name="member_id" value=${member_id }> 
-		    <input type="hidden" name="product_num" value="${product_num }">
-				<table class="table table-striped">
-					<tr>
-						<td align="center">글번호</td>
-						<td align="center">제목</td>
-						<td align="center">별점</td>
-						<td align="center">아이디</td>
-						<td align="center">작성일</td>
-						<td align="center">조회수</td>
-					</tr>
-					<c:if test="${empty boardlist}">
-						<tr>
-							<td colspan="5">데이터가 없습니다</td>
-						</tr>
-					</c:if>
-					<c:if test="${not empty boardlist}">
-
-						<!-- 화면 출력 번호  변수 정의 -->
-						<c:set var="num" value="${listcount-(page-1)*5}" />
-
-						<!-- 반복문 시작 -->
-						<c:forEach var="b" items="${boardlist}">
-							<tr align="center" valign="middle" bordercolor="#333333"
-								onmouseover="this.style.backgroundColor='F8F8F8'"
-								onmouseout="this.style.backgroundColor=''">
-								<td height="23" style="font-family: Tahoma; font-size: 10pt;">
-									<!-- 번호 출력 부분 --> <c:out value="${num}" /> <c:set var="num"
-										value="${num-1}" />
-								</td>
-
-								<td style="font-family: Tahoma; font-size: 10pt;">
-									<div align="center">
-
-						<!-- 제목 출력 부분 -->
-					 <a href="review_detail.do?review_no=${b.review_no}&page=${page}&product_num=${product_num}">
-											${b.review_sb} </a>
-											<br>
-					 <c:if test="${session_id  eq b.member_id }">
-						<input type="button" class="btn btn-outline-success" value="수정"
-						onclick="location='review_update.do?review_no=${b.review_no}&product_num=${product_num}'">
-							</c:if> 
-			         <c:if test="${session_id  eq b.member_id }">
-						<input type="button" class="btn btn-outline-success" value="삭제"
-						onclick="location='review_delete.do?product_num='+${product_num }+'&review_no=${b.review_no}'">
-							</c:if> 
+<section>
+	<div class="review-containbox-pj">
+		<div class="review-header-pj"> List of Review Boards</div>
+		<div class="review-contentbox-pj">
+			<div class="review-imglistspace-pj">
+				<c:forEach var="b" items="${boardlist}">
+					<c:forEach var="imglist" items="${fn:split(b.review_img,',')}" begin="0">
+						<img src="<%=request.getContextPath()%>/resources/upload/uploadFiles/${imglist}">
+					</c:forEach>
+				</c:forEach>
 			</div>
-								</td>
-								<td>
-									<c:if test="${b.review_star == 0}">☆☆☆☆☆</c:if>
-									<c:if test="${b.review_star == 1}">⭐</c:if>
-									<c:if test="${b.review_star == 2}">⭐⭐</c:if>
-									<c:if test="${b.review_star == 3}">⭐⭐⭐</c:if>
-									<c:if test="${b.review_star == 4}">⭐⭐⭐⭐</c:if>
-									<c:if test="${b.review_star == 5}">⭐⭐⭐⭐⭐</c:if>
-								</td>
+			<c:if test="${empty boardlist}">
+				데이터가 없습니다.
+			</c:if>
+		</div>
+		<c:set var="num" value="${listcount-(page-1)*5}" />
+		<c:forEach var="b" items="${boardlist}">
+		<div class="review-contentbox-pj">
+			<div class="review-profile-box-pj">
+				<div class="review-profile-img-pj">
+					<img src="${pageContext.request.contextPath}/resources/img/humen.jpeg">
+				</div>
+					${b.member_id}<br>
+					<c:if test="${b.review_star == 0}">☆☆☆☆☆</c:if>
+					<c:if test="${b.review_star == 1}">⭐</c:if>
+					<c:if test="${b.review_star == 2}">⭐⭐</c:if>
+					<c:if test="${b.review_star == 3}">⭐⭐⭐</c:if>
+					<c:if test="${b.review_star == 4}">⭐⭐⭐⭐</c:if>
+					<c:if test="${b.review_star == 5}">⭐⭐⭐⭐⭐</c:if>
+					<br>
+					<fmt:formatDate value="${b.review_date}" pattern="yyyy-MM-dd" /><br>
+			</div>
+			<div class="reviewlist-productname-pj">상품명${b.product_num }</div>
+			<div class="reviewlist-imglist-pj">
+				<c:forEach var="imglist" items="${fn:split(b.review_img,',')}" begin="0">
+					<img src="<%=request.getContextPath()%>/resources/upload/uploadFiles/${imglist}">
+				</c:forEach>
+			</div>
+			<div class="reviewlist-sb-pj">${b.review_sb }</div>
+			<div class="reviewlist-con-pj">
+				<pre>${b.review_content }</pre>
+			</div>
+			<c:if test="${session_id  eq b.member_id }">
+				<div class="reviewlist-btnbox-pj">
+					<button type="button" class="btn btn-outline-success" onclick="location='review_update.do?review_no=${b.review_no}&product_num=${product_num}'">수정</button>
+					<button type="button" class="btn btn-outline-success" onclick="location='review_delete.do?product_num='+${product_num }+'&review_no=${b.review_no}'">삭제</button>
+				</div>
+			</c:if> 		
+		</div>
+		</c:forEach>	
+		<div>
+		</div>
+	</div>
 
-								<td style="font-family: Tahoma; font-size: 10pt;">
-									<div align="center">${b.member_id}</div>
-								</td>
-								<td style="font-family: Tahoma; font-size: 10pt;">
-									<div align="center">
-
-										<fmt:formatDate value="${b.review_date}"
-											pattern="yyyy-MM-dd HH:mm:ss" />
-
-									</div>
-								</td>
-								<td style="font-family: Tahoma; font-size: 10pt;">
-									<div align="center">${b.r_hit}</div>
-								</td>
-							</tr>
-
-						</c:forEach>
-						<!-- 반복문 끝 -->
-					</c:if>
-</table> 
           <ul class="pagination">
 				<c:if test="${page <=1 }">
 					<li><a>이전 </a></li>
@@ -127,7 +93,7 @@
 		</div>
 	</section>
 
-</body>
+
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -161,4 +127,3 @@
     };  
     
 </script>
-</html>
