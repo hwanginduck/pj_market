@@ -8,9 +8,26 @@
 
 <%@ include file="../fix/header.jsp"%>
 
-<section>
+<style>
+.nav-fill .nav-item .nav-link, .nav-justified .nav-item .nav-link {
+    width: ;
+}
+
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: #212529;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+</style>
+
+<section id="productresource">
 <form name="f" method="post">
-	<div class="product-detail-box-pj"  id="productresource">
+	<div class="product-detail-box-pj"  >
 		<div class="product-datail-inner-box-pj">
 			<div class="product-datail-img-pj">
 			    <div class="product-detail-imageContainer-pj" id="slideShow">
@@ -77,14 +94,14 @@
 				<div>
 					<div >
 					 <ul class="nav nav-tabs nav-justified sticky-top" style="background-color: white;">
-						<li class="nav-item"><a href="#productresource" class="nav-link" style="text-decoration: none;">상품상세</a></li>
+						<li class="nav-item active"><a href="#productresource" class="nav-link" style="text-decoration: none;">상품상세</a></li>
 						<li class="nav-item"><a href="#reviewlist"  class="nav-link" style="text-decoration: none;">리뷰</a></li>
 						<li class="nav-item"><a href="#qnalist"  class="nav-link" style="text-decoration: none;">상품문의</a></li>
 						<li class="nav-item"><a href="#p_index"  class="nav-link" style="text-decoration: none;">배송/교환/반품안내</a></li>
 					</ul> 
-					<div  id="reviewlist"></div>
-					<div  id="qnalist"></div>
-					<div  id="p_index"></div>
+					<div  id="reviewlist" class="section target"></div>
+					<div  id="qnalist" class="section target"></div>
+					<div  id="p_index" class="section target"></div>
 					</div>
 				</div>
 			</div>
@@ -104,9 +121,52 @@ $(function () {
 </script>
 
 <script>
-var target = document.getElementById("productresource");
+$('a').click(function() {
+    $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top
+    });
+    return false;
+});
 
-console.log(target);
+// 퀵메뉴
+$('.nav li a').click(function() {
+    // 버튼 hover 이벤트
+    return false
+    $(this).parent().addClass('on');
+    $(this).parent().siblings().removeClass('on');
+});
+// target 위치 표시와, 이동  
+var sections = $('.target'),
+    nav = $('.nav'),
+    nav_height = nav.outerHeight();
+	console.log('sections :'+sections);
+	console.log('nav_height :'+nav_height);
+    
+$(window).on('scroll', function() {
+    var cur_pos = $(this).scrollTop();
+    sections.each(function() {
+        var top = $(this).offset().top - nav_height,
+            bottom = top + $(this).outerHeight();
+        console.log('top :'+top);
+        console.log('bottom :'+bottom);
+        if (cur_pos >= top && cur_pos <= bottom) {
+            nav.find('a').parent().removeClass('active');
+            sections.removeClass('active');
+
+            $(this).parent().addClass('nav-item');
+            nav.find('a[href="#' + $(this).attr('id') + '"]').parent().addClass('active');
+        }
+    });
+});
+
+
+
 </script>
+
+
+
+
+
+
 
 <%@ include file="../fix/footer.jsp" %>
