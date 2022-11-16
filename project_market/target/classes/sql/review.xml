@@ -35,8 +35,8 @@ values
 <!-- 리뷰 목록-->
 <select id="review_boardlist" parameterType="hashmap" resultType="review">
   			<![CDATA[
-		select * from (select rownum rnum, review.* from review where product_num = ${product_num} order by review_no desc)
-		 where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
+	  select*from(select rownum rnum, review.* from (select*from review where product_num = #{product_num} order by review_no desc)review)
+         where rnum >= ((#{page}-1) * 5+1)  and rnum <= (#{page} * 5)
 			 ]]> 
 </select> 
 
@@ -77,6 +77,7 @@ select * from review where review_no = #{review_no}
 		select * from product where
 		product_num = #{product_num}
 	</select>
+	
 <!--옵션 코드 가져오기 -->
 <select id="options_select" resultType="options">
 		select * from options where

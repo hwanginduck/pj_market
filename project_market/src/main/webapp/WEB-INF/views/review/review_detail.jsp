@@ -21,22 +21,19 @@
 		<tr>
 			<th>상품명</th>
 			<td style="font-weight: bold;" align="center"> ${product.product_name }</td>
-			<th>옵션코드</th>
-			<td style="font-weight: bold;" align="center">${options_num }</td>
+			<th>옵션명</th>
+			<td style="font-weight: bold;" align="center">${options_name }</td>
 		</tr>
 		<tr>
 			<th>별 점</th>
 			<td>
 				<c:if test="${review.review_star == 0}">☆☆☆☆☆</c:if>
-				<c:if test="${review.review_star == 1}">★☆☆☆☆</c:if>
-				<c:if test="${review.review_star == 2}">★★☆☆☆</c:if>
-				<c:if test="${review.review_star == 3}">★★★☆☆</c:if>
-				<c:if test="${review.review_star == 4}">★★★★☆</c:if>
-				<c:if test="${review.review_star== 5}">★★★★★</c:if>
+				<c:if test="${review.review_star == 1}">⭐</c:if>
+				<c:if test="${review.review_star == 2}">⭐⭐</c:if>
+				<c:if test="${review.review_star == 3}">⭐⭐⭐</c:if>
+				<c:if test="${review.review_star == 4}">⭐⭐⭐⭐</c:if>
+				<c:if test="${review.review_star == 5}">⭐⭐⭐⭐⭐</c:if>
 			</td>
-		</tr>
-		
-		<tr>
 			<th style="font-weight: bold;" align="center">조회수</th>
 			<td >${review.r_hit }</td>
 			<th style="font-weight: bold;" align="center">작성일</th>
@@ -45,16 +42,12 @@
 			</td>
 		</tr>
 		<tr>
-			
-		</tr>
-		
-		<tr>
 			<th style="font-weight: bold;" align="center">제목</th>
 			<td colspan="3">${review.review_sb }</td>
 		</tr>
 		<tr>
 			<th style="font-weight: bold;" align="center">리뷰 사진 </th>
-			<td colspan="5">
+			<td colspan="5" align="center">
 			
 				<c:forEach var="img" items="${review_img }">
 					<img src="./resources/upload/uploadFiles/${img}" width="80%"><br>
@@ -75,11 +68,11 @@
 		<tr>
 			<td colspan="4" style="text-align: center;">
 				 <input type="button" class="btn btn-outline-success" value="수정"
-				onclick="location='review_update.do?review_no=${review.review_no}'">
+				onclick="location='review_update.do?review_no=${review.review_no}&product_num=${product.product_num}'">
 				 <input type="button" class="btn btn-outline-success" value="삭제"
 				onclick="location='review_delete.do?review_no=${review.review_no}'">
 				<input type="button" class="btn btn-success" value="리뷰 목록"
-				onclick="location='review_boardlist.do'">
+				onclick="location='review_boardlist.do?&product_num=${product.product_num}'">
 			</td>
 		</tr>
 	</table>

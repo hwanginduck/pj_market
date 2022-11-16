@@ -16,7 +16,7 @@
 <c:if test="${result == 1 }">
 	<script>
 		alert("리뷰 작성이 완료 되었습니다!");
-		location.href = "review_boardlist";
+		location.href = "review_boardlist.do?&product_num=${product.product_num}";
 	</script>
 </c:if>
 

@@ -19,7 +19,6 @@ public class OptionsServiceImpl implements OptionsService {
     return odao.insertOptions(options_name, options_price, options_sale, product_num);
   }
 
-  @Override
   public List<Options> getOptionList(int product_num) {
     System.out.println("options list service");
     return odao.getOptionList(product_num);
