@@ -184,19 +184,6 @@ public class ReviewController {
     model.addAttribute("listcount", listcount);
     model.addAttribute("boardlist", boardlist);
 
-    System.out.println(boardlist.get(2).getMember_id());
-    System.out.println(boardlist.get(2).getOptions_num());
-    System.out.println(boardlist.get(2).getProduct_num());
-    System.out.println(boardlist.get(2).getR_hit());
-    System.out.println(boardlist.get(2).getReview_content());
-    System.out.println(boardlist.get(2).getReview_img());
-    System.out.println(boardlist.get(2).getReview_no());
-    System.out.println(boardlist.get(2).getReview_sb());
-    System.out.println(boardlist.get(2).getReview_star());
-    System.out.println(boardlist.get(2).getReview_date());
-
-
-
     System.out.println("product_num :" + product_num);
     System.out.println(listcount);
     System.out.println("boardlistsize :" + boardlist.size());

@@ -154,11 +154,11 @@
 				</tr>
 				<th colspan=5>
 					<pre>
-						<textarea rows="4" cols="153" name="qna_content" style="display: block; margin: 3px 3px 0 10px; border: none; outline: none; resize: none;"></textarea>
+						<textarea rows="4" cols="153" name="qna_content" style="display: block; margin: 3px 3px 0 10px; border: none; outline: none; resize: none;" placeholder="문의글작성하기" ></textarea>
 					</pre>
 				</th>
 			</table>
-			<input type="button" value="확인" id="reInsert" class="btn btn-info" />
+			<input type="button" value="문의글작성" id="reInsert" class="btn btn-info" />
 		</form>
 		</div>
 	</div>
