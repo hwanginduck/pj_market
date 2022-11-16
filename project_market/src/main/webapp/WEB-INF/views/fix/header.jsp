@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isELIgnored="false"%>
-
 <!DOCTYPE html>
 <html>
   <head>
+<script src="${path}/resources/js/member.js"></script>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
 
@@ -42,7 +42,7 @@
 						<a href="member_login_go.do">로그인</a>
 					</c:if>
 					<c:if test="${sessionScope.member_id!=null}">
-						<a href="member_login_go.do">로그아웃</a>
+						<a href="member_logout.do">로그아웃</a>
 					</c:if>
 					<c:if test="${sessionScope.member_id==null}">
 						<a href="member_join.do">회원가입</a>

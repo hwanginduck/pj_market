@@ -177,5 +177,11 @@ public class MemberController {
 			return "/member/member_delete_result";
 		}
 	}
-
+	
+	//로그아웃 세션삭제
+	@RequestMapping("member_logout.do")
+	public String Member_Logout(HttpSession session) {
+		session.invalidate();
+		return "main/mainpage";
+	}
 }

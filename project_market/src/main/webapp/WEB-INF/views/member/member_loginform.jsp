@@ -10,6 +10,7 @@
 <body>
 	<section class="main-pj">
 		<div class="detail-content-pj" align="center" >
+		${member_id }
 
 			<div id="member_login" >
 				<h2 class="login_title">로그인</h2>
@@ -26,7 +27,10 @@
 						</tr>
 					</table>
 					<div id="login_menu">
-						<input type="submit" value="로그인" class="input_button" /> <input type="reset" value="취소" class="input_button" onclick="$('#member_id').focus();" /> <input type="button" value="회원가입" class="input_button" onclick="location='member_join.do'" /> <input type="button" value="비번찾기" class="input_button" onclick="pwd_find()" />
+						<input type="submit" value="로그인" class="input_button" />
+						 <input type="reset" value="취소" class="input_button" onclick="$('#member_id').focus();" /> 
+						 <input type="button" value="회원가입" class="input_button" onclick="location='member_join.do'" /> 
+						 <input type="button" value="비번찾기" class="input_button" onclick="pwd_find()" />
 					</div>
 				</form>
 			</div>
