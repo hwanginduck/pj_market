@@ -259,6 +259,7 @@
 	float: left;
 	align-items: center;
 	padding-top: 18px;
+	text-overflow: ellipsis;
 }
 .product-column-sub-pj{
 	width: 400px;
@@ -421,7 +422,10 @@
 .product-detail-name-pj{
 	width: 100%;
 	height: 80px;
-	font-size: 40px;
+	font-size: 35px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 .porduct-detail-starNcount-pj{
 	width: 100%;
@@ -447,12 +451,19 @@
 	height: 80px;
 	font-size: 40px;
 }
+.product-detail-price-pj > input{
+	text-align: right;
+	font-size: 35px;
+	width: 420px;
+	border: none;
+}
+
 .product-detail-option-pj{
 	width: 100%;
 	height: 100px;
 }
 .product-detail-option-pj > select, option{
-	width:300px;
+	width:490px;
 	height:80px;
 	font-size: 30px;
 }
@@ -571,15 +582,32 @@
 	padding-top: 3px;
 	padding-left: 3px;
 	padding-bottom: 5px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .productlist-name-pj{
-	font-size: 25px;
+	font-size: 15px;
+	width:287px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.productlist-sub-pj{
+	width:287px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 
 .productlist-price-pj{
 	font-size: 20px;
+	width:287px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .productlist-pagination-pj{

@@ -34,7 +34,7 @@
 					<div class="productlist-name-pj">
 						${pl.product_name}
 					</div>
-					<div>${pl.product_sub}</div>
+					<div class="productlist-sub-pj">${pl.product_sub}</div>
 					<div class="productlist-price-pj">
 						<fmt:formatNumber value="${pl.product_price}" pattern="₩#,###" />
 					</div>

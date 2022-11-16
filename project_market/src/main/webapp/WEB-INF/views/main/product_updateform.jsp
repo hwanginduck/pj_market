@@ -14,7 +14,7 @@
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품명</div>
 				<div class="product-insert-pj">
-					<input type="text" name="product_name" id="product-insert-bar" value="${product.product_name }"/>
+					<input type="text" name="product_name" id="product-insert-bar" value="${product.product_name }" required="required"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
@@ -47,36 +47,33 @@
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">가격</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_price" value="${product.product_price }"/>
+					<input type="text" id="product-insert-bar" name="product_price" value="${product.product_price }" required="required"/>
 				</div>
 			</div>
 			<div class="product-content-name-box-pj">
 				<div class="product-content-column-pj">상품내용</div>
 				<div class="product-content-insert-pj">
-					<input multiple type="file" name="product_content1">
+					<input multiple type="file" name="product_content1" required="required">
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품 요약</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_sub" value="${product.product_sub }"/>
+					<input type="text" id="product-insert-bar" name="product_sub" value="${product.product_sub }"required="required"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">재고 수량</div>
 				<div class="product-insert-pj">
-					<input type="text" id="product-insert-bar" name="product_stock" value="${product.product_stock }"/>
+					<input type="text" id="product-insert-bar" name="product_stock" value="${product.product_stock }" required="required"/>
 				</div>
 			</div>
 			<div class="product-name-box-pj">
 				<div class="product-column-pj">상품 사진</div>
 				<div class="product-insert-pj">
-					<input multiple type="file" id="product_img" name="product_img1" accept="image/*" onchange="setThumbnail(event);" /> 
+					<input multiple type="file" id="product_img" name="product_img1" accept="image/*" onchange="setThumbnail(event);" required="required"/> 
 				</div>
 			</div>				
-			<div id="image_container">
-				<img src="<%=request.getContextPath()%>/resources/upload/${product.product_img}">
-			</div>
 			<div class="product-option-name-box-pj">
 				<div class="product-options-box">
 					<button type="button" id="update_option_plus">추가하기</button>
@@ -90,9 +87,9 @@
 			<div class="product-name-box-pj" id='optionsbox${status.index }'>
 				<div class="product-options-box"><button type="button" name="option_minus${status.index}" onClick='options_delete(${status.index})' value='${status.index }'>삭제하기</button></div>
 												 <input type="hidden" name="options_num${status.index}" value="${options.options_num}" />
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name${status.index }" value="${options.options_name }"/></div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price${status.index }" value="${options.options_price }"/> </div>
-				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale${status.index }" value="${options.options_sale }"/> </div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_name${status.index }" value="${options.options_name }" required="required"/></div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_price${status.index }" value="${options.options_price }" required="required"/> </div>
+				<div class="product-options-box"><input type="text" id="option-insert-bar" name="options_sale${status.index }" value="${options.options_sale }" required="required"/> </div>
 			</div>
 			</c:forEach>
 			

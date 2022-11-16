@@ -56,4 +56,67 @@ prev.addEventListener('click', function () {
 });
 
 
+$(document).ready( function() {
+	
+	$('#product_count').on('change',function(){
+			
+			var pp = $( '#old_product_price' ).val();
+			
+			var target = document.querySelector("#options_price");
+			
+			var op = target.options[target.selectedIndex].text;
+			
+			var [oldop, newop] = op.split('+');
+			
+			newop = Number(newop.replace(/\,/g,""));
+			
+			var pc = $( '#product_count' ).val();
+     
+			//String > int
+			pp = Number(pp);
+			newop = Number(newop);
+			pc = Number(pc);
+      
+			var total = (pp + newop) * pc;
+			
+			total = Number(total);
+			total = total.toLocaleString();
+			
+			$('#new_product_price').text( total );
+			$('#new_product_price').attr('value',total);
+     
+   	});
+});
+
+$(document).ready( function() {
+	
+	$('#options_price').on('change',function(){
+			
+			var pp = $( '#old_product_price' ).val();
+			
+			var target = document.querySelector("#options_price");
+			
+			var op = target.options[target.selectedIndex].text;
+			
+			var [oldop, newop] = op.split('+');
+			
+			newop = Number(newop.replace(/\,/g,""));
+			
+			var pc = $( '#product_count' ).val();
+     
+			//String > int
+			pp = Number(pp);
+			newop = Number(newop);
+			pc = Number(pc);
+      
+			var total = (pp + newop) * pc;
+			
+			total = Number(total);
+			total = total.toLocaleString();
+			
+			$('#new_product_price').text( total );
+			$('#new_product_price').attr('value',total);
+     
+   	});
+});
 

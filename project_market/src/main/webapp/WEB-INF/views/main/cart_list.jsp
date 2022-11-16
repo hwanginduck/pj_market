@@ -53,14 +53,10 @@
 							</div>
 							<div class="cart-item-count-pj">
 								<div class="number-input">
-									<button
-										class="minus">
-										</button>
+									<button class="minus"></button>
 									<input class="quantity" min="1" id="product_count${status.index}" name="quantity"
 										value="${cart.cart_count }" type="number">
-									<button
-										
-										class="plus"></button>
+									<button class="plus"></button>
 								</div>
 							</div>
 							<div class="cart-item-amount-pj">
